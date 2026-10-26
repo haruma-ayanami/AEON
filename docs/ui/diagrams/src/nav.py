@@ -118,6 +118,14 @@ class Graph:
                 segs = list(zip(pts, pts[1:]))
                 (xa, ya), (xb, yb) = max(segs, key=lambda s: (s[1][0] - s[0][0]) ** 2 + (s[1][1] - s[0][1]) ** 2)
                 lx, ly = xa + (xb - xa) * ed["t"], ya + (yb - ya) * ed["t"]
+                L = ((xb - xa) ** 2 + (yb - ya) ** 2) ** 0.5
+                tw0 = text_w(ed["label"]) * 0.9 + 18
+                if L < tw0 + 2 * 30:   # короткая связь: подпись над линией, чтобы не закрыть стрелки
+                    nx, ny = -(yb - ya) / L, (xb - xa) / L
+                    if ny > 0 or (abs(ny) < 1e-6 and nx > 0):
+                        nx, ny = -nx, -ny
+                    off = 26 + abs(nx) * tw0 / 2
+                    lx, ly = lx + nx * off, ly + ny * off
             tw = text_w(ed["label"]) * 0.9
             o.append(f'<rect x="{lx - tw/2 - 9:.1f}" y="{ly - 17:.1f}" width="{tw + 18:.1f}" height="34" rx="17" fill="#fff" stroke="{BLUE}" stroke-width="1.6"/>')
             o.append(f'<text x="{lx:.1f}" y="{ly + 7.5:.1f}" text-anchor="middle" font-size="23" fill="{BLUE}">{escape(ed["label"])}</text>')

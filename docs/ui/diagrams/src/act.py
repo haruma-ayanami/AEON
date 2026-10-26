@@ -146,7 +146,7 @@ class Diagram:
     def act(self, key, lane, row, text, **kw):
         return self.n(key, "action", lane, row, text, **kw)
 
-    def e(self, a, b, label=None, exit="b", enter="t", via_x=None, via_y=None, points=None, lpos=None):
+    def e(self, a, b, label=None, exit=None, enter="t", via_x=None, via_y=None, points=None, lpos=None):
         self.edges.append(dict(a=a, b=b, label=label, exit=exit, enter=enter, via_x=via_x, via_y=via_y, points=points, lpos=lpos))
 
     def route(self, ed):
@@ -157,8 +157,16 @@ class Diagram:
             return [A.port("b"), (A.cx, B.cy - B.h / 2)]
         if ed["points"] is not None:
             return [A.port(ed["exit"])] + list(ed["points"]) + [B.port(ed["enter"])]
-        p0, p1 = A.port(ed["exit"]), B.port(ed["enter"])
         ex, en = ed["exit"], ed["enter"]
+        if ex is None:
+            # по умолчанию: узел в другой колонке – выход сбоку и вход сверху (Г-образно),
+            # иначе – вниз; так у блоков не остаётся коротких изломов
+            if en == "t" and ed["via_y"] is None and abs(B.cx - A.cx) > A.w / 2 + 12 and B.cy - A.cy > A.h / 2 + 30:
+                ex = "r" if B.cx > A.cx else "l"
+            else:
+                ex = "b"
+            ed["exit"] = ex
+        p0, p1 = A.port(ex), B.port(en)
         (x0, y0), (x1, y1) = p0, p1
         if ex == "b" and en == "t":
             if abs(x0 - x1) < 0.5:
@@ -238,6 +246,9 @@ class Diagram:
         return "\n".join(o)
 
     def save(self, name):
+        # рамка всегда охватывает нижний узел с запасом 34 px
+        low = max(n.cy + n.h / 2 for n in self.nodes.values())
+        self.height = int(max(self.height, low + 34 + MARGIN))
         open(name + ".svg", "w").write(self.svg())
         return self.width, self.height
 
