@@ -104,6 +104,7 @@ class Graph:
         p0 = ed["start"] or A.clip(*(mids[0] if mids else (B.cx, B.cy)))
         p1 = ed["end"] or B.clip(*(mids[-1] if mids else (A.cx, A.cy)))
         pts = [p0] + mids + [p1]
+        ed["pts"] = pts
         d = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
         col = "#666" if ed["dashed"] else LINE
         dash = ' stroke-dasharray="10 7"' if ed["dashed"] else ""
@@ -124,9 +125,10 @@ class Graph:
                     nx, ny = -(yb - ya) / L, (xb - xa) / L
                     if ny > 0 or (abs(ny) < 1e-6 and nx > 0):
                         nx, ny = -nx, -ny
-                    off = 26 + abs(nx) * tw0 / 2
+                    off = 42 + abs(nx) * tw0 / 2
                     lx, ly = lx + nx * off, ly + ny * off
             tw = text_w(ed["label"]) * 0.9
+            ed["pill"] = (lx - tw / 2 - 9, ly - 17, lx + tw / 2 + 9, ly + 17)
             o.append(f'<rect x="{lx - tw/2 - 9:.1f}" y="{ly - 17:.1f}" width="{tw + 18:.1f}" height="34" rx="17" fill="#fff" stroke="{BLUE}" stroke-width="1.6"/>')
             o.append(f'<text x="{lx:.1f}" y="{ly + 7.5:.1f}" text-anchor="middle" font-size="23" fill="{BLUE}">{escape(ed["label"])}</text>')
         return "\n".join(o)

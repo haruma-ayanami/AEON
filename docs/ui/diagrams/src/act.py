@@ -192,8 +192,76 @@ class Diagram:
             return [p0, (x0, y1), p1]
         raise ValueError(ed)
 
+    # ---------- размещение подписей условий без наложений
+    def _lrect(self, lx, ly, anchor, tw):
+        x0 = lx if anchor == "start" else lx - tw if anchor == "end" else lx - tw / 2
+        return (x0 - 3, ly - GS + 2, x0 + tw + 3, ly + 6)
+
+    def obstacles(self):
+        rects, segs = [], []
+        for n in self.nodes.values():
+            rects.append((n.cx - n.w / 2, n.cy - n.h / 2, n.cx + n.w / 2, n.cy + n.h / 2))
+        rects.append((MARGIN, self.top, self.width - MARGIN, self.top + HEADH))
+        for x in self.lane_x[1:]:
+            segs.append(((x, self.top), (x, self.height - MARGIN)))
+        for e in self.edges:
+            pts = e["pts"]
+            segs += list(zip(pts, pts[1:]))
+        return rects, segs
+
+    @staticmethod
+    def _hit(r, rects, segs, pad=4):
+        x0, y0, x1, y1 = r[0] - pad, r[1] - pad, r[2] + pad, r[3] + pad
+        for q in rects:
+            if x0 < q[2] and x1 > q[0] and y0 < q[3] and y1 > q[1]:
+                return True
+        x0, y0, x1, y1 = r            # линии: без запаса, подпись и так отстоит от своей линии
+        for (a, b) in segs:
+            sx0, sx1 = sorted((a[0], b[0])); sy0, sy1 = sorted((a[1], b[1]))
+            if x0 < sx1 + 1 and x1 > sx0 - 1 and y0 < sy1 + 1 and y1 > sy0 - 1:
+                return True
+        return False
+
+    def _candidates(self, pts):
+        c = []
+        for (p, q) in list(zip(pts, pts[1:]))[:2]:
+            (x0, y0), (x1, y1) = p, q
+            if abs(y0 - y1) < 0.5:
+                sx = 1 if x1 > x0 else -1
+                st, en = ("start", "end") if sx > 0 else ("end", "start")
+                for dx in (12, 40, 80):
+                    c += [(x0 + sx * dx, y0 - 9, st), (x0 + sx * dx, y0 + 27, st)]
+                c += [(x1 - sx * 12, y0 - 9, en), (x1 - sx * 12, y0 + 27, en)]
+            else:
+                sy = 1 if y1 > y0 else -1
+                for dy in (24, 50, 76):
+                    c += [(x0 + 10, y0 + sy * dy, "start"), (x0 - 10, y0 + sy * dy, "end")]
+        (p, q) = pts[-2], pts[-1]   # у конца связи – над целевым узлом
+        if abs(p[0] - q[0]) < 0.5 and q[1] > p[1]:
+            c += [(q[0] + 10, q[1] - 8, "start"), (q[0] - 10, q[1] - 8, "end")]
+        return c
+
+    def place_labels(self):
+        for e in self.edges:
+            e["pts"] = self.route(e)
+        rects, segs = self.obstacles()
+        for e in self.edges:
+            if not e["label"]:
+                continue
+            tw = text_w("[" + e["label"] + "]", _fi)
+            cands = ([e["lpos"]] if e["lpos"] else []) + self._candidates(e["pts"])
+            e["lbl_bad"] = True
+            for (lx, ly, anchor) in cands:
+                r = self._lrect(lx, ly, anchor, tw)
+                if not self._hit(r, rects, segs):
+                    e["lbl"], e["lbl_bad"] = (lx, ly, anchor), False
+                    rects.append(r)
+                    break
+            else:
+                e["lbl"] = cands[0]
+
     def edge_svg(self, ed):
-        pts = self.route(ed)
+        pts = ed.get("pts") or self.route(ed)
         d = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
         o = [f'<polyline points="{d}" fill="none" stroke="{LINE}" stroke-width="2" stroke-linejoin="round"/>']
         (xa, ya), (xb, yb) = pts[-2], pts[-1]
@@ -206,14 +274,7 @@ class Diagram:
         if ed["label"]:
             t = "[" + ed["label"] + "]"
             tw = text_w(t, _fi)
-            (x0, y0), (x1, y1) = pts[0], pts[1]
-            if ed["lpos"]:
-                lx, ly, anchor = ed["lpos"]
-            elif abs(y0 - y1) < 0.5:   # первый отрезок горизонтальный – подпись над ним
-                anchor = "start" if x1 > x0 else "end"
-                lx, ly = x0 + (10 if x1 > x0 else -10), y0 - 9
-            else:                      # вертикальный – подпись справа
-                anchor, lx, ly = "start", x0 + 9, y0 + 24
+            lx, ly, anchor = ed["lbl"]
             if anchor == "middle":
                 bx = lx - tw / 2
             else:
@@ -249,6 +310,7 @@ class Diagram:
         # рамка всегда охватывает нижний узел с запасом 34 px
         low = max(n.cy + n.h / 2 for n in self.nodes.values())
         self.height = int(max(self.height, low + 34 + MARGIN))
+        self.place_labels()
         open(name + ".svg", "w").write(self.svg())
         return self.width, self.height
 

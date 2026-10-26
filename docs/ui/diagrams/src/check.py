@@ -35,6 +35,7 @@ def run(name):
     with contextlib.redirect_stdout(io.StringIO()):
         mod = importlib.import_module(name)
     d = mod.d
+    d.place_labels()
     rects = {k: (n.cx - n.w / 2, n.cy - n.h / 2, n.cx + n.w / 2, n.cy + n.h / 2) for k, n in d.nodes.items()}
     routes = []
     probs = []
@@ -44,7 +45,7 @@ def run(name):
         ss = segs(pts)
         if len(ss) == 1:
             (a, b) = ss[0]
-            if abs(a[0] - b[0]) + abs(a[1] - b[1]) < 26:
+            if abs(a[0] - b[0]) + abs(a[1] - b[1]) < 32:
                 probs.append(f"короткая стрелка {ed['a']}→{ed['b']}: {abs(a[0]-b[0]) + abs(a[1]-b[1]):.0f}")
         if len(ss) > 1:
             (a, b) = ss[0]
@@ -60,6 +61,15 @@ def run(name):
                     continue
                 if hit_rect(*s, r, pad=20):
                     probs.append(f"линия {ed['a']}→{ed['b']} задевает {k}")
+    for ed in d.edges:
+        if ed.get("lbl_bad"):
+            probs.append(f"подпись [{ed['label']}] {ed['a']}→{ed['b']} не помещается без наложения")
+    keys = list(rects)
+    for i in range(len(keys)):
+        for j in range(i + 1, len(keys)):
+            p, q = rects[keys[i]], rects[keys[j]]
+            if p[0] < q[2] + 12 and p[2] > q[0] - 12 and p[1] < q[3] + 12 and p[3] > q[1] - 12:
+                probs.append(f"узлы {keys[i]} и {keys[j]} слишком близко")
     ports = {}
     for ed, pts in routes:
         ports.setdefault((ed["a"], ed["exit"]), set()).add("out")
