@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Веб 768 · панель иконками · P2P · сделка</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="rsp" style="width: 768px; height: 1024px; overflow: hidden">
+  <dc-import name="web-p2p-deal" theme="{{ theme }}" lang="{{ lang }}" hint-size="768px,1024px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 768, "height": 1024}}'>
+// Адаптив: окно в web-p2p-deal.dc.html шириной 768 px. Раскладку правьте в оригинале и в правилах .rsp/.ipc в aeon.css.
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    return { theme: p.theme ?? "dark", lang: p.lang ?? "ru" };
+  }
+}
+</script>
+</body>
+</html>

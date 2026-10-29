@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — споры</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="position: relative; min-height: 1160px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="disputes" hint-size="240px,1100px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody" style="flex-direction: row; flex-wrap: wrap; align-items: flex-start">
+      <section aria-label="{{ L.k2 }}" style="flex: 0 1 260px; min-width: 240px; display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">{{ L.k3 }}</span><button class="btn btn-s btn-o">{{ L.k4 }}</button></div>
+        <sc-for list="{{ queue }}" as="q" hint-placeholder-count="4">
+          <a href="admin-disputes.dc.html" aria-current="{{ q.cur }}" style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 16px; background: {{ q.bg }}; border: {{ q.border }}; text-decoration: none; color: var(--t1)">
+            <span style="display: flex; justify-content: space-between"><span class="mono" style="font-size: 12px">{{ q.id }}</span><span class="mono" style="font-size: 12px; color: {{ q.slaC }}">{{ q.sla }}</span></span>
+            <span style="font-weight: 600">{{ q.title }}</span>
+            <span class="muted" style="font-size: 12px">{{ q.meta }}</span>
+            <span class="chip {{ q.cls }}" style="align-self: flex-start">{{ q.status }}</span>
+          </a>
+        </sc-for>
+      </section>
+
+      <section style="flex: 3 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+        <div class="card" style="border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: flex-start"><span style="display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ L.k5 }}</span><span class="disp" style="font-size: 22px">{{ L.k6 }}</span><span class="muted" style="font-size: 13px">{{ L.k7 }}</span></span><span class="chip {{ hdCls }}">{{ hdTxt }}</span></div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px">
+            <div class="tile" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ L.k9 }}</span><span style="font-weight: 600">lena_s</span><span class="muted" style="font-size: 12px">{{ L.k10 }}</span></div>
+            <div class="tile" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ L.k11 }}</span><span style="font-weight: 600">p2p_ivan</span><span style="font-size: 12px; color: var(--warn)">{{ L.k12 }}</span></div>
+          </div>
+        </div>
+        <div class="card" style="border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+          <span class="lbl">{{ L.k13 }}</span>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+            <sc-for list="{{ evidence }}" as="e" hint-placeholder-count="3">
+              <button type="button" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--t1)"><span aria-hidden="true" style="height: 110px; border-radius: 12px; background: repeating-linear-gradient(135deg, var(--bd) 0 8px, var(--raised) 8px 16px); display: flex; align-items: center; justify-content: center"><span class="mono muted" style="font-size: 11px">{{ e.ext }}</span></span><span style="font-size: 13px; font-weight: 500">{{ e.name }}</span><span class="faint" style="font-size: 12px">{{ e.meta }}</span></button>
+            </sc-for>
+          </div>
+        </div>
+        <div class="card" style="border-radius: 16px; display: flex; flex-direction: column">
+          <div style="padding: 14px 20px; border-bottom: 1px solid var(--bs); display: flex; justify-content: space-between"><span class="lbl">{{ L.k14 }}</span><span class="faint" style="font-size: 12px">{{ L.k15 }}</span></div>
+          <div style="padding: 16px 20px; background: var(--sunken); display: flex; flex-direction: column; gap: 10px; font-size: 13px">
+            <sc-for list="{{ chat }}" as="m" hint-placeholder-count="5">
+              <div style="align-self: {{ m.align }}; max-width: 78%; display: flex; flex-direction: column; gap: 3px"><span class="mono faint" style="font-size: 10px; align-self: {{ m.align }}">{{ m.who }} · {{ m.time }}</span><span style="padding: 9px 12px; border-radius: 14px; background: {{ m.bg }}; border: {{ m.border }}; line-height: 18px">{{ m.text }}</span></div>
+            </sc-for>
+          </div>
+          <div style="padding: 12px 16px; display: flex; gap: 8px"><label class="inp" style="flex: 1; height: 44px"><span class="sr">{{ L.k16 }}</span><input placeholder="{{ L.k17 }}"></label><button class="btn btn-s" style="height: 44px">{{ L.k18 }}</button></div>
+        </div>
+      </section>
+
+      <aside class="card" aria-label="{{ L.k19 }}" style="flex: 1 1 340px; min-width: 260px; box-sizing: border-box; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px">
+<sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 14px">
+        <span class="disp" style="font-size: 18px">{{ L.k20 }}</span>
+        <div style="display: flex; flex-direction: column; gap: 4px"><div class="rowline"><span>{{ L.k21 }}</span><span style="font-weight: 600">{{ L.k22 }}</span></div><div class="rowline"><span>{{ L.k23 }}</span><span style="color: var(--sigt)">{{ L.k24 }}</span></div><div class="rowline"><span>{{ L.k25 }}</span><span style="color: var(--warn)">{{ L.k26 }}</span></div></div>
+        <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px"><legend class="lbl" style="margin-bottom: 8px">{{ L.k27 }}</legend>
+          <label style="display: flex; gap: 12px; padding: 12px; border-radius: 14px; border: 1.5px solid var(--t1); background: var(--raised); cursor: pointer"><span class="rb on" aria-hidden="true"></span><input type="radio" name="out" checked class="sr"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k28 }}</span><span class="muted" style="font-size: 12px">{{ L.k29 }}</span></span></label>
+          <label style="display: flex; gap: 12px; padding: 12px; border-radius: 14px; border: 1px solid var(--bd); cursor: pointer"><span class="rb" aria-hidden="true"></span><input type="radio" name="out" class="sr"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k30 }}</span><span class="muted" style="font-size: 12px">{{ L.k31 }}</span></span></label>
+        </fieldset>
+        <div class="field"><label for="why">{{ L.k32 }}</label><textarea id="why" rows="4" style="border-radius: 12px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); padding: 12px; font: 400 14px Inter, sans-serif; resize: none; outline: none" defaultValue="{{ L.k33 }}"></textarea></div>
+        <label style="display: flex; gap: 10px; font-size: 13px; line-height: 18px"><span class="cb on" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k34 }}</label>
+        <button class="btn btn-p btn-l">{{ L.k35 }}</button>
+        </div></sc-if>
+        <sc-if value="{{ isResolved }}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 14px">
+          <span class="disp" style="font-size: 18px">{{ L.k73 }}</span>
+          <div style="display: flex; gap: 12px; padding: 14px 16px; border-radius: 16px; background: var(--sigs)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M8 12l3 3 5-6"></path></svg><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k74 }}</span><span class="muted" style="font-size: 12px">{{ L.k75 }}</span></span></div>
+          <div style="display: flex; flex-direction: column; gap: 4px"><div class="rowline"><span>{{ L.k60 }}</span><span style="font-weight: 600">{{ L.k28 }}</span></div><div class="rowline"><span>{{ L.k76 }}</span><span style="color: var(--sigt)">{{ L.k77 }}</span></div><div class="rowline"><span>{{ L.k78 }}</span><span class="mono" style="font-size: 12px">0x7c2e…91ab</span></div><div class="rowline"><span>{{ L.k63 }}</span><span style="color: var(--warn)">{{ L.k64 }}</span></div></div>
+          <div class="tile" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k79 }}</span><span style="font-size: 13px; line-height: 19px">{{ L.k33 }}</span></div>
+          <span class="hint">{{ L.k80 }}</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px"><a href="admin-audit.dc.html" class="btn btn-o" style="flex: 1 1 auto">{{ L.k81 }}</a><a href="admin-disputes.dc.html" class="btn btn-p" style="flex: 1 1 auto">{{ L.k82 }}</a></div>
+        </div></sc-if>
+      </aside>
+    </div>
+  </main>
+  <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: var(--scrim); display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box">
+      <div role="dialog" aria-modal="true" aria-labelledby="dec-title" class="card" style="width: 100%; max-width: 520px; border-radius: 28px; padding: 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 24px 80px rgba(0,0,0,0.45)">
+        <span style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k57 }}</span><span id="dec-title" class="disp" style="font-size: 26px">{{ L.k58 }}</span></span>
+        <span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k59 }}</span>
+        <div class="tile" style="padding: 4px 16px"><div class="rowline"><span>{{ L.k60 }}</span><span style="font-weight: 600">{{ L.k28 }}</span></div><div class="rowline"><span>{{ L.k61 }}</span><span>lena_s</span></div><div class="rowline"><span>{{ L.k62 }}</span><span class="num" style="font-weight: 600">760,00 USDT</span></div><div class="rowline"><span>{{ L.k63 }}</span><span style="color: var(--warn)">{{ L.k64 }}</span></div></div>
+        <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 16px; background: var(--infos); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 11v5M12 7.5v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span>{{ L.k65 }}</span></span></div>
+        <div class="field"><span>{{ L.k66 }}</span>
+          <div role="group" aria-label="{{ L.k67 }}" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px"><span class="inp" style="justify-content: center; height: 52px; font: 600 20px 'JetBrains Mono', monospace">4</span><span class="inp" style="justify-content: center; height: 52px; font: 600 20px 'JetBrains Mono', monospace">8</span><span class="inp" style="justify-content: center; height: 52px; font: 600 20px 'JetBrains Mono', monospace">1</span><span class="inp" style="justify-content: center; height: 52px; font: 600 20px 'JetBrains Mono', monospace">9</span><span class="inp" style="justify-content: center; height: 52px; font: 600 20px 'JetBrains Mono', monospace; border-color: var(--sigt)"></span><span class="inp" style="justify-content: center; height: 52px; font: 600 20px 'JetBrains Mono', monospace"></span></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px"><button class="btn btn-l" style="flex: 1 1 140px">{{ L.k68 }}</button><button class="btn btn-p btn-l" style="flex: 2 1 220px">{{ L.k69 }}</button></div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "dialog": {"editor": "enum", "options": ["none", "confirm"], "default": "none"}, "state": {"editor": "enum", "options": ["open", "resolved"], "default": "open"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1160}}'>
+class Component extends DCLogic {
+  static EN = {"Споры": "Disputes", "СИСТЕМА": "SYSTEM", "ПРОДАВЕЦ": "SELLER", "В эскроу": "In escrow", "Очередь споров": "Dispute queue", "ОЧЕРЕДЬ · 4": "QUEUE · 4", "Мои": "Mine", "СПОР D-0201 · СДЕЛКА P2P-48201": "DISPUTE D-0201 · DEAL P2P-48201", "Покупатель оплатил, продавец не выпускает": "Buyer paid, seller doesn't release", "760 USDT · 70 338 ₽ · СБП · открыт lena_s в 10:40": "760 USDT · 70,338 ₽ · SBP · opened by lena_s at 10:40", "Ожидаются доказательства": "Awaiting evidence", "ПОКУПАТЕЛЬ · ИНИЦИАТОР": "BUYER · INITIATOR", "98 сделок · 100% · споров 0 · KYC 2": "98 deals · 100% · 0 disputes · KYC 2", "312 сделок · 97,1% · споров 3 за 30 дней": "312 deals · 97.1% · 3 disputes in 30 days", "ДОКАЗАТЕЛЬСТВА · 3": "EVIDENCE · 3", "ЧАТ СДЕЛКИ И СПОРА": "DEAL AND DISPUTE CHAT", "сообщения арбитра видят обе стороны": "both parties see the arbitrator's messages", "Сообщение сторонам": "Message to parties", "Написать сторонам от имени арбитра": "Write to the parties as arbitrator", "Запросить доказательства": "Request evidence", "Решение по спору": "Dispute decision", "Решение": "Decision", "760,00 USDT": "760.00 USDT", "Поступление по выписке": "Payment in the statement", "найдено 10:31": "found 10:31", "Ответ продавца": "Seller's reply", "нет 2 ч 08 мин": "none for 2 h 08 min", "ИСХОД": "OUTCOME", "Выпустить покупателю": "Release to buyer", "760 USDT → lena_s · сделка завершится": "760 USDT → lena_s · the deal will complete", "Вернуть продавцу": "Return to seller", "762 USDT → p2p_ivan · сделка отменится": "762 USDT → p2p_ivan · the deal will be cancelled", "Обоснование · увидят обе стороны": "Reasoning · both parties will see it", "Выписка подтверждает поступление 70 338 ₽ в 10:31 на реквизиты продавца. Продавец не ответил на запрос в течение 2 часов.": "The statement confirms 70,338 ₽ received at 10:31 to the seller's details. The seller did not respond to the request within 2 hours.", "Решение необратимо и будет записано в журнал событий": "The decision is final and will be recorded in the event log", "Вынести решение с 2FA": "Decide with 2FA", "Оплатил, не выпускают": "Paid, not released", "Доказательства": "Evidence", "Пришла неполная сумма": "Partial amount received", "0,05 BTC · mbtc ↔ gold_x": "0.05 BTC · mbtc ↔ gold_x", "На рассмотрении": "Under review", "Покупатель не оплатил": "Buyer didn't pay", "Открыт": "Open", "Оплата третьим лицом": "Third-party payment", "Чек СБП.png": "SBP receipt.png", "покупатель · 10:24": "buyer · 10:24", "Выписка за 23.10.pdf": "Statement for 23.10.pdf", "покупатель · 10:58": "buyer · 10:58", "Скрин банка.jpg": "Bank screenshot.jpg", "покупатель · 11:02": "buyer · 11:02", "Перевела 70 338 ₽, чек во вложении": "Sent 70,338 ₽, receipt attached", "Покупатель открыл спор": "The buyer opened a dispute", "АРБИТР ARB_OLGA": "ARBITRATOR ARB_OLGA", "Приложите выписку со временем перевода. Продавца прошу проверить поступления 10:20–10:40.": "Attach a statement with the transfer time. Seller, please check incoming payments for 10:20–10:40.", "Выписка приложена": "Statement attached", "Нет ответа 2 ч 08 мин": "No reply for 2 h 08 min", "ПОДТВЕРЖДЕНИЕ РЕШЕНИЯ · D-0201": "CONFIRM DECISION · D-0201", "Выпустить 760 USDT покупателю?": "Release 760 USDT to the buyer?", "lena_s получит 760,00 USDT из эскроу, сделка P2P-48201 завершится. Решение необратимо: отменить его нельзя.": "lena_s will receive 760.00 USDT from escrow and deal P2P-48201 will complete. The decision is final and cannot be undone.", "Исход": "Outcome", "Получатель": "Recipient", "Сумма": "Amount", "Продавцу": "To seller", "предупреждение и +1 спор в рейтинг": "warning and +1 dispute on record", "Обоснование и решение увидят обе стороны, запись попадёт в журнал событий.": "Both parties will see the reasoning and decision; it is recorded in the event log.", "Код из приложения-аутентификатора": "Authenticator app code", "Код 2FA, 6 цифр": "2FA code, 6 digits", "Отмена": "Cancel", "Подтвердить решение": "Confirm decision", "Решён · выпущено покупателю": "Resolved · released to buyer", "Решён": "Resolved", "Арбитр вынес решение: 760 USDT выпущены покупателю. Сделка завершена.": "The arbitrator ruled: 760 USDT released to the buyer. The deal is complete.", "Решение вынесено": "Decision made", "760,00 USDT выпущены lena_s": "760.00 USDT released to lena_s", "14:32 · arb_olga · подтверждено 2FA": "14:32 · arb_olga · confirmed with 2FA", "Сделка P2P-48201": "Deal P2P-48201", "Завершена": "Completed", "Транзакция эскроу": "Escrow transaction", "ОБОСНОВАНИЕ · ВИДЯТ ОБЕ СТОРОНЫ": "REASONING · VISIBLE TO BOTH PARTIES", "Уведомления отправлены lena_s и p2p_ivan. Изменить решение нельзя — только через обращение в поддержку с новым спором.": "lena_s and p2p_ivan were notified. The decision cannot be changed — only via a support request with a new dispute.", "Открыть в журнале": "Open in event log", "Следующий спор": "Next dispute"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Споры"), k2: this.tr("Очередь споров"), k3: this.tr("ОЧЕРЕДЬ · 4"), k4: this.tr("Мои"), k5: this.tr("СПОР D-0201 · СДЕЛКА P2P-48201"), k6: this.tr("Покупатель оплатил, продавец не выпускает"), k7: this.tr("760 USDT · 70 338 ₽ · СБП · открыт lena_s в 10:40"), k8: this.tr("Ожидаются доказательства"), k9: this.tr("ПОКУПАТЕЛЬ · ИНИЦИАТОР"), k10: this.tr("98 сделок · 100% · споров 0 · KYC 2"), k11: this.tr("ПРОДАВЕЦ"), k12: this.tr("312 сделок · 97,1% · споров 3 за 30 дней"), k13: this.tr("ДОКАЗАТЕЛЬСТВА · 3"), k14: this.tr("ЧАТ СДЕЛКИ И СПОРА"), k15: this.tr("сообщения арбитра видят обе стороны"), k16: this.tr("Сообщение сторонам"), k17: this.tr("Написать сторонам от имени арбитра"), k18: this.tr("Запросить доказательства"), k19: this.tr("Решение по спору"), k20: this.tr("Решение"), k21: this.tr("В эскроу"), k22: this.tr("760,00 USDT"), k23: this.tr("Поступление по выписке"), k24: this.tr("найдено 10:31"), k25: this.tr("Ответ продавца"), k26: this.tr("нет 2 ч 08 мин"), k27: this.tr("ИСХОД"), k28: this.tr("Выпустить покупателю"), k29: this.tr("760 USDT → lena_s · сделка завершится"), k30: this.tr("Вернуть продавцу"), k31: this.tr("762 USDT → p2p_ivan · сделка отменится"), k32: this.tr("Обоснование · увидят обе стороны"), k33: this.tr("Выписка подтверждает поступление 70 338 ₽ в 10:31 на реквизиты продавца. Продавец не ответил на запрос в течение 2 часов."), k34: this.tr("Решение необратимо и будет записано в журнал событий"), k35: this.tr("Вынести решение с 2FA"), k36: this.tr("Оплатил, не выпускают"), k37: this.tr("Доказательства"), k38: this.tr("Пришла неполная сумма"), k39: this.tr("0,05 BTC · mbtc ↔ gold_x"), k40: this.tr("На рассмотрении"), k41: this.tr("Покупатель не оплатил"), k42: this.tr("Открыт"), k43: this.tr("Оплата третьим лицом"), k44: this.tr("Чек СБП.png"), k45: this.tr("покупатель · 10:24"), k46: this.tr("Выписка за 23.10.pdf"), k47: this.tr("покупатель · 10:58"), k48: this.tr("Скрин банка.jpg"), k49: this.tr("покупатель · 11:02"), k50: this.tr("Перевела 70 338 ₽, чек во вложении"), k51: this.tr("СИСТЕМА"), k52: this.tr("Покупатель открыл спор"), k53: this.tr("АРБИТР ARB_OLGA"), k54: this.tr("Приложите выписку со временем перевода. Продавца прошу проверить поступления 10:20–10:40."), k55: this.tr("Выписка приложена"), k56: this.tr("Нет ответа 2 ч 08 мин"), k57: this.tr("ПОДТВЕРЖДЕНИЕ РЕШЕНИЯ · D-0201"), k58: this.tr("Выпустить 760 USDT покупателю?"), k59: this.tr("lena_s получит 760,00 USDT из эскроу, сделка P2P-48201 завершится. Решение необратимо: отменить его нельзя."), k60: this.tr("Исход"), k61: this.tr("Получатель"), k62: this.tr("Сумма"), k63: this.tr("Продавцу"), k64: this.tr("предупреждение и +1 спор в рейтинг"), k65: this.tr("Обоснование и решение увидят обе стороны, запись попадёт в журнал событий."), k66: this.tr("Код из приложения-аутентификатора"), k67: this.tr("Код 2FA, 6 цифр"), k68: this.tr("Отмена"), k69: this.tr("Подтвердить решение"), k70: this.tr("Решён · выпущено покупателю"), k71: this.tr("Решён"), k72: this.tr("Арбитр вынес решение: 760 USDT выпущены покупателю. Сделка завершена."), k73: this.tr("Решение вынесено"), k74: this.tr("760,00 USDT выпущены lena_s"), k75: this.tr("14:32 · arb_olga · подтверждено 2FA"), k76: this.tr("Сделка P2P-48201"), k77: this.tr("Завершена"), k78: this.tr("Транзакция эскроу"), k79: this.tr("ОБОСНОВАНИЕ · ВИДЯТ ОБЕ СТОРОНЫ"), k80: this.tr("Уведомления отправлены lena_s и p2p_ivan. Изменить решение нельзя — только через обращение в поддержку с новым спором."), k81: this.tr("Открыть в журнале"), k82: this.tr("Следующий спор") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const rs = (this.props.state ?? 'open') === 'resolved';
+    const st = this.props.dialog ?? 'none';
+    const q = (id, title, meta, status, cls, sla, slaC, cur) => ({ id, title, meta, status, cls, sla, slaC, cur: cur ? 'page' : 'false', bg: cur ? 'var(--raised)' : 'var(--surface)', border: cur ? '1.5px solid var(--t1)' : '1px solid var(--bs)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isOpen: !rs, isResolved: rs, hdCls: rs ? 'c-ok' : 'c-warn', hdTxt: rs ? this.tr("Решён · выпущено покупателю") : this.tr("Ожидаются доказательства"), isNone: st === 'none', isConfirm: st === 'confirm',
+      queue: [
+        q('D-0201', this.tr('Оплатил, не выпускают'), '760 USDT · lena_s ↔ p2p_ivan', rs ? this.tr('Решён') : this.tr('Доказательства'), rs ? 'c-ok' : 'c-warn', rs ? '14:32' : '23:41:05', rs ? 'var(--sigt)' : 'var(--warn)', true),
+        q('D-0199', this.tr('Пришла неполная сумма'), this.tr('0,05 BTC · mbtc ↔ gold_x'), this.tr('На рассмотрении'), 'c-info', '19:02:11', 'var(--t2)'),
+        q('D-0198', this.tr('Покупатель не оплатил'), '300 USDT · eva_s ↔ p2p_ivan', this.tr('Открыт'), 'c-neg', '02:14:40', 'var(--neg)'),
+        q('D-0193', this.tr('Оплата третьим лицом'), '120 USDT · n7 ↔ olga_k', this.tr('На рассмотрении'), 'c-info', '31:10:00', 'var(--t2)')
+      ],
+      evidence: [
+        { ext: 'PNG', name: this.tr('Чек СБП.png'), meta: this.tr('покупатель · 10:24') },
+        { ext: 'PDF', name: this.tr('Выписка за 23.10.pdf'), meta: this.tr('покупатель · 10:58') },
+        { ext: 'JPG', name: this.tr('Скрин банка.jpg'), meta: this.tr('покупатель · 11:02') }
+      ],
+      chat: [
+        { who: 'LENA_S', time: '10:24', text: this.tr('Перевела 70 338 ₽, чек во вложении'), align: 'flex-end', bg: 'var(--raised)', border: '0' },
+        { who: this.tr('СИСТЕМА'), time: '10:40', text: this.tr('Покупатель открыл спор'), align: 'center', bg: 'var(--negs)', border: '0' },
+        { who: this.tr('АРБИТР ARB_OLGA'), time: '10:52', text: this.tr('Приложите выписку со временем перевода. Продавца прошу проверить поступления 10:20–10:40.'), align: 'stretch', bg: 'var(--warns)', border: '1px solid var(--warn)' },
+        { who: 'LENA_S', time: '10:58', text: this.tr('Выписка приложена'), align: 'flex-end', bg: 'var(--raised)', border: '0' },
+        { who: 'P2P_IVAN', time: '—', text: this.tr('Нет ответа 2 ч 08 мин'), align: 'flex-start', bg: 'transparent', border: '1px dashed var(--bd)' }
+      ].concat(rs ? [{ who: this.tr('СИСТЕМА'), time: '14:32', text: this.tr('Арбитр вынес решение: 760 USDT выпущены покупателю. Сделка завершена.'), align: 'center', bg: 'var(--sigs)', border: '0' }] : [])
+    };
+  }
+}
+</script>
+</body>
+</html>

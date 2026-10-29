@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — создание кошелька</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-auth-welcome.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ title }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div style="position: absolute; left: 20px; right: 20px; top: 114px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px" aria-hidden="true"><sc-for list="{{ prog }}" as="p" hint-placeholder-count="3"><span style="height: 4px; border-radius: 2px; background: {{ p }}"></span></sc-for></div>
+
+  <sc-if value="{{ isCustody }}" hint-placeholder-val="{{ true }}">
+    <div class="ios-body" style="top: 140px">
+      <h1 class="disp" style="margin: 0 4px; font-size: 28px">{{ L.k3 }}</h1>
+      <label class="icard" style="padding: 18px; display: flex; flex-direction: column; gap: 8px; border: 1.5px solid var(--t1)"><span style="display: flex; justify-content: space-between; align-items: center"><span class="disp" style="font-size: 19px">{{ L.k4 }}</span><span class="rb on" aria-hidden="true"></span></span><input type="radio" name="c" checked class="sr"><span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k5 }}</span><span class="chip c-ok" style="align-self: flex-start">{{ L.k6 }}</span></label>
+      <label class="icard" style="padding: 18px; display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--bs)"><span style="display: flex; justify-content: space-between; align-items: center"><span class="disp" style="font-size: 19px">{{ L.k7 }}</span><span class="rb" aria-hidden="true"></span></span><input type="radio" name="c" class="sr"><span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k8 }}</span><span class="chip c-warn" style="align-self: flex-start">{{ L.k9 }}</span></label>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isSeed }}" hint-placeholder-val="{{ false }}">
+    <div class="ios-body" style="top: 140px">
+      <h1 class="disp" style="margin: 0 4px; font-size: 28px">{{ L.k10 }}</h1>
+      <span class="muted" style="padding: 0 4px; font-size: 15px; line-height: 21px">{{ L.k11 }}</span>
+      <div class="icard" style="padding: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{ words }}" as="w" hint-placeholder-count="12"><span style="height: 40px; border-radius: 12px; background: var(--raised); display: flex; align-items: center; gap: 6px; padding: 0 10px; font-size: 14px"><span class="mono faint" style="font-size: 11px; width: 16px">{{ w.n }}</span>{{ w.w }}</span></sc-for>
+      </div>
+      <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ L.k12 }}</span></div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isVerify }}" hint-placeholder-val="{{ false }}">
+    <div class="ios-body" style="top: 140px">
+      <h1 class="disp" style="margin: 0 4px; font-size: 28px">{{ L.k13 }}</h1>
+      <span class="muted" style="padding: 0 4px; font-size: 15px">{{ L.k14 }}</span>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <div class="icard" style="padding: 12px; display: flex; flex-direction: column; gap: 4px; border: 1.5px solid var(--sigt)"><span class="lbl">№ 4</span><span style="font-weight: 600">orbit</span></div>
+        <div class="icard" style="padding: 12px; display: flex; flex-direction: column; gap: 4px; border: 1.5px solid var(--t1)"><span class="lbl">№ 9</span><span class="faint">…</span></div>
+        <div class="icard" style="padding: 12px; display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--bs)"><span class="lbl">№ 12</span><span class="faint">…</span></div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 8px"><sc-for list="{{ pool }}" as="p" hint-placeholder-count="9"><button class="btn btn-s" style="height: 44px; padding: 0 18px; font-size: 15px; font-weight: 500; opacity: {{ p.o }}">{{ p.w }}</button></sc-for></div>
+    </div>
+  </sc-if>
+
+  <div class="ios-bar"><a href="{{ nextHref }}" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ nextLabel }}</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "step": {"editor": "enum", "options": ["custody", "seed", "verify"], "default": "custody"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Назад": "Back", "Как хранить ключи?": "How should keys be stored?", "Кастодиальный": "Custodial", "Ключи хранит AEON. Восстановление через почту и 2FA, P2P с внутренним эскроу.": "AEON stores the keys. Recovery via email and 2FA, P2P with internal escrow.", "Рекомендуем новичкам": "Recommended for beginners", "Некастодиальный": "Non-custodial", "Ключ хранится в Secure Enclave этого iPhone. Вы подписываете каждую транзакцию сами.": "The key is stored in this iPhone's Secure Enclave. You sign every transaction yourself.", "Потеряли фразу — потеряли доступ": "Lose the phrase — lose access", "Секретная фраза": "Secret phrase", "Запишите 12 слов на бумаге по порядку. Не делайте скриншот и не храните в облаке.": "Write the 12 words down on paper in order. Don't take a screenshot or store it in the cloud.", "Сотрудники AEON никогда не попросят эту фразу. Кто её знает — владеет средствами.": "AEON staff will never ask for this phrase. Whoever knows it owns the funds.", "Проверим запись": "Let's check your copy", "Выберите слово №4, №9 и №12": "Select words #4, #9 and #12", "Новый кошелёк": "New wallet", "Резервная копия": "Backup", "Проверка": "Review", "Продолжить": "Continue", "Я записал фразу": "I've written the phrase down", "Готово": "Done"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("Как хранить ключи?"), k4: this.tr("Кастодиальный"), k5: this.tr("Ключи хранит AEON. Восстановление через почту и 2FA, P2P с внутренним эскроу."), k6: this.tr("Рекомендуем новичкам"), k7: this.tr("Некастодиальный"), k8: this.tr("Ключ хранится в Secure Enclave этого iPhone. Вы подписываете каждую транзакцию сами."), k9: this.tr("Потеряли фразу — потеряли доступ"), k10: this.tr("Секретная фраза"), k11: this.tr("Запишите 12 слов на бумаге по порядку. Не делайте скриншот и не храните в облаке."), k12: this.tr("Сотрудники AEON никогда не попросят эту фразу. Кто её знает — владеет средствами."), k13: this.tr("Проверим запись"), k14: this.tr("Выберите слово №4, №9 и №12"), k15: this.tr("Новый кошелёк"), k16: this.tr("Резервная копия"), k17: this.tr("Проверка"), k18: this.tr("Продолжить"), k19: this.tr("Я записал фразу"), k20: this.tr("Готово") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const step = this.props.step ?? 'custody';
+    const i = ['custody', 'seed', 'verify'].indexOf(step);
+    const words = ['canyon', 'velvet', 'mirror', 'orbit', 'harvest', 'lunar', 'pixel', 'anchor', 'meadow', 'signal', 'copper', 'thrive'];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isCustody: step === 'custody', isSeed: step === 'seed', isVerify: step === 'verify',
+      title: [this.tr('Новый кошелёк'), this.tr('Резервная копия'), this.tr('Проверка')][i],
+      prog: [0, 1, 2].map((k) => (k < i ? 'var(--sig)' : k === i ? 'var(--t1)' : 'var(--bd)')),
+      words: words.map((w, k) => ({ w, n: k + 1 })),
+      pool: ['meadow', 'canyon', 'signal', 'copper', 'lunar', 'thrive', 'pixel', 'anchor', 'velvet'].map((w) => ({ w, o: w === 'orbit' ? '0.3' : '1' })),
+      nextLabel: [this.tr('Продолжить'), this.tr('Я записал фразу'), this.tr('Готово')][i],
+      nextHref: i === 2 ? 'ios-wallet-home.dc.html' : '#'
+    };
+  }
+}
+</script>
+</body>
+</html>

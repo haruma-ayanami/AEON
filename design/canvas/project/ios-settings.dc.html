@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — язык и оформление</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-profile.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k4 }}</span>
+    <div class="icard"><label class="irow"><span style="flex: 1">Русский</span><span class="rb on" aria-hidden="true"></span><input type="radio" name="lng" checked class="sr"></label><label class="irow"><span style="flex: 1">English</span><span class="rb" aria-hidden="true"></span><input type="radio" name="lng" class="sr"></label></div>
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k5 }}</span>
+    <div class="icard"><button type="button" class="irow"><span style="flex: 1">{{ L.k6 }}</span><span class="muted">₽ RUB</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="irow"><span style="flex: 1">{{ L.k7 }}</span><span class="muted num">{{ L.k8 }}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="irow"><span style="flex: 1">{{ L.k9 }}</span><span class="muted">{{ L.k10 }}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button></div>
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k11 }}</span>
+    <div style="display: flex; gap: 8px"><sc-for list="{{ themes }}" as="t" hint-placeholder-count="3"><button aria-pressed="{{ t.on }}" style="flex: 1; min-width: 0; padding: 10px 10px 12px; border-radius: 18px; border: 2px solid {{ t.b }}; background: var(--surface); color: var(--t1); display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; font: 500 14px Inter, sans-serif"><span aria-hidden="true" style="width: 100%; height: 72px; border-radius: 10px; overflow: hidden; display: flex; border: 1px solid var(--bs)"><span style="flex: 1; background: {{ t.l }}; display: flex; flex-direction: column; gap: 5px; padding: 10px 8px"><span style="height: 6px; width: 70%; border-radius: 3px; background: {{ t.lf }}"></span><span style="height: 6px; width: 45%; border-radius: 3px; background: {{ t.lf }}; opacity: .5"></span></span><span style="flex: {{ t.rf }}; background: {{ t.r }}; display: flex; flex-direction: column; gap: 5px; padding: 10px 8px"><span style="height: 6px; width: 70%; border-radius: 3px; background: {{ t.rfg }}"></span><span style="height: 6px; width: 45%; border-radius: 3px; background: {{ t.rfg }}; opacity: .5"></span></span></span>{{ t.n }}</button></sc-for></div>
+    <div class="icard"><label class="irow"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k12 }}</span><span class="faint" style="font-size: 12px">{{ L.k13 }}</span></span><span class="sw" aria-hidden="true"></span><input type="checkbox" class="sr"></label></div>
+    <span class="hint" style="padding: 0 4px">{{ L.k14 }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Язык и оформление": "Language & theme", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "ЯЗЫК": "LANGUAGE", "РЕГИОН": "REGION", "Валюта отображения": "Display currency", "Формат чисел": "Number format", "1 234,56": "1,234.56", "Часовой пояс": "Time zone", "Москва, UTC+3": "Moscow, UTC+3", "ТЕМА": "THEME", "Скрывать суммы при запуске": "Hide amounts on launch", "Показ — по нажатию на «глаз»": "Show by tapping the eye", "Меняется сразу, без перезапуска. Даты и числа — в формате языка.": "Changes apply instantly, no restart. Dates and numbers follow the language format.", "Светлая": "Light", "Тёмная": "Dark", "Как в системе": "System"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык и оформление"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("ЯЗЫК"), k5: this.tr("РЕГИОН"), k6: this.tr("Валюта отображения"), k7: this.tr("Формат чисел"), k8: this.tr("1 234,56"), k9: this.tr("Часовой пояс"), k10: this.tr("Москва, UTC+3"), k11: this.tr("ТЕМА"), k12: this.tr("Скрывать суммы при запуске"), k13: this.tr("Показ — по нажатию на «глаз»"), k14: this.tr("Меняется сразу, без перезапуска. Даты и числа — в формате языка."), k15: this.tr("Светлая"), k16: this.tr("Тёмная"), k17: this.tr("Как в системе") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      themes: [
+        { n: this.tr("Светлая"), on: 'false', b: 'var(--bs)', l: '#EEF0EC', lf: '#0E110F', r: '#EEF0EC', rfg: '#0E110F', rf: 0 },
+        { n: this.tr("Тёмная"), on: 'true', b: 'var(--sig)', l: '#0A0C0B', lf: '#F2F5F1', r: '#0A0C0B', rfg: '#F2F5F1', rf: 0 },
+        { n: this.tr("Как в системе"), on: 'false', b: 'var(--bs)', l: '#EEF0EC', lf: '#0E110F', r: '#0A0C0B', rfg: '#F2F5F1', rf: 1 }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — кошелёк</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+.th-dark{--mica:#151917;--layer:#111412;--card:#171B18;--raised:#1B1F1C;--ctrl:#1E2320;--ctrlh:#262B27;--bs:#232824;--bd:#2E342F;--bst:#48504A;--t1:#F2F5F1;--t2:#A3ACA5;--t3:#8A938C;--pbg:#F2F5F1;--pfg:#0A0C0B;--sig:#B6F36B;--sigt:#B6F36B;--sigs:rgba(182,243,107,.12);--neg:#FF7A6B;--negs:rgba(255,122,107,.12);--warn:#F5B941;--warns:rgba(245,185,65,.12);--info:#6EA2FF;--infos:rgba(110,162,255,.12);--tnf:#F5B941;--tnb:#2A230F;--sel:rgba(255,255,255,.06);--hov:rgba(255,255,255,.035);--flyout:#202521;--scrim:rgba(0,0,0,.45);--orange:#FF9A5B;--onacc:#0A0C0B}
+.th-light{--mica:#F3F4F1;--layer:#FAFBF9;--card:#FFFFFF;--raised:#F7F8F5;--ctrl:#FFFFFF;--ctrlh:#F3F4F1;--bs:#E2E5DF;--bd:#D3D7D0;--bst:#A9AFA6;--t1:#0E110F;--t2:#4D554F;--t3:#606862;--pbg:#0E110F;--pfg:#FFFFFF;--sig:#B6F36B;--sigt:#286913;--sigs:rgba(47,122,22,.12);--neg:#A62E23;--negs:rgba(200,55,42,.1);--warn:#7E5200;--warns:rgba(154,100,0,.12);--info:#2755BA;--infos:rgba(45,98,214,.1);--tnf:#7A4F00;--tnb:#FFF1CC;--sel:rgba(0,0,0,.05);--hov:rgba(0,0,0,.03);--flyout:#FFFFFF;--scrim:rgba(14,17,15,.25);--orange:#8F4416;--onacc:#FFFFFF}
+a{color:var(--t1)}
+</style>
+</helmet>
+<div class="{{ themeClass }}" style="position: relative; width: 1440px; height: 900px; overflow: hidden; background: var(--mica); color: var(--t1); font-family: Inter, system-ui, sans-serif; font-size: 13px; display: flex; flex-direction: column">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="wallet" hint-size="220px,852px"></dc-import>
+    <main style="flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--layer); border-top-left-radius: 8px; border-left: 1px solid var(--bs); border-top: 1px solid var(--bs)">
+      <div style="flex: 1; min-height: 0; padding: 22px 28px 0; display: flex; flex-direction: column; gap: 16px; overflow: hidden">
+        <div style="display: flex; align-items: center; gap: 10px">
+          <h1 style="margin: 0; font: 600 28px 'Inter Tight', sans-serif; letter-spacing: -0.02em">{{ L.k2 }}</h1>
+          <button aria-label="{{ L.k3 }}" style="width: 24px; height: 24px; border-radius: 999px; border: 1px solid var(--bd); background: transparent; color: var(--t2); display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5"></path></svg></button>
+          <span style="flex: 1"></span>
+          <div role="toolbar" aria-label="{{ L.k4 }}" style="display: flex; gap: 6px">
+            <button style="height: 32px; padding: 0 12px; border-radius: 4px; border: 1px solid var(--bs); background: var(--ctrl); color: var(--t1); font: 500 13px Inter, sans-serif; display: flex; align-items: center; gap: 8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7L7 17M7 9v8h8"></path></svg>{{ L.k5 }}</button>
+            <a href="win-send.dc.html" style="height: 32px; padding: 0 12px; box-sizing: border-box; border-radius: 4px; background: var(--pbg); color: var(--pfg); font: 600 13px Inter, sans-serif; text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg>{{ L.k6 }}<span style="font: 500 10px 'JetBrains Mono', monospace; opacity: 0.6">CTRL+S</span></a>
+            <a href="win-p2p-market.dc.html" style="height: 32px; padding: 0 12px; box-sizing: border-box; border-radius: 4px; border: 1px solid var(--bs); background: var(--ctrl); color: var(--t1); font: 500 13px Inter, sans-serif; text-decoration: none; display: flex; align-items: center; gap: 8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg>{{ L.k7 }}</a>
+            <button aria-label="{{ L.k8 }}" style="width: 32px; height: 32px; border-radius: 4px; border: 1px solid var(--bs); background: var(--ctrl); color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.6"></circle><circle cx="12" cy="12" r="1.6"></circle><circle cx="19" cy="12" r="1.6"></circle></svg></button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; min-height: 0">
+          <div style="display: flex; flex-direction: column; gap: 16px; min-width: 0">
+            <section aria-label="{{ L.k9 }}" style="border-radius: 8px; background: var(--card); border: 1px solid var(--bs); padding: 18px 20px; display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 20px; align-items: center">
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ L.k10 }}</span>
+                <sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 6px">
+                <span style="font: 600 44px 'Inter Tight', sans-serif; line-height: 1.05; letter-spacing: -0.03em; font-feature-settings: 'tnum'"><span style="color: var(--t3)">$</span>{{ L.k11 }}<span style="color: var(--t3)">{{ L.k12 }}</span></span>
+                <span style="display: flex; align-items: center; gap: 8px"><span style="font: 600 13px Inter, sans-serif; color: var(--sigt)">{{ L.k13 }}</span><span style="height: 22px; padding: 0 8px; border-radius: 4px; background: var(--sigs); color: var(--sigt); font: 600 12px Inter, sans-serif; display: inline-flex; align-items: center">{{ L.k14 }}</span></span>
+                </div></sc-if>
+                <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}"><div role="status" aria-label="{{ L.k85 }}" style="display: flex; flex-direction: column; gap: 8px"><span class="sk" style="display: block; width: 220px; height: 44px; border-radius: 6px; "></span><span class="sk" style="display: block; width: 120px; height: 18px; border-radius: 4px; "></span></div></sc-if>
+                <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 6px"><span style="font: 600 44px 'Inter Tight', sans-serif; line-height: 1.05; letter-spacing: -0.03em; color: var(--t3)">$0{{ L.k86 }}</span><span style="color: var(--t2)">{{ L.k87 }}</span></div></sc-if>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+                <div role="tablist" aria-label="{{ L.k15 }}" style="align-self: flex-end; display: flex; gap: 2px; padding: 2px; border-radius: 4px; background: var(--raised)">
+                  <button role="tab" aria-selected="false" style="height: 24px; padding: 0 10px; border-radius: 3px; border: 0; background: transparent; color: var(--t2); font: 500 11px 'JetBrains Mono', monospace">{{ L.k16 }}</button>
+                  <button role="tab" aria-selected="true" style="height: 24px; padding: 0 10px; border-radius: 3px; border: 0; background: var(--ctrlh); color: var(--t1); font: 500 11px 'JetBrains Mono', monospace">{{ L.k17 }}</button>
+                  <button role="tab" aria-selected="false" style="height: 24px; padding: 0 10px; border-radius: 3px; border: 0; background: transparent; color: var(--t2); font: 500 11px 'JetBrains Mono', monospace">{{ L.k18 }}</button>
+                  <button role="tab" aria-selected="false" style="height: 24px; padding: 0 10px; border-radius: 3px; border: 0; background: transparent; color: var(--t2); font: 500 11px 'JetBrains Mono', monospace">{{ L.k19 }}</button>
+                </div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">                <svg viewBox="0 0 700 96" preserveAspectRatio="none" style="width: 100%; height: 96px" role="img" aria-label="{{ L.k20 }}"><defs><linearGradient id="wg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#B6F36B" stop-opacity="0.18"></stop><stop offset="1" stop-color="#B6F36B" stop-opacity="0"></stop></linearGradient></defs><path d="M0 76 C80 72 150 70 210 68 S300 74 350 56 S450 44 510 40 S600 32 640 24 S690 18 700 16 L700 96 L0 96 Z" fill="url(#wg)"></path><path d="M0 76 C80 72 150 70 210 68 S300 74 350 56 S450 44 510 40 S600 32 640 24 S690 18 700 16" fill="none" stroke="#B6F36B" stroke-width="1.75" vector-effect="non-scaling-stroke"></path></svg></sc-if><sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}"><span class="sk" style="display: block; width: 100%; height: 96px; border-radius: 6px; "></span></sc-if><sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="height: 96px; position: relative; display: flex; align-items: flex-end"><span aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 24px; border-top: 1.5px dashed var(--bst)"></span><span style="font-size: 12px; color: var(--t3)">{{ L.k92 }}</span></div></sc-if>
+              </div>
+            </section>
+
+            <section aria-labelledby="ag-h" style="position: relative; border-radius: 8px; background: var(--card); border: 1px solid var(--bs); display: flex; flex-direction: column">
+              <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--bs)">
+                <h2 id="ag-h" style="margin: 0; flex: 1; font: 600 15px Inter, sans-serif">{{ L.k21 }}</h2>
+                <button style="height: 28px; padding: 0 10px; border-radius: 4px; border: 1px solid var(--bs); background: var(--ctrl); color: var(--t1); font: 400 12px Inter, sans-serif; display: flex; align-items: center; gap: 6px">{{ L.k22 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+                <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--t2)"><span aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px; background: var(--pbg); color: var(--pfg); display: flex; align-items: center; justify-content: center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked style="position: absolute; opacity: 0; width: 1px; height: 1px">{{ L.k23 }}</label>
+              </div>
+              <table style="width: 100%; border-collapse: collapse; font-feature-settings: 'tnum'">
+                <thead><tr style="font: 500 11px Inter, sans-serif; color: var(--t2); text-align: left; height: 32px; border-bottom: 1px solid var(--bs)">
+                  <th scope="col" style="padding: 0 16px; font-weight: 500">{{ L.k24 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500">{{ L.k25 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500; text-align: right">{{ L.k26 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500; text-align: right">{{ L.k27 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500; text-align: right">{{ L.k28 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500">{{ L.k29 }}</th>
+                </tr></thead>
+                <tbody>
+                  <sc-for list="{{ assets }}" as="a" hint-placeholder-count="5">
+                    <tr aria-selected="{{ a.selected }}" style="height: 44px; background: {{ a.bg }}; border-bottom: 1px solid var(--bs)">
+                      <td style="padding: 0 16px; position: relative"><sc-if value="{{ a.isSel }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: absolute; left: 0; top: 12px; width: 3px; height: 20px; border-radius: 2px; background: var(--sig)"></span></sc-if><span style="display: flex; align-items: center; gap: 10px"><span style="position: relative; width: 26px; height: 26px; flex: none"><span style="width: 26px; height: 26px; border-radius: 999px; background: var(--raised); border: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; font: 500 8px 'JetBrains Mono', monospace">{{ a.t }}</span><span aria-hidden="true" style="position: absolute; right: -2px; bottom: -2px; width: 9px; height: 9px; border-radius: 2px; background: {{ a.nc }}; border: 1.5px solid var(--card)"></span></span><span style="font-weight: 500">{{ a.name }}</span></span></td>
+                      <td style="padding: 0 12px; color: var(--t2)">{{ a.net }}</td>
+                      <td style="padding: 0 12px; text-align: right; font-weight: 500">{{ a.amt }}</td>
+                      <td style="padding: 0 12px; text-align: right">{{ a.fiat }}</td>
+                      <td style="padding: 0 12px; text-align: right; font-weight: 600; color: {{ a.cc }}">{{ a.ch }}</td>
+                      <td style="padding: 0 12px; font: 400 12px 'JetBrains Mono', monospace; color: var(--t2)">{{ a.addr }}</td>
+                    </tr>
+                  </sc-for>
+                  <sc-for list="{{ skRows }}" as="r" hint-placeholder-count="0"><tr aria-hidden="true" style="height: 44px; border-bottom: 1px solid var(--bs)"><td style="padding: 0 12px; padding-left: 16px"><span class="sk" style="display: block; width: 90px; height: 12px; border-radius: 4px; "></span></td><td style="padding: 0 12px"><span class="sk" style="display: block; width: 110px; height: 12px; border-radius: 4px; "></span></td><td style="padding: 0 12px"><span class="sk" style="display: block; width: 70px; height: 12px; border-radius: 4px; "></span></td><td style="padding: 0 12px"><span class="sk" style="display: block; width: 60px; height: 12px; border-radius: 4px; "></span></td><td style="padding: 0 12px"><span class="sk" style="display: block; width: 40px; height: 12px; border-radius: 4px; "></span></td><td style="padding: 0 12px"><span class="sk" style="display: block; width: 120px; height: 12px; border-radius: 4px; "></span></td></tr></sc-for>
+                </tbody>
+              </table>
+              <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 36px 20px; border-radius: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zM3 9h15M16 12.5h2"></path></svg></span><span style="font-weight: 600; font-size: 15px">{{ L.k88 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k89 }}</span><span style="display: flex; gap: 6px; margin-top: 6px"><button style="height: 32px; padding: 0 12px; box-sizing: border-box; border-radius: 4px; font: 500 13px Inter, sans-serif; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; border: 0; background: var(--pbg); color: var(--pfg); font-weight: 600">{{ L.k90 }}</button><a href="win-p2p-market.dc.html" style="height: 32px; padding: 0 12px; box-sizing: border-box; border-radius: 4px; font: 500 13px Inter, sans-serif; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--bs); background: var(--ctrl); color: var(--t1)">{{ L.k7 }}</a></span></div></sc-if>
+              <sc-if value="{{ showMenu }}" hint-placeholder-val="{{ false }}">
+                <div role="menu" aria-label="{{ L.k30 }}" style="position: absolute; left: 300px; top: 100px; width: 260px; padding: 4px; border-radius: 8px; background: var(--flyout); border: 1px solid var(--bd); box-shadow: 0 8px 24px rgba(0,0,0,0.4); display: flex; flex-direction: column">
+                  <sc-for list="{{ menu }}" as="i" hint-placeholder-count="6">
+                    <sc-if value="{{ i.sep }}" hint-placeholder-val="{{ false }}"><span role="separator" style="height: 1px; margin: 4px 0; background: var(--bs)"></span></sc-if>
+                    <sc-if value="{{ i.item }}" hint-placeholder-val="{{ true }}"><button role="menuitem" style="height: 32px; padding: 0 10px; border-radius: 4px; border: 0; background: {{ i.bg }}; color: {{ i.fg }}; font: 400 13px Inter, sans-serif; display: flex; align-items: center; gap: 12px; text-align: left"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ i.d }}"></path></svg><span style="flex: 1">{{ i.label }}</span><span style="font: 400 11px 'JetBrains Mono', monospace; color: var(--t3)">{{ i.key }}</span></button></sc-if>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </section>
+          </div>
+
+          <aside style="display: flex; flex-direction: column; gap: 16px; min-width: 0">
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">            <a href="win-p2p-deal.dc.html" style="border-radius: 8px; background: var(--card); border: 1px solid var(--warn); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--t1)">
+              <span style="display: flex; justify-content: space-between; align-items: center"><span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ L.k31 }}</span><span style="font: 500 13px 'JetBrains Mono', monospace; color: var(--warn)">04:12</span></span>
+              <span style="font: 600 15px Inter, sans-serif">{{ L.k32 }}</span>
+              <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(30, minmax(0, 1fr)); gap: 2px; height: 5px"><sc-for list="{{ timerBars }}" as="b" hint-placeholder-count="30"><span style="border-radius: 1px; background: {{ b }}"></span></sc-for></span>
+              <span style="font-size: 12px; color: var(--t2)">{{ L.k33 }}</span>
+            </a></sc-if>
+            <section aria-labelledby="op-h" style="border-radius: 8px; background: var(--card); border: 1px solid var(--bs); display: flex; flex-direction: column">
+              <div style="display: flex; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--bs)"><h2 id="op-h" style="margin: 0; flex: 1; font: 600 15px Inter, sans-serif">{{ L.k34 }}</h2><a href="win-history.dc.html" style="font-size: 12px; color: var(--t2)">{{ L.k35 }}</a></div>
+              <sc-for list="{{ ops }}" as="o" hint-placeholder-count="5">
+                <a href="win-history.dc.html" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--bs); text-decoration: none; color: var(--t1)">
+                  <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; border-radius: 4px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ o.d }}"></path></svg></span>
+                  <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 500">{{ o.title }}</span><span style="font: 400 11px 'JetBrains Mono', monospace; color: var(--t3)">{{ o.sub }}</span></span>
+                  <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 3px"><span style="font: 600 13px 'Inter Tight', sans-serif; color: {{ o.ac }}">{{ o.amt }}</span><span style="height: 18px; padding: 0 6px; border-radius: 3px; background: {{ o.sbg }}; color: {{ o.sfg }}; font: 500 10px Inter, sans-serif; display: inline-flex; align-items: center">{{ o.status }}</span></span>
+                </a>
+              </sc-for>
+              <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}"><div><div aria-hidden="true" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 28px; height: 28px; border-radius: 4px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 5px"><span class="sk" style="display: block; width: 60%; height: 11px; border-radius: 3px; "></span><span class="sk" style="display: block; width: 40%; height: 9px; border-radius: 3px; "></span></span><span class="sk" style="display: block; width: 50px; height: 11px; border-radius: 3px; "></span></div><div aria-hidden="true" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 28px; height: 28px; border-radius: 4px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 5px"><span class="sk" style="display: block; width: 60%; height: 11px; border-radius: 3px; "></span><span class="sk" style="display: block; width: 40%; height: 9px; border-radius: 3px; "></span></span><span class="sk" style="display: block; width: 50px; height: 11px; border-radius: 3px; "></span></div><div aria-hidden="true" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 28px; height: 28px; border-radius: 4px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 5px"><span class="sk" style="display: block; width: 60%; height: 11px; border-radius: 3px; "></span><span class="sk" style="display: block; width: 40%; height: 9px; border-radius: 3px; "></span></span><span class="sk" style="display: block; width: 50px; height: 11px; border-radius: 3px; "></span></div><div aria-hidden="true" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 28px; height: 28px; border-radius: 4px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 5px"><span class="sk" style="display: block; width: 60%; height: 11px; border-radius: 3px; "></span><span class="sk" style="display: block; width: 40%; height: 9px; border-radius: 3px; "></span></span><span class="sk" style="display: block; width: 50px; height: 11px; border-radius: 3px; "></span></div><div aria-hidden="true" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 28px; height: 28px; border-radius: 4px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 5px"><span class="sk" style="display: block; width: 60%; height: 11px; border-radius: 3px; "></span><span class="sk" style="display: block; width: 40%; height: 9px; border-radius: 3px; "></span></span><span class="sk" style="display: block; width: 50px; height: 11px; border-radius: 3px; "></span></div></div></sc-if>
+              <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><span style="padding: 24px 16px; color: var(--t2); text-align: center; line-height: 18px">{{ L.k91 }}</span></sc-if>
+            </section>
+          </aside>
+        </div>
+      </div>
+      <footer style="height: 28px; flex: none; padding: 0 16px; border-top: 1px solid var(--bs); display: flex; align-items: center; gap: 16px; font: 400 11px 'JetBrains Mono', monospace; color: var(--t2)">
+        <span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 1px; background: var(--sig)"></span>{{ L.k36 }}</span>
+        <span>{{ L.k37 }}</span>
+        <span>{{ L.k38 }}</span>
+        <span style="flex: 1"></span>
+        <span>{{ L.k39 }}</span>
+      </footer>
+    </main>
+  </div>
+
+  <sc-if value="{{ showPalette }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; inset: 48px 0 0 0; background: var(--scrim)"></div>
+    <div role="dialog" aria-modal="true" aria-label="{{ L.k40 }}" style="position: absolute; left: 50%; top: 96px; width: 640px; margin-left: -320px; border-radius: 8px; background: var(--flyout); border: 1px solid var(--bd); box-shadow: 0 32px 64px rgba(0,0,0,0.5); overflow: hidden">
+      <div style="display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 16px; border-bottom: 1px solid var(--bs)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg><input aria-label="{{ L.k41 }}" value="{{ L.k42 }}" style="flex: 1; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"><span style="font: 500 10px 'JetBrains Mono', monospace; color: var(--t3)">ESC</span></div>
+      <div role="listbox" style="padding: 6px; display: flex; flex-direction: column">
+        <sc-for list="{{ palette }}" as="p" hint-placeholder-count="7">
+          <sc-if value="{{ p.isGroup }}" hint-placeholder-val="{{ false }}"><span style="padding: 10px 10px 4px; font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ p.label }}</span></sc-if>
+          <sc-if value="{{ p.isItem }}" hint-placeholder-val="{{ true }}"><div role="option" aria-selected="{{ p.selected }}" style="position: relative; height: 36px; padding: 0 10px; border-radius: 4px; background: {{ p.bg }}; display: flex; align-items: center; gap: 12px"><sc-if value="{{ p.isSel }}" hint-placeholder-val="{{ false }}"><span aria-hidden="true" style="position: absolute; left: 0; top: 10px; width: 3px; height: 16px; border-radius: 2px; background: var(--sig)"></span></sc-if><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ p.d }}"></path></svg><span style="flex: 1">{{ p.label }}</span><span style="font: 400 11px 'JetBrains Mono', monospace; color: var(--t3)">{{ p.hint }}</span></div></sc-if>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "overlay": {"editor": "enum", "options": ["none", "context-menu", "command-palette"], "default": "none"}, "state": {"editor": "enum", "options": ["default", "loading", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"Кошелёк": "Wallet", "Общий баланс": "Total balance", "ОБЩИЙ БАЛАНС · 6 АКТИВОВ": "TOTAL BALANCE · 6 ASSETS", "+$126,40": "+$126.40", "24Ч": "24H", "7Д": "7D", "30Д": "30D", "1Г": "1Y", "Баланс за 7 дней: рост на 3,8%": "Balance over 7 days: up 3.8%", "Получить": "Receive", "Отправить": "Send", "Купить через P2P": "Buy via P2P", "Активы": "Assets", "Все сети": "All networks", "Действия": "Actions", "АКТИВНАЯ СДЕЛКА · P2P-48213": "ACTIVE DEAL · P2P-48213", "Последние операции": "Recent activity", "0,4821 ETH": "0.4821 ETH", "$1 645,03": "$1,645.03", "+2,1%": "+2.1%", "1 250,00 USDT": "1,250.00 USDT", "$1 250,00": "$1,250.00", "0,00%": "0.00%", "14,2 SOL": "14.2 SOL", "$232,88": "$232.88", "+5,4%": "+5.4%", "312,5 POL": "312.5 POL", "$159,33": "$159.33", "+0,8%": "+0.8%", "0,00184 BTC": "0.00184 BTC", "$124,94": "$124.94", "−1,1%": "−1.1%", "3 412": "3,412", ",18": ".18", "продавец · 10:15": "seller · 10:15", "В эскроу": "In escrow", "Выполнен": "Completed", "Проверка": "Review", "↑ 3,8% · 7Д": "↑ 3.8% · 7D", "Отправить USDT": "Send USDT", "AEON · Кошелёк": "AEON · Wallet", "Справка по разделу": "Section help", "Ещё": "More", "Период": "Period", "Скрыть нулевые": "Hide zero balances", "Актив ↑": "Asset ↑", "Сеть": "Network", "Баланс": "Balance", "Стоимость": "Value", "24ч": "24h", "Адрес": "Address", "Действия с активом ETH": "ETH asset actions", "Покупка 250 USDT за 23 100 ₽": "Buying 250 USDT for 23,100 ₽", "Откроется в отдельном окне · Ctrl+Enter": "Opens in a separate window · Ctrl+Enter", "История": "History", "ПОДКЛЮЧЕНО": "CONNECTED", "SEPOLIA · БЛОК 6 812 004": "SEPOLIA · BLOCK 6,812,004", "ОБНОВЛЕНО 12:44:05": "UPDATED 12:44:05", "CTRL+K ПОИСК · CTRL+S ОТПРАВИТЬ · F1 СПРАВКА": "CTRL+K SEARCH · CTRL+S SEND · F1 HELP", "Поиск и команды": "Search and commands", "Команда": "Command", "отпр": "sen", "Получить ETH": "Receive ETH", "Отправить ETH": "Send ETH", "Копировать адрес": "Copy address", "Открыть в обозревателе": "Open in explorer", "Скрыть актив": "Hide asset", "ДЕЙСТВИЯ": "ACTIONS", "Отправить в адресную книгу…": "Send to an address book contact…", "СДЕЛКИ": "DEALS", "P2P-48213 · ожидает оплаты": "P2P-48213 · awaiting payment", "ТРАНЗАКЦИИ": "TRANSACTIONS", "Отправлено 250 USDT · 0x9f2c…e41b": "Sent 250 USDT · 0x9f2c…e41b", "вчера": "yesterday", "Получено 0,05 ETH": "Received 0.05 ETH", "+0,05": "+0.05", "Эскроу P2P-48213": "Escrow P2P-48213", "Отправлено USDT": "Sent USDT", "0x1b…0a91 · вчера": "0x1b…0a91 · yesterday", "Вывод BTC": "BTC withdrawal", "−0,0012": "−0.0012", "Получено SOL": "Received SOL", "+4,0": "+4.0", "Зачислен": "Credited", "Загружаем балансы": "Loading balances", ",00": ".00", "Пополните кошелёк, чтобы начать": "Top up your wallet to get started", "Активов пока нет": "No assets yet", "Получите тестовые монеты на свой адрес — зачисление появится здесь через 1–3 минуты. Или купите USDT у продавца через P2P.": "Receive test coins to your address — the deposit will appear here in 1–3 minutes. Or buy USDT from a seller via P2P.", "Получить · Ctrl+R": "Receive · Ctrl+R", "Операций пока нет. Первое зачисление появится здесь со шкалой подтверждений.": "No transactions yet. Your first deposit will appear here with a confirmation bar.", "График появится после первого зачисления": "The chart will appear after your first deposit"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    if (v.st !== 'default') { v.assets = []; v.ops = []; }
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · Кошелёк"), k2: this.tr("Кошелёк"), k3: this.tr("Справка по разделу"), k4: this.tr("Действия"), k5: this.tr("Получить"), k6: this.tr("Отправить"), k7: this.tr("Купить через P2P"), k8: this.tr("Ещё"), k9: this.tr("Общий баланс"), k10: this.tr("ОБЩИЙ БАЛАНС · 6 АКТИВОВ"), k11: this.tr("3 412"), k12: this.tr(",18"), k13: this.tr("+$126,40"), k14: this.tr("↑ 3,8% · 7Д"), k15: this.tr("Период"), k16: this.tr("24Ч"), k17: this.tr("7Д"), k18: this.tr("30Д"), k19: this.tr("1Г"), k20: this.tr("Баланс за 7 дней: рост на 3,8%"), k21: this.tr("Активы"), k22: this.tr("Все сети"), k23: this.tr("Скрыть нулевые"), k24: this.tr("Актив ↑"), k25: this.tr("Сеть"), k26: this.tr("Баланс"), k27: this.tr("Стоимость"), k28: this.tr("24ч"), k29: this.tr("Адрес"), k30: this.tr("Действия с активом ETH"), k31: this.tr("АКТИВНАЯ СДЕЛКА · P2P-48213"), k32: this.tr("Покупка 250 USDT за 23 100 ₽"), k33: this.tr("Откроется в отдельном окне · Ctrl+Enter"), k34: this.tr("Последние операции"), k35: this.tr("История"), k36: this.tr("ПОДКЛЮЧЕНО"), k37: this.tr("SEPOLIA · БЛОК 6 812 004"), k38: this.tr("ОБНОВЛЕНО 12:44:05"), k39: this.tr("CTRL+K ПОИСК · CTRL+S ОТПРАВИТЬ · F1 СПРАВКА"), k40: this.tr("Поиск и команды"), k41: this.tr("Команда"), k42: this.tr("отпр"), k43: this.tr("0,4821 ETH"), k44: this.tr("$1 645,03"), k45: this.tr("+2,1%"), k46: this.tr("1 250,00 USDT"), k47: this.tr("$1 250,00"), k48: this.tr("0,00%"), k49: this.tr("14,2 SOL"), k50: this.tr("$232,88"), k51: this.tr("+5,4%"), k52: this.tr("312,5 POL"), k53: this.tr("$159,33"), k54: this.tr("+0,8%"), k55: this.tr("0,00184 BTC"), k56: this.tr("$124,94"), k57: this.tr("−1,1%"), k58: this.tr("Получить ETH"), k59: this.tr("Отправить ETH"), k60: this.tr("Копировать адрес"), k61: this.tr("Открыть в обозревателе"), k62: this.tr("Скрыть актив"), k63: this.tr("ДЕЙСТВИЯ"), k64: this.tr("Отправить USDT"), k65: this.tr("Отправить в адресную книгу…"), k66: this.tr("СДЕЛКИ"), k67: this.tr("P2P-48213 · ожидает оплаты"), k68: this.tr("ТРАНЗАКЦИИ"), k69: this.tr("Отправлено 250 USDT · 0x9f2c…e41b"), k70: this.tr("вчера"), k71: this.tr("Получено 0,05 ETH"), k72: this.tr("+0,05"), k73: this.tr("Эскроу P2P-48213"), k74: this.tr("продавец · 10:15"), k75: this.tr("В эскроу"), k76: this.tr("Отправлено USDT"), k77: this.tr("0x1b…0a91 · вчера"), k78: this.tr("Выполнен"), k79: this.tr("Вывод BTC"), k80: this.tr("−0,0012"), k81: this.tr("Проверка"), k82: this.tr("Получено SOL"), k83: this.tr("+4,0"), k84: this.tr("Зачислен"), k85: this.tr("Загружаем балансы"), k86: this.tr(",00"), k87: this.tr("Пополните кошелёк, чтобы начать"), k88: this.tr("Активов пока нет"), k89: this.tr("Получите тестовые монеты на свой адрес — зачисление появится здесь через 1–3 минуты. Или купите USDT у продавца через P2P."), k90: this.tr("Получить · Ctrl+R"), k91: this.tr("Операций пока нет. Первое зачисление появится здесь со шкалой подтверждений."), k92: this.tr("График появится после первого зачисления") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    const overlay = this.props.overlay ?? 'none';
+    const send = 'M7 17L17 7M9 7h8v8', recv = 'M17 7L7 17M7 9v8h8';
+    const rows = [
+      ['ETH', 'Ether', 'Ethereum · Sepolia', '#8A9BFF', this.tr('0,4821 ETH'), this.tr('$1 645,03'), this.tr('+2,1%'), 'var(--sigt)', '0x7a3F…9c2E'],
+      ['USDT', 'Tether USD', 'Ethereum · Sepolia', '#8A9BFF', this.tr('1 250,00 USDT'), this.tr('$1 250,00'), this.tr('0,00%'), 'var(--t2)', '0x7a3F…9c2E'],
+      ['SOL', 'Solana', 'Solana · Devnet', '#5EE3C1', this.tr('14,2 SOL'), this.tr('$232,88'), this.tr('+5,4%'), 'var(--sigt)', '7EcD…FLtV'],
+      ['POL', 'Polygon', 'Polygon · Amoy', '#A77BFF', this.tr('312,5 POL'), this.tr('$159,33'), this.tr('+0,8%'), 'var(--sigt)', '0x7a3F…9c2E'],
+      ['BTC', 'Bitcoin', 'Bitcoin · Testnet', '#F7A23B', this.tr('0,00184 BTC'), this.tr('$124,94'), this.tr('−1,1%'), 'var(--neg)', 'tb1q…jzsx']
+    ];
+    const assets = rows.map((r, i) => ({ t: r[0], name: r[1], net: r[2], nc: r[3], amt: r[4], fiat: r[5], ch: r[6], cc: r[7], addr: r[8], isSel: i === 0, selected: i === 0 ? 'true' : 'false', bg: i === 0 ? 'var(--sel)' : i === 1 && overlay === 'none' ? 'var(--hov)' : 'transparent' }));
+    const mi = (label, key, d, hl) => ({ item: true, sep: false, label, key, d, bg: hl ? 'var(--sel)' : 'transparent', fg: 'var(--t1)' });
+    const sep = { item: false, sep: true };
+    const g = (label) => ({ isGroup: true, isItem: false, label });
+    const pi = (label, hint, d, sel) => ({ isGroup: false, isItem: true, label, hint, d, isSel: !!sel, selected: sel ? 'true' : 'false', bg: sel ? 'var(--sel)' : 'transparent' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', st, isDefault: st === 'default', isLoading: st === 'loading', isEmpty: st === 'empty', skRows: st === 'loading' ? [1, 2, 3, 4, 5] : [],
+      assets,
+      showMenu: overlay === 'context-menu',
+      showPalette: overlay === 'command-palette',
+      menu: [mi(this.tr('Получить ETH'), 'CTRL+R', recv), mi(this.tr('Отправить ETH'), 'CTRL+S', send, true), mi(this.tr('Купить через P2P'), '', 'M4 8h13l-3-3M20 16H7l3 3'), sep, mi(this.tr('Копировать адрес'), 'CTRL+C', 'M9 9h10v11H9zM5 15V4h10'), mi(this.tr('Открыть в обозревателе'), '', 'M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'), sep, mi(this.tr('Скрыть актив'), '', 'M3 3l18 18M10.6 5.1A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3 3.9M6.6 6.6C3.8 8.3 2 12 2 12s3.5 7 10 7c1.7 0 3.2-.5 4.5-1.1')],
+      palette: [g(this.tr('ДЕЙСТВИЯ')), pi(this.tr('Отправить USDT'), 'CTRL+S', send, true), pi(this.tr('Отправить ETH'), '', send), pi(this.tr('Отправить в адресную книгу…'), '', 'M3 9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z'), g(this.tr('СДЕЛКИ')), pi(this.tr('P2P-48213 · ожидает оплаты'), '04:12', 'M4 8h13l-3-3M20 16H7l3 3'), g(this.tr('ТРАНЗАКЦИИ')), pi(this.tr('Отправлено 250 USDT · 0x9f2c…e41b'), this.tr('вчера'), 'M7 17L17 7M9 7h8v8')],
+      timerBars: Array.from({ length: 30 }, (_, i) => (i < 9 ? 'var(--warn)' : 'var(--bd)')),
+      ops: [
+        { title: this.tr('Получено 0,05 ETH'), sub: '0x4c…a1F2 · 12:41', amt: this.tr('+0,05'), ac: 'var(--sigt)', status: '3/12', sbg: 'var(--infos)', sfg: 'var(--info)', d: recv },
+        { title: this.tr('Эскроу P2P-48213'), sub: this.tr('продавец · 10:15'), amt: '250 USDT', ac: 'var(--t1)', status: this.tr('В эскроу'), sbg: 'var(--infos)', sfg: 'var(--info)', d: 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3' },
+        { title: this.tr('Отправлено USDT'), sub: this.tr('0x1b…0a91 · вчера'), amt: '−250', ac: 'var(--t1)', status: this.tr('Выполнен'), sbg: 'var(--sigs)', sfg: 'var(--sigt)', d: send },
+        { title: this.tr('Вывод BTC'), sub: 'tb1q…jzsx · 21.10', amt: this.tr('−0,0012'), ac: 'var(--t1)', status: this.tr('Проверка'), sbg: 'var(--warns)', sfg: 'var(--warn)', d: send },
+        { title: this.tr('Получено SOL'), sub: '9xQe…2fPa · 20.10', amt: this.tr('+4,0'), ac: 'var(--sigt)', status: this.tr('Зачислен'), sbg: 'var(--sigs)', sfg: 'var(--sigt)', d: recv }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

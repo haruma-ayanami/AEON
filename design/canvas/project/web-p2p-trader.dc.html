@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — профиль трейдера</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="p2p" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <section class="card" style="padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+        <span style="width: 72px; height: 72px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 22px Inter, sans-serif">{{ ini }}</span>
+        <div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 6px">
+          <span style="display: flex; align-items: center; gap: 8px"><span class="disp" style="font-size: 30px">{{ nick }}</span><sc-if value="{{ isOld }}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="{{ L.k2 }}"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg></sc-if></span>
+          <span class="muted">{{ sub }}</span>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="tag">{{ L.k4 }}</span><span class="tag">{{ tag2 }}</span><span class="tag">{{ tag3 }}</span></div>
+        </div>
+        <div style="display: flex; gap: 8px"><button class="btn btn-o">{{ L.k7 }}</button><button class="btn">{{ L.k8 }}</button></div>
+      </section>
+      <div class="grid-a">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="5"><div class="kpi"><span class="lbl">{{ s.l }}</span><span class="disp" style="font-size: 26px; color: {{ s.c }}">{{ s.v }}</span><span class="faint" style="font-size: 12px">{{ s.n }}</span></div></sc-for>
+      </div>
+      <div class="split">
+        <section class="card" style="flex: 1.4 1 520px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: center"><span class="disp" style="font-size: 20px">{{ revL }}</span><div style="display: flex; gap: 6px"><button class="btn btn-s btn-p">{{ L.k10 }}</button><button class="btn btn-s btn-o">{{ posL }}</button><button class="btn btn-s btn-o">{{ negL }}</button></div></div>
+<sc-if value="{{ isOld }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column">          <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="5">
+            <div style="display: flex; gap: 12px; padding: 12px 0; border-top: 1px solid var(--bs)"><span aria-hidden="true" style="width: 28px; height: 28px; flex: none; border-radius: 999px; background: {{ r.bg }}; color: {{ r.fg }}; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.d }}"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="display: flex; justify-content: space-between"><span style="font-weight: 600">{{ r.who }}</span><span class="mono faint" style="font-size: 11px">{{ r.date }} · {{ r.deal }}</span></span><span class="muted" style="font-size: 14px; line-height: 20px">{{ r.text }}</span></span></div>
+          </sc-for></div></sc-if><sc-if value="{{ isNew }}" hint-placeholder-val="{{ false }}"><div style="border-top: 1px solid var(--bs)"><div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 22px 16px; text-align: center"><span style="font-weight: 600">{{ L.k54 }}</span><span class="muted" style="font-size: 13px; line-height: 18px">{{ L.k55 }}</span></div></div></sc-if>
+        </section>
+        <aside style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+          <sc-if value="{{ isOld }}" hint-placeholder-val="{{ true }}"><div class="card" style="padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px"><span class="lbl" style="align-self: flex-start">{{ L.k13 }}</span><div role="img" aria-label="{{ L.k14 }}" style="display: grid; grid-template-columns: repeat(10, 16px); gap: 6px"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="100"><span style="width: 16px; height: 16px; border-radius: 999px; background: {{ d }}"></span></sc-for></div><span class="faint" style="font-size: 12px">{{ L.k15 }}</span></div></sc-if><sc-if value="{{ isNew }}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--infos); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span>{{ L.k56 }}</span></span></div></sc-if>
+          <span class="lbl">{{ L.k16 }}</span>
+          <sc-for list="{{ offers }}" as="o" hint-placeholder-count="2"><a href="web-p2p-market.dc.html" class="card" style="padding: 16px; display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: var(--t1); border-radius: 18px"><span style="display: flex; flex-direction: column; gap: 3px"><span class="muted" style="font-size: 13px">{{ o.dir }}</span><span class="disp" style="font-size: 20px">{{ o.price }}</span><span class="faint" style="font-size: 12px">{{ o.lim }}</span></span><span class="btn btn-s btn-p">{{ o.act }}</span></a></sc-for>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "seller": {"editor": "enum", "options": ["verified", "new"], "default": "verified"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Все": "All", "ПРОДАВЕЦ": "SELLER", "СДЕЛОК": "DEALS", "ЗАВЕРШЕНО": "COMPLETED", "1 284": "1,284", "Купить": "Buy", "Продать": "Sell", "92,40 ₽": "92.40 ₽", "СПОРЫ": "DISPUTES", "Верифицирован": "Verified", "99 из 100 сделок завершены": "99 of 100 deals completed", "99,2%": "99.2%", "ВЫПУСК": "RELEASE", "~4 мин": "~4 min", "Быстро выпустила, всё по инструкции.": "Released fast, everything as described.", "Профиль трейдера": "Trader profile", "На AEON с марта 2026 · KYC уровень 2 · в сети · обычно отвечает за 2 мин": "On AEON since March 2026 · KYC level 2 · online · usually replies in 2 min", "1 000+ СДЕЛОК": "1,000+ DEALS", "БЕЗ СПОРОВ 90 ДН": "NO DISPUTES 90 D", "Пожаловаться": "Report", "Добавить в избранное": "Add to favorites", "Отзывы · 612": "Reviews · 612", "Положительные 608": "Positive 608", "Отрицательные 4": "Negative 4", "ПОСЛЕДНИЕ 100 СДЕЛОК": "LAST 100 DEALS", "● завершена · ● отменена по вине продавца": "● completed · ● cancelled due to the seller", "АКТИВНЫЕ ОБЪЯВЛЕНИЯ": "ACTIVE OFFERS", "+96 за 30 дней": "+96 in 30 days", "среднее по P2P 96,4%": "P2P average 96.4%", "медиана за 30 дней": "30-day median", "ОБЪЁМ 30 ДН": "VOLUME 30 D", "$118 400": "$118,400", "оба решены в её пользу": "both resolved in her favor", "Отвечает сразу, реквизиты корректные.": "Replies right away, payment details are correct.", "Долго ждал выпуска — 25 минут.": "Waited a long time for the release — 25 minutes.", "Крупная сделка прошла без вопросов.": "A large deal went through without questions.", "Всё отлично, спасибо!": "All great, thank you!", "Продаёт USDT": "Sells USDT", "4 820 USDT · 1 000 – 150 000 ₽": "4,820 USDT · 1,000 – 150,000 ₽", "Покупает ETH": "Buys ETH", "312 900 ₽": "312,900 ₽", "2 ETH · 10 000 – 300 000 ₽": "2 ETH · 10,000 – 300,000 ₽", "Новый продавец: 3 сделки за неделю, отзывов пока нет. Начните с небольшой суммы — монеты продавца в любом случае заблокированы в эскроу, пока вы не подтвердите оплату.": "New seller: 3 deals this week, no reviews yet. Start with a small amount — the seller's coins stay locked in escrow until you confirm payment anyway.", "Отзывов пока нет": "No reviews yet", "Первый отзыв появится после завершённой сделки с оценкой.": "The first review appears after a completed, rated deal.", "в сети · KYC 1 · с 21.10.2026": "online · KYC 1 · since 21.10.2026", "ОТЗЫВЫ · 0": "REVIEWS · 0", "нет": "none", "3": "3", "100%": "100%", "~9 мин": "~9 min", "Купить USDT · 92,10 ₽": "Buy USDT · 92.10 ₽", "На AEON с 21.10.2026 · KYC уровень 1 · в сети · обычно отвечает за 6 мин": "On AEON since 21.10.2026 · KYC level 1 · online · usually replies in 6 min", "НОВЫЙ ПРОДАВЕЦ": "NEW SELLER", "KYC 1": "KYC 1", "Отзывы · 0": "Reviews · 0", "за неделю": "this week", "3 из 3": "3 of 3", "медиана": "median", "не было": "none so far", "ЗАВЕРШЕНО СДЕЛОК": "DEALS COMPLETED", "3 из 3 сделок завершены": "3 of 3 deals completed", "91,80 ₽": "91.80 ₽", "600 USDT · 1 000 – 20 000 ₽": "600 USDT · 1,000 – 20,000 ₽", "Положительные 0": "Positive 0", "Отрицательные 0": "Negative 0"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Профиль трейдера"), k2: this.tr("Верифицирован"), k3: this.tr("На AEON с марта 2026 · KYC уровень 2 · в сети · обычно отвечает за 2 мин"), k4: this.tr("ПРОДАВЕЦ"), k5: this.tr("1 000+ СДЕЛОК"), k6: this.tr("БЕЗ СПОРОВ 90 ДН"), k7: this.tr("Пожаловаться"), k8: this.tr("Добавить в избранное"), k9: this.tr("Отзывы · 612"), k10: this.tr("Все"), k11: this.tr("Положительные 608"), k12: this.tr("Отрицательные 4"), k13: this.tr("ПОСЛЕДНИЕ 100 СДЕЛОК"), k14: this.tr("99 из 100 сделок завершены"), k15: this.tr("● завершена · ● отменена по вине продавца"), k16: this.tr("АКТИВНЫЕ ОБЪЯВЛЕНИЯ"), k17: this.tr("СДЕЛОК"), k18: this.tr("1 284"), k19: this.tr("+96 за 30 дней"), k20: this.tr("ЗАВЕРШЕНО"), k21: this.tr("99,2%"), k22: this.tr("среднее по P2P 96,4%"), k23: this.tr("ВЫПУСК"), k24: this.tr("~4 мин"), k25: this.tr("медиана за 30 дней"), k26: this.tr("ОБЪЁМ 30 ДН"), k27: this.tr("$118 400"), k28: this.tr("СПОРЫ"), k29: this.tr("оба решены в её пользу"), k30: this.tr("Быстро выпустила, всё по инструкции."), k31: this.tr("Отвечает сразу, реквизиты корректные."), k32: this.tr("Долго ждал выпуска — 25 минут."), k33: this.tr("Крупная сделка прошла без вопросов."), k34: this.tr("Всё отлично, спасибо!"), k35: this.tr("Продаёт USDT"), k36: this.tr("92,40 ₽"), k37: this.tr("4 820 USDT · 1 000 – 150 000 ₽"), k38: this.tr("Купить"), k39: this.tr("Покупает ETH"), k40: this.tr("312 900 ₽"), k41: this.tr("2 ETH · 10 000 – 300 000 ₽"), k42: this.tr("Продать"), k43: this.tr("На AEON с 21.10.2026 · KYC уровень 1 · в сети · обычно отвечает за 6 мин"), k44: this.tr("НОВЫЙ ПРОДАВЕЦ"), k45: this.tr("KYC 1"), k46: this.tr("Отзывы · 0"), k47: this.tr("за неделю"), k48: this.tr("3 из 3"), k49: this.tr("медиана"), k50: this.tr("не было"), k51: this.tr("~9 мин"), k52: this.tr("91,80 ₽"), k53: this.tr("600 USDT · 1 000 – 20 000 ₽"), k54: this.tr("Отзывов пока нет"), k55: this.tr("Первый отзыв появится после завершённой сделки с оценкой."), k56: this.tr("Новый продавец: 3 сделки за неделю, отзывов пока нет. Начните с небольшой суммы — монеты продавца в любом случае заблокированы в эскроу, пока вы не подтвердите оплату."), k57: this.tr("Положительные 0"), k58: this.tr("Отрицательные 0") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const nw = (this.props.seller ?? 'verified') === 'new';
+    const ok = 'M5 12l5 5 9-10', bad = 'M6 6l12 12M18 6L6 18';
+    const rv = (who, date, deal, text, good) => ({ who, date, deal, text, d: good ? ok : bad, bg: good ? 'var(--sigs)' : 'var(--negs)', fg: good ? 'var(--sigt)' : 'var(--neg)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', posL: nw ? this.tr("Положительные 0") : this.tr("Положительные 608"), negL: nw ? this.tr("Отрицательные 0") : this.tr("Отрицательные 4"), isOld: !nw, isNew: nw, ini: nw ? 'KP' : 'CM', nick: nw ? 'kirill_p2p' : 'crypto_mila',
+      sub: nw ? this.tr("На AEON с 21.10.2026 · KYC уровень 1 · в сети · обычно отвечает за 6 мин") : this.tr("На AEON с марта 2026 · KYC уровень 2 · в сети · обычно отвечает за 2 мин"),
+      tag2: nw ? this.tr("НОВЫЙ ПРОДАВЕЦ") : this.tr("1 000+ СДЕЛОК"), tag3: nw ? this.tr("KYC 1") : this.tr("БЕЗ СПОРОВ 90 ДН"), revL: nw ? this.tr("Отзывы · 0") : this.tr("Отзывы · 612"),
+      stats: nw ? [
+        { l: this.tr('СДЕЛОК'), v: '3', n: this.tr('за неделю'), c: 'var(--t1)' },
+        { l: this.tr('ЗАВЕРШЕНО'), v: '100%', n: this.tr('3 из 3'), c: 'var(--t1)' },
+        { l: this.tr('ВЫПУСК'), v: this.tr('~9 мин'), n: this.tr('медиана'), c: 'var(--t1)' },
+        { l: this.tr('ОБЪЁМ 30 ДН'), v: '$740', n: 'USDT', c: 'var(--t1)' },
+        { l: this.tr('СПОРЫ'), v: '0', n: this.tr('не было'), c: 'var(--t1)' }
+      ] : [
+        { l: this.tr('СДЕЛОК'), v: this.tr('1 284'), n: this.tr('+96 за 30 дней'), c: 'var(--t1)' },
+        { l: this.tr('ЗАВЕРШЕНО'), v: this.tr('99,2%'), n: this.tr('среднее по P2P 96,4%'), c: 'var(--sigt)' },
+        { l: this.tr('ВЫПУСК'), v: this.tr('~4 мин'), n: this.tr('медиана за 30 дней'), c: 'var(--t1)' },
+        { l: this.tr('ОБЪЁМ 30 ДН'), v: this.tr('$118 400'), n: 'USDT, ETH', c: 'var(--t1)' },
+        { l: this.tr('СПОРЫ'), v: '2', n: this.tr('оба решены в её пользу'), c: 'var(--t1)' }
+      ],
+      reviews: [
+        rv('alex_tk', '20.10', 'P2P-47790', this.tr('Быстро выпустила, всё по инструкции.'), true),
+        rv('eva_s', '19.10', 'P2P-47751', this.tr('Отвечает сразу, реквизиты корректные.'), true),
+        rv('n7', '17.10', 'P2P-47690', this.tr('Долго ждал выпуска — 25 минут.'), false),
+        rv('trade_room', '15.10', 'P2P-47610', this.tr('Крупная сделка прошла без вопросов.'), true),
+        rv('olga_k', '12.10', 'P2P-47522', this.tr('Всё отлично, спасибо!'), true)
+      ],
+      dots: Array.from({ length: 100 }, (_, i) => (i === 63 ? 'var(--neg)' : 'var(--sig)')),
+      offers: nw ? [{ dir: this.tr('Продаёт USDT'), price: this.tr('91,80 ₽'), lim: this.tr('600 USDT · 1 000 – 20 000 ₽'), act: this.tr('Купить') }] : [{ dir: this.tr('Продаёт USDT'), price: this.tr('92,40 ₽'), lim: this.tr('4 820 USDT · 1 000 – 150 000 ₽'), act: this.tr('Купить') }, { dir: this.tr('Покупает ETH'), price: this.tr('312 900 ₽'), lim: this.tr('2 ETH · 10 000 – 300 000 ₽'), act: this.tr('Продать') }]
+    };
+  }
+}
+</script>
+</body>
+</html>

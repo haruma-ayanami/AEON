@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Admin для Windows — обзор</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" account="admin" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinAdminNav" active="overview" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1><button class="wbtn">{{ L.k3 }}</button></div>
+      <div style="padding: 0 28px 12px"><div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span><b style="font-weight: 600">{{ L.k4 }}</b> {{ L.k5 }}</span><a href="wadm-system.dc.html" class="wbtn" style="align-self: flex-start">{{ L.k6 }}</a></span></div></div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; padding: 0 28px 12px"><sc-for list="{{ kpis }}" as="k" hint-placeholder-count="6"><div class="wcard" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span class="lbl" style="font-size: 10px">{{ k.l }}</span><span class="disp" style="font-size: 24px; color: {{ k.c }}">{{ k.v }}</span><span class="faint" style="font-size: 11px">{{ k.n }}</span></div></sc-for></div>
+      <div style="flex: 1; min-height: 0; display: flex; gap: 16px; padding: 0 28px 20px">
+        <section class="wcard" style="flex: 1; min-width: 0; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+          <span style="display: flex; justify-content: space-between; align-items: center"><span style="font: 600 15px Inter, sans-serif">{{ L.k7 }}</span><span class="muted" style="display: flex; gap: 14px; font-size: 12px"><span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: var(--sig)"></span>P2P</span><span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: var(--t2)"></span>{{ L.k8 }}</span></span></span>
+          <div role="img" aria-label="{{ L.k9 }}" style="flex: 1; min-height: 200px; display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 8px; align-items: end"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="14"><span style="display: flex; gap: 2px; align-items: end; height: 100%"><span style="flex: 1; height: {{ b.p }}; border-radius: 2px 2px 0 0; background: var(--sig)"></span><span style="flex: 1; height: {{ b.w }}; border-radius: 2px 2px 0 0; background: var(--t2)"></span></span></sc-for></div>
+          <div class="mono faint" style="display: flex; justify-content: space-between; font-size: 11px"><span>10.10</span><span>16.10</span><span>23.10</span></div>
+        </section>
+        <section class="wcard" style="width: 400px; flex: none; padding: 16px 18px; display: flex; flex-direction: column">
+          <span style="font: 600 15px Inter, sans-serif; padding-bottom: 6px">{{ L.k10 }}</span>
+          <sc-for list="{{ sys }}" as="s" hint-placeholder-count="7"><div style="display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--bs)"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; background: {{ s.c }}"></span><span style="flex: 1">{{ s.n }}</span><span class="mono muted" style="font-size: 12px">{{ s.v }}</span></div></sc-for>
+          <div style="margin-top: 10px; padding: 10px 12px; border-radius: 4px; background: var(--raised); display: flex; flex-direction: column; gap: 3px"><span class="lbl" style="font-size: 10px">{{ L.k11 }}</span><span><span style="color: var(--sigt); font-weight: 600">{{ L.k12 }}</span> <span class="muted">{{ L.k13 }}</span></span></div>
+        </section>
+      </div>
+      <footer class="wstatus"><span>{{ L.k14 }}</span><span style="flex: 1"></span><span>{{ L.k15 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON Admin · Обзор": "AEON Admin · Overview", "Обзор": "Overview", "Обновить · F5": "Refresh · F5", "Сканер Solana Devnet отстаёт на 214 слотов.": "Solana Devnet scanner is 214 slots behind.", "Основной RPC-узел недоступен 6 минут, работает резервный. Депозиты SOL зачисляются с задержкой.": "The primary RPC node has been down for 6 minutes; the backup is running. SOL deposits are credited with a delay.", "Открыть узлы": "Open nodes", "Объём P2P и выводов · 14 дней": "P2P and withdrawal volume · 14 days", "Выводы": "Withdrawals", "Столбчатая диаграмма объёмов P2P и выводов за 14 дней": "Bar chart of P2P and withdrawal volumes over 14 days", "Состояние системы": "System status", "СВЕРКА БАЛАНСОВ · 12:00": "BALANCE RECONCILIATION · 12:00", "Расхождений нет.": "No discrepancies.", "9 активов сходятся с учётом": "9 assets match the ledger", "ОБНОВЛЕНО 14:21:08 · АВТООБНОВЛЕНИЕ 30 С": "UPDATED 14:21:08 · AUTO-REFRESH 30 S", "CTRL+1…9 — РАЗДЕЛЫ": "CTRL+1…9 — SECTIONS", "ПОЛЬЗОВАТЕЛЕЙ": "USERS", "1 248": "1,248", "+36 за неделю": "+36 this week", "АКТИВНЫХ СДЕЛОК": "ACTIVE DEALS", "9 ждут выпуска": "9 awaiting release", "ОТКРЫТЫХ СПОРОВ": "OPEN DISPUTES", "1 с ответом < 3 ч": "1 with reply due < 3 h", "ВЫВОДЫ НА ПРОВЕРКЕ": "WITHDRAWALS UNDER REVIEW", "старшему 1 ч 42 мин": "oldest 1 h 42 min", "ДЕПОЗИТЫ НА УДЕРЖАНИИ": "DEPOSITS ON HOLD", "на $1 940": "worth $1,940", "ОБЪЯВЛЕНИЯ НА ПРОВЕРКЕ": "OFFERS UNDER REVIEW", "1 жалоба": "1 complaint", "99,98% · 84 мс": "99.98% · 84 ms", "Ethereum Sepolia · сканер": "Ethereum Sepolia · scanner", "блок 6 812 004 · 0": "block 6,812,004 · 0", "Polygon Amoy · сканер": "Polygon Amoy · scanner", "отставание 2": "lag 2", "Bitcoin Testnet · сканер": "Bitcoin Testnet · scanner", "блок 2 914 551 · 0": "block 2,914,551 · 0", "Solana Devnet · сканер": "Solana Devnet · scanner", "отставание 214": "lag 214", "Очередь сообщений": "Message queue", "12 в очереди": "12 queued", "Сервис скоринга": "Scoring service", "p95 180 мс": "p95 180 ms"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON Admin · Обзор"), k2: this.tr("Обзор"), k3: this.tr("Обновить · F5"), k4: this.tr("Сканер Solana Devnet отстаёт на 214 слотов."), k5: this.tr("Основной RPC-узел недоступен 6 минут, работает резервный. Депозиты SOL зачисляются с задержкой."), k6: this.tr("Открыть узлы"), k7: this.tr("Объём P2P и выводов · 14 дней"), k8: this.tr("Выводы"), k9: this.tr("Столбчатая диаграмма объёмов P2P и выводов за 14 дней"), k10: this.tr("Состояние системы"), k11: this.tr("СВЕРКА БАЛАНСОВ · 12:00"), k12: this.tr("Расхождений нет."), k13: this.tr("9 активов сходятся с учётом"), k14: this.tr("ОБНОВЛЕНО 14:21:08 · АВТООБНОВЛЕНИЕ 30 С"), k15: this.tr("CTRL+1…9 — РАЗДЕЛЫ"), k16: this.tr("ПОЛЬЗОВАТЕЛЕЙ"), k17: this.tr("1 248"), k18: this.tr("+36 за неделю"), k19: this.tr("АКТИВНЫХ СДЕЛОК"), k20: this.tr("9 ждут выпуска"), k21: this.tr("ОТКРЫТЫХ СПОРОВ"), k22: this.tr("1 с ответом < 3 ч"), k23: this.tr("ВЫВОДЫ НА ПРОВЕРКЕ"), k24: this.tr("старшему 1 ч 42 мин"), k25: this.tr("ДЕПОЗИТЫ НА УДЕРЖАНИИ"), k26: this.tr("на $1 940"), k27: this.tr("ОБЪЯВЛЕНИЯ НА ПРОВЕРКЕ"), k28: this.tr("1 жалоба"), k29: this.tr("99,98% · 84 мс"), k30: this.tr("Ethereum Sepolia · сканер"), k31: this.tr("блок 6 812 004 · 0"), k32: this.tr("Polygon Amoy · сканер"), k33: this.tr("отставание 2"), k34: this.tr("Bitcoin Testnet · сканер"), k35: this.tr("блок 2 914 551 · 0"), k36: this.tr("Solana Devnet · сканер"), k37: this.tr("отставание 214"), k38: this.tr("Очередь сообщений"), k39: this.tr("12 в очереди"), k40: this.tr("Сервис скоринга"), k41: this.tr("p95 180 мс") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const p = [42, 50, 38, 61, 55, 70, 48, 66, 72, 58, 80, 76, 88, 64], w = [20, 26, 18, 30, 22, 28, 35, 24, 31, 27, 40, 33, 29, 36];
+    const k = (l, v, n, c) => ({ l, v, n, c });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      kpis: [k(this.tr("ПОЛЬЗОВАТЕЛЕЙ"), this.tr("1 248"), this.tr("+36 за неделю"), 'var(--t1)'), k(this.tr("АКТИВНЫХ СДЕЛОК"), '30', this.tr("9 ждут выпуска"), 'var(--t1)'), k(this.tr("ОТКРЫТЫХ СПОРОВ"), '4', this.tr("1 с ответом < 3 ч"), 'var(--neg)'), k(this.tr("ВЫВОДЫ НА ПРОВЕРКЕ"), '6', this.tr("старшему 1 ч 42 мин"), 'var(--warn)'), k(this.tr("ДЕПОЗИТЫ НА УДЕРЖАНИИ"), '2', this.tr("на $1 940"), 'var(--warn)'), k(this.tr("ОБЪЯВЛЕНИЯ НА ПРОВЕРКЕ"), '5', this.tr("1 жалоба"), 'var(--warn)')],
+      bars: p.map((v, i) => ({ p: v + '%', w: w[i] + '%' })),
+      sys: [{ n: 'API', v: this.tr("99,98% · 84 мс"), c: 'var(--sig)' }, { n: this.tr("Ethereum Sepolia · сканер"), v: this.tr("блок 6 812 004 · 0"), c: 'var(--sig)' }, { n: this.tr("Polygon Amoy · сканер"), v: this.tr("отставание 2"), c: 'var(--sig)' }, { n: this.tr("Bitcoin Testnet · сканер"), v: this.tr("блок 2 914 551 · 0"), c: 'var(--sig)' }, { n: this.tr("Solana Devnet · сканер"), v: this.tr("отставание 214"), c: 'var(--warn)' }, { n: this.tr("Очередь сообщений"), v: this.tr("12 в очереди"), c: 'var(--sig)' }, { n: this.tr("Сервис скоринга"), v: this.tr("p95 180 мс"), c: 'var(--sig)' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

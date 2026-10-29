@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — аналитика</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="analytics" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="flex: 1; padding: 22px 28px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+        <div style="display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1><button class="wbtn">{{ L.k3 }}</button><button class="wbtn">{{ L.k4 }}</button></div>
+        <nav aria-label="{{ L.ka1 }}" style="display: flex; gap: 22px; border-bottom: 1px solid var(--bs)"><a href="win-analytics.dc.html" aria-current="page" style="height: 36px; display: flex; align-items: center; text-decoration: none; color: var(--t1); font: 600 14px Inter, sans-serif; border-bottom: 2px solid var(--sigt)">{{ L.ka2 }}</a><a href="win-analytics-ops.dc.html" style="height: 36px; display: flex; align-items: center; text-decoration: none; color: var(--t2); font: 400 14px Inter, sans-serif; border-bottom: 2px solid transparent">{{ L.ka3 }}</a></nav>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+          <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4"><div class="wcard" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ k.l }}</span><span class="disp" style="font-size: 24px; color: {{ k.c }}">{{ k.v }}</span><span class="faint" style="font-size: 11px">{{ k.n }}</span></div></sc-for>
+        </div>
+        <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 12px">
+          <div class="wcard" style="padding: 16px; display: flex; flex-direction: column; gap: 10px">
+            <span style="font-weight: 600">{{ L.k5 }}</span>
+            <svg viewBox="0 0 700 220" preserveAspectRatio="none" style="width: 100%; flex: 1; min-height: 200px" role="img" aria-label="{{ L.k6 }}"><g stroke="var(--bs)"><line x1="0" y1="55" x2="700" y2="55"></line><line x1="0" y1="110" x2="700" y2="110"></line><line x1="0" y1="165" x2="700" y2="165"></line></g><path d="M0 180 C50 176 90 160 130 166 S210 140 250 150 S330 118 380 110 S450 126 490 94 S570 74 610 60 S680 44 700 38" fill="none" stroke="#B6F36B" stroke-width="1.75" vector-effect="non-scaling-stroke"></path></svg>
+            <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px"><sc-for list="{{ alloc }}" as="a" hint-placeholder-count="5"><span style="display: flex; flex-direction: column; gap: 4px; font-size: 12px"><span style="height: 4px; border-radius: 2px; background: {{ a.c }}"></span><span>{{ a.n }}</span><span class="faint">{{ a.p }}</span></span></sc-for></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; min-height: 0">
+            <div class="wcard" style="padding: 16px; display: flex; flex-direction: column; gap: 10px">
+              <span style="font-weight: 600">{{ L.k7 }}</span>
+              <span class="winp"><input aria-label="{{ L.k8 }}" value="0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984" style="font-family: 'JetBrains Mono', monospace; font-size: 12px"></span>
+              <div style="display: flex; align-items: center; gap: 10px"><span class="disp" style="font-size: 34px; color: var(--neg)">82</span><span style="display: flex; flex-direction: column"><span style="font-weight: 600; color: var(--neg)">{{ L.k9 }}</span><span class="faint" style="font-size: 11px">{{ L.k10 }}</span></span></div>
+            </div>
+            <div class="wcard" style="padding: 16px; display: flex; flex-direction: column; gap: 8px">
+              <span style="font-weight: 600">{{ L.k11 }}</span>
+              <span class="disp" style="font-size: 22px">{{ L.k12 }}</span>
+              <span class="faint" style="font-size: 11px">{{ L.k13 }}</span>
+            </div>
+            <div class="wcard" style="padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+              <span style="font-weight: 600">{{ L.k14 }}</span>
+              <div style="display: flex; gap: 8px; font-size: 12px"><span aria-hidden="true" style="width: 6px; height: 6px; margin-top: 5px; border-radius: 1px; background: var(--warn)"></span>{{ L.k15 }}</div>
+              <div style="display: flex; gap: 8px; font-size: 12px"><span aria-hidden="true" style="width: 6px; height: 6px; margin-top: 5px; border-radius: 1px; background: var(--info)"></span>{{ L.k16 }}</div>
+            </div>
+          </div>
+        </div>
+</div></sc-if>
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div class="wcard" style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px"><div style="padding: 0; border-radius: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; max-width: 520px; box-sizing: border-box; width: 100%; align-self: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16M6 16l4-5 3 3 5-7"></path></svg></span><span style="font-weight: 600; font-size: 18px">{{ L.k31 }}</span><span style="font-size: 13px; line-height: 20px; color: var(--t2); max-width: 440px">{{ L.k32 }}</span><div style="display: flex; flex-direction: column; text-align: left; width: 100%"><span class="lbl" style="padding-bottom: 6px">{{ L.k33 }}</span><div style="display: flex; align-items: center; gap: 12px; min-height: 44px; border-bottom: 1px solid var(--bs)"><span aria-hidden="true" style="width: 26px; height: 26px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1.5px dashed var(--bst)"></span><span style="flex: 1; font-size: 13px">{{ L.k34 }}</span><span class="mono" style="font-size: 12px; color: var(--t2)">{{ L.k35 }}</span></div><div style="display: flex; align-items: center; gap: 12px; min-height: 44px; border-bottom: 1px solid var(--bs)"><span aria-hidden="true" style="width: 26px; height: 26px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1.5px dashed var(--bst)"></span><span style="flex: 1; font-size: 13px">{{ L.k36 }}</span><span class="mono" style="font-size: 12px; color: var(--t2)">{{ L.k37 }}</span></div><div style="display: flex; align-items: center; gap: 12px; min-height: 44px; border-bottom: 1px solid var(--bs)"><span aria-hidden="true" style="width: 26px; height: 26px; flex: none; border-radius: 999px; background: var(--sigs); color: var(--sigt); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span><span style="flex: 1; font-size: 13px">{{ L.k7 }}</span><span class="mono" style="font-size: 12px; color: var(--sigt)">{{ L.k38 }}</span></div></div><span style="display: flex; gap: 8px; margin-top: 6px"><a href="win-wallet-home.dc.html" class="wbtn wbtn-p" style="text-decoration: none">{{ L.k39 }}</a><button class="wbtn">{{ L.k40 }}</button></span></div></div></sc-if>
+
+      </div>
+      <footer class="wstatus"><span>{{ L.k17 }}</span><span style="flex: 1"></span><span>{{ L.k18 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"Оценки моих операций": "Scores of my transactions", "Портфель": "Portfolio", "Разделы аналитики": "Analytics sections", "Аналитика": "Analytics", "$3 412,18": "$3,412.18", "Рост портфеля за 30 дней": "Portfolio growth over 30 days", "Рекомендации": "Insights", "Стоимость портфеля": "Portfolio value", "СТОИМОСТЬ": "VALUE", "ЗА 30 ДНЕЙ": "OVER 30 DAYS", "+$472,10": "+$472.10", "+$213,40": "+$213.40", "6 сделок": "6 deals", "Держите запас USDT для P2P": "Keep a USDT reserve for P2P", "Проверка адреса": "Address check", "Адрес": "Address", "Высокий риск": "High risk", "AEON · Аналитика": "AEON · Analytics", "Период: 30 дней": "Period: 30 days", "Отчёт PDF": "PDF report", "миксер · аномальный объём": "mixer · unusual volume", "Прогноз ETH · 7 дней": "ETH forecast · 7 days", "3 280 – 3 690 USDT": "3,280 – 3,690 USDT", "Уверенность средняя · 68% · не является инвестиционной рекомендацией": "Medium confidence · 68% · not investment advice", "Почти половина портфеля — в ETH": "Almost half of the portfolio is in ETH", "СНИМОК 23.10 12:00": "SNAPSHOT 23.10 12:00", "ДАННЫЕ ТЕСТОВЫХ СЕТЕЙ": "TESTNET DATA", "снимок 12:00": "snapshot 12:00", "+16,1%": "+16.1%", "ПО ЦЕНЕ": "BY PRICE", "без пополнений": "excluding deposits", "P2P-ОБОРОТ": "P2P TURNOVER", "165 000 ₽": "165,000 ₽", "Аналитике нужно немного истории": "Analytics needs a bit of history", "Доходность, распределение активов и риски появятся после первого зачисления. Точные графики — через 7 дней истории.": "Returns, allocation and risks appear after your first deposit. Accurate charts need 7 days of history.", "Первое зачисление": "First deposit", "ждём · 0 из 1": "waiting · 0 of 1", "7 дней истории": "7 days of history", "0 из 7": "0 of 7", "доступна уже сейчас": "available right now", "Получить": "Receive", "Проверить адрес": "Check an address", "КАК ПОЯВИТСЯ АНАЛИТИКА": "HOW ANALYTICS UNLOCKS"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · Аналитика"), k2: this.tr("Аналитика"), k3: this.tr("Период: 30 дней"), k4: this.tr("Отчёт PDF"), k5: this.tr("Стоимость портфеля"), k6: this.tr("Рост портфеля за 30 дней"), k7: this.tr("Проверка адреса"), k8: this.tr("Адрес"), k9: this.tr("Высокий риск"), k10: this.tr("миксер · аномальный объём"), k11: this.tr("Прогноз ETH · 7 дней"), k12: this.tr("3 280 – 3 690 USDT"), k13: this.tr("Уверенность средняя · 68% · не является инвестиционной рекомендацией"), k14: this.tr("Рекомендации"), k15: this.tr("Почти половина портфеля — в ETH"), k16: this.tr("Держите запас USDT для P2P"), k17: this.tr("СНИМОК 23.10 12:00"), k18: this.tr("ДАННЫЕ ТЕСТОВЫХ СЕТЕЙ"), k19: this.tr("СТОИМОСТЬ"), k20: this.tr("$3 412,18"), k21: this.tr("снимок 12:00"), k22: this.tr("ЗА 30 ДНЕЙ"), k23: this.tr("+16,1%"), k24: this.tr("+$472,10"), k25: this.tr("ПО ЦЕНЕ"), k26: this.tr("+$213,40"), k27: this.tr("без пополнений"), k28: this.tr("P2P-ОБОРОТ"), k29: this.tr("165 000 ₽"), k30: this.tr("6 сделок"), k31: this.tr("Аналитике нужно немного истории"), k32: this.tr("Доходность, распределение активов и риски появятся после первого зачисления. Точные графики — через 7 дней истории."), k33: this.tr("КАК ПОЯВИТСЯ АНАЛИТИКА"), k34: this.tr("Первое зачисление"), k35: this.tr("ждём · 0 из 1"), k36: this.tr("7 дней истории"), k37: this.tr("0 из 7"), k38: this.tr("доступна уже сейчас"), k39: this.tr("Получить"), k40: this.tr("Проверить адрес"), ka1: this.tr("Разделы аналитики"), ka2: this.tr("Портфель"), ka3: this.tr("Оценки моих операций") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isDefault: st === 'default', isEmpty: st === 'empty',
+      kpis: [{ l: this.tr('СТОИМОСТЬ'), v: this.tr('$3 412,18'), n: this.tr('снимок 12:00'), c: 'var(--t1)' }, { l: this.tr('ЗА 30 ДНЕЙ'), v: this.tr('+16,1%'), n: this.tr('+$472,10'), c: 'var(--sigt)' }, { l: this.tr('ПО ЦЕНЕ'), v: this.tr('+$213,40'), n: this.tr('без пополнений'), c: 'var(--sigt)' }, { l: this.tr('P2P-ОБОРОТ'), v: this.tr('165 000 ₽'), n: this.tr('6 сделок'), c: 'var(--t1)' }],
+      alloc: [['ETH', '48%', '#B6F36B'], ['USDT', '37%', 'var(--t1)'], ['SOL', '7%', 'var(--t2)'], ['POL', '5%', 'var(--t3)'], ['BTC', '3%', 'var(--bst)']].map(([n, p, c]) => ({ n, p, c }))
+    };
+  }
+}
+</script>
+</body>
+</html>

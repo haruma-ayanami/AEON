@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — длинные значения и большие числа</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-history.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px; gap: 10px">
+    <div style="display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; padding: 4px 0 6px">
+      <span class="lbl">{{ L.k4 }}</span>
+      <span class="disp" style="font-size: 38px; color: var(--sigt); white-space: nowrap">{{ L.k5 }}</span>
+      <span class="muted" style="font-size: 14px">{{ L.k6 }}</span>
+    </div>
+    <div class="icard">
+      <sc-for list="{{ longs }}" as="l" hint-placeholder-count="3"><div class="irow" style="min-height: 64px; padding-top: 8px; padding-bottom: 8px"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span class="faint" style="font-size: 12px">{{ l.k }}</span><span class="mono" style="font-size: 14px"><b style="font-weight: 600">{{ l.head }}</b>…<b style="font-weight: 600">{{ l.tail }}</b></span></span><button aria-label="{{ l.copy }}" class="ibtn" style="width: 34px; height: 34px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8h11v11H8zM5 15V5h10"></path></svg></button></div></sc-for>
+    </div>
+    <div class="icard" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px">
+      <span class="faint" style="font-size: 12px">{{ L.k7 }}</span>
+      <span class="mono" style="font-size: 13px; line-height: 20px; word-break: break-all"><b style="font-weight: 600">tb1qrp</b><span class="muted">33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0</span><b style="font-weight: 600">sl5k7</b></span>
+    </div>
+    <span class="lbl" style="padding: 6px 4px 0">{{ L.k8 }}</span>
+    <div class="icard">
+      <sc-for list="{{ assets }}" as="a" hint-placeholder-count="3"><div class="irow" style="min-height: 58px"><span style="width: 34px; height: 34px; flex: none; border-radius: 999px; background: var(--raised); border: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; font: 500 9px 'JetBrains Mono', monospace">{{ a.t }}</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span class="num" style="font: 600 15px 'Inter Tight', sans-serif; white-space: nowrap">{{ a.q }}</span><span class="faint" style="font-size: 12px">{{ a.rule }}</span></span><span class="num" style="font: 600 14px 'Inter Tight', sans-serif; white-space: nowrap">{{ a.v }}</span></div></sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Транзакция": "Transaction", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "ВХОДЯЩИЙ · BITCOIN TESTNET": "INCOMING · BITCOIN TESTNET", "+0,00000312 BTC": "+0.00000312 BTC", "≈ $0,21 · без экспоненты и округления до нуля": "≈ $0.21 · no exponent, never rounded to zero", "Отправитель целиком · 62 символа, края выделены": "Full sender · 62 characters, edges highlighted", "БАЛАНС С БОЛЬШИМИ ЧИСЛАМИ": "BALANCE WITH LARGE NUMBERS", "Копировать: ": "Copy: ", "Кому · ваш адрес": "To · your address", "Хеш · 66 символов": "Hash · 66 characters", "Связанный адрес Solana · 44 символа": "Linked Solana address · 44 characters", "1 234 567,89 USDT": "1,234,567.89 USDT", "$1 234 567": "$1,234,567", "разряды через пробел": "digit grouping", "0,00000001… ETH": "0.00000001… ETH", "<$0,01": "<$0.01", "18 знаков → 8 значащих": "18 decimals → 8 significant", "12 345 678,9 SOL": "12,345,678.9 SOL", "$2,02 млрд": "$2.02 bn", "стоимость сокращается": "value is abbreviated"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Транзакция"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("ВХОДЯЩИЙ · BITCOIN TESTNET"), k5: this.tr("+0,00000312 BTC"), k6: this.tr("≈ $0,21 · без экспоненты и округления до нуля"), k7: this.tr("Отправитель целиком · 62 символа, края выделены"), k8: this.tr("БАЛАНС С БОЛЬШИМИ ЧИСЛАМИ") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const L = (k, full, n) => ({ k, head: full.slice(0, n), tail: full.slice(-n), copy: this.tr('Копировать: ') + k });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      longs: [
+        L(this.tr('Кому · ваш адрес'), 'tb1q9vza2e8x573nczrlzms0wvx3gsqjx7vavgkx0l', 6),
+        L(this.tr('Хеш · 66 символов'), '0x3e7a91c4b2d8f0e65a1c9b7d3f2e8a0c6b4d1f9e7a5c3b0d8f6e4a2c1b9d7f5e', 6),
+        L(this.tr('Связанный адрес Solana · 44 символа'), '7Hq2mR4xVb9KcLp3TzWn8YdF5sJgQe1AuXo6NiBk2mR4', 6)
+      ],
+      assets: [
+        { t: 'USDT', q: this.tr('1 234 567,89 USDT'), v: this.tr('$1 234 567'), rule: this.tr('разряды через пробел') },
+        { t: 'ETH', q: this.tr('0,00000001… ETH'), v: this.tr('<$0,01'), rule: this.tr('18 знаков → 8 значащих') },
+        { t: 'SOL', q: this.tr('12 345 678,9 SOL'), v: this.tr('$2,02 млрд'), rule: this.tr('стоимость сокращается') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

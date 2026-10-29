@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — безопасность</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-profile.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <sc-if value="{{ isWeak }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--negs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM12 9v4M12 16v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span>{{ L.k25 }}</span><a href="ios-auth-2fa-setup.dc.html" style="font-weight: 600; color: var(--t1)">{{ L.k26 }}</a></span></div></sc-if>
+    <div class="icard">
+      <label class="irow"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k4 }}</span><span class="faint" style="font-size: 12px">{{ L.k5 }}</span></span><span class="sw on" aria-hidden="true"></span><input type="checkbox" checked class="sr"></label>
+      <label class="irow"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k6 }}</span><span class="faint" style="font-size: 12px">{{ L.k7 }}</span></span><span class="sw on" aria-hidden="true"></span><input type="checkbox" checked class="sr"></label>
+      <label class="irow"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k8 }}</span><span class="faint" style="font-size: 12px">{{ L.k9 }}</span></span><span class="sw on" aria-hidden="true"></span><input type="checkbox" checked class="sr"></label>
+    </div>
+    <div class="icard">
+      <a href="ios-auth-unlock.dc.html" class="irow"><span style="flex: 1">{{ L.k10 }}</span><span class="muted">{{ L.k11 }}</span></a>
+      <a href="ios-auth-2fa-setup.dc.html" class="irow"><span style="flex: 1">{{ L.k12 }}</span><span class="chip {{ tfaCls }}" style="height: 24px">{{ tfaTxt }}</span></a>
+      <button type="button" class="irow"><span style="flex: 1">{{ L.k14 }}</span><span class="muted">{{ L.k15 }}</span></button>
+      <button type="button" class="irow"><span style="flex: 1">{{ L.k16 }}</span></button>
+    </div>
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k17 }}</span>
+    <div class="icard">
+      <div class="irow"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>iPhone 16 Pro <span class="chip c-ok" style="height: 22px">{{ L.k18 }}</span></span><span class="faint" style="font-size: 12px">{{ L.k19 }}</span></span></div>
+      <div class="irow"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>Windows 11 <span class="chip c-warn" style="height: 22px">{{ L.k20 }}</span></span><span class="faint" style="font-size: 12px">{{ L.k21 }}</span></span><button class="btn btn-s btn-n">{{ L.k22 }}</button></div>
+    </div>
+    <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--raised); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg><span>{{ L.k23 }}</span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "weak"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Назад": "Back", "Безопасность": "Security", "Вход по Face ID": "Face ID sign-in", "Ключ в Secure Enclave": "Key in Secure Enclave", "Face ID для переводов": "Face ID for transfers", "И для выпуска из эскроу": "And for escrow release", "Скрывать экран в переключателе": "Hide screen in app switcher", "Балансы не видны при сворачивании": "Balances are hidden when minimized", "Код-пароль AEON": "AEON passcode", "6 цифр": "6 digits", "Аутентификатор": "Authenticator", "Включён": "On", "Ключ доступа": "Passkey", "Добавить": "Add", "Сменить пароль": "Change password", "АКТИВНЫЕ СЕССИИ": "ACTIVE SESSIONS", "Это": "This one", "Москва · сейчас": "Moscow · now", "Новое": "New", "Москва · 12:02": "Moscow · 12:02", "Завершить": "End", "Проверка целостности устройства пройдена: iOS не модифицирована, соединение защищено.": "Device integrity check passed: iOS is unmodified, the connection is secure.", "Двухфакторная защита выключена: выводы ограничены 100 USDT в сутки, продажа через P2P недоступна.": "Two-factor protection is off: withdrawals are limited to 100 USDT a day and selling via P2P is unavailable.", "Включить аутентификатор": "Turn on authenticator", "Выключен": "Off", "Выключено": "Off", "Включить": "Turn on", "Не созданы": "Not created", "Создать": "Create", "Уровень защиты: 1 из 4": "Protection level: 1 of 4", "Защита слабая.": "Protection is weak.", "Включите приложение-аутентификатор: без него выводы ограничены 100 USDT в сутки, а продажа через P2P недоступна.": "Turn on an authenticator app: without it withdrawals are limited to 100 USDT a day and selling via P2P is unavailable.", "Включить 2FA": "Turn on 2FA", "Код для входа, вывода и выпуска из эскроу · не настроено": "Code for sign-in, withdrawals and escrow release · not set up"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Безопасность"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Вход по Face ID"), k5: this.tr("Ключ в Secure Enclave"), k6: this.tr("Face ID для переводов"), k7: this.tr("И для выпуска из эскроу"), k8: this.tr("Скрывать экран в переключателе"), k9: this.tr("Балансы не видны при сворачивании"), k10: this.tr("Код-пароль AEON"), k11: this.tr("6 цифр"), k12: this.tr("Аутентификатор"), k13: this.tr("Включён"), k14: this.tr("Ключ доступа"), k15: this.tr("Добавить"), k16: this.tr("Сменить пароль"), k17: this.tr("АКТИВНЫЕ СЕССИИ"), k18: this.tr("Это"), k19: this.tr("Москва · сейчас"), k20: this.tr("Новое"), k21: this.tr("Москва · 12:02"), k22: this.tr("Завершить"), k23: this.tr("Проверка целостности устройства пройдена: iOS не модифицирована, соединение защищено."), k24: this.tr("Выключен"), k25: this.tr("Двухфакторная защита выключена: выводы ограничены 100 USDT в сутки, продажа через P2P недоступна."), k26: this.tr("Включить аутентификатор") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const weak = (this.props.state ?? 'default') === 'weak';
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark', isWeak: weak, tfaCls: weak ? 'c-neg' : 'c-ok', tfaTxt: weak ? this.tr("Выключен") : this.tr("Включён") };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — верификация</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-profile.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <sc-if value="{{ isLevels }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{ levels }}" as="l" hint-placeholder-count="3">
+          <div class="icard" style="padding: 16px; display: flex; flex-direction: column; gap: 8px; border: {{ l.b }}">
+            <span style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">{{ l.n }}</span><span class="chip {{ l.cls }}">{{ l.s }}</span></span>
+            <span style="font-weight: 600; font-size: 16px">{{ l.t }}</span>
+            <span class="muted" style="font-size: 13px; line-height: 18px">{{ l.d }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isPending }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding-top: 40px">
+        <span aria-hidden="true" style="width: 72px; height: 72px; border-radius: 24px; background: var(--warns); color: var(--warn); display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10M7 21h10M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9"></path></svg></span>
+        <h1 class="disp" style="margin: 0; font-size: 26px">{{ L.k4 }}</h1>
+        <span class="muted" style="font-size: 15px; line-height: 22px">{{ L.k5 }}</span>
+        <div class="icard" style="align-self: stretch; padding: 2px 16px; text-align: left"><div class="rowline"><span>{{ L.k6 }}</span><span>{{ L.k7 }}</span></div><div class="rowline"><span>{{ L.k8 }}</span><span style="color: var(--sigt)">{{ L.k9 }}</span></div><div class="rowline"><span>{{ L.k10 }}</span><span>12:50</span></div></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isRejected }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding-top: 40px">
+        <span aria-hidden="true" style="width: 72px; height: 72px; border-radius: 24px; background: var(--negs); color: var(--neg); display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg></span>
+        <h1 class="disp" style="margin: 0; font-size: 26px">{{ L.k11 }}</h1>
+        <span class="muted" style="font-size: 15px; line-height: 22px">{{ L.k12 }}</span>
+      </div>
+    </sc-if>
+  </div>
+  <div class="ios-fade"></div>
+  <div class="ios-bar"><button class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ cta }}</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["levels", "pending", "rejected"], "default": "levels"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Назад": "Back", "Верификация": "Verification", "Документы на проверке": "Documents under review", "Обычно проверка занимает до 15 минут. Мы пришлём уведомление, когда уровень 2 станет доступен.": "Review usually takes up to 15 minutes. We'll notify you when level 2 becomes available.", "Документ": "Document", "Паспорт РФ": "Russian passport", "Селфи": "Selfie", "Получено": "Received", "Отправлено": "Sent", "Не удалось проверить фото": "Couldn't verify the photo", "Документ получился с бликом — номер не читается. Переснимите при рассеянном свете, без вспышки.": "The document has glare — the number can't be read. Retake it in diffused light, without flash.", "Пройти уровень 2": "Complete level 2", "Понятно": "Got it", "Переснять документ": "Retake document", "УРОВЕНЬ 0 · ПОЧТА": "LEVEL 0 · EMAIL", "Кошелёк и вывод до 500 USDT": "Wallet and withdrawals up to 500 USDT", "Получение, отправка, история": "Receive, send, history", "Пройден": "Passed", "УРОВЕНЬ 1 · ТЕЛЕФОН": "LEVEL 1 · PHONE", "P2P и вывод до 5 000 USDT в сутки": "P2P and withdrawals: 5,000 USDT/day", "Покупка и продажа по объявлениям других": "Buying and selling via other people's offers", "Текущий": "Current", "УРОВЕНЬ 2 · ДОКУМЕНТ": "LEVEL 2 · DOCUMENT", "До 50 000 USDT, свои объявления": "Up to 50,000 USDT, your own offers", "Паспорт и селфи у партнёра по проверке, ~5 минут": "Passport and selfie with a verification partner, ~5 minutes", "Доступен": "Available"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Верификация"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Документы на проверке"), k5: this.tr("Обычно проверка занимает до 15 минут. Мы пришлём уведомление, когда уровень 2 станет доступен."), k6: this.tr("Документ"), k7: this.tr("Паспорт РФ"), k8: this.tr("Селфи"), k9: this.tr("Получено"), k10: this.tr("Отправлено"), k11: this.tr("Не удалось проверить фото"), k12: this.tr("Документ получился с бликом — номер не читается. Переснимите при рассеянном свете, без вспышки."), k13: this.tr("Пройти уровень 2"), k14: this.tr("Понятно"), k15: this.tr("Переснять документ"), k16: this.tr("УРОВЕНЬ 0 · ПОЧТА"), k17: this.tr("Кошелёк и вывод до 500 USDT"), k18: this.tr("Получение, отправка, история"), k19: this.tr("Пройден"), k20: this.tr("УРОВЕНЬ 1 · ТЕЛЕФОН"), k21: this.tr("P2P и вывод до 5 000 USDT в сутки"), k22: this.tr("Покупка и продажа по объявлениям других"), k23: this.tr("Текущий"), k24: this.tr("УРОВЕНЬ 2 · ДОКУМЕНТ"), k25: this.tr("До 50 000 USDT, свои объявления"), k26: this.tr("Паспорт и селфи у партнёра по проверке, ~5 минут"), k27: this.tr("Доступен") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'levels';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isLevels: st === 'levels', isPending: st === 'pending', isRejected: st === 'rejected',
+      cta: { levels: this.tr('Пройти уровень 2'), pending: this.tr('Понятно'), rejected: this.tr('Переснять документ') }[st],
+      levels: [
+        { n: this.tr('УРОВЕНЬ 0 · ПОЧТА'), t: this.tr('Кошелёк и вывод до 500 USDT'), d: this.tr('Получение, отправка, история'), s: this.tr('Пройден'), cls: 'c-ok', b: '1px solid var(--bs)' },
+        { n: this.tr('УРОВЕНЬ 1 · ТЕЛЕФОН'), t: this.tr('P2P и вывод до 5 000 USDT в сутки'), d: this.tr('Покупка и продажа по объявлениям других'), s: this.tr('Текущий'), cls: 'c-ok', b: '1.5px solid var(--t1)' },
+        { n: this.tr('УРОВЕНЬ 2 · ДОКУМЕНТ'), t: this.tr('До 50 000 USDT, свои объявления'), d: this.tr('Паспорт и селфи у партнёра по проверке, ~5 минут'), s: this.tr('Доступен'), cls: 'c-off', b: '1px solid var(--bs)' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

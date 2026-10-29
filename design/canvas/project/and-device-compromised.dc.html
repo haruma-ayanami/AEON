@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — устройство под угрозой</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }} " style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; justify-content: flex-end; padding: 0 4px 0 16px"><span class="testnet" style="margin-right: 8px">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k1 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></header>
+  <div style="position: absolute; left: 24px; right: 24px; top: 120px; display: flex; flex-direction: column; gap: 14px">
+    <span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 20px; background: var(--negs); color: var(--neg); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V7zM12 8v5M12 16v.5"></path></svg></span>
+    <h1 style="margin: 0; font: 400 32px Inter, sans-serif; line-height: 40px">{{ L.k2 }}</h1>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--t2)">{{ L.k3 }}</p>
+    <div style="border-radius: 24px; background: var(--surface); padding: 4px 16px; margin-top: 8px"><div class="rowline" style="min-height: 44px; align-items: center"><span>Play Integrity</span><span style="color: var(--neg); font-weight: 500">{{ L.k4 }}</span></div><div class="rowline" style="min-height: 44px; align-items: center"><span>{{ L.k5 }}</span><span style="color: var(--neg); font-weight: 500">{{ L.k6 }}</span></div><div class="rowline" style="min-height: 44px; align-items: center"><span>{{ L.k7 }}</span><span style="color: var(--warn); font-weight: 500">{{ L.k8 }}</span></div><div class="rowline" style="min-height: 44px; align-items: center"><span>{{ L.k9 }}</span><span style="color: var(--sigt); font-weight: 500">{{ L.k10 }}</span></div></div>
+  </div>
+  <div style="position: absolute; left: 24px; right: 24px; bottom: 48px; display: flex; flex-direction: column; gap: 12px"><button type="button" class="btn btn-p" style="height: 52px">{{ L.k11 }}</button><a href="and-wallet-home.dc.html" class="btn" style="height: 52px; background: transparent; border: 1px solid var(--bst)">{{ L.k12 }}</a></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Устройство под угрозой": "Device at risk", "Проверка целостности не пройдена: на телефоне root-доступ или изменённая прошивка. Переводы и выпуск из эскроу заблокированы, просмотр баланса доступен.": "Integrity check failed: the phone has root access or modified firmware. Transfers and escrow release are blocked; viewing your balance is available.", "не пройдена": "failed", "Root-доступ": "Root access", "обнаружен": "detected", "Загрузчик": "Bootloader", "разблокирован": "unlocked", "Отладка по USB": "USB debugging", "выключена": "off", "Как вернуть защиту": "How to restore protection", "Продолжить в режиме просмотра": "Continue in view-only mode"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Язык интерфейса: русский. Переключить на английский"), k2: this.tr("Устройство под угрозой"), k3: this.tr("Проверка целостности не пройдена: на телефоне root-доступ или изменённая прошивка. Переводы и выпуск из эскроу заблокированы, просмотр баланса доступен."), k4: this.tr("не пройдена"), k5: this.tr("Root-доступ"), k6: this.tr("обнаружен"), k7: this.tr("Загрузчик"), k8: this.tr("разблокирован"), k9: this.tr("Отладка по USB"), k10: this.tr("выключена"), k11: this.tr("Как вернуть защиту"), k12: this.tr("Продолжить в режиме просмотра") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark'
+    };
+  }
+}
+</script>
+</body>
+</html>

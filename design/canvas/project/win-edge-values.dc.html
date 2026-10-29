@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — длинные значения</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="wallet" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1></div>
+      <div style="flex: 1; min-height: 0; display: flex; gap: 16px; padding: 4px 28px 20px">
+        <section class="wcard" style="flex: 1; min-width: 0; overflow: hidden">
+          <table class="tbl"><thead><tr><th>{{ L.k3 }}</th><th>{{ L.k4 }}</th><th>{{ L.k5 }}</th></tr></thead><tbody><sc-for list="{{ rows }}" as="r" hint-placeholder-count="8"><tr><td style="width: 220px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ r.k }}</span><span class="faint" style="font-size: 11px">{{ r.rule }}</span></span></td><td><span class="{{ r.cls }}" style="display: block; max-width: 520px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: {{ r.fs }}">{{ r.v }}</span></td><td class="mono muted" style="font-size: 11px; word-break: break-all; max-width: 360px">{{ r.full }}</td></tr></sc-for></tbody></table>
+        </section>
+        <aside style="width: 340px; flex: none; display: flex; flex-direction: column; gap: 12px">
+          <span class="lbl">{{ L.k6 }}</span>
+          <div class="wcard" style="padding: 14px; display: flex; flex-direction: column; gap: 10px">
+            <span class="num" style="font: 600 20px 'Inter Tight', sans-serif">0,48210000… ETH</span>
+            <div role="tooltip" style="align-self: flex-start; padding: 8px 10px; border-radius: 4px; background: var(--flyout); border: 1px solid var(--bd); box-shadow: 0 8px 24px rgba(0,0,0,.35); font: 400 12px 'JetBrains Mono', monospace">0,482100000000000017 ETH</div>
+            <span class="faint" style="font-size: 12px; line-height: 17px">{{ L.k7 }}</span>
+          </div>
+          <span class="lbl">{{ L.k8 }}</span>
+          <div class="wcard" style="padding: 14px; display: flex; flex-direction: column; gap: 8px">
+            <span class="mono" style="font-size: 13px"><b style="font-weight: 600">tb1qw508</b><span class="muted">…</span><b style="font-weight: 600">kxpjzsx</b></span>
+            <span class="faint" style="font-size: 12px; line-height: 17px">{{ L.k9 }}</span>
+          </div>
+          <span class="lbl">{{ L.k10 }}</span>
+          <div class="wcard" style="padding: 14px; display: flex; flex-wrap: wrap; gap: 6px">
+            <button class="wbtn">Confirm and release funds</button><button class="wbtn">Open a dispute</button><span class="chip c-warn" style="height: 24px">Awaiting payment confirmation</span>
+          </div>
+        </aside>
+      </div>
+      <footer class="wstatus"><span>{{ L.k11 }}</span><span style="flex: 1"></span><span>{{ L.k12 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON · Крайние значения": "AEON · Edge values", "Длинные значения и большие числа": "Long values and large numbers", "СЛУЧАЙ": "CASE", "КАК ПОКАЗЫВАЕМ": "HOW WE SHOW IT", "ПОЛНОЕ ЗНАЧЕНИЕ · ПО НАВЕДЕНИЮ И В БУФЕР": "FULL VALUE · ON HOVER AND IN CLIPBOARD", "ПОДСКАЗКА ПО НАВЕДЕНИЮ": "HOVER TOOLTIP", "Показываем до 8 значащих цифр. Полная сумма — во всплывающей подсказке и при копировании Ctrl+C.": "We show up to 8 significant digits. The full amount is in the tooltip and copied with Ctrl+C.", "АДРЕС В УЗКОЙ КОЛОНКЕ": "ADDRESS IN A NARROW COLUMN", "Края адреса всегда видны: по ним пользователь сверяет получателя. Середина сворачивается.": "Address edges are always visible so users can verify the recipient. The middle collapses.", "ENGLISH · ДЛИННЫЕ СТРОКИ": "ENGLISH · LONG STRINGS", "ЕДИНЫЕ ПРАВИЛА С ВЕБОМ И IOS": "SAME RULES AS WEB AND IOS", "CTRL+C — КОПИРОВАТЬ ПОЛНОЕ ЗНАЧЕНИЕ": "CTRL+C — COPY FULL VALUE", "Адрес BTC (bech32)": "BTC address (bech32)", "края видны, середина — …": "edges visible, middle — …", "Адрес Solana (base58)": "Solana address (base58)", "Хеш транзакции": "Transaction hash", "66 символов": "66 characters", "Сумма с 18 знаками": "18-decimal amount", "до 8 значащих": "up to 8 significant", "0,48210000… ETH": "0.48210000… ETH", "Большой баланс": "Large balance", "разряды через пробел": "thin-space grouping", "1 234 567,89 USDT": "1,234,567.89 USDT", "Крошечная сумма": "Tiny amount", "без экспоненты": "no exponent", "0,00000312 BTC": "0.00000312 BTC", "Ник 32 символа": "32-character nickname", "обрезка по ширине": "width truncation", "Сумма в ₽": "Amount in ₽", "фиатный эквивалент": "fiat equivalent", "≈ 114 076 543,02 ₽": "≈ 114,076,543.02 ₽"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · Крайние значения"), k2: this.tr("Длинные значения и большие числа"), k3: this.tr("СЛУЧАЙ"), k4: this.tr("КАК ПОКАЗЫВАЕМ"), k5: this.tr("ПОЛНОЕ ЗНАЧЕНИЕ · ПО НАВЕДЕНИЮ И В БУФЕР"), k6: this.tr("ПОДСКАЗКА ПО НАВЕДЕНИЮ"), k7: this.tr("Показываем до 8 значащих цифр. Полная сумма — во всплывающей подсказке и при копировании Ctrl+C."), k8: this.tr("АДРЕС В УЗКОЙ КОЛОНКЕ"), k9: this.tr("Края адреса всегда видны: по ним пользователь сверяет получателя. Середина сворачивается."), k10: this.tr("ENGLISH · ДЛИННЫЕ СТРОКИ"), k11: this.tr("ЕДИНЫЕ ПРАВИЛА С ВЕБОМ И IOS"), k12: this.tr("CTRL+C — КОПИРОВАТЬ ПОЛНОЕ ЗНАЧЕНИЕ"), k13: this.tr("Адрес BTC (bech32)"), k14: this.tr("края видны, середина — …"), k15: this.tr("Адрес Solana (base58)"), k16: this.tr("Хеш транзакции"), k17: this.tr("66 символов"), k18: this.tr("Сумма с 18 знаками"), k19: this.tr("до 8 значащих"), k20: this.tr("0,48210000… ETH"), k21: this.tr("Большой баланс"), k22: this.tr("разряды через пробел"), k23: this.tr("1 234 567,89 USDT"), k24: this.tr("Крошечная сумма"), k25: this.tr("без экспоненты"), k26: this.tr("0,00000312 BTC"), k27: this.tr("Ник 32 символа"), k28: this.tr("обрезка по ширине"), k29: this.tr("Сумма в ₽"), k30: this.tr("фиатный эквивалент"), k31: this.tr("≈ 114 076 543,02 ₽") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      rows: [
+        { k: this.tr("Адрес BTC (bech32)"), rule: this.tr("края видны, середина — …"), v: 'tb1qw508d6…kxpjzsx', full: 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx', cls: 'mono', fs: '13px' },
+        { k: this.tr("Адрес Solana (base58)"), rule: this.tr("края видны, середина — …"), v: '7EcDhSYG…wCFLtV', full: '7EcDhSYGxXyscszYEp35KHN8vvw3svAuLKTzXwCFLtV', cls: 'mono', fs: '13px' },
+        { k: this.tr("Хеш транзакции"), rule: this.tr("66 символов"), v: '0x9f2c41d0…77a3e41b', full: '0x9f2c41d0b8e5a7c3f61e2d9045b7c8a1e3f50d62c94b8a07e1d3f5c6b277a3e41b', cls: 'mono', fs: '13px' },
+        { k: this.tr("Сумма с 18 знаками"), rule: this.tr("до 8 значащих"), v: this.tr("0,48210000… ETH"), full: '0,482100000000000017 ETH', cls: 'num', fs: '14px' },
+        { k: this.tr("Большой баланс"), rule: this.tr("разряды через пробел"), v: this.tr("1 234 567,89 USDT"), full: '1234567,890000 USDT', cls: 'num', fs: '14px' },
+        { k: this.tr("Крошечная сумма"), rule: this.tr("без экспоненты"), v: this.tr("0,00000312 BTC"), full: '0,00000312 BTC · 312 sat', cls: 'num', fs: '14px' },
+        { k: this.tr("Ник 32 символа"), rule: this.tr("обрезка по ширине"), v: 'crypto_mila_official_trader_2026', full: 'crypto_mila_official_trader_2026', cls: '', fs: '14px' },
+        { k: this.tr("Сумма в ₽"), rule: this.tr("фиатный эквивалент"), v: this.tr("≈ 114 076 543,02 ₽"), full: '1 234 567,89 × 92,40', cls: 'num', fs: '14px' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — получить</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-wallet-home.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button><button aria-label="{{ L.k4 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5"></path></svg></button></div>
+  <div class="ios-body" style="top: 118px; align-items: stretch">
+    <div style="display: flex; gap: 8px">
+      <button class="icard" style="flex: 1; height: 52px; border: 0; color: var(--t1); display: flex; align-items: center; gap: 10px; padding: 0 14px; font: 600 15px Inter, sans-serif"><span style="width: 28px; height: 28px; border-radius: 999px; background: var(--raised); border: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; font: 500 8px 'JetBrains Mono', monospace">USDT</span>USDT<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: auto"><path d="M6 9l6 6 6-6"></path></svg></button>
+      <button class="icard" style="flex: 1.3; height: 52px; border: 0; color: var(--t1); display: flex; align-items: center; gap: 8px; padding: 0 14px; font: 600 15px Inter, sans-serif"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 2px; background: #8A9BFF"></span>Sepolia<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left: auto"><path d="M6 9l6 6 6-6"></path></svg></button>
+    </div>
+    <div class="icard" style="padding: 22px; display: flex; flex-direction: column; align-items: center; gap: 16px">
+      <div style="padding: 14px; border-radius: 22px; background: #FFFFFF"><div role="img" aria-label="{{ L.k5 }}" style="display: grid; grid-template-columns: repeat(25, 8px)"><sc-for list="{{ qr }}" as="q" hint-placeholder-count="625"><span style="width: 8px; height: 8px; background: {{ q }}"></span></sc-for></div></div>
+      <span class="mono" style="font-size: 15px; line-height: 23px; text-align: center; word-break: break-all"><b style="font-weight: 600">0x7a3F5c</b><span class="muted">1E8b2D4a6F9e0C3b7A1d5E8f2C4b</span><b style="font-weight: 600">6A9c2E</b></span>
+    </div>
+    <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ L.k6 }}</span></div>
+  </div>
+  <div class="ios-bar"><button class="btn glass" style="flex: 1; height: 56px; font-size: 17px">{{ L.k7 }}</button><button class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k8 }}</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Назад": "Back", "Получить": "Receive", "Подсказка": "Hint", "QR-код адреса": "Address QR code", "Только USDT в сети Sepolia. Минимум 1 USDT, зачисление после 12 подтверждений.": "Only USDT on the Sepolia network. Minimum 1 USDT, credited after 12 confirmations.", "Поделиться": "Share", "Копировать": "Copy"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Получить"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Подсказка"), k5: this.tr("QR-код адреса"), k6: this.tr("Только USDT в сети Sepolia. Минимум 1 USDT, зачисление после 12 подтверждений."), k7: this.tr("Поделиться"), k8: this.tr("Копировать") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    let s = 23;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const qr = [];
+    const fin = (r, c) => { for (const [r0, c0] of [[0, 0], [0, 18], [18, 0]]) { if (r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7) { const a = r - r0, b = c - c0; return (a === 0 || a === 6 || b === 0 || b === 6 || (a >= 2 && a <= 4 && b >= 2 && b <= 4)) ? 1 : 0; } if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) return 0; } return -1; };
+    for (let r = 0; r < 25; r++) for (let c = 0; c < 25; c++) { const f = fin(r, c); qr.push((f === -1 ? rnd() > 0.52 : f === 1) ? '#0A0C0B' : '#FFFFFF'); }
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark', qr };
+  }
+}
+</script>
+</body>
+</html>

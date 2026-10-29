@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — двухфакторная защита</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }}" style="min-height: 900px; display: flex; flex-wrap: wrap">
+  <div style="flex: 1 1 560px; min-width: 0; display: flex"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AuthArt" hint-size="100%,900px"></dc-import></div>
+  <main style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; padding: 32px 40px; box-sizing: border-box">
+    <div style="display: flex; justify-content: space-between; align-items: center"><a href="web-auth-login.dc.html" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none" class="muted"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>{{ L.k1 }}</a><span class="testnet">{{ L.k2 }}</span></div>
+    <div style="flex: 1; display: flex; align-items: center; justify-content: center">
+      <sc-if value="{{ isTotp }}" hint-placeholder-val="{{ true }}">
+        <div style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 18px">
+          <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 18px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg></span>
+          <div style="display: flex; flex-direction: column; gap: 6px"><h1 class="disp" style="margin: 0; font-size: 32px">{{ L.k3 }}</h1><span class="muted">{{ L.k4 }}</span></div>
+          <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px"><sc-for list="{{ otp }}" as="o" hint-placeholder-count="6"><input aria-label="{{ o.aria }}" value="{{ o.v }}" maxlength="1" style="height: 64px; min-width: 0; border-radius: 14px; border: 1px solid {{ o.b }}; background: var(--raised); color: var(--t1); text-align: center; font: 600 26px 'Inter Tight', sans-serif; outline: none"></sc-for></div>
+          <a href="web-wallet-home.dc.html" class="btn btn-p btn-l">{{ L.k5 }}</a>
+          <div class="card" style="border-radius: 18px; display: flex; flex-direction: column">
+            <span class="lbl" style="padding: 14px 16px 6px">{{ L.k6 }}</span>
+            <button type="button" class="irow" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; min-height: 52px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15a4 4 0 1 0 8 0a4 4 0 1 0-8 0M11 12l8-8M16 7l3 3"></path></svg><span style="flex: 1">{{ L.k7 }}</span></button>
+            <button type="button" class="irow" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; min-height: 52px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3zM3 7l9 6 9-6"></path></svg><span style="flex: 1">{{ L.k8 }}</span></button>
+            <button type="button" class="irow" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; min-height: 52px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v4h4"></path></svg><span style="flex: 1">{{ L.k9 }}</span></button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isRecovery }}" hint-placeholder-val="{{ false }}">
+        <div style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k27 }}</span><h1 class="disp" style="margin: 0; font-size: 32px">{{ L.k10 }}</h1><span class="muted" style="line-height: 22px">{{ L.k11 }}</span></div>
+          <label class="field"><span>{{ L.k12 }}</span><span class="inp focus"><input type="email" value="alex.t@mail.test"></span></label>
+          <a href="st-web-auth-recovery-code.dc.html" class="btn btn-p btn-l">{{ L.k13 }}</a>
+          <div role="status" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--sigs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg><span>{{ L.k14 }}</span></div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isRecCode }}" hint-placeholder-val="{{ false }}">
+        <div style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k28 }}</span><h1 class="disp" style="margin: 0; font-size: 32px">{{ L.k30 }}</h1><span class="muted">{{ L.k31 }}</span></div>
+          <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px"><sc-for list="{{ otp }}" as="o" hint-placeholder-count="6"><input aria-label="{{ o.aria }}" defaultValue="{{ o.v }}" maxlength="1" style="height: 64px; min-width: 0; border-radius: 14px; border: 1px solid {{ o.b }}; background: var(--raised); color: var(--t1); text-align: center; font: 600 26px 'Inter Tight', sans-serif; outline: none"></sc-for></div>
+          <span class="hint">{{ L.k32 }} <span class="mono">0:42</span></span>
+          <a href="st-web-auth-recovery-password.dc.html" class="btn btn-p btn-l">{{ L.k33 }}</a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isRecPassword }}" hint-placeholder-val="{{ false }}">
+        <div style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k29 }}</span><h1 class="disp" style="margin: 0; font-size: 32px">{{ L.k34 }}</h1></div>
+          <div class="field"><label for="rnp">{{ L.k34 }}</label><span class="inp focus"><input id="rnp" type="password" defaultValue="aeon-new-2026"></span>
+            <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px"><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--bd)"></span></div>
+            <span class="hint ok">{{ L.k36 }}</span>
+          </div>
+          <label class="field"><span>{{ L.k35 }}</span><span class="inp"><input type="password" defaultValue="aeon-new-2026"></span></label>
+          <span class="hint ok" style="display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>{{ L.k37 }}</span>
+          <a href="st-web-auth-recovery-done.dc.html" class="btn btn-p btn-l">{{ L.k38 }}</a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isRecDone }}" hint-placeholder-val="{{ false }}">
+        <div style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 18px">
+          <span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 999px; background: var(--sigs); color: var(--sigt); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+          <div style="display: flex; flex-direction: column; gap: 6px"><h1 class="disp" style="margin: 0; font-size: 32px">{{ L.k39 }}</h1><span class="muted" style="line-height: 22px">{{ L.k40 }}</span></div>
+          <div class="tile" style="padding: 4px 16px"><div class="rowline"><span>{{ L.k41 }}</span><span>{{ L.k42 }}</span></div><div class="rowline"><span>{{ L.k43 }}</span><span style="color: var(--sigt)">{{ L.k44 }}</span></div></div>
+          <a href="web-auth-login.dc.html" class="btn btn-p btn-l">{{ L.k5 }}</a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isSetup }}" hint-placeholder-val="{{ false }}">
+        <div style="width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k15 }}</span><h1 class="disp" style="margin: 0; font-size: 30px">{{ L.k16 }}</h1><span class="muted">{{ L.k17 }}</span></div>
+          <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center">
+            <div style="padding: 12px; border-radius: 18px; background: #FFFFFF"><div role="img" aria-label="{{ L.k18 }}" style="display: grid; grid-template-columns: repeat(25, 6px)"><sc-for list="{{ qr }}" as="q" hint-placeholder-count="625"><span style="width: 6px; height: 6px; background: {{ q }}"></span></sc-for></div></div>
+            <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px"><span class="lbl">{{ L.k19 }}</span><span class="mono" style="font-size: 15px; line-height: 24px; word-break: break-all">JBSW Y3DP EHPK 3PXP 7Q4M</span><button class="btn btn-s" style="align-self: flex-start">{{ L.k20 }}</button></div>
+          </div>
+          <label class="field"><span>{{ L.k21 }}</span><span class="inp focus"><input value="481 9" inputmode="numeric" style="font: 600 20px 'JetBrains Mono', monospace; letter-spacing: 0.1em"></span></label>
+          <div class="tile" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px"><span style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">{{ L.k22 }}</span><button class="btn btn-s btn-o">{{ L.k23 }}</button></span><div class="mono" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; font-size: 13px"><span>7K2D-9QWE</span><span>M4PX-11ZA</span><span>Q8RT-0V3C</span><span>H2NB-6YUL</span><span>T7EE-4JKF</span><span>A9WQ-8MPS</span><span>C3LD-2XRT</span><span>Z6VB-5NHE</span></div><span class="hint">{{ L.k24 }}</span></div>
+          <a href="web-security.dc.html" class="btn btn-p btn-l">{{ L.k25 }}</a>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "mode": {"editor": "enum", "options": ["totp", "recovery", "recovery_code", "recovery_password", "recovery_done", "setup"], "default": "totp"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"ТЕСТОВАЯ СЕТЬ": "TESTNET", "Электронная почта": "Email", "Войти": "Sign in", "Ко входу": "Back to sign-in", "Второй фактор": "Second factor", "Введите 6 цифр из приложения-аутентификатора": "Enter the 6 digits from your authenticator app", "ДРУГОЙ СПОСОБ": "ANOTHER METHOD", "Ключ доступа (passkey)": "Passkey", "Код на почту a•••@mail.test": "Code to email a•••@mail.test", "Резервный код": "Backup code", "Восстановление пароля": "Password recovery", "Пришлём ссылку для сброса. После смены пароля вывод средств будет недоступен 24 часа — это защита от взлома.": "We'll send a reset link. After the password change, withdrawals will be unavailable for 24 hours — this protects against account takeover.", "Отправить ссылку": "Send link", "Если такой аккаунт есть, письмо уже в пути. Ссылка действует 30 минут.": "If such an account exists, the email is on its way. The link is valid for 30 minutes.", "ШАГ 2 ИЗ 3 · ЗАЩИТА АККАУНТА": "STEP 2 OF 3 · ACCOUNT PROTECTION", "Подключите аутентификатор": "Set up an authenticator", "Отсканируйте код в Google Authenticator, Aegis или другом приложении.": "Scan the code in Google Authenticator, Aegis or another app.", "QR-код для приложения-аутентификатора": "QR code for the authenticator app", "ИЛИ ВВЕДИТЕ КЛЮЧ ВРУЧНУЮ": "OR ENTER THE KEY MANUALLY", "Копировать ключ": "Copy key", "Код из приложения": "Code from the app", "РЕЗЕРВНЫЕ КОДЫ": "BACKUP CODES", "Скачать .txt": "Download .txt", "Каждый код работает один раз. Храните их отдельно от телефона.": "Each code works once. Keep them separately from your phone.", "Включить 2FA": "Turn on 2FA", "Цифра ": "Digit ", "ШАГ 1 ИЗ 3": "STEP 1 OF 3", "ШАГ 2 ИЗ 3": "STEP 2 OF 3", "ШАГ 3 ИЗ 3": "STEP 3 OF 3", "Пришлём код для сброса. После смены пароля вывод средств будет недоступен 24 часа — это защита от взлома.": "We'll send a reset code. After the password change, withdrawals will be unavailable for 24 hours — this protects against account takeover.", "Получить код": "Get code", "Если такой аккаунт есть, код уже в пути. Он действует 10 минут.": "If such an account exists, the code is on its way. It is valid for 10 minutes.", "Код из письма": "Code from the email", "Отправили 6 цифр на a•••@mail.test.": "We sent 6 digits to a•••@mail.test.", "Отправить ещё раз через": "Resend in", "Продолжить": "Continue", "Новый пароль": "New password", "Повторите пароль": "Repeat password", "Надёжный: 13 символов, есть буквы и цифры": "Strong: 13 characters, letters and digits", "Пароли совпадают": "Passwords match", "Сохранить пароль": "Save password", "Пароль изменён": "Password changed", "Мы завершили сеансы на других устройствах. Всё, кроме вывода средств, доступно сразу.": "We've ended sessions on other devices. Everything except withdrawals is available right away.", "Вывод средств": "Withdrawals", "с 24.10, 14:20": "from 24.10, 14:20", "P2P-сделки и переводы внутри AEON": "P2P deals and transfers within AEON", "доступны": "available"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Ко входу"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("Второй фактор"), k4: this.tr("Введите 6 цифр из приложения-аутентификатора"), k5: this.tr("Войти"), k6: this.tr("ДРУГОЙ СПОСОБ"), k7: this.tr("Ключ доступа (passkey)"), k8: this.tr("Код на почту a•••@mail.test"), k9: this.tr("Резервный код"), k10: this.tr("Восстановление пароля"), k11: this.tr("Пришлём код для сброса. После смены пароля вывод средств будет недоступен 24 часа — это защита от взлома."), k12: this.tr("Электронная почта"), k13: this.tr("Получить код"), k14: this.tr("Если такой аккаунт есть, код уже в пути. Он действует 10 минут."), k15: this.tr("ШАГ 2 ИЗ 3 · ЗАЩИТА АККАУНТА"), k16: this.tr("Подключите аутентификатор"), k17: this.tr("Отсканируйте код в Google Authenticator, Aegis или другом приложении."), k18: this.tr("QR-код для приложения-аутентификатора"), k19: this.tr("ИЛИ ВВЕДИТЕ КЛЮЧ ВРУЧНУЮ"), k20: this.tr("Копировать ключ"), k21: this.tr("Код из приложения"), k22: this.tr("РЕЗЕРВНЫЕ КОДЫ"), k23: this.tr("Скачать .txt"), k24: this.tr("Каждый код работает один раз. Храните их отдельно от телефона."), k25: this.tr("Включить 2FA"), k26: this.tr("Цифра "), k27: this.tr("ШАГ 1 ИЗ 3"), k28: this.tr("ШАГ 2 ИЗ 3"), k29: this.tr("ШАГ 3 ИЗ 3"), k30: this.tr("Код из письма"), k31: this.tr("Отправили 6 цифр на a•••@mail.test."), k32: this.tr("Отправить ещё раз через"), k33: this.tr("Продолжить"), k34: this.tr("Новый пароль"), k35: this.tr("Повторите пароль"), k36: this.tr("Надёжный: 13 символов, есть буквы и цифры"), k37: this.tr("Пароли совпадают"), k38: this.tr("Сохранить пароль"), k39: this.tr("Пароль изменён"), k40: this.tr("Мы завершили сеансы на других устройствах. Всё, кроме вывода средств, доступно сразу."), k41: this.tr("Вывод средств"), k42: this.tr("с 24.10, 14:20"), k43: this.tr("P2P-сделки и переводы внутри AEON"), k44: this.tr("доступны") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const mode = this.props.mode ?? 'totp';
+    let s = 17;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const qr = [];
+    const fin = (r, c) => { for (const [r0, c0] of [[0, 0], [0, 18], [18, 0]]) { if (r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7) { const a = r - r0, b = c - c0; return (a === 0 || a === 6 || b === 0 || b === 6 || (a >= 2 && a <= 4 && b >= 2 && b <= 4)) ? 1 : 0; } if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) return 0; } return -1; };
+    for (let r = 0; r < 25; r++) for (let c = 0; c < 25; c++) { const f = fin(r, c); qr.push((f === -1 ? rnd() > 0.52 : f === 1) ? '#0A0C0B' : '#FFFFFF'); }
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isTotp: mode === 'totp', isRecovery: mode === 'recovery', isRecCode: mode === 'recovery_code', isRecPassword: mode === 'recovery_password', isRecDone: mode === 'recovery_done', isSetup: mode === 'setup',
+      otp: ['4', '8', '1', '9', '0', ''].map((v, i) => ({ v, aria: this.tr('Цифра ') + (i + 1), b: i === 5 ? 'var(--sig)' : 'var(--bd)' })),
+      qr
+    };
+  }
+}
+</script>
+</body>
+</html>

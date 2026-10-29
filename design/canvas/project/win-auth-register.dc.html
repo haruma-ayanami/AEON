@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — регистрация</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1100px; height: 720px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="AEON" with-nav="{{ false }}" hint-size="1100px,48px"></dc-import>
+  <div class="dots" style="flex: 1; display: flex; align-items: center; justify-content: center; border-top: 1px solid var(--bs)">
+    <div class="wcard" style="width: 440px; padding: 26px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 16px 48px rgba(0,0,0,0.35)">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <span class="lbl" style="font-size: 10px">{{ L.k1 }}</span>
+        <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; height: 3px"><span style="border-radius: 2px; background: var(--t1)"></span><span style="border-radius: 2px; background: var(--bd)"></span><span style="border-radius: 2px; background: var(--bd)"></span></span>
+        <h1 class="disp" style="margin: 6px 0 0; font-size: 24px">{{ L.k2 }}</h1>
+        <span class="muted">{{ L.k3 }}</span>
+      </div>
+      <label style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k4 }}</span><span class="winp" style="height: 34px"><input value="alex.t@mail.test"></span></label>
+      <label style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k5 }}</span><span class="winp" style="height: 34px; border-bottom: 2px solid var(--sigt)"><input type="password" value="aeon-test-2026-k"></span>
+        <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; height: 3px"><span style="background: var(--sig); border-radius: 1px"></span><span style="background: var(--sig); border-radius: 1px"></span><span style="background: var(--sig); border-radius: 1px"></span><span style="background: var(--bd); border-radius: 1px"></span></span>
+        <span style="font-size: 12px; color: var(--sigt)">{{ L.k6 }}</span></label>
+      <label style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k7 }}</span><span class="winp" style="height: 34px"><input type="password" value="aeon-test-2026-k"></span></label>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr"><span>{{ L.k8 }} <a href="win-settings.dc.html">{{ L.k9 }}</a></span></label>
+        <label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr"><span>{{ L.k10 }} <a href="win-settings.dc.html">{{ L.k11 }}</a></span></label>
+      </div>
+      <button class="wbtn wbtn-p" style="height: 34px">{{ L.k12 }}</button>
+      <span style="font-size: 12px; text-align: center"><span class="muted">{{ L.k13 }}</span> <a href="win-auth.dc.html">{{ L.k14 }}</a></span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1100, "height": 720}}'>
+class Component extends DCLogic {
+  static EN = {"ШАГ 1 ИЗ 3 · АККАУНТ": "STEP 1 OF 3 · ACCOUNT", "Создать аккаунт": "Create account", "Тестовая сеть · реальные деньги не используются": "Testnet · no real money is used", "Электронная почта": "Email", "Пароль": "Password", "Надёжный: 16 символов, есть буквы и цифры": "Strong: 16 characters, letters and digits", "Повторите пароль": "Repeat password", "Принимаю": "I accept the", "условия использования": "terms of use", "Согласен с": "I agree to the", "политикой конфиденциальности": "privacy policy", "Продолжить": "Continue", "Уже есть аккаунт?": "Already have an account?", "Войти": "Sign in"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("ШАГ 1 ИЗ 3 · АККАУНТ"), k2: this.tr("Создать аккаунт"), k3: this.tr("Тестовая сеть · реальные деньги не используются"), k4: this.tr("Электронная почта"), k5: this.tr("Пароль"), k6: this.tr("Надёжный: 16 символов, есть буквы и цифры"), k7: this.tr("Повторите пароль"), k8: this.tr("Принимаю"), k9: this.tr("условия использования"), k10: this.tr("Согласен с"), k11: this.tr("политикой конфиденциальности"), k12: this.tr("Продолжить"), k13: this.tr("Уже есть аккаунт?"), k14: this.tr("Войти") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark' };
+  }
+}
+</script>
+</body>
+</html>

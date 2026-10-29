@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — оценки моих операций</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k28 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="analytics" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="flex: 1; min-height: 0; padding: 22px 28px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k1 }}</h1><button class="wbtn">{{ L.k2 }}</button></div>
+        <nav aria-label="{{ L.k3 }}" style="display: flex; gap: 22px; border-bottom: 1px solid var(--bs)"><a href="win-analytics.dc.html" style="height: 36px; display: flex; align-items: center; text-decoration: none; color: var(--t2); font: 400 14px Inter, sans-serif; border-bottom: 2px solid transparent">{{ L.k4 }}</a><a href="win-analytics-ops.dc.html" aria-current="page" style="height: 36px; display: flex; align-items: center; text-decoration: none; color: var(--t1); font: 600 14px Inter, sans-serif; border-bottom: 2px solid var(--sigt)">{{ L.k5 }}</a></nav>
+        <div role="toolbar" aria-label="{{ L.k6 }}" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+          <span class="winp" style="width: 260px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg><input aria-label="{{ L.k7 }}" placeholder="{{ L.k7 }}"></span>
+          <button class="wbtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM4 10h16M8 3v4M16 3v4"></path></svg>{{ L.k8 }}</button>
+          <span style="width: 1px; height: 20px; background: var(--bs); margin: 0 4px"></span>
+          <sc-for list="{{ levels }}" as="f" hint-placeholder-count="4"><button aria-pressed="{{ f.on }}" class="wbtn" style="background: {{ f.bg }}; border-color: {{ f.bd }}"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; background: {{ f.dot }}"></span>{{ f.t }}<span class="faint" style="font-size: 11px">{{ f.n }}</span></button></sc-for>
+          <span style="flex: 1"></span>
+          <button class="wbtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>{{ L.k9 }}</button>
+        </div>
+        <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 12px">
+          <div class="wcard" style="min-height: 0; overflow: hidden; display: flex; flex-direction: column">
+            <table style="width: 100%; table-layout: fixed; border-collapse: collapse; font-feature-settings: 'tnum'; font-size: 13px">
+              <caption class="sr">{{ L.k5 }}</caption>
+              <thead><tr style="height: 32px; font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3); text-align: left; border-bottom: 1px solid var(--bs)"><th scope="col" style="width: 28%; padding: 0 12px 0 14px">{{ L.k11 }}</th><th scope="col" style="width: 13%; padding: 0 12px">{{ L.k12 }}</th><th scope="col" style="width: 13%; padding: 0 12px" aria-sort="descending">{{ L.k13 }} ↓</th><th scope="col" style="width: 24%; padding: 0 12px">{{ L.k14 }}</th><th scope="col" style="width: 22%; padding: 0 14px 0 12px">{{ L.k15 }}</th></tr></thead>
+              <tbody>
+                <sc-for list="{{ ops }}" as="o" hint-placeholder-count="8">
+                  <tr aria-selected="{{ o.sel }}" style="height: 48px; border-bottom: 1px solid var(--bs); background: {{ o.bg }}; box-shadow: inset 3px 0 0 {{ o.mark }}">
+                    <td style="padding: 0 12px 0 14px"><span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ o.op }}</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--t2)">{{ o.time }}</span></span></td>
+                    <td style="padding: 0 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ o.addr }}</td>
+                    <td style="padding: 0 12px"><span class="chip {{ o.cls }}" style="height: 22px">{{ o.risk }}</span></td>
+                    <td style="padding: 0 12px; color: var(--t2); font-size: 12px; line-height: 16px">{{ o.why }}</td>
+                    <td style="padding: 0 14px 0 12px; font-size: 12px; line-height: 16px">{{ o.res }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+            <span style="flex: 1"></span>
+            <div class="wstatus"><span>{{ L.k16 }}</span><span style="flex: 1"></span><span>{{ L.k17 }}</span></div>
+          </div>
+          <aside aria-label="{{ L.k18 }}" class="wcard" style="padding: 16px; display: flex; flex-direction: column; gap: 14px; min-height: 0">
+            <div style="display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ L.k18 }}</span><span style="font: 600 18px 'Inter Tight', sans-serif">{{ L.k19 }}</span><span class="mono" style="font-size: 12px; color: var(--t2)">29.10.2026 · 11:42 UTC</span></div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: var(--negs)"><span class="disp" style="font-size: 36px; color: var(--neg)">82</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; color: var(--neg)">{{ L.k20 }}</span><span style="font-size: 12px; color: var(--t2)">{{ L.k21 }}</span></span></div>
+            <div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k22 }}</span><span class="mono" style="font-size: 12px; line-height: 18px; word-break: break-all"><b style="font-weight: 600; background: var(--sigs)">0x1f9840</b><span class="muted">a85d5aF5bf1D1762F925BDADdC42</span><b style="font-weight: 600; background: var(--sigs)">01F984</b></span></div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">{{ L.k23 }}</span>
+              <sc-for list="{{ labels }}" as="l" hint-placeholder-count="4"><div style="display: flex; gap: 8px; align-items: flex-start; font-size: 12px; line-height: 17px"><span class="chip {{ l.cls }}" style="height: 20px; font-size: 10px; flex: none">{{ l.tag }}</span><span>{{ l.t }}</span></div></sc-for>
+            </div>
+            <div style="padding: 12px; border-radius: 8px; border: 1px solid var(--bs); font-size: 12px; line-height: 18px"><b style="font-weight: 600">{{ L.k24 }}</b> {{ L.k25 }}</div>
+            <span style="flex: 1"></span>
+            <div style="display: flex; gap: 8px"><a href="win-analytics.dc.html" class="wbtn wbtn-p" style="flex: 1">{{ L.k26 }}</a><a href="win-history.dc.html" class="wbtn">{{ L.k27 }}</a></div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON · Аналитика": "AEON · Analytics", "Аналитика": "Analytics", "Пересчитать": "Recalculate", "Разделы аналитики": "Analytics sections", "Портфель": "Portfolio", "Оценки моих операций": "Scores of my transactions", "Фильтры": "Filters", "Хеш, адрес или сумма": "Hash, address or amount", "30 дней": "30 days", "Экспорт CSV": "Export CSV", "ВРЕМЯ, UTC": "TIME, UTC", "ОПЕРАЦИЯ": "TRANSACTION", "КОНТРАГЕНТ": "COUNTERPARTY", "РИСК": "RISK", "ПРИЧИНА": "REASON", "РЕШЕНИЕ": "DECISION", "8 операций за 30 дней · 1 отклонена": "8 transactions in 30 days · 1 rejected", "СКОРИНГ · 3 ИСТОЧНИКА · ОБНОВЛЕНО 14:21": "SCORING · 3 SOURCES · UPDATED 14:21", "ВЫБРАННАЯ ОПЕРАЦИЯ": "SELECTED TRANSACTION", "Отправка 60 USDT": "Send 60 USDT", "Высокий риск": "High risk", "Отклонено, 60 USDT вернулись на баланс": "Rejected, 60 USDT returned to the balance", "АДРЕС ПОЛУЧАТЕЛЯ": "RECIPIENT ADDRESS", "МЕТКИ И ИСТОЧНИКИ": "LABELS AND SOURCES", "Что делать:": "What to do:", "уточните адрес у получателя по другому каналу. Если адрес верный, а метка ошибочная — напишите в поддержку, приложив подтверждение.": "check the address with the recipient over another channel. If it is correct and the label is wrong, contact support with proof.", "Проверить другой адрес": "Check another address", "В историю": "To history", "Все": "All", "Низкий": "Low", "Средний": "Medium", "Высокий": "High", "МИКСЕР": "MIXER", "ОБЪЁМ": "VOLUME", "НОВЫЙ": "NEW", "САНКЦИИ": "SANCTIONS", "Связь с сервисом-миксером в 2 переходах": "Linked to a mixing service within 2 hops", "Аномальный объём за 24 часа": "Unusual volume in 24 hours", "Адрес создан 3 дня назад": "Address created 3 days ago", "Совпадений не найдено": "No matches found", "Отправка 250 USDT": "Send 250 USDT", "Вывод 0,0012 BTC": "Withdraw 0.0012 BTC", "Получено 0,05 ETH": "Received 0.05 ETH", "P2P · выпуск 250 USDT": "P2P · release 250 USDT", "Получено 14,2 SOL": "Received 14.2 SOL", "Вывод 312,5 POL": "Withdraw 312.5 POL", "Отправка 96 USDT": "Send 96 USDT", "Низкий · 6": "Low · 6", "Средний · 31": "Medium · 31", "Низкий · 4": "Low · 4", "Высокий · 82": "High · 82", "Низкий · 3": "Low · 3", "Низкий · 9": "Low · 9", "Средний · 44": "Medium · 44", "Низкий · 12": "Low · 12", "Адрес из адресной книги": "Address from the address book", "Новый адрес вывода": "New withdrawal address", "История без меток": "History without labels", "Связь с миксером": "Linked to a mixer", "Эскроу AEON": "AEON escrow", "Faucet Solana Devnet": "Solana Devnet faucet", "Сумма выше обычной в 4 раза": "Amount 4× above usual", "Адрес проверен 2 раза": "Address checked twice", "Отправлено автоматически": "Sent automatically", "Ручная проверка, до 2 ч": "Manual review, up to 2 h", "Зачислено после 12 подтв.": "Credited after 12 conf.", "Отклонено": "Rejected", "Выпущено покупателю": "Released to the buyer", "Зачислено": "Credited", "Выполнен после проверки": "Completed after review"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Аналитика"), k2: this.tr("Пересчитать"), k3: this.tr("Разделы аналитики"), k4: this.tr("Портфель"), k5: this.tr("Оценки моих операций"), k6: this.tr("Фильтры"), k7: this.tr("Хеш, адрес или сумма"), k8: this.tr("30 дней"), k9: this.tr("Экспорт CSV"), k10: this.tr("ВРЕМЯ, UTC"), k11: this.tr("ОПЕРАЦИЯ"), k12: this.tr("КОНТРАГЕНТ"), k13: this.tr("РИСК"), k14: this.tr("ПРИЧИНА"), k15: this.tr("РЕШЕНИЕ"), k16: this.tr("8 операций за 30 дней · 1 отклонена"), k17: this.tr("СКОРИНГ · 3 ИСТОЧНИКА · ОБНОВЛЕНО 14:21"), k18: this.tr("ВЫБРАННАЯ ОПЕРАЦИЯ"), k19: this.tr("Отправка 60 USDT"), k20: this.tr("Высокий риск"), k21: this.tr("Отклонено, 60 USDT вернулись на баланс"), k22: this.tr("АДРЕС ПОЛУЧАТЕЛЯ"), k23: this.tr("МЕТКИ И ИСТОЧНИКИ"), k24: this.tr("Что делать:"), k25: this.tr("уточните адрес у получателя по другому каналу. Если адрес верный, а метка ошибочная — напишите в поддержку, приложив подтверждение."), k26: this.tr("Проверить другой адрес"), k27: this.tr("В историю"), k28: this.tr("AEON · Аналитика") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const op = (time, o, addr, risk, cls, why, res, sel) => ({ time, op: this.tr(o), addr, risk: this.tr(risk), cls, why: this.tr(why), res: this.tr(res), sel: sel ? 'true' : 'false', bg: sel ? 'var(--wsel)' : 'transparent', mark: sel ? 'var(--sigt)' : 'transparent' });
+    const lvl = (t, n, dot, on) => ({ t: this.tr(t), n, dot, on: on ? 'true' : 'false', bg: on ? 'var(--wsel)' : 'var(--ctrl)', bd: on ? 'var(--bst)' : 'var(--bs)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      levels: [lvl('Все', '8', 'var(--t3)', true), lvl('Низкий', '5', 'var(--sigt)'), lvl('Средний', '2', 'var(--warn)'), lvl('Высокий', '1', 'var(--neg)')],
+      ops: [
+        op('29.10 11:42', 'Отправка 60 USDT', '0x1f98…F984', 'Высокий · 82', 'c-neg', 'Связь с миксером', 'Отклонено', true),
+        op('28.10 18:05', 'Вывод 312,5 POL', '0x55aB…9e07', 'Средний · 44', 'c-warn', 'Сумма выше обычной в 4 раза', 'Выполнен после проверки'),
+        op('27.10 09:31', 'Вывод 0,0012 BTC', 'tb1q…jzsx', 'Средний · 31', 'c-warn', 'Новый адрес вывода', 'Ручная проверка, до 2 ч'),
+        op('26.10 20:14', 'Отправка 96 USDT', '0x7d2E…41Fc', 'Низкий · 12', 'c-ok', 'Адрес проверен 2 раза', 'Отправлено автоматически'),
+        op('25.10 10:29', 'P2P · выпуск 250 USDT', 'P2P-48213', 'Низкий · 9', 'c-ok', 'Эскроу AEON', 'Выпущено покупателю'),
+        op('24.10 15:50', 'Отправка 250 USDT', '0x1b9C…0a91', 'Низкий · 6', 'c-ok', 'Адрес из адресной книги', 'Отправлено автоматически'),
+        op('23.10 08:12', 'Получено 0,05 ETH', '0x4c2E…a1F2', 'Низкий · 4', 'c-ok', 'История без меток', 'Зачислено после 12 подтв.'),
+        op('22.10 13:37', 'Получено 14,2 SOL', '7EcD…FLtV', 'Низкий · 3', 'c-ok', 'Faucet Solana Devnet', 'Зачислено')
+      ],
+      labels: [{ tag: this.tr('МИКСЕР'), cls: 'c-neg', t: this.tr('Связь с сервисом-миксером в 2 переходах') }, { tag: this.tr('ОБЪЁМ'), cls: 'c-warn', t: this.tr('Аномальный объём за 24 часа') }, { tag: this.tr('НОВЫЙ'), cls: 'c-warn', t: this.tr('Адрес создан 3 дня назад') }, { tag: this.tr('САНКЦИИ'), cls: 'c-off', t: this.tr('Совпадений не найдено') }]
+    };
+  }
+}
+</script>
+</body>
+</html>

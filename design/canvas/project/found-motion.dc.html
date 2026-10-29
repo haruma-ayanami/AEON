@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — анимация и подъёмы</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+@keyframes fm-move{0%,12%{transform:translateX(0)}50%,62%{transform:translateX(var(--fm-d))}100%{transform:translateX(0)}}
+@keyframes fm-tick{0%,30%{transform:translateY(0)}45%,85%{transform:translateY(-34px)}100%{transform:translateY(-34px)}}
+@keyframes fm-glow{0%,30%{background:transparent}45%{background:rgba(182,243,107,.18)}85%,100%{background:transparent}}
+@keyframes fm-fill{0%,25%{transform:scaleX(0)}55%,100%{transform:scaleX(1)}}
+@keyframes fm-in{0%,20%{opacity:0;transform:translateY(8px)}35%,100%{opacity:1;transform:translateY(0)}}
+@keyframes fm-dot{0%,60%,100%{opacity:.3}30%{opacity:1}}
+@keyframes fm-toast{0%,10%{opacity:0;transform:translateY(12px)}18%,78%{opacity:1;transform:translateY(0)}86%,100%{opacity:0;transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){.fm-anim,.fm-anim *{animation:none!important}}
+</style>
+</helmet>
+<div style="width: 1600px; min-height: 2180px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">ОСНОВЫ · 08 · АНИМАЦИЯ И ПОДЪЁМЫ</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Движение объясняет, а не развлекает</h2>
+    </div>
+    <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 22px; color: #A3ACA5">Три длительности и три кривые на все клиенты. Анимация показывает, откуда пришло изменение: зачисление, новый статус сделки, сообщение. При «Уменьшить движение» остаётся только смена значения.</p>
+  </div>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ДЛИТЕЛЬНОСТИ · motion/duration/*</span>
+    <div class="fm-anim" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+      <sc-for list="{{ durations }}" as="d" hint-placeholder-count="3">
+        <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; align-items: baseline; justify-content: space-between"><span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 40px; letter-spacing: -0.02em; font-feature-settings: 'tnum'">{{ d.ms }}<span style="font-size: 20px; color: #8A938C"> мс</span></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A3ACA5">{{ d.token }}</span></div>
+          <div aria-hidden="true" style="position: relative; height: 28px; border-radius: 999px; background: #0A0C0B; --fm-d: 340px"><span style="position: absolute; left: 4px; top: 4px; width: 20px; height: 20px; border-radius: 999px; background: #B6F36B; animation: fm-move {{ d.loop }} cubic-bezier(.2,.8,.2,1) infinite"></span></div>
+          <span style="font-size: 15px; font-weight: 600">{{ d.title }}</span>
+          <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">{{ d.text }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">КРИВЫЕ · motion/easing/*</span>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+      <sc-for list="{{ curves }}" as="c" hint-placeholder-count="3">
+        <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: center">
+          <svg width="128" height="128" viewBox="-4 -4 128 128" role="img" aria-label="{{ c.aria }}" style="flex: none"><rect x="0" y="0" width="120" height="120" fill="none" stroke="#2E342F"></rect><line x1="0" y1="120" x2="{{ c.x1 }}" y2="{{ c.y1 }}" stroke="#48504A" stroke-dasharray="3 3"></line><line x1="120" y1="0" x2="{{ c.x2 }}" y2="{{ c.y2 }}" stroke="#48504A" stroke-dasharray="3 3"></line><path d="{{ c.d }}" fill="none" stroke="#B6F36B" stroke-width="2.5"></path></svg>
+          <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+            <span style="font-size: 17px; font-weight: 600">{{ c.name }}</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A3ACA5">{{ c.css }}</span>
+            <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">{{ c.text }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ПОВЕДЕНИЕ · ЧТО И КАК ДВИЖЕТСЯ</span>
+    <div class="fm-anim" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div aria-hidden="true" style="height: 120px; border-radius: 16px; background: #0A0C0B; display: flex; flex-direction: column; justify-content: center; padding: 0 18px; gap: 6px">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: #8A938C">ОБЩИЙ БАЛАНС</span>
+          <span style="display: flex; align-items: center; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 30px; font-feature-settings: 'tnum'; border-radius: 8px; animation: fm-glow 3.2s cubic-bezier(.2,.8,.2,1) infinite"><span style="color: #8A938C">$</span>1<span style="display: inline-block; height: 34px; overflow: hidden"><span style="display: flex; flex-direction: column; animation: fm-tick 3.2s cubic-bezier(.2,.8,.2,1) infinite"><span style="height: 34px; line-height: 34px">&#160;182</span><span style="height: 34px; line-height: 34px">&#160;232</span></span></span><span style="color: #8A938C">,12</span></span>
+        </div>
+        <span style="font-size: 15px; font-weight: 600">Зачисление на баланс</span>
+        <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Изменившиеся разряды прокручиваются как табло за 320 мс, сумма коротко подсвечивается сигнальным цветом на 600 мс.</span>
+      </div>
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div aria-hidden="true" style="height: 120px; border-radius: 16px; background: #0A0C0B; display: flex; flex-direction: column; justify-content: center; padding: 0 18px; gap: 12px">
+          <span style="display: flex; gap: 4px"><span style="flex: 1; height: 6px; border-radius: 3px; background: #B6F36B"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #B6F36B"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #2E342F; overflow: hidden"><span style="display: block; height: 6px; background: #B6F36B; transform-origin: left; animation: fm-fill 3.2s cubic-bezier(.2,.8,.2,1) infinite"></span></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #2E342F"></span></span>
+          <span style="font-size: 14px">Оплата отправлена <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #B6F36B">· только что</span></span>
+        </div>
+        <span style="font-size: 15px; font-weight: 600">Новый статус сделки</span>
+        <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Следующий сегмент степпера заполняется слева направо за 320 мс, бейдж меняет цвет за 200 мс, рядом метка «только что».</span>
+      </div>
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div aria-hidden="true" style="height: 120px; border-radius: 16px; background: #0A0C0B; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px 18px; gap: 8px">
+          <span style="align-self: flex-start; max-width: 80%; padding: 8px 12px; border-radius: 14px 14px 14px 4px; background: #1B1F1C; font-size: 13px; animation: fm-in 3.2s cubic-bezier(.2,.8,.2,1) infinite">Отправил, проверьте</span>
+          <span style="align-self: flex-start; display: flex; gap: 4px; padding: 8px 12px; border-radius: 14px; background: #1B1F1C"><span style="width: 6px; height: 6px; border-radius: 999px; background: #A3ACA5; animation: fm-dot 1.2s infinite"></span><span style="width: 6px; height: 6px; border-radius: 999px; background: #A3ACA5; animation: fm-dot 1.2s .2s infinite"></span><span style="width: 6px; height: 6px; border-radius: 999px; background: #A3ACA5; animation: fm-dot 1.2s .4s infinite"></span></span>
+        </div>
+        <span style="font-size: 15px; font-weight: 600">Сообщение в чате</span>
+        <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Пузырь въезжает снизу на 8 px с проявлением за 200 мс. «Печатает…» — три точки по кругу, период 1,2 с.</span>
+      </div>
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+        <div aria-hidden="true" style="height: 120px; border-radius: 16px; background: #0A0C0B; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box">
+          <span style="flex: 1; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: #1B1F1C; border: 1px solid #2E342F; box-shadow: 0 16px 48px rgba(0,0,0,.5); animation: fm-toast 4s cubic-bezier(.2,.8,.2,1) infinite"><span style="width: 8px; height: 8px; border-radius: 2px; background: #B6F36B"></span><span style="font-size: 13px">Депозит 0,05 ETH зачислен</span></span>
+        </div>
+        <span style="font-size: 15px; font-weight: 600">Тост</span>
+        <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Появление снизу за 200 мс, держится 5 с, пауза при наведении и фокусе. Уходит за 140 мс по кривой exit.</span>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 14px; padding: 16px 20px; border-radius: 16px; border: 1px solid #2E342F">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #F5B941">PREFERS-REDUCED-MOTION</span>
+      <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Без прокрутки цифр, въездов и мерцания скелетонов: значения меняются сразу, остаётся только смена цвета. Эта доска тоже останавливает демонстрации.</span>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ПОДЪЁМЫ · elevation/0–4</span>
+      <span style="font-size: 14px; color: #A3ACA5">Иерархия строится светом поверхности, тень только отделяет плавающий слой</span>
+    </div>
+    <sc-for list="{{ themes }}" as="t" hint-placeholder-count="2">
+      <div style="border-radius: 20px; padding: 32px; background: {{ t.canvas }}; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px">
+        <sc-for list="{{ t.levels }}" as="l" hint-placeholder-count="5">
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <div style="height: 120px; border-radius: 20px; background: {{ l.bg }}; border: 1px solid {{ l.bd }}; box-shadow: {{ l.shadow }}; display: flex; align-items: flex-end; padding: 16px; box-sizing: border-box"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: {{ t.fg }}">{{ l.name }}</span></div>
+            <span style="font-size: 13px; line-height: 18px; color: {{ t.muted }}">{{ l.use }}</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 16px; color: {{ t.muted }}">{{ l.css }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":2180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const bez = (x1, y1, x2, y2) => ({ x1: x1 * 120, y1: 120 - y1 * 120, x2: x2 * 120, y2: 120 - y2 * 120, d: 'M0 120 C' + x1 * 120 + ' ' + (120 - y1 * 120) + ' ' + x2 * 120 + ' ' + (120 - y2 * 120) + ' 120 0' });
+    const use = ['Контент на поверхности: карточки, строки, поля. Только обводка', 'Карточка при наведении, строка при перетаскивании', 'Выпадающие меню, поповеры, подсказки', 'Тосты, шиты, модалки, drawer', 'Командная палитра Ctrl+K, перетаскиваемое окно'];
+    const dark = { bg: ['#131614', '#171B18', '#1B1F1C', '#202521', '#252A26'], sh: ['none', '0 1px 2px rgba(0,0,0,.4)', '0 8px 24px rgba(0,0,0,.45)', '0 16px 48px rgba(0,0,0,.5)', '0 24px 64px rgba(0,0,0,.6)'] };
+    const light = { bg: ['#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF'], sh: ['none', '0 1px 2px rgba(14,17,15,.08)', '0 6px 20px rgba(14,17,15,.1)', '0 14px 40px rgba(14,17,15,.14)', '0 22px 60px rgba(14,17,15,.18)'] };
+    const levels = (p, bd) => p.bg.map((bg, i) => ({ name: 'elevation/' + i, bg, bd, shadow: p.sh[i], use: use[i], css: (i ? 'shadow ' + p.sh[i] : 'shadow none') + (p === dark ? ' · фон ' + bg : '') }));
+    return {
+      durations: [
+        { ms: '120', token: 'duration/fast', title: 'Нажатие и наведение', text: 'Кнопки, строки, чекбоксы, переключатели. Отклик должен быть мгновенным.', loop: '1.2s' },
+        { ms: '200', token: 'duration/base', title: 'Чипы, тосты, раскрытие', text: 'Появление тоста и бейджа, раскрытие строки таблицы, смена вкладки.', loop: '2s' },
+        { ms: '320', token: 'duration/slow', title: 'Шиты, панели, модалки', text: 'Шит iOS, bottom sheet Android, drawer и модалка в вебе, окно сделки на Windows.', loop: '3.2s' }
+      ],
+      curves: [
+        Object.assign({ name: 'standard', css: 'cubic-bezier(.2, .8, .2, 1)', text: 'Вход и перемещение по умолчанию: быстро стартует, мягко останавливается.', aria: 'Кривая standard: быстрый старт и плавное замедление' }, bez(0.2, 0.8, 0.2, 1)),
+        Object.assign({ name: 'emphasized', css: 'cubic-bezier(.3, 0, 0, 1)', text: 'Крупные панели и шиты: заметный разгон, длинное торможение.', aria: 'Кривая emphasized: разгон и длинное торможение' }, bez(0.3, 0, 0, 1)),
+        Object.assign({ name: 'exit', css: 'cubic-bezier(.4, 0, 1, 1)', text: 'Уход элемента: разгоняется к концу. Длительность — две трети входа.', aria: 'Кривая exit: ускорение к концу' }, bez(0.4, 0, 1, 1))
+      ],
+      themes: [
+        { canvas: '#0A0C0B', fg: '#F2F5F1', muted: '#A3ACA5', levels: levels(dark, '#232824') },
+        { canvas: '#EEF0EC', fg: '#0E110F', muted: '#4D554F', levels: levels(light, '#E2E5DF') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

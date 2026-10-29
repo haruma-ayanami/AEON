@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — регистрация</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }} " style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; gap: 4px; padding: 0 4px"><a href="and-auth.dc.html" aria-label="{{ L.k1 }}" style="width: 48px; height: 48px; border-radius: 999px; color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"></path></svg></a><span style="flex: 1; font: 500 20px Inter, sans-serif"></span><span class="testnet" style="margin-right: 6px">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></header>
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 12px">
+    <h1 style="margin: 0 0 4px; font: 400 32px Inter, sans-serif">{{ L.k3 }}</h1>
+    <label style="height: 56px; padding: 0 16px; border-radius: 4px 4px 0 0; background: var(--raised); border-bottom: 1px solid var(--bst); display: flex; flex-direction: column; justify-content: center; gap: 2px; box-sizing: border-box"><span style="font-size: 12px; color: var(--t2)">{{ L.k4 }}</span><input type="email" value="alex.t@mail.test" style="border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none; padding: 0"></label>
+    <label style="height: 56px; padding: 0 16px; border-radius: 4px 4px 0 0; background: var(--raised); border-bottom: 1px solid var(--bst); display: flex; flex-direction: column; justify-content: center; gap: 2px; box-sizing: border-box; border-bottom: 2px solid var(--sigt)"><span style="font-size: 12px; color: var(--sigt)">{{ L.k5 }}</span><input type="password" value="aeon-test-2026" style="border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none; padding: 0"></label>
+    <div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px"><div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px"><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--bd)"></span></div><span class="hint ok">{{ L.k6 }}</span></div>
+    <label style="height: 56px; padding: 0 16px; border-radius: 4px 4px 0 0; background: var(--raised); border-bottom: 1px solid var(--bst); display: flex; flex-direction: column; justify-content: center; gap: 2px; box-sizing: border-box"><span style="font-size: 12px; color: var(--t2)">{{ L.k7 }}</span><input type="password" value="aeon-test-2026" style="border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none; padding: 0"></label>
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 6px 4px">
+      <label style="display: flex; gap: 12px; font-size: 14px; line-height: 20px"><span class="cb on" aria-hidden="true" style="border-radius: 3px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr"><span>{{ L.k8 }} <button type="button"  style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0;">{{ L.k9 }}</button> <span class="faint">v2.1</span></span></label>
+      <label style="display: flex; gap: 12px; font-size: 14px; line-height: 20px"><span class="cb on" aria-hidden="true" style="border-radius: 3px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr"><span>{{ L.k10 }} <button type="button"  style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0;">{{ L.k11 }}</button></span></label>
+      <label style="display: flex; gap: 12px; font-size: 14px; line-height: 20px"><span class="cb" aria-hidden="true" style="border-radius: 3px"></span><input type="checkbox" class="sr"><span>{{ L.k12 }} <span class="faint">{{ L.k13 }}</span></span></label>
+    </div>
+  </div>
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 32px; display: flex; flex-direction: column; gap: 10px"><a href="and-wallet-home.dc.html" class="btn btn-p" style="height: 52px">{{ L.k14 }}</a><a href="and-auth.dc.html" class="btn" style="height: 52px; background: transparent">{{ L.k15 }}</a></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Создать аккаунт": "Create account", "Электронная почта": "Email", "Пароль": "Password", "Надёжный: 14 символов, есть буквы и цифры": "Strong: 14 characters, letters and digits", "Повторите пароль": "Repeat password", "Принимаю": "I accept the", "Условия использования": "Terms of Use", "Согласен на": "I consent to", "обработку персональных данных": "personal data processing", "Новости AEON на почту": "AEON news by email", "необязательно": "optional", "Продолжить": "Continue", "Уже есть аккаунт? Войти": "Already have an account? Sign in"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("Создать аккаунт"), k4: this.tr("Электронная почта"), k5: this.tr("Пароль"), k6: this.tr("Надёжный: 14 символов, есть буквы и цифры"), k7: this.tr("Повторите пароль"), k8: this.tr("Принимаю"), k9: this.tr("Условия использования"), k10: this.tr("Согласен на"), k11: this.tr("обработку персональных данных"), k12: this.tr("Новости AEON на почту"), k13: this.tr("необязательно"), k14: this.tr("Продолжить"), k15: this.tr("Уже есть аккаунт? Войти") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark'
+    };
+  }
+}
+</script>
+</body>
+</html>

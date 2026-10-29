@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — риски и AML</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="risk" hint-size="240px,1100px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <div class="grid-a">
+        <div class="kpi"><span class="lbl">{{ L.k2 }}</span><span class="disp" style="font-size: 28px">{{ L.k3 }}</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k4 }}</span><span class="disp" style="font-size: 28px">36</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k5 }}</span><span class="disp" style="font-size: 28px; color: var(--warn)">9</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k6 }}</span><span class="disp" style="font-size: 28px">14</span></div>
+      </div>
+      <nav class="tabs" aria-label="{{ L.k7 }}"><a href="admin-risk.dc.html" aria-current="page">{{ L.k8 }}</a><a href="admin-risk.dc.html">{{ L.k9 }} <span class="badge" style="background: var(--warn); color: var(--onacc, #0A0C0B)">9</span></a><a href="admin-risk.dc.html">{{ L.k10 }}</a></nav>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+        <label class="inp" style="flex: 0 1 360px; min-width: 220px; height: 42px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg><input aria-label="{{ L.k11 }}" placeholder="{{ L.k12 }}"></label>
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5"><button aria-pressed="{{ f.sel }}" class="chip" style="height: 34px; padding: 0 12px; border: 1px solid {{ f.b }}; background: {{ f.bg }}; color: var(--t1); cursor: pointer">{{ f.t }}<span class="faint">{{ f.n }}</span></button></sc-for>
+      </div>
+      <div class="split">
+        <section class="card" aria-label="{{ L.k8 }}" style="flex: 1 1 640px; min-width: 0; border-radius: 16px; overflow-x: auto">
+          <table class="tbl" style="min-width: 680px">
+            <thead><tr><th>{{ L.k13 }}</th><th>{{ L.k14 }}</th><th>{{ L.k15 }}</th><th>{{ L.k16 }}</th><th style="text-align: right">{{ L.k17 }}</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+                <tr><td style="white-space: nowrap"><span style="display: flex; flex-direction: column; gap: 2px"><span class="mono" style="font-size: 13px">{{ r.addr }}</span><span class="faint" style="font-size: 12px">{{ r.net }}</span></span></td><td><span class="chip {{ r.cls }}">{{ r.label }}</span></td><td class="muted" style="font-size: 13px">{{ r.src }}</td><td style="white-space: nowrap"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px">{{ r.exp }}</span><span class="mono faint" style="font-size: 11px">{{ r.added }}</span></span></td><td class="num" style="text-align: right; font-weight: 600">{{ r.hits }}</td></tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </section>
+
+        <aside class="card" aria-label="{{ L.k18 }}" style="flex: 0 1 360px; min-width: 0; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+          <span class="disp" style="font-size: 20px">{{ L.k19 }}</span>
+          <div class="field"><label for="laddr">{{ L.k20 }}</label><span class="inp focus"><input id="laddr" value="0x4f1A9c2E7b3D8a6F0e5C1b9D2a7E4f8c3B6d1e09" class="mono" style="font-size: 13px"></span><span class="hint ok">{{ L.k21 }}</span></div>
+          <div class="field"><span>{{ L.k22 }}</span><span class="inp" style="justify-content: space-between"><span>{{ L.k23 }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span></div>
+          <div class="field"><span>{{ L.k24 }}</span>
+            <div role="radiogroup" aria-label="{{ L.k24 }}" style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{ types }}" as="t" hint-placeholder-count="4"><button role="radio" aria-checked="{{ t.sel }}" class="chip" style="height: 34px; padding: 0 12px; border: {{ t.b }}; background: transparent; color: var(--t1); cursor: pointer"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; background: {{ t.c }}"></span>{{ t.t }}</button></sc-for></div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+            <div class="field"><span>{{ L.k25 }}</span><span class="inp" style="font-size: 14px">{{ L.k26 }}</span></div>
+            <div class="field"><span>{{ L.k27 }}</span><span class="inp" style="font-size: 14px">{{ L.k28 }}</span></div>
+          </div>
+          <div class="field"><label for="lcmt">{{ L.k29 }}</label><textarea id="lcmt" rows="2" placeholder="{{ L.k30 }}" style="border-radius: 12px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); padding: 12px; font: 400 14px Inter, sans-serif; resize: none; outline: none"></textarea></div>
+          <button class="btn btn-p">{{ L.k31 }}</button>
+          <span class="hint">{{ L.k32 }}</span>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Риски и AML": "Risk and AML", "МЕТОК АДРЕСОВ": "ADDRESS LABELS", "1 284": "1,284", "ДОБАВЛЕНО ЗА 7 ДНЕЙ": "ADDED IN 7 DAYS", "СРАБАТЫВАНИЙ СЕГОДНЯ": "HITS TODAY", "ИСТЕКАЮТ ЗА 30 ДНЕЙ": "EXPIRING IN 30 DAYS", "Разделы рисков": "Risk sections", "Метки адресов": "Address labels", "Операции с высоким риском": "High-risk operations", "Правила скоринга": "Scoring rules", "Поиск по адресу или источнику": "Search by address or source", "Адрес или источник": "Address or source", "АДРЕС": "ADDRESS", "МЕТКА": "LABEL", "ИСТОЧНИК": "SOURCE", "СРОК": "EXPIRES", "СРАБАТЫВАНИЙ": "HITS", "Новая метка адреса": "New address label", "Новая метка": "New label", "Адрес": "Address", "Формат подходит для сетей EVM": "Format fits EVM networks", "Сеть": "Network", "Все сети EVM": "All EVM networks", "Тип метки": "Label type", "Источник": "Source", "Спор D-0198": "Dispute D-0198", "Срок": "Expires", "90 дней": "90 days", "Комментарий": "Comment", "Что известно об адресе": "What is known about the address", "Добавить метку": "Add label", "Метка сразу влияет на скоринг переводов и депозитов. Добавление пишется в журнал событий.": "The label affects transfer and deposit scoring immediately. Adding it is written to the event log.", "Санкции": "Sanctions", "Миксер": "Mixer", "Мошенничество": "Fraud", "Биржа": "Exchange", "бессрочно": "never", "Внутренний анализ": "Internal analysis", "до 10.01.2027": "until 10.01.2027", "Аналитический партнёр": "Analytics partner", "до 16.01.2027": "until 16.01.2027", "Жалоба · спор D-0177": "Complaint · dispute D-0177", "до 18.01.2027": "until 18.01.2027", "Список бирж": "Exchange list", "до 20.11.2026": "until 20.11.2026", "добавлена ": "added ", "Все": "All"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Риски и AML"), k2: this.tr("МЕТОК АДРЕСОВ"), k3: this.tr("1 284"), k4: this.tr("ДОБАВЛЕНО ЗА 7 ДНЕЙ"), k5: this.tr("СРАБАТЫВАНИЙ СЕГОДНЯ"), k6: this.tr("ИСТЕКАЮТ ЗА 30 ДНЕЙ"), k7: this.tr("Разделы рисков"), k8: this.tr("Метки адресов"), k9: this.tr("Операции с высоким риском"), k10: this.tr("Правила скоринга"), k11: this.tr("Поиск по адресу или источнику"), k12: this.tr("Адрес или источник"), k13: this.tr("АДРЕС"), k14: this.tr("МЕТКА"), k15: this.tr("ИСТОЧНИК"), k16: this.tr("СРОК"), k17: this.tr("СРАБАТЫВАНИЙ"), k18: this.tr("Новая метка адреса"), k19: this.tr("Новая метка"), k20: this.tr("Адрес"), k21: this.tr("Формат подходит для сетей EVM"), k22: this.tr("Сеть"), k23: this.tr("Все сети EVM"), k24: this.tr("Тип метки"), k25: this.tr("Источник"), k26: this.tr("Спор D-0198"), k27: this.tr("Срок"), k28: this.tr("90 дней"), k29: this.tr("Комментарий"), k30: this.tr("Что известно об адресе"), k31: this.tr("Добавить метку"), k32: this.tr("Метка сразу влияет на скоринг переводов и депозитов. Добавление пишется в журнал событий.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const L = { sanc: [this.tr('Санкции'), 'c-neg'], mix: [this.tr('Миксер'), 'c-neg'], fraud: [this.tr('Мошенничество'), 'c-warn'], ex: [this.tr('Биржа'), 'c-info'] };
+    const rows = [
+      ['0x9b77…02Ee', 'Ethereum Sepolia', 'sanc', 'OFAC SDN', '12.09.2026', this.tr('бессрочно'), 3],
+      ['0x8c1D…77aE', 'Ethereum Sepolia', 'mix', this.tr('Внутренний анализ'), '12.10.2026', this.tr('до 10.01.2027'), 2],
+      ['0x1f98…F984', 'Ethereum Sepolia', 'mix', this.tr('Аналитический партнёр'), '18.10.2026', this.tr('до 16.01.2027'), 1],
+      ['tb1q…r8ps', 'Bitcoin Testnet', 'fraud', this.tr('Жалоба · спор D-0177'), '20.10.2026', this.tr('до 18.01.2027'), 1],
+      ['0x6d02…ab19', 'Polygon Amoy', 'ex', this.tr('Список бирж'), '02.08.2026', this.tr('бессрочно'), 14],
+      ['9xQe…2fPa', 'Solana Devnet', 'fraud', this.tr('Внутренний анализ'), '22.10.2026', this.tr('до 20.11.2026'), 0],
+      ['0x33aC…e7D1', 'BSC Testnet', 'sanc', 'OFAC SDN', '12.09.2026', this.tr('бессрочно'), 0],
+      ['0x2f9a…c013', 'Ethereum Sepolia', 'ex', this.tr('Список бирж'), '02.08.2026', this.tr('бессрочно'), 6]
+    ];
+    const pick = (on) => ({ sel: on ? 'true' : 'false', b: on ? 'var(--t1)' : 'var(--bd)', bg: on ? 'var(--raised)' : 'transparent' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      rows: rows.map((r) => ({ addr: r[0], net: r[1], label: L[r[2]][0], cls: L[r[2]][1], src: r[3], added: this.tr('добавлена ') + r[4], exp: r[5], hits: String(r[6]) })),
+      filters: [[this.tr('Все'), '1 284', true], [this.tr('Санкции'), '412'], [this.tr('Миксер'), '238'], [this.tr('Мошенничество'), '391'], [this.tr('Биржа'), '243']].map(([t, n, on]) => ({ t, n, ...pick(on) })),
+      types: [[this.tr('Санкции'), 'var(--neg)'], [this.tr('Миксер'), 'var(--neg)'], [this.tr('Мошенничество'), 'var(--warn)', true], [this.tr('Биржа'), 'var(--info)']].map(([t, c, on]) => ({ t, c, sel: on ? 'true' : 'false', b: on ? '1.5px solid var(--t1)' : '1px solid var(--bd)' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

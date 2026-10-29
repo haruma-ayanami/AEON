@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — настройки уведомлений</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-notifications.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <span class="hint" style="padding: 0 4px">{{ L.k4 }}</span>
+    <div class="icard"><sc-for list="{{ cats }}" as="c" hint-placeholder-count="6"><div class="irow" style="flex-direction: column; align-items: stretch; gap: 10px; padding-top: 12px; padding-bottom: 12px"><span style="display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 500">{{ c.t }}</span><sc-if value="{{ c.locked }}" hint-placeholder-val="{{ false }}"><span class="faint" style="font-size: 12px">{{ c.lockText }}</span></sc-if></span><span style="display: flex; gap: 6px"><sc-for list="{{ c.ch }}" as="x" hint-placeholder-count="4"><span role="img" aria-label="{{ x.aria }}" style="height: 30px; padding: 0 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 5px; font: 500 12px Inter, sans-serif; background: {{ x.bg }}; color: {{ x.fg }}; border: 1px solid {{ x.bd }}">{{ x.l }}</span></sc-for></span></div></sc-for></div>
+    <div class="icard">
+      <label class="irow"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k5 }}</span><span class="faint" style="font-size: 12px">{{ L.k6 }}</span></span><span class="sw on" aria-hidden="true"></span><input type="checkbox" checked class="sr"></label>
+      <button type="button" class="irow"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k7 }}</span><span class="faint" style="font-size: 12px">{{ L.k8 }}</span></span><span class="btn btn-s">{{ L.k9 }}</span></button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Настройки уведомлений": "Notification settings", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Отметьте каналы для каждого события. О сделках и безопасности в приложении сообщаем всегда.": "Pick channels for each event. In-app deal and security alerts are always on.", "Тихие часы": "Quiet hours", "23:00 – 08:00, кроме сделок и безопасности": "23:00 – 08:00, except deals and security", "Telegram-бот": "Telegram bot", "Не подключён": "Not connected", "Подключить": "Connect", "включено": "on", "выключено": "off", "в приложении всегда": "always in app", "Приложение": "App", "Почта": "Email", "Статус сделки": "Deal status", "Сообщения в чате": "Chat messages", "Депозиты и выводы": "Deposits, withdrawals", "Безопасность и входы": "Security and sign-ins", "Риски и проверки": "Risks and checks", "Новости и документы": "News and documents"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Настройки уведомлений"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Отметьте каналы для каждого события. О сделках и безопасности в приложении сообщаем всегда."), k5: this.tr("Тихие часы"), k6: this.tr("23:00 – 08:00, кроме сделок и безопасности"), k7: this.tr("Telegram-бот"), k8: this.tr("Не подключён"), k9: this.tr("Подключить"), k10: this.tr("включено"), k11: this.tr("выключено"), k12: this.tr("в приложении всегда"), k13: this.tr("Приложение"), k14: this.tr("Почта"), k15: this.tr("Статус сделки"), k16: this.tr("Сообщения в чате"), k17: this.tr("Депозиты и выводы"), k18: this.tr("Безопасность и входы"), k19: this.tr("Риски и проверки"), k20: this.tr("Новости и документы") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const x = (l, on) => ({ l, aria: l + ': ' + (on ? this.tr("включено") : this.tr("выключено")), bg: on ? 'var(--sigs)' : 'transparent', fg: on ? 'var(--sigt)' : 'var(--t3)', bd: on ? 'transparent' : 'var(--bd)' });
+    const c = (t, a, p, e, tg, locked) => ({ t, locked: !!locked, lockText: this.tr("в приложении всегда"), ch: [x(this.tr("Приложение"), a), x('Push', p), x(this.tr("Почта"), e), x('Telegram', tg)] });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      cats: [c(this.tr("Статус сделки"), true, true, false, false, true), c(this.tr("Сообщения в чате"), true, true, false, false), c(this.tr("Депозиты и выводы"), true, true, true, false), c(this.tr("Безопасность и входы"), true, true, true, false, true), c(this.tr("Риски и проверки"), true, false, true, false), c(this.tr("Новости и документы"), true, false, false, false)]
+    };
+  }
+}
+</script>
+</body>
+</html>

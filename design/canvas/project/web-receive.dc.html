@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — получить</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="wallet" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody" style="max-width: 1180px">
+      <a href="web-wallet-home.dc.html" class="muted" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; align-self: flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>{{ L.k2 }}</a>
+      <div class="split">
+        <section class="card" style="flex: 1 1 360px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <span class="lbl">{{ L.k3 }}</span>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <sc-for list="{{ assets }}" as="a" hint-placeholder-count="5"><button aria-pressed="{{ a.sel }}" style="height: 56px; padding: 0 12px; border-radius: 16px; border: {{ a.b }}; background: {{ a.bg }}; color: var(--t1); display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer"><span style="width: 34px; height: 34px; border-radius: 999px; background: var(--surface); border: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; font: 500 9px 'JetBrains Mono', monospace">{{ a.t }}</span><span style="flex: 1; font: 500 15px Inter, sans-serif">{{ a.name }}</span><span class="faint" style="font-size: 13px">{{ a.bal }}</span></button></sc-for>
+          </div>
+          <span class="lbl" style="padding-top: 8px">{{ L.k4 }}</span>
+          <div role="radiogroup" aria-label="{{ L.k5 }}" style="display: flex; flex-wrap: wrap; gap: 6px">
+            <sc-for list="{{ nets }}" as="n" hint-placeholder-count="3"><button role="radio" aria-checked="{{ n.sel }}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: {{ n.b }}; background: transparent; color: var(--t1); font: 500 14px Inter, sans-serif; display: flex; align-items: center; gap: 8px; cursor: pointer"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 2px; background: {{ n.c }}"></span>{{ n.name }}</button></sc-for>
+          </div>
+          <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--infos); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 11v6M12 7.5v.5"></path></svg><span>{{ L.k6 }}</span></div>
+        </section>
+
+        <section class="card" style="flex: 1.3 1 460px; min-width: 0; padding: 28px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+          <span class="lbl">{{ L.k7 }}</span>
+          <div style="padding: 16px; border-radius: 22px; background: #FFFFFF"><div role="img" aria-label="{{ L.k8 }}" style="display: grid; grid-template-columns: repeat(25, 9px)"><sc-for list="{{ qr }}" as="q" hint-placeholder-count="625"><span style="width: 9px; height: 9px; background: {{ q }}"></span></sc-for></div></div>
+          <span class="mono" style="font-size: 18px; line-height: 28px; word-break: break-all; max-width: 460px"><b style="font-weight: 600">0x7a3F5c</b><span class="muted">1E8b2D4a6F9e0C3b7A1d5E8f2C4b</span><b style="font-weight: 600">6A9c2E</b></span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center"><button class="btn btn-p">{{ L.k9 }}</button><button class="btn">{{ L.k10 }}</button><button class="btn btn-o">{{ L.k11 }}</button></div>
+          <div style="align-self: stretch; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--bs); border: 1px solid var(--bs); border-radius: 14px; overflow: hidden; text-align: left">
+            <span style="background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 3px"><span class="lbl">{{ L.k12 }}</span><span style="font-weight: 600">1 USDT</span></span>
+            <span style="background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 3px"><span class="lbl">{{ L.k13 }}</span><span style="font-weight: 600">{{ L.k14 }}</span></span>
+            <span style="background: var(--surface); padding: 12px 14px; display: flex; flex-direction: column; gap: 3px"><span class="lbl">{{ L.k15 }}</span><span style="font-weight: 600">0 USDT</span></span>
+          </div>
+          <div style="align-self: stretch; display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--warns); font-size: 13px; line-height: 18px; text-align: left"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ L.k16 }}</span></div>
+        </section>
+
+        <aside class="card" style="flex: 1 1 280px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+          <span class="lbl">{{ L.k17 }}</span>
+          <div class="tile" style="padding: 14px; display: flex; flex-direction: column; gap: 8px"><span style="display: flex; justify-content: space-between"><span style="font-weight: 600">{{ L.k18 }}</span><span class="chip c-info">3/12</span></span><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; height: 6px"><sc-for list="{{ conf }}" as="c" hint-placeholder-count="12"><span style="border-radius: 2px; background: {{ c }}"></span></sc-for></span><span class="mono faint" style="font-size: 11px">{{ L.k19 }}</span></div>
+          <div class="tile" style="padding: 14px; display: flex; flex-direction: column; gap: 4px"><span style="display: flex; justify-content: space-between"><span style="font-weight: 600">+500 USDT</span><span class="chip c-ok">{{ L.k20 }}</span></span><span class="mono faint" style="font-size: 11px">{{ L.k21 }}</span></div>
+          <a href="web-history.dc.html" style="font-size: 14px; padding-top: 4px">{{ L.k22 }}</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Кошелёк": "Wallet", "Получить": "Receive", "Новый адрес": "New address", "Зачислен": "Credited", "QR-код адреса": "Address QR code", "Поделиться": "Share", "Сеть": "Network", "0,4821": "0.4821", "1 250,00": "1,250.00", "14,2": "14.2", "312,5": "312.5", "0,00184": "0.00184", "+0,05 ETH": "+0.05 ETH", "1 · АКТИВ": "1 · ASSET", "2 · СЕТЬ": "2 · NETWORK", "USDT существует в нескольких сетях. Отправитель должен выбрать ту же сеть — иначе перевод потеряется.": "USDT exists on several networks. The sender must choose the same network — otherwise the transfer will be lost.", "3 · ВАШ АДРЕС USDT · ETHEREUM SEPOLIA": "3 · YOUR USDT ADDRESS · ETHEREUM SEPOLIA", "Копировать адрес": "Copy address", "МИНИМУМ": "MINIMUM", "ПОДТВЕРЖДЕНИЙ": "CONFIRMATIONS", "12 · ≈ 3 мин": "12 · ≈ 3 min", "КОМИССИЯ": "FEE", "Отправляйте сюда только USDT в сети Sepolia. Входящие переводы проверяются скорингом: подозрительные будут задержаны до проверки.": "Send only USDT on the Sepolia network here. Incoming transfers are checked by scoring: suspicious ones are held until reviewed.", "ВХОДЯЩИЕ НА ЭТОТ АДРЕС": "INCOMING TO THIS ADDRESS", "от 0x4c…a1F2 · только что": "from 0x4c…a1F2 · just now", "от 0x9e…44Bc · 21.10": "from 0x9e…44Bc · 21.10", "Вся история": "Full history"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Получить"), k2: this.tr("Кошелёк"), k3: this.tr("1 · АКТИВ"), k4: this.tr("2 · СЕТЬ"), k5: this.tr("Сеть"), k6: this.tr("USDT существует в нескольких сетях. Отправитель должен выбрать ту же сеть — иначе перевод потеряется."), k7: this.tr("3 · ВАШ АДРЕС USDT · ETHEREUM SEPOLIA"), k8: this.tr("QR-код адреса"), k9: this.tr("Копировать адрес"), k10: this.tr("Поделиться"), k11: this.tr("Новый адрес"), k12: this.tr("МИНИМУМ"), k13: this.tr("ПОДТВЕРЖДЕНИЙ"), k14: this.tr("12 · ≈ 3 мин"), k15: this.tr("КОМИССИЯ"), k16: this.tr("Отправляйте сюда только USDT в сети Sepolia. Входящие переводы проверяются скорингом: подозрительные будут задержаны до проверки."), k17: this.tr("ВХОДЯЩИЕ НА ЭТОТ АДРЕС"), k18: this.tr("+0,05 ETH"), k19: this.tr("от 0x4c…a1F2 · только что"), k20: this.tr("Зачислен"), k21: this.tr("от 0x9e…44Bc · 21.10"), k22: this.tr("Вся история"), k23: this.tr("1 250,00"), k24: this.tr("0,4821"), k25: this.tr("0,00184"), k26: this.tr("14,2"), k27: this.tr("312,5") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    let s = 23;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const qr = [];
+    const fin = (r, c) => { for (const [r0, c0] of [[0, 0], [0, 18], [18, 0]]) { if (r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7) { const a = r - r0, b = c - c0; return (a === 0 || a === 6 || b === 0 || b === 6 || (a >= 2 && a <= 4 && b >= 2 && b <= 4)) ? 1 : 0; } if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) return 0; } return -1; };
+    for (let r = 0; r < 25; r++) for (let c = 0; c < 25; c++) { const f = fin(r, c); qr.push((f === -1 ? rnd() > 0.52 : f === 1) ? '#0A0C0B' : '#FFFFFF'); }
+    const pick = (on) => ({ sel: on ? 'true' : 'false', b: on ? '1.5px solid var(--t1)' : '1px solid transparent', bg: on ? 'var(--raised)' : 'transparent' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      assets: [['USDT', 'Tether USD', this.tr('1 250,00'), true], ['ETH', 'Ether', this.tr('0,4821')], ['BTC', 'Bitcoin', this.tr('0,00184')], ['SOL', 'Solana', this.tr('14,2')], ['POL', 'Polygon', this.tr('312,5')]].map(([t, name, bal, on]) => ({ t, name, bal, ...pick(on) })),
+      nets: [['Ethereum Sepolia', '#8A9BFF', true], ['Polygon Amoy', '#A77BFF'], ['BSC Testnet', '#F3C64B']].map(([name, c, on]) => ({ name, c, sel: on ? 'true' : 'false', b: on ? '1.5px solid var(--t1)' : '1px solid var(--bd)' })),
+      conf: Array.from({ length: 12 }, (_, i) => (i < 3 ? 'var(--info)' : 'var(--bd)')),
+      qr
+    };
+  }
+}
+</script>
+</body>
+</html>

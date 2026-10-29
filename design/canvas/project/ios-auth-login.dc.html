@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — вход</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-auth-welcome.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title"></span><span class="testnet">{{ L.k2 }}</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 130px; gap: 16px">
+    <h1 class="disp" style="margin: 0 4px; font-size: 34px">{{ L.k4 }}</h1>
+    <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--negs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ L.k5 }}</span></div></sc-if>
+    <sc-if value="{{ isLocked }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--negs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v5l3 2"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span>{{ L.k14 }} <b class="mono" style="font-weight: 600">14:32</b> {{ L.k15 }}</span><a href="ios-auth-recovery.dc.html" style="font-weight: 600; color: var(--t1)">{{ L.k16 }}</a></span></div></sc-if>
+    <div class="icard" style="display: flex; flex-direction: column">
+      <label class="irow" style="min-height: 60px"><span style="width: 74px; color: var(--t2); font-size: 15px">{{ L.k6 }}</span><input type="email" value="alex.t@mail.test" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"></label>
+      <label class="irow" style="min-height: 60px"><span style="width: 74px; color: var(--t2); font-size: 15px">{{ L.k7 }}</span><input type="password" value="aeon-test-2026" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"><button aria-label="{{ L.k8 }}" style="width: 32px; height: 32px; border: 0; background: transparent; color: var(--t2); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg></button></label>
+    </div>
+    <a href="ios-auth-recovery.dc.html" style="padding: 0 4px; font-size: 15px">{{ L.k9 }}</a>
+    <div class="icard" style="padding: 16px; display: flex; align-items: center; gap: 14px">
+      <span aria-hidden="true" style="width: 44px; height: 44px; border-radius: 14px; background: var(--raised); color: var(--sig); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0"></path></svg></span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k10 }}</span><span class="muted" style="font-size: 13px">{{ L.k11 }}</span></span>
+      <span class="sw on" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="ios-bar" style="flex-direction: column; gap: 10px">
+    <a href="ios-wallet-home.dc.html" aria-disabled="{{ loginDis }}" class="btn btn-p" style="height: 56px; font-size: 17px; opacity: {{ loginOp }}">{{ L.k12 }}</a>
+    <button type="button" class="btn glass" style="height: 56px; font-size: 17px">{{ L.k13 }}</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "error", "locked"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"ТЕСТОВАЯ СЕТЬ": "TESTNET", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Назад": "Back", "Вход": "Sign in", "Пароль": "Password", "Показать пароль": "Show password", "Забыли пароль?": "Forgot password?", "Войти": "Sign in", "Неверный email или пароль. Осталось 2 попытки — потом вход закроется на 15 минут.": "Wrong email or password. 2 attempts left — then sign-in will be locked for 15 minutes.", "Почта": "Email", "Входить по Face ID": "Sign in with Face ID", "Пароль понадобится раз в 30 дней": "You'll need the password once every 30 days", "Войти по ключу доступа": "Sign in with a passkey", "Вход временно заблокирован после 5 неудачных попыток. Повторите через": "Sign-in is temporarily locked after 5 failed attempts. Try again in", "или восстановите пароль.": "or reset your password.", "Восстановить пароль": "Reset password"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Вход"), k5: this.tr("Неверный email или пароль. Осталось 2 попытки — потом вход закроется на 15 минут."), k6: this.tr("Почта"), k7: this.tr("Пароль"), k8: this.tr("Показать пароль"), k9: this.tr("Забыли пароль?"), k10: this.tr("Входить по Face ID"), k11: this.tr("Пароль понадобится раз в 30 дней"), k12: this.tr("Войти"), k13: this.tr("Войти по ключу доступа"), k14: this.tr("Вход временно заблокирован после 5 неудачных попыток. Повторите через"), k15: this.tr("или восстановите пароль."), k16: this.tr("Восстановить пароль") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark', isError: (this.props.state ?? 'default') === 'error', isLocked: (this.props.state ?? 'default') === 'locked', loginOp: (this.props.state ?? 'default') === 'locked' ? '0.4' : '1', loginDis: (this.props.state ?? 'default') === 'locked' ? 'true' : 'false' };
+  }
+}
+</script>
+</body>
+</html>

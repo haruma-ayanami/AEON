@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — мои объявления</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="p2p" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1><button class="wbtn">{{ L.k3 }}</button><button class="wbtn wbtn-p">{{ L.k4 }}</button></div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="flex: 1; min-height: 0; display: flex; flex-direction: column">
+      <div style="flex: 1; min-height: 0; display: flex; border-top: 1px solid var(--bs)">
+        <div style="flex: 1; min-width: 0">
+          <table class="tbl"><thead><tr><th>{{ L.k5 }}</th><th style="text-align: right">{{ L.k6 }}</th><th>{{ L.k7 }}</th><th>{{ L.k8 }}</th><th style="text-align: right">{{ L.k9 }}</th><th>{{ L.k10 }}</th></tr></thead>
+            <tbody><sc-for list="{{ rows }}" as="r" hint-placeholder-count="4"><tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}"><td style="height: 56px"><span style="display: flex; flex-direction: column"><span style="font-weight: 600">{{ r.t }}</span><span class="faint" style="font-size: 11px">{{ r.pm }}</span></span></td><td class="num" style="text-align: right; font-weight: 600">{{ r.price }}</td><td><span style="display: flex; flex-direction: column; gap: 4px; width: 150px"><span style="font-size: 12px">{{ r.left }}</span><span aria-hidden="true" style="height: 4px; border-radius: 2px; background: var(--bd)"><span style="display: block; height: 4px; border-radius: 2px; width: {{ r.w }}; background: var(--sig)"></span></span></span></td><td class="muted" style="font-size: 12px">{{ r.lim }}</td><td style="text-align: right">{{ r.deals }}</td><td><span class="sw {{ r.sw }}" aria-label="{{ r.swl }}" role="img" style="transform: scale(0.85); transform-origin: left center; display: inline-block"></span></td></tr></sc-for></tbody>
+          </table>
+        </div>
+        <aside aria-label="{{ L.k11 }}" style="width: 380px; flex: none; border-left: 1px solid var(--bs); background: var(--card); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+          <span class="lbl">{{ L.k12 }}</span>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k13 }}</span><span class="winp" style="height: 36px; border-bottom: 2px solid var(--sigt)"><input value="+0,3"><span class="muted">{{ L.k14 }}</span></span></label>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k15 }}</span><span class="winp" style="height: 36px"><input value="1 000"><span class="muted">USDT</span></span></label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"><label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k16 }}</span><span class="winp" style="height: 36px"><input value="1 000"></span></label><label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k17 }}</span><span class="winp" style="height: 36px"><input value="50 000"></span></label></div>
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k18 }}</span><label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k19 }}</label><label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k20 }}</label></div>
+          <div class="rowline" style="font-size: 12px"><span>{{ L.k21 }}</span><span>100 USDT</span></div>
+          <div style="flex: 1"></div>
+          <div style="display: flex; gap: 6px"><button class="wbtn" style="flex: 1; color: var(--neg)">{{ L.k22 }}</button><button class="wbtn wbtn-p" style="flex: 1">{{ L.k23 }}</button></div>
+        </aside>
+      </div>
+</div></sc-if>
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="flex: 1; min-height: 0; border-top: 1px solid var(--bs); display: flex; align-items: center; justify-content: center"><div style="padding: 40px 24px; border-radius: 8px; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8zM7.5 8.5h.01"></path></svg></span><span style="font-weight: 600; font-size: 17px">{{ L.k46 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k47 }}</span><a href="win-p2p-create-offer.dc.html" class="wbtn wbtn-p" style="text-decoration: none; margin-top: 6px">{{ L.k48 }}</a></div></div></sc-if>
+
+      <footer class="wstatus"><span>{{ L.k24 }}</span><span style="flex: 1"></span><span>{{ L.k25 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"КУРС": "RATE", "СДЕЛОК": "DEALS", "СБП": "SBP", "92,40 ₽": "92.40 ₽", "Банковский перевод": "Bank transfer", "Мои объявления": "My offers", "312 900 ₽": "312,900 ₽", "AEON · Мои объявления": "AEON · My offers", "Приостановить все": "Pause all", "Новое объявление · Ctrl+N": "New offer · Ctrl+N", "ОБЪЯВЛЕНИЕ": "OFFER", "ОСТАТОК": "REMAINING", "ЛИМИТЫ": "LIMITS", "АКТИВНО": "ACTIVE", "Редактирование объявления": "Offer editing", "ПРОДАЖА USDT ЗА ₽ · O-3301": "SELLING USDT FOR ₽ · O-3301", "Курс · рынок + %": "Rate · market + %", "→ 92,40 ₽": "→ 92.40 ₽", "Остаток на продажу": "Remaining for sale", "Мин., ₽": "Min, ₽", "Макс., ₽": "Max, ₽", "Способы оплаты": "Payment methods", "В эскроу по сделкам": "In escrow in deals", "Закрыть объявление": "Close offer", "Сохранить · Ctrl+S": "Save · Ctrl+S", "4 ОБЪЯВЛЕНИЯ · 2 АКТИВНЫ": "4 OFFERS · 2 ACTIVE", "ПРОБЕЛ — ВКЛ/ВЫКЛ · ENTER — РЕДАКТИРОВАТЬ": "SPACE — ON/OFF · ENTER — EDIT", "Продажа USDT за ₽": "Selling USDT for ₽", "СБП, Банк. перевод": "SBP, Bank transfer", "900 из 1 000 USDT": "900 of 1,000 USDT", "1 000 – 50 000 ₽": "1,000 – 50,000 ₽", "Покупка ETH за ₽": "Buying ETH for ₽", "0,6 из 2 ETH": "0.6 of 2 ETH", "10 000 – 300 000 ₽": "10,000 – 300,000 ₽", "Продажа SOL за ₽": "Selling SOL for ₽", "1 520 ₽": "1,520 ₽", "14,2 из 14,2 SOL": "14.2 of 14.2 SOL", "1 000 – 21 000 ₽": "1,000 – 21,000 ₽", "Продажа BTC за ₽": "Selling BTC for ₽", "Банк. перевод": "Bank transfer", "6 290 000 ₽": "6,290,000 ₽", "0 из 0,01 BTC": "0 of 0.01 BTC", "20 000 – 62 900 ₽": "20,000 – 62,900 ₽", "Активно": "Active", "Приостановлено": "Paused", "У вас нет объявлений": "You have no offers", "Разместите объявление о покупке или продаже USDT: курс, лимиты и способы оплаты. Монеты для продажи блокируются в эскроу только когда покупатель открывает сделку.": "Post an offer to buy or sell USDT: rate, limits and payment methods. Coins for sale are locked in escrow only when a buyer opens a deal.", "Разместить объявление": "Post an offer"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · Мои объявления"), k2: this.tr("Мои объявления"), k3: this.tr("Приостановить все"), k4: this.tr("Новое объявление · Ctrl+N"), k5: this.tr("ОБЪЯВЛЕНИЕ"), k6: this.tr("КУРС"), k7: this.tr("ОСТАТОК"), k8: this.tr("ЛИМИТЫ"), k9: this.tr("СДЕЛОК"), k10: this.tr("АКТИВНО"), k11: this.tr("Редактирование объявления"), k12: this.tr("ПРОДАЖА USDT ЗА ₽ · O-3301"), k13: this.tr("Курс · рынок + %"), k14: this.tr("→ 92,40 ₽"), k15: this.tr("Остаток на продажу"), k16: this.tr("Мин., ₽"), k17: this.tr("Макс., ₽"), k18: this.tr("Способы оплаты"), k19: this.tr("СБП"), k20: this.tr("Банковский перевод"), k21: this.tr("В эскроу по сделкам"), k22: this.tr("Закрыть объявление"), k23: this.tr("Сохранить · Ctrl+S"), k24: this.tr("4 ОБЪЯВЛЕНИЯ · 2 АКТИВНЫ"), k25: this.tr("ПРОБЕЛ — ВКЛ/ВЫКЛ · ENTER — РЕДАКТИРОВАТЬ"), k26: this.tr("Продажа USDT за ₽"), k27: this.tr("СБП, Банк. перевод"), k28: this.tr("92,40 ₽"), k29: this.tr("900 из 1 000 USDT"), k30: this.tr("1 000 – 50 000 ₽"), k31: this.tr("Покупка ETH за ₽"), k32: this.tr("312 900 ₽"), k33: this.tr("0,6 из 2 ETH"), k34: this.tr("10 000 – 300 000 ₽"), k35: this.tr("Продажа SOL за ₽"), k36: this.tr("1 520 ₽"), k37: this.tr("14,2 из 14,2 SOL"), k38: this.tr("1 000 – 21 000 ₽"), k39: this.tr("Продажа BTC за ₽"), k40: this.tr("Банк. перевод"), k41: this.tr("6 290 000 ₽"), k42: this.tr("0 из 0,01 BTC"), k43: this.tr("20 000 – 62 900 ₽"), k44: this.tr("Активно"), k45: this.tr("Приостановлено"), k46: this.tr("У вас нет объявлений"), k47: this.tr("Разместите объявление о покупке или продаже USDT: курс, лимиты и способы оплаты. Монеты для продажи блокируются в эскроу только когда покупатель открывает сделку."), k48: this.tr("Разместить объявление") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    const rows = [
+      [this.tr('Продажа USDT за ₽'), this.tr('СБП, Банк. перевод'), this.tr('92,40 ₽'), this.tr('900 из 1 000 USDT'), '90%', this.tr('1 000 – 50 000 ₽'), '14', true, true],
+      [this.tr('Покупка ETH за ₽'), this.tr('СБП'), this.tr('312 900 ₽'), this.tr('0,6 из 2 ETH'), '30%', this.tr('10 000 – 300 000 ₽'), '6', true],
+      [this.tr('Продажа SOL за ₽'), this.tr('СБП'), this.tr('1 520 ₽'), this.tr('14,2 из 14,2 SOL'), '100%', this.tr('1 000 – 21 000 ₽'), '0', false],
+      [this.tr('Продажа BTC за ₽'), this.tr('Банк. перевод'), this.tr('6 290 000 ₽'), this.tr('0 из 0,01 BTC'), '0%', this.tr('20 000 – 62 900 ₽'), '3', false]
+    ];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isDefault: st === 'default', isEmpty: st === 'empty',
+      rows: rows.map((r) => ({ t: r[0], pm: r[1], price: r[2], left: r[3], w: r[4], lim: r[5], deals: r[6], sw: r[7] ? 'on' : '', swl: r[7] ? this.tr('Активно') : this.tr('Приостановлено'), sel: r[8] ? 'true' : 'false', bg: r[8] ? 'var(--wsel)' : 'transparent' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

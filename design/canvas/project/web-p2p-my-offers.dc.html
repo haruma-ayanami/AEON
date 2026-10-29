@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — мои объявления</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="p2p" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="P2P" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <nav class="tabs" aria-label="{{ L.k1 }}"><a href="web-p2p-market.dc.html">{{ L.k2 }}</a><a href="web-p2p-my-deals.dc.html">{{ L.k3 }}<span class="badge">2</span></a><a href="web-p2p-my-offers.dc.html" aria-current="page">{{ L.k4 }}</a><a href="web-settings.dc.html">{{ L.k5 }}</a></nav>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center"><button class="btn btn-s btn-p">{{ allLbl }}</button><button class="btn btn-s btn-o">{{ actLbl }}</button><button class="btn btn-s btn-o">{{ pauseLbl }}</button><span style="flex: 1"></span><button class="btn btn-s btn-o">{{ L.k9 }}</button><a href="web-p2p-create-offer.dc.html" class="btn btn-s btn-p"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>{{ L.k10 }}</a></div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 16px">
+      <div class="grid-a" style="grid-template-columns: repeat(auto-fit, minmax(min(520px, 100%), 1fr)); gap: 16px">
+        <sc-for list="{{ offers }}" as="o" hint-placeholder-count="4">
+          <article class="card" aria-label="{{ o.title }}" style="padding: 20px; display: flex; flex-direction: column; gap: 14px; border-color: {{ o.bc }}">
+            <div style="display: flex; align-items: flex-start; gap: 12px">
+              <span style="flex: 1; display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ o.id }}</span><span class="disp" style="font-size: 20px">{{ o.title }}</span><span class="muted" style="font-size: 13px">{{ o.pm }}</span></span>
+              <span style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--t2)">{{ o.swl }}<button class="sw {{ o.sw }}" role="switch" aria-checked="{{ o.on }}" aria-label="{{ o.swAria }}" style="border: 0; padding: 0; cursor: pointer"></button></span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--bs); border: 1px solid var(--bs); border-radius: 14px; overflow: hidden">
+              <span style="background: var(--surface); padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl" style="font-size: 10px">{{ L.k11 }}</span><span class="num" style="font-weight: 600; white-space: nowrap">{{ o.price }}</span></span>
+              <span style="background: var(--surface); padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl" style="font-size: 10px">{{ L.k12 }}</span><span class="num" style="font-weight: 600; white-space: nowrap">{{ o.lim }}</span></span>
+              <span style="background: var(--surface); padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl" style="font-size: 10px">{{ L.k13 }}</span><span class="num" style="font-weight: 600">{{ o.deals }}</span></span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="display: flex; justify-content: space-between; font-size: 13px"><span class="muted">{{ L.k14 }}</span><span class="num" style="font-weight: 600">{{ o.left }}</span></span>
+              <span aria-hidden="true" style="height: 6px; border-radius: 3px; background: var(--bd); overflow: hidden"><span style="display: block; height: 100%; width: {{ o.w }}; background: {{ o.wc }}"></span></span>
+            </div>
+            <sc-if value="{{ o.warn }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ o.warnText }}</span></div></sc-if>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap"><a href="web-p2p-create-offer.dc.html" class="btn btn-s">{{ L.k15 }}</a><button class="btn btn-s btn-o">{{ L.k16 }}</button><span style="flex: 1"></span><button class="btn btn-s btn-n">{{ L.k17 }}</button></div>
+          </article>
+        </sc-for>
+      </div>
+      <span class="hint">{{ L.k18 }}</span>
+</div></sc-if>
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div class="card" style="border-radius: 20px; padding: 64px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8zM7.5 8.5h.01"></path></svg></span><span style="font-weight: 600; font-size: 18px">{{ L.k20 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 520px">{{ L.k21 }}</span><span style="display: flex; gap: 10px; margin-top: 6px"><a href="web-p2p-create-offer.dc.html" class="btn btn-p">{{ L.k22 }}</a><a href="web-p2p-market.dc.html" class="btn">{{ L.k23 }}</a></span></div></sc-if>
+
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Разделы P2P": "P2P sections", "Маркетплейс": "Marketplace", "Мои сделки": "My deals", "Мои объявления": "My offers", "Реквизиты": "Payment details", "Все · 4": "All · 4", "Активные · 2": "Active · 2", "Приостановлены · 2": "Paused · 2", "Приостановить все": "Pause all", "Новое объявление": "New offer", "КУРС": "RATE", "ЛИМИТЫ": "LIMITS", "СДЕЛОК": "DEALS", "Доступный остаток": "Available remainder", "Редактировать": "Edit", "Поделиться ссылкой": "Share link", "Закрыть": "Close", "Закрытое объявление нельзя вернуть. Открытые сделки по нему завершатся как обычно.": "A closed offer can't be restored. Open deals on it will finish as usual.", "Активно": "Active", "Приостановлено": "Paused", "Объявление активно: ": "Offer active: ", "ПРОДАЖА": "SELL", "Продажа USDT за ₽": "Selling USDT for ₽", "СБП, банковский перевод · 15 мин на оплату": "SBP, bank transfer · 15 min to pay", "92,40 ₽": "92.40 ₽", "1 000 – 50 000 ₽": "1,000 – 50,000 ₽", "900 из 1 000 USDT": "900 of 1,000 USDT", "ПОКУПКА": "BUY", "Покупка ETH за ₽": "Buying ETH for ₽", "СБП · 15 мин на оплату": "SBP · 15 min to pay", "312 900 ₽": "312,900 ₽", "10 000 – 300 000 ₽": "10,000 – 300,000 ₽", "0,6 из 2 ETH": "0.6 of 2 ETH", "Продажа SOL за ₽": "Selling SOL for ₽", "СБП · 30 мин на оплату": "SBP · 30 min to pay", "1 520 ₽": "1,520 ₽", "1 000 – 21 000 ₽": "1,000 – 21,000 ₽", "14,2 из 14,2 SOL": "14.2 of 14.2 SOL", "Продажа BTC за ₽": "Selling BTC for ₽", "Банковский перевод · 30 мин на оплату": "Bank transfer · 30 min to pay", "6 290 000 ₽": "6,290,000 ₽", "20 000 – 62 900 ₽": "20,000 – 62,900 ₽", "0 из 0,01 BTC": "0 of 0.01 BTC", "Недостаточно баланса: объявление приостановлено автоматически. Пополните BTC или уменьшите объём.": "Insufficient balance: the offer was paused automatically. Top up BTC or reduce the volume.", "Все · 0": "All · 0", "У вас нет объявлений": "You have no offers", "Разместите объявление о покупке или продаже USDT: курс, лимиты и способы оплаты. Монеты для продажи блокируются в эскроу только когда покупатель открывает сделку.": "Post an offer to buy or sell USDT: rate, limits and payment methods. Coins for sale are locked in escrow only when a buyer opens a deal.", "Разместить объявление": "Post an offer", "Посмотреть рынок": "Browse the market", "Активные · 0": "Active · 0", "Приостановлены · 0": "Paused · 0"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Разделы P2P"), k2: this.tr("Маркетплейс"), k3: this.tr("Мои сделки"), k4: this.tr("Мои объявления"), k5: this.tr("Реквизиты"), k6: this.tr("Все · 4"), k7: this.tr("Активные · 2"), k8: this.tr("Приостановлены · 2"), k9: this.tr("Приостановить все"), k10: this.tr("Новое объявление"), k11: this.tr("КУРС"), k12: this.tr("ЛИМИТЫ"), k13: this.tr("СДЕЛОК"), k14: this.tr("Доступный остаток"), k15: this.tr("Редактировать"), k16: this.tr("Поделиться ссылкой"), k17: this.tr("Закрыть"), k18: this.tr("Закрытое объявление нельзя вернуть. Открытые сделки по нему завершатся как обычно."), k19: this.tr("Все · 0"), k20: this.tr("У вас нет объявлений"), k21: this.tr("Разместите объявление о покупке или продаже USDT: курс, лимиты и способы оплаты. Монеты для продажи блокируются в эскроу только когда покупатель открывает сделку."), k22: this.tr("Разместить объявление"), k23: this.tr("Посмотреть рынок"), k24: this.tr("Активные · 0"), k25: this.tr("Приостановлены · 0") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    const o = (id, title, pm, price, lim, deals, left, w, on, warnText) => ({ id, title, pm, price, lim, deals, left, w, on: on ? 'true' : 'false', sw: on ? 'on' : '', swl: on ? this.tr('Активно') : this.tr('Приостановлено'), swAria: this.tr('Объявление активно: ') + title, wc: w === '0%' ? 'var(--neg)' : 'var(--sig)', bc: warnText ? 'var(--warn)' : 'var(--bs)', warn: !!warnText, warnText: warnText || '' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', actLbl: st === 'empty' ? this.tr("Активные · 0") : this.tr("Активные · 2"), pauseLbl: st === 'empty' ? this.tr("Приостановлены · 0") : this.tr("Приостановлены · 2"), isDefault: st === 'default', isEmpty: st === 'empty', allLbl: st === 'empty' ? this.tr("Все · 0") : this.tr("Все · 4"),
+      offers: [
+        o('O-3301 · ' + this.tr('ПРОДАЖА'), this.tr('Продажа USDT за ₽'), this.tr('СБП, банковский перевод · 15 мин на оплату'), this.tr('92,40 ₽'), this.tr('1 000 – 50 000 ₽'), '14', this.tr('900 из 1 000 USDT'), '90%', true),
+        o('O-3302 · ' + this.tr('ПОКУПКА'), this.tr('Покупка ETH за ₽'), this.tr('СБП · 15 мин на оплату'), this.tr('312 900 ₽'), this.tr('10 000 – 300 000 ₽'), '6', this.tr('0,6 из 2 ETH'), '30%', true),
+        o('O-3305 · ' + this.tr('ПРОДАЖА'), this.tr('Продажа SOL за ₽'), this.tr('СБП · 30 мин на оплату'), this.tr('1 520 ₽'), this.tr('1 000 – 21 000 ₽'), '0', this.tr('14,2 из 14,2 SOL'), '100%', false),
+        o('O-3290 · ' + this.tr('ПРОДАЖА'), this.tr('Продажа BTC за ₽'), this.tr('Банковский перевод · 30 мин на оплату'), this.tr('6 290 000 ₽'), this.tr('20 000 – 62 900 ₽'), '3', this.tr('0 из 0,01 BTC'), '0%', false, this.tr('Недостаточно баланса: объявление приостановлено автоматически. Пополните BTC или уменьшите объём.'))
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

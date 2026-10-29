@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — проверка адреса</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-analytics.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div class="icard" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">{{ L.k4 }}</span><span class="chip c-off" style="height: 24px">{{ net }}</span></span>
+      <textarea aria-label="{{ L.k5 }}" rows="2" defaultValue="{{ addr }}" placeholder="{{ L.k6 }}" style="resize: none; border: 0; padding: 0; background: transparent; color: var(--t1); font: 400 15px 'JetBrains Mono', monospace; line-height: 22px; outline: none; word-break: break-all"></textarea>
+      <div style="display: flex; gap: 8px"><button class="btn btn-s">{{ L.k7 }}</button><button class="btn btn-s"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"></path></svg>{{ L.k8 }}</button></div>
+    </div>
+    <sc-if value="{{ isResult }}" hint-placeholder-val="{{ true }}">
+      <div class="icard" style="padding: 18px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: flex-end; gap: 14px"><span class="disp" style="font-size: 56px; line-height: 1; color: var(--neg)">82</span><span style="display: flex; flex-direction: column; gap: 3px; padding-bottom: 4px"><span style="font-weight: 600; color: var(--neg)">{{ L.k9 }}</span><span class="faint" style="font-size: 12px">Ethereum Sepolia · 23.10.2026, 12:40</span></span></div>
+        <div aria-hidden="true" style="position: relative; display: grid; grid-template-columns: 24fr 35fr 25fr 16fr; gap: 3px; height: 8px"><span style="border-radius: 2px; background: #B6F36B"></span><span style="border-radius: 2px; background: #F5B941"></span><span style="border-radius: 2px; background: #FF9A5B"></span><span style="border-radius: 2px; background: #FF5A4A"></span><span style="position: absolute; left: 82%; top: -4px; width: 3px; height: 16px; border-radius: 2px; background: var(--t1)"></span></div>
+        <sc-for list="{{ labels }}" as="l" hint-placeholder-count="4"><div style="display: flex; gap: 10px; align-items: center; font-size: 14px"><span class="chip {{ l.cls }}" style="flex: none">{{ l.tag }}</span><span class="muted">{{ l.t }}</span></div></sc-for>
+        <div style="border-top: 1px solid var(--bs); padding-top: 4px"><div class="rowline"><span>{{ L.k10 }}</span><span>{{ L.k11 }}</span></div><div class="rowline"><span>{{ L.k12 }}</span><span>23.10.2026</span></div></div>
+      </div>
+      <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k13 }}</span></span></div>
+    </sc-if>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div class="icard" style="padding: 28px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+        <span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg></span>
+        <span style="font-weight: 600; font-size: 17px">{{ L.k14 }}</span>
+        <span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k15 }}</span>
+      </div>
+      <span class="lbl" style="padding: 4px 4px 0">{{ L.k16 }}</span>
+      <div class="icard"><sc-for list="{{ recent }}" as="r" hint-placeholder-count="2"><a href="ios-address-check.dc.html" class="irow"><span class="mono" style="flex: 1; font-size: 14px">{{ r.a }}</span><span class="chip {{ r.cls }}" style="height: 24px">{{ r.t }}</span></a></sc-for></div>
+    </sc-if>
+    <sc-if value="{{ isNotFound }}" hint-placeholder-val="{{ false }}">
+      <div class="icard" style="padding: 18px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: center; gap: 14px"><span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 18px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10l4 4M14 10l-4 4M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"></path></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600; font-size: 17px">{{ L.k17 }}</span><span class="chip c-off" style="align-self: flex-start; height: 24px">{{ L.k18 }}</span></span></div>
+        <span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k19 }}</span>
+      </div>
+    </sc-if>
+  </div>
+  <div class="ios-fade"></div><div class="ios-bar"><button type="button" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k20 }}</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["result", "empty", "not_found"], "default": "result"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Проверка адреса": "Address check", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "АДРЕС": "ADDRESS", "Адрес": "Address", "0x…, tb1… или адрес Solana": "0x…, tb1… or a Solana address", "Вставить": "Paste", "Сканировать QR": "Scan QR", "Высокий риск": "High risk", "Источник": "Source", "Публичные базы меток": "Public label databases", "Обновлено": "Updated", "Перевод на этот адрес уйдёт на ручную проверку — до 2 часов.": "A transfer to this address will go to manual review — up to 2 hours.", "Вставьте адрес или отсканируйте QR": "Paste an address or scan a QR code", "Покажем уровень риска, метки и источник. Владелец адреса о проверке не узнает.": "We'll show the risk level, labels and source. The address owner won't know about the check.", "НЕДАВНИЕ": "RECENT", "Адрес не найден в базах": "Address not found in databases", "Нет данных": "No data", "Это не гарантия безопасности: у адреса нет истории операций и меток. Для первого перевода выберите небольшую сумму.": "This doesn't guarantee safety: the address has no transaction history or labels. Use a small amount for the first transfer.", "Проверить": "Check", "МИКСЕР": "MIXER", "Связь с сервисом-миксером в 2 переходах": "Linked to a mixing service within 2 hops", "ОБЪЁМ": "VOLUME", "Аномальный объём за 24 часа": "Unusual volume in 24 hours", "НОВЫЙ": "NEW", "Адрес создан 3 дня назад": "Address created 3 days ago", "САНКЦИИ": "SANCTIONS", "Совпадений не найдено": "No matches found", "Низкий · 6": "Low · 6", "Высокий · 82": "High · 82"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Проверка адреса"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("АДРЕС"), k5: this.tr("Адрес"), k6: this.tr("0x…, tb1… или адрес Solana"), k7: this.tr("Вставить"), k8: this.tr("Сканировать QR"), k9: this.tr("Высокий риск"), k10: this.tr("Источник"), k11: this.tr("Публичные базы меток"), k12: this.tr("Обновлено"), k13: this.tr("Перевод на этот адрес уйдёт на ручную проверку — до 2 часов."), k14: this.tr("Вставьте адрес или отсканируйте QR"), k15: this.tr("Покажем уровень риска, метки и источник. Владелец адреса о проверке не узнает."), k16: this.tr("НЕДАВНИЕ"), k17: this.tr("Адрес не найден в базах"), k18: this.tr("Нет данных"), k19: this.tr("Это не гарантия безопасности: у адреса нет истории операций и меток. Для первого перевода выберите небольшую сумму."), k20: this.tr("Проверить"), k21: this.tr("МИКСЕР"), k22: this.tr("Связь с сервисом-миксером в 2 переходах"), k23: this.tr("ОБЪЁМ"), k24: this.tr("Аномальный объём за 24 часа"), k25: this.tr("НОВЫЙ"), k26: this.tr("Адрес создан 3 дня назад"), k27: this.tr("САНКЦИИ"), k28: this.tr("Совпадений не найдено"), k29: this.tr("Низкий · 6"), k30: this.tr("Высокий · 82") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'result';
+    const addr = { result: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', empty: '', not_found: '7EcDhSYGxXyscszYEp35KHN8vvw3svAuLKTzXwCFLtV' }[st];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isResult: st === 'result', isEmpty: st === 'empty', isNotFound: st === 'not_found', addr,
+      net: st === 'not_found' ? 'Solana Devnet' : 'Sepolia',
+      labels: [{ tag: this.tr("МИКСЕР"), cls: 'c-neg', t: this.tr("Связь с сервисом-миксером в 2 переходах") }, { tag: this.tr("ОБЪЁМ"), cls: 'c-warn', t: this.tr("Аномальный объём за 24 часа") }, { tag: this.tr("НОВЫЙ"), cls: 'c-warn', t: this.tr("Адрес создан 3 дня назад") }, { tag: this.tr("САНКЦИИ"), cls: 'c-off', t: this.tr("Совпадений не найдено") }],
+      recent: [{ a: '0x1b9C…0a91', t: this.tr("Низкий · 6"), cls: 'c-ok' }, { a: '0x1f98…F984', t: this.tr("Высокий · 82"), cls: 'c-neg' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

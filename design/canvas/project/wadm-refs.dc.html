@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Admin для Windows — справочники</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" account="admin" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinAdminNav" active="refs" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1><button class="wbtn">{{ L.k3 }}</button><button class="wbtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>{{ L.k4 }}</button></div>
+      <div style="padding: 0 28px 12px"><div style="display: flex; gap: 2px; padding: 2px; border-radius: 6px; background: var(--ctrl); border: 1px solid var(--bs); display: inline-flex"><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: transparent">{{ L.k5 }}</button><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: transparent">{{ L.k6 }}</button><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: var(--wsel)">{{ L.k7 }}</button><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: transparent">{{ L.k8 }}</button><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: transparent">{{ L.k9 }}</button></div></div>
+      <div style="flex: 1; min-height: 0; display: flex; border-top: 1px solid var(--bs)">
+        <div style="flex: 1; min-width: 0; overflow: hidden"><table class="tbl"><thead><tr><th>{{ L.k10 }}</th><th>{{ L.k11 }}</th><th>{{ L.k12 }}</th><th>{{ L.k13 }}</th><th>{{ L.k14 }}</th></tr></thead><tbody><sc-for list="{{ rows }}" as="r" hint-placeholder-count="8"><tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}"><td style="font-weight: 500">{{ r.op }}</td><td class="muted" style="font-size: 12px">{{ r.asset }}</td><td class="muted" style="font-size: 12px">{{ r.type }}</td><td><sc-if value="{{ r.edit }}" hint-placeholder-val="{{ false }}"><span class="winp" style="height: 30px; width: 120px; border-bottom: 2px solid var(--sigt)"><input aria-label="{{ L.k15 }}" defaultValue="{{ r.v }}"></span></sc-if><sc-if value="{{ r.view }}" hint-placeholder-val="{{ true }}"><span class="num" style="font-weight: 600">{{ r.v }}</span></sc-if><span class="faint" style="font-size: 11px; display: block">{{ r.was }}</span></td><td class="muted" style="font-size: 12px">{{ r.by }}</td></tr></sc-for></tbody></table></div>
+        <aside style="width: 400px; flex: none; border-left: 1px solid var(--bs); background: var(--card); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; overflow: hidden"><span class="lbl">{{ L.k16 }}</span>
+          <table class="tbl"><thead><tr><th>{{ L.k17 }}</th><th style="text-align: right">{{ L.k18 }}</th><th style="text-align: right">P2P</th><th style="text-align: right">{{ L.k19 }}</th></tr></thead><tbody><sc-for list="{{ lim }}" as="l" hint-placeholder-count="3"><tr><td style="font-weight: 500">{{ l.lv }}</td><td class="num" style="text-align: right">{{ l.w }}</td><td class="num" style="text-align: right">{{ l.p }}</td><td class="num" style="text-align: right">{{ l.o }}</td></tr></sc-for></tbody></table>
+          <span class="lbl" style="margin-top: 6px">{{ L.k20 }}</span>
+          <sc-for list="{{ hist }}" as="h" hint-placeholder-count="3"><div style="display: flex; flex-direction: column; gap: 2px; padding: 8px 0; border-bottom: 1px solid var(--bs)"><span style="font-size: 12px">{{ h.t }}</span><span class="faint mono" style="font-size: 11px">{{ h.m }}</span></div></sc-for>
+          <div style="flex: 1"></div>
+          <span class="faint" style="font-size: 12px; line-height: 17px">{{ L.k21 }}</span>
+          <div style="display: flex; gap: 6px"><button class="wbtn" style="flex: 1">{{ L.k22 }}</button><button class="wbtn wbtn-p" style="flex: 1">{{ L.k23 }}</button></div></aside>
+      </div>
+      <footer class="wstatus"><span>{{ L.k24 }}</span><span style="flex: 1"></span><span>{{ L.k25 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON Admin · Справочники": "AEON Admin · Reference data", "Справочники": "Reference data", "Экспорт CSV": "Export CSV", "Добавить": "Add", "Сети": "Networks", "Активы": "Assets", "Комиссии": "Fees", "Лимиты": "Limits", "Способы оплаты": "Payment methods", "ОПЕРАЦИЯ": "OPERATION", "АКТИВ · СЕТЬ": "ASSET · NETWORK", "ТИП": "TYPE", "ЗНАЧЕНИЕ": "VALUE", "ИЗМЕНЕНО": "CHANGED", "Новое значение комиссии": "New fee value", "ЛИМИТЫ ПО УРОВНЯМ KYC · В СУТКИ, USDT": "LIMITS BY KYC LEVEL · PER DAY, USDT", "УРОВЕНЬ": "LEVEL", "ВЫВОД": "WITHDRAWAL", "ОБЪЯВЛ.": "OFFERS", "ИСТОРИЯ ИЗМЕНЕНИЙ": "CHANGE HISTORY", "Изменения применяются только к новым операциям и требуют роли «Администратор» и 2FA.": "Changes apply only to new operations and require the Administrator role and 2FA.", "Отменить изменение": "Discard change", "Сохранить с 2FA": "Save with 2FA", "1 НЕСОХРАНЁННОЕ ИЗМЕНЕНИЕ": "1 UNSAVED CHANGE", "F2 — ИЗМЕНИТЬ · ESC — ОТМЕНИТЬ · CTRL+S — СОХРАНИТЬ": "F2 — EDIT · ESC — DISCARD · CTRL+S — SAVE", "Вывод": "Withdrawal", "фикс.": "fixed", "1,00 USDT": "1.00 USDT", "arb_olga · 02.10": "arb_olga · 02.10", "0,50 USDT": "0.50 USDT", "0,0005 ETH": "0.0005 ETH", "система · 14.05": "system · 14.05", "0,0001 BTC": "0.0001 BTC", "0,01 SOL": "0.01 SOL", "P2P · продавец": "P2P · seller", "все активы": "all assets", "процент": "percent", "0,40%": "0.40%", "arb_olga · сейчас": "arb_olga · now", "было 0,50%": "was 0.50%", "P2P · покупатель": "P2P · buyer", "0,00%": "0.00%", "arb_olga · 23.10": "arb_olga · 23.10", "Внутренний перевод": "Internal transfer", "KYC 0 · почта": "KYC 0 · email", "500": "500", "—": "—", "KYC 1 · телефон": "KYC 1 · phone", "5 000": "5,000", "KYC 2 · документ": "KYC 2 · ID", "50 000": "50,000", "без огр.": "unlimited", "P2P · продавец: 0,50% → 0,40% (черновик)": "P2P · seller: 0.50% → 0.40% (draft)", "arb_olga · сейчас · не сохранено": "arb_olga · now · not saved", "Вывод USDT · Amoy: 1,00 → 0,50 USDT": "USDT withdrawal · Amoy: 1.00 → 0.50 USDT", "Лимит KYC 1 · P2P: 3 000 → 5 000": "KYC 1 limit · P2P: 3,000 → 5,000", "arb_olga · 18.09 · 2FA": "arb_olga · 18.09 · 2FA"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON Admin · Справочники"), k2: this.tr("Справочники"), k3: this.tr("Экспорт CSV"), k4: this.tr("Добавить"), k5: this.tr("Сети"), k6: this.tr("Активы"), k7: this.tr("Комиссии"), k8: this.tr("Лимиты"), k9: this.tr("Способы оплаты"), k10: this.tr("ОПЕРАЦИЯ"), k11: this.tr("АКТИВ · СЕТЬ"), k12: this.tr("ТИП"), k13: this.tr("ЗНАЧЕНИЕ"), k14: this.tr("ИЗМЕНЕНО"), k15: this.tr("Новое значение комиссии"), k16: this.tr("ЛИМИТЫ ПО УРОВНЯМ KYC · В СУТКИ, USDT"), k17: this.tr("УРОВЕНЬ"), k18: this.tr("ВЫВОД"), k19: this.tr("ОБЪЯВЛ."), k20: this.tr("ИСТОРИЯ ИЗМЕНЕНИЙ"), k21: this.tr("Изменения применяются только к новым операциям и требуют роли «Администратор» и 2FA."), k22: this.tr("Отменить изменение"), k23: this.tr("Сохранить с 2FA"), k24: this.tr("1 НЕСОХРАНЁННОЕ ИЗМЕНЕНИЕ"), k25: this.tr("F2 — ИЗМЕНИТЬ · ESC — ОТМЕНИТЬ · CTRL+S — СОХРАНИТЬ"), k26: this.tr("Вывод"), k27: this.tr("фикс."), k28: this.tr("1,00 USDT"), k29: this.tr("arb_olga · 02.10"), k30: this.tr("0,50 USDT"), k31: this.tr("0,0005 ETH"), k32: this.tr("система · 14.05"), k33: this.tr("0,0001 BTC"), k34: this.tr("0,01 SOL"), k35: this.tr("P2P · продавец"), k36: this.tr("все активы"), k37: this.tr("процент"), k38: this.tr("0,40%"), k39: this.tr("arb_olga · сейчас"), k40: this.tr("было 0,50%"), k41: this.tr("P2P · покупатель"), k42: this.tr("0,00%"), k43: this.tr("arb_olga · 23.10"), k44: this.tr("Внутренний перевод"), k45: this.tr("KYC 0 · почта"), k46: this.tr("500"), k47: this.tr("—"), k48: this.tr("KYC 1 · телефон"), k49: this.tr("5 000"), k50: this.tr("KYC 2 · документ"), k51: this.tr("50 000"), k52: this.tr("без огр."), k53: this.tr("P2P · продавец: 0,50% → 0,40% (черновик)"), k54: this.tr("arb_olga · сейчас · не сохранено"), k55: this.tr("Вывод USDT · Amoy: 1,00 → 0,50 USDT"), k56: this.tr("Лимит KYC 1 · P2P: 3 000 → 5 000"), k57: this.tr("arb_olga · 18.09 · 2FA") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const sel = (i, j) => (i === j ? { sel: 'true', bg: 'var(--wsel)' } : { sel: 'false', bg: 'transparent' });
+    const rc = (r) => (r >= 85 ? 'var(--neg)' : r >= 60 ? 'var(--orange, #FF9A5B)' : r >= 25 ? 'var(--warn)' : 'var(--sigt)');
+    const f = (i, op, asset, type, v, by, edit, was) => ({ ...sel(i, 5), op, asset, type, v, by, edit: !!edit, view: !edit, was: was || '' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      rows: [f(0, this.tr("Вывод"), 'USDT · Sepolia', this.tr("фикс."), this.tr("1,00 USDT"), this.tr("arb_olga · 02.10")), f(1, this.tr("Вывод"), 'USDT · Amoy', this.tr("фикс."), this.tr("0,50 USDT"), this.tr("arb_olga · 02.10")), f(2, this.tr("Вывод"), 'ETH · Sepolia', this.tr("фикс."), this.tr("0,0005 ETH"), this.tr("система · 14.05")), f(3, this.tr("Вывод"), 'BTC · Testnet', this.tr("фикс."), this.tr("0,0001 BTC"), this.tr("система · 14.05")), f(4, this.tr("Вывод"), 'SOL · Devnet', this.tr("фикс."), this.tr("0,01 SOL"), this.tr("система · 14.05")), f(5, this.tr("P2P · продавец"), this.tr("все активы"), this.tr("процент"), this.tr("0,40%"), this.tr("arb_olga · сейчас"), true, this.tr("было 0,50%")), f(6, this.tr("P2P · покупатель"), this.tr("все активы"), this.tr("процент"), this.tr("0,00%"), this.tr("arb_olga · 23.10")), f(7, this.tr("Внутренний перевод"), this.tr("все активы"), this.tr("процент"), this.tr("0,00%"), this.tr("система · 14.05"))],
+      lim: [{ lv: this.tr("KYC 0 · почта"), w: this.tr("500"), p: this.tr("—"), o: this.tr("—") }, { lv: this.tr("KYC 1 · телефон"), w: this.tr("5 000"), p: this.tr("5 000"), o: this.tr("5 000") }, { lv: this.tr("KYC 2 · документ"), w: this.tr("50 000"), p: this.tr("50 000"), o: this.tr("без огр.") }],
+      hist: [{ t: this.tr("P2P · продавец: 0,50% → 0,40% (черновик)"), m: this.tr("arb_olga · сейчас · не сохранено") }, { t: this.tr("Вывод USDT · Amoy: 1,00 → 0,50 USDT"), m: this.tr("arb_olga · 02.10") }, { t: this.tr("Лимит KYC 1 · P2P: 3 000 → 5 000"), m: this.tr("arb_olga · 18.09 · 2FA") }]
+    };
+  }
+}
+</script>
+</body>
+</html>

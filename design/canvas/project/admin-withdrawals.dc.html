@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — выводы на проверке</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1160px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="withdrawals" who="{{ who }}" cleared="{{ clr }}" hint-size="240px,1100px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <div class="grid-a">
+        <div class="kpi"><span class="lbl">{{ L.k2 }}</span><span class="disp" style="font-size: 28px">{{ kQ }}</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k3 }}</span><span class="disp" style="font-size: 28px">{{ kSum }}</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k5 }}</span><span class="disp" style="font-size: 28px; color: {{ kOldC }}">{{ kOld }}</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k7 }}</span><span class="disp" style="font-size: 28px">{{ L.k8 }}</span></div>
+      </div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">      <div class="split">
+        <section class="card" aria-label="{{ L.k9 }}" style="flex: 1 1 640px; min-width: 0; border-radius: 16px; overflow-x: auto">
+          <table class="tbl" style="min-width: 680px">
+            <thead><tr><th>{{ L.k10 }}</th><th style="text-align: right">{{ L.k11 }}</th><th>{{ L.k12 }}</th><th>{{ L.k13 }}</th><th>{{ L.k14 }}</th><th>{{ L.k15 }}</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+                <tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}">
+                  <td style="font-weight: 600">{{ r.user }}</td>
+                  <td class="num" style="text-align: right"><span style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-weight: 600">{{ r.amt }}</span><span class="faint" style="font-size: 12px">{{ r.net }}</span></span></td>
+                  <td class="mono muted" style="font-size: 12px">{{ r.addr }}</td>
+                  <td><span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 50px; height: 6px; border-radius: 3px; background: var(--bd); overflow: hidden"><span style="display: block; height: 100%; width: {{ r.rw }}; background: {{ r.rc }}"></span></span><span class="mono" style="font-size: 12px; color: {{ r.rc }}">{{ r.risk }}</span></span></td>
+                  <td class="muted" style="font-size: 13px">{{ r.reason }}</td>
+                  <td class="mono" style="font-size: 12px; color: {{ r.ac }}">{{ r.age }}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </section>
+
+        <aside class="card" aria-label="{{ L.k16 }}" style="flex: 0 1 360px; min-width: 0; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start"><span style="display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ L.k17 }}</span><span class="disp" style="font-size: 26px">{{ L.k18 }}</span><span class="muted" style="font-size: 13px">{{ L.k19 }}</span></span><span class="chip c-warn">{{ L.k20 }}</span></div>
+          <div class="tile" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k21 }}</span><span class="mono" style="font-size: 13px; line-height: 20px; word-break: break-all">0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984</span><span style="display: flex; gap: 6px; flex-wrap: wrap"><span class="chip c-neg">{{ L.k22 }}</span><span class="chip c-warn">{{ L.k23 }}</span></span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k24 }}</span>
+            <div aria-hidden="true" style="position: relative; display: grid; grid-template-columns: 24fr 35fr 25fr 16fr; gap: 3px; height: 8px"><span style="border-radius: 2px; background: #B6F36B"></span><span style="border-radius: 2px; background: #F5B941"></span><span style="border-radius: 2px; background: #FF9A5B"></span><span style="border-radius: 2px; background: #FF5A4A"></span><span style="position: absolute; left: 82%; top: -4px; width: 3px; height: 16px; border-radius: 2px; background: var(--t1)"></span></div>
+            <sc-for list="{{ reasons }}" as="x" hint-placeholder-count="4"><div style="display: flex; gap: 10px; font-size: 13px; line-height: 18px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex: none; border-radius: 2px; background: {{ x.c }}"></span><span>{{ x.t }}</span></div></sc-for>
+          </div>
+          <div class="tile" style="padding: 4px 14px"><div class="rowline"><span>{{ L.k25 }}</span><span>{{ L.k26 }}</span></div><div class="rowline"><span>{{ L.k27 }}</span><span style="color: var(--neg)">{{ L.k28 }}</span></div><div class="rowline"><span>{{ L.k29 }}</span><span>{{ L.k30 }}</span></div><div class="rowline"><span>{{ L.k31 }}</span><span style="color: var(--warn)">{{ L.k32 }}</span></div></div>
+          <sc-if value="{{ isAdm }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 14px"><div class="field"><label for="cmt">{{ L.k33 }}</label><textarea id="cmt" rows="3" placeholder="{{ L.k34 }}" style="border-radius: 12px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); padding: 12px; font: 400 14px Inter, sans-serif; resize: none; outline: none"></textarea></div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px"><button class="btn btn-n" style="flex: 1 1 auto">{{ L.k35 }}</button><button class="btn btn-p" style="flex: 1 1 auto">{{ L.k36 }}</button></div>
+          <span class="hint">{{ L.k37 }}</span></div></sc-if>
+          <sc-if value="{{ isSup }}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 14px"><div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 16px; background: var(--infos); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span><b style="font-weight: 600">{{ L.k64 }}</b><br>{{ L.k65 }}</span></span></div><div class="field"><label for="note">{{ L.k66 }}</label><textarea id="note" rows="3" placeholder="{{ L.k67 }}" style="border-radius: 12px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); padding: 12px; font: 400 14px Inter, sans-serif; resize: none; outline: none"></textarea></div><button class="btn btn-o">{{ L.k68 }}</button></div></sc-if>
+        </aside>
+      </div></sc-if>
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 72px 24px 64px; border-radius: 16px; background: var(--card); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M8 12l3 3 5-6"></path></svg></span><span style="font-weight: 600; font-size: 17px">{{ L.k59 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k60 }}</span><div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 4px"><span class="chip c-ok">{{ L.k61 }}</span><span class="chip c-neg">{{ L.k62 }}</span><span class="chip c-off">{{ L.k63 }}</span></div></div></sc-if>
+
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "role": {"editor": "enum", "options": ["admin", "support"], "default": "admin"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1160}}'>
+class Component extends DCLogic {
+  static EN = {"Выводы на проверке": "Withdrawals under review", "СУММА": "AMOUNT", "ПОЛЬЗОВАТЕЛЬ": "USER", "РИСК": "RISK", "В ОЧЕРЕДИ": "IN QUEUE", "НА СУММУ": "TOTAL AMOUNT", "$14 820": "$14,820", "СТАРШЕЙ ЗАЯВКЕ": "OLDEST REQUEST", "1 ч 42 мин": "1 h 42 min", "СРОК ОБРАБОТКИ": "PROCESSING TIME", "до 2 ч": "up to 2 h", "Очередь выводов": "Withdrawal queue", "АДРЕС": "ADDRESS", "ПРИЧИНА": "REASON", "ЖДЁТ": "WAITING", "Заявка на вывод W-90412": "Withdrawal request W-90412", "ЗАЯВКА W-90412 · P2P_IVAN": "REQUEST W-90412 · P2P_IVAN", "4 000,00 USDT": "4,000.00 USDT", "Ethereum Sepolia · комиссия 1,00 USDT": "Ethereum Sepolia · fee 1.00 USDT", "Ручная проверка": "Manual review", "АДРЕС ПОЛУЧАТЕЛЯ": "RECIPIENT ADDRESS", "Миксер · 2 перехода": "Mixer · 2 hops", "Новый адрес · 3 ч": "New address · 3 h", "СКОРИНГ · 82 ИЗ 100": "SCORING · 82 OF 100", "Аккаунт": "Account", "с 14.05.2026 · KYC 1": "since 14.05.2026 · KYC 1", "Лимит KYC 1 · сутки": "KYC 1 limit · 24 h", "5 000 · использовано 4 600": "5,000 · used 4,600", "Выводов за 30 дней": "Withdrawals in 30 days", "9 · на $11 200": "9 · worth $11,200", "Устройство": "Device", "новое · Windows 11": "new · Windows 11", "Комментарий сотрудника": "Staff comment", "Обязателен при отклонении — увидит пользователь": "Required when rejecting — the user will see it", "Отклонить и вернуть": "Reject and return", "Одобрить с 2FA": "Approve with 2FA", "При отклонении 4 001 USDT вернутся на баланс пользователя операцией WITHDRAWAL_REVERT.": "If rejected, 4,001 USDT return to the user's balance via a WITHDRAWAL_REVERT operation.", "4 000 USDT": "4,000 USDT", "Высокий риск адреса": "High-risk address", "2,5 ETH": "2.5 ETH", "Выше порога 5 000 $": "Above the $5,000 threshold", "58 мин": "58 min", "0,0012 BTC": "0.0012 BTC", "Новый адрес вывода": "New withdrawal address", "41 мин": "41 min", "1 200 USDT": "1,200 USDT", "Ошибка скоринга, повтор": "Scoring error, retrying", "22 мин": "22 min", "0,8 BTC": "0.8 BTC", "Новое устройство + сумма": "New device + amount", "15 мин": "15 min", "Выше суточного лимита": "Above the daily limit", "4 мин": "4 min", "ч": "h", "Адрес в двух переходах от сервиса-миксера (метка от 18.10)": "Address is two hops from a mixing service (flagged 18.10)", "Адрес добавлен 3 часа назад, задержка 24 ч не прошла": "Address added 3 hours ago, the 24 h delay hasn't passed", "Сумма близка к суточному лимиту KYC 1": "Amount is close to the KYC 1 daily limit", "Санкционные списки — совпадений нет": "Sanctions lists — no matches", "Очередь выводов пуста": "Withdrawal queue is empty", "Все заявки обработаны. Новые появятся здесь автоматически, а заявки выше порога придут уведомлением в мобильную админку.": "All requests are processed. New ones appear here automatically, and requests above the threshold are pushed to the mobile admin.", "Одобрено сегодня · 18": "Approved today · 18", "Отклонено · 2": "Rejected · 2", "Среднее время · 24 мин": "Average time · 24 min", "Роль «Поддержка»: только просмотр": "Support role: view only", "Одобрять и отклонять выводы могут роли «Финансы» и «Администратор». Вы можете оставить заметку для коллег.": "Only the Finance and Administrator roles can approve or reject withdrawals. You can leave a note for colleagues.", "Заметка для коллег": "Note for colleagues", "Видят только сотрудники": "Visible to staff only", "Передать в «Финансы»": "Hand over to Finance"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Выводы на проверке"), k2: this.tr("В ОЧЕРЕДИ"), k3: this.tr("НА СУММУ"), k4: this.tr("$14 820"), k5: this.tr("СТАРШЕЙ ЗАЯВКЕ"), k6: this.tr("1 ч 42 мин"), k7: this.tr("СРОК ОБРАБОТКИ"), k8: this.tr("до 2 ч"), k9: this.tr("Очередь выводов"), k10: this.tr("ПОЛЬЗОВАТЕЛЬ"), k11: this.tr("СУММА"), k12: this.tr("АДРЕС"), k13: this.tr("РИСК"), k14: this.tr("ПРИЧИНА"), k15: this.tr("ЖДЁТ"), k16: this.tr("Заявка на вывод W-90412"), k17: this.tr("ЗАЯВКА W-90412 · P2P_IVAN"), k18: this.tr("4 000,00 USDT"), k19: this.tr("Ethereum Sepolia · комиссия 1,00 USDT"), k20: this.tr("Ручная проверка"), k21: this.tr("АДРЕС ПОЛУЧАТЕЛЯ"), k22: this.tr("Миксер · 2 перехода"), k23: this.tr("Новый адрес · 3 ч"), k24: this.tr("СКОРИНГ · 82 ИЗ 100"), k25: this.tr("Аккаунт"), k26: this.tr("с 14.05.2026 · KYC 1"), k27: this.tr("Лимит KYC 1 · сутки"), k28: this.tr("5 000 · использовано 4 600"), k29: this.tr("Выводов за 30 дней"), k30: this.tr("9 · на $11 200"), k31: this.tr("Устройство"), k32: this.tr("новое · Windows 11"), k33: this.tr("Комментарий сотрудника"), k34: this.tr("Обязателен при отклонении — увидит пользователь"), k35: this.tr("Отклонить и вернуть"), k36: this.tr("Одобрить с 2FA"), k37: this.tr("При отклонении 4 001 USDT вернутся на баланс пользователя операцией WITHDRAWAL_REVERT."), k38: this.tr("4 000 USDT"), k39: this.tr("Высокий риск адреса"), k40: this.tr("2,5 ETH"), k41: this.tr("Выше порога 5 000 $"), k42: this.tr("58 мин"), k43: this.tr("0,0012 BTC"), k44: this.tr("Новый адрес вывода"), k45: this.tr("41 мин"), k46: this.tr("1 200 USDT"), k47: this.tr("Ошибка скоринга, повтор"), k48: this.tr("22 мин"), k49: this.tr("0,8 BTC"), k50: this.tr("Новое устройство + сумма"), k51: this.tr("15 мин"), k52: this.tr("Выше суточного лимита"), k53: this.tr("4 мин"), k54: this.tr("ч"), k55: this.tr("Адрес в двух переходах от сервиса-миксера (метка от 18.10)"), k56: this.tr("Адрес добавлен 3 часа назад, задержка 24 ч не прошла"), k57: this.tr("Сумма близка к суточному лимиту KYC 1"), k58: this.tr("Санкционные списки — совпадений нет"), k59: this.tr("Очередь выводов пуста"), k60: this.tr("Все заявки обработаны. Новые появятся здесь автоматически, а заявки выше порога придут уведомлением в мобильную админку."), k61: this.tr("Одобрено сегодня · 18"), k62: this.tr("Отклонено · 2"), k63: this.tr("Среднее время · 24 мин"), k64: this.tr("Роль «Поддержка»: только просмотр"), k65: this.tr("Одобрять и отклонять выводы могут роли «Финансы» и «Администратор». Вы можете оставить заметку для коллег."), k66: this.tr("Заметка для коллег"), k67: this.tr("Видят только сотрудники"), k68: this.tr("Передать в «Финансы»") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const sup = (this.props.role ?? 'admin') === 'support';
+    const st = this.props.state ?? 'default';
+    const rc = (r) => (r >= 85 ? 'var(--neg)' : r >= 60 ? 'var(--orange, #FF9A5B)' : r >= 25 ? 'var(--warn)' : 'var(--sigt)');
+    const rows = [
+      ['p2p_ivan', this.tr('4 000 USDT'), 'Sepolia', '0x1f98…F984', 82, this.tr('Высокий риск адреса'), this.tr('1 ч 42 мин'), true],
+      ['trade_room', this.tr('2,5 ETH'), 'Sepolia', '0x9e41…44Bc', 18, this.tr('Выше порога 5 000 $'), this.tr('58 мин')],
+      ['alex_tk', this.tr('0,0012 BTC'), 'Testnet', 'tb1q…jzsx', 31, this.tr('Новый адрес вывода'), this.tr('41 мин')],
+      ['mbtc', this.tr('1 200 USDT'), 'Sepolia', '0x77ab…12Fe', 47, this.tr('Ошибка скоринга, повтор'), this.tr('22 мин')],
+      ['gold_x', this.tr('0,8 BTC'), 'Testnet', 'tb1q…a0x9', 64, this.tr('Новое устройство + сумма'), this.tr('15 мин')],
+      ['eva_s', '150 SOL', 'Devnet', '9xQe…2fPa', 9, this.tr('Выше суточного лимита'), this.tr('4 мин')]
+    ];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', who: sup ? 'support' : 'admin', isAdm: !sup, isSup: sup, clr: st === 'empty' ? 'withdrawals' : 'none', kQ: st === 'empty' ? '0' : '6', kSum: st === 'empty' ? '$0' : this.tr("$14 820"), kOld: st === 'empty' ? '—' : this.tr("1 ч 42 мин"), kOldC: st === 'empty' ? 'var(--t1)' : 'var(--warn)', isDefault: st === 'default', isEmpty: st === 'empty',
+      rows: rows.map((r) => ({ user: r[0], amt: r[1], net: r[2], addr: r[3], risk: String(r[4]), rw: r[4] + '%', rc: rc(r[4]), reason: r[5], age: r[6], ac: r[6].includes(this.tr('ч')) ? 'var(--warn)' : 'var(--t2)', sel: r[7] ? 'true' : 'false', bg: r[7] ? 'var(--sel)' : 'transparent' })),
+      reasons: [
+        { c: 'var(--neg)', t: this.tr('Адрес в двух переходах от сервиса-миксера (метка от 18.10)') },
+        { c: 'var(--warn)', t: this.tr('Адрес добавлен 3 часа назад, задержка 24 ч не прошла') },
+        { c: 'var(--warn)', t: this.tr('Сумма близка к суточному лимиту KYC 1') },
+        { c: 'var(--t3)', t: this.tr('Санкционные списки — совпадений нет') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

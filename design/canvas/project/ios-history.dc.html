@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — история</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; gap: 6px; overflow: hidden"><sc-for list="{{ chips }}" as="c" hint-placeholder-count="5"><button aria-pressed="{{ c.on }}" class="btn btn-s {{ c.cls }}" style="flex: none">{{ c.label }}</button></sc-for></div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{ days }}" as="d" hint-placeholder-count="2">
+      <span class="lbl" style="padding: 8px 4px 0">{{ d.label }}</span>
+      <div class="icard" style="display: flex; flex-direction: column">
+        <sc-for list="{{ d.items }}" as="x" hint-placeholder-count="3">
+          <a href="ios-tx-detail.dc.html" class="irow" style="min-height: 68px">
+            <span aria-hidden="true" style="width: 38px; height: 38px; flex: none; border-radius: 999px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ x.d }}"></path></svg></span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{ x.title }}</span><span style="font-size: 12px; color: {{ x.sc }}">{{ x.status }}</span></span>
+            <span class="num" style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px"><span style="font-weight: 600; color: {{ x.ac }}">{{ x.amt }}</span><span class="faint" style="font-size: 12px">{{ x.time }}</span></span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-for></div></sc-if>
+    <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}"><div role="status" aria-label="{{ L.k26 }}" style="display: flex; flex-direction: column; gap: 10px"><span style="padding: 8px 4px 0"><span class="sk" style="display: block; width: 70px; height: 12px; border-radius: 4px; "></span></span><div class="icard"><div class="irow" style="min-height: 68px"><span class="sk" style="display: block; width: 38px; height: 38px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span class="sk" style="display: block; width: 50%; height: 14px; border-radius: 4px; "></span><span class="sk" style="display: block; width: 35%; height: 10px; border-radius: 4px; "></span></span><span class="sk" style="display: block; width: 60px; height: 14px; border-radius: 4px; "></span></div><div class="irow" style="min-height: 68px"><span class="sk" style="display: block; width: 38px; height: 38px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span class="sk" style="display: block; width: 50%; height: 14px; border-radius: 4px; "></span><span class="sk" style="display: block; width: 35%; height: 10px; border-radius: 4px; "></span></span><span class="sk" style="display: block; width: 60px; height: 14px; border-radius: 4px; "></span></div><div class="irow" style="min-height: 68px"><span class="sk" style="display: block; width: 38px; height: 38px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span class="sk" style="display: block; width: 50%; height: 14px; border-radius: 4px; "></span><span class="sk" style="display: block; width: 35%; height: 10px; border-radius: 4px; "></span></span><span class="sk" style="display: block; width: 60px; height: 14px; border-radius: 4px; "></span></div></div><span style="padding: 8px 4px 0"><span class="sk" style="display: block; width: 60px; height: 12px; border-radius: 4px; "></span></span><div class="icard"><div class="irow" style="min-height: 68px"><span class="sk" style="display: block; width: 38px; height: 38px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span class="sk" style="display: block; width: 50%; height: 14px; border-radius: 4px; "></span><span class="sk" style="display: block; width: 35%; height: 10px; border-radius: 4px; "></span></span><span class="sk" style="display: block; width: 60px; height: 14px; border-radius: 4px; "></span></div><div class="irow" style="min-height: 68px"><span class="sk" style="display: block; width: 38px; height: 38px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span class="sk" style="display: block; width: 50%; height: 14px; border-radius: 4px; "></span><span class="sk" style="display: block; width: 35%; height: 10px; border-radius: 4px; "></span></span><span class="sk" style="display: block; width: 60px; height: 14px; border-radius: 4px; "></span></div></div></div></sc-if>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 40px 20px 28px; border-radius: 22px; background: var(--surface); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"></path></svg></span><span style="font-weight: 600; font-size: 17px">{{ L.k27 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k28 }}</span><a href="ios-receive.dc.html" style="height: 48px; padding: 0 20px; border-radius: 999px; font: 600 15px Inter, sans-serif; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; margin-top: 6px; background: var(--pbg); color: var(--pfg)">{{ L.k29 }}</a></div></sc-if>
+  </div>
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 112px; background: linear-gradient(180deg, var(--fade) 70%, transparent)"></div>
+  <div class="ios-nav"><a href="ios-wallet-home.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button aria-label="{{ L.k3 }}" class="gbtn glass"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"></path></svg></button><button onClick="{{ toggleLang }}" aria-label="{{ L.k4 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div style="position: absolute; left: 0; right: 0; bottom: 0"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="IosTabBar" active="wallet" hint-size="390px,110px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "loading", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Все": "All", "Завершена": "Completed", "В эскроу": "In escrow", "Назад": "Back", "Фильтры": "Filters", "История": "History", "Входящие": "Incoming", "Исходящие": "Outgoing", "СЕГОДНЯ": "TODAY", "Получено ETH": "Received ETH", "Подтверждается 3/12": "Confirming 3/12", "+0,05": "+0.05", "Эскроу P2P-48213": "Escrow P2P-48213", "Вывод BTC": "BTC withdrawal", "На ручной проверке": "Under manual review", "−0,0012": "−0.0012", "ВЧЕРА": "YESTERDAY", "Отправлено USDT": "Sent USDT", "Выполнен": "Completed", "−250,00": "−250.00", "P2P-продажа": "P2P sale", "Получено USDT": "Received USDT", "Зачислен": "Credited", "+500,00": "+500.00", "Загружаем историю": "Loading history", "Операций пока нет": "No transactions yet", "Здесь появятся зачисления, переводы и сделки P2P — с поиском по хешу и адресу.": "Deposits, transfers and P2P deals will appear here — searchable by hash and address.", "Получить первые монеты": "Receive your first coins"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("История"), k3: this.tr("Фильтры"), k4: this.tr("Язык интерфейса: русский. Переключить на английский"), k5: this.tr("Все"), k6: this.tr("Входящие"), k7: this.tr("Исходящие"), k8: this.tr("СЕГОДНЯ"), k9: this.tr("Получено ETH"), k10: this.tr("Подтверждается 3/12"), k11: this.tr("+0,05"), k12: this.tr("Эскроу P2P-48213"), k13: this.tr("В эскроу"), k14: this.tr("Вывод BTC"), k15: this.tr("На ручной проверке"), k16: this.tr("−0,0012"), k17: this.tr("ВЧЕРА"), k18: this.tr("Отправлено USDT"), k19: this.tr("Выполнен"), k20: this.tr("−250,00"), k21: this.tr("P2P-продажа"), k22: this.tr("Завершена"), k23: this.tr("Получено USDT"), k24: this.tr("Зачислен"), k25: this.tr("+500,00"), k26: this.tr("Загружаем историю"), k27: this.tr("Операций пока нет"), k28: this.tr("Здесь появятся зачисления, переводы и сделки P2P — с поиском по хешу и адресу."), k29: this.tr("Получить первые монеты") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    const R = 'M17 7L7 17M7 9v8h8', S = 'M7 17L17 7M9 7h8v8', E = 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3';
+    const x = (title, status, sc, amt, ac, time, d) => ({ title, status, sc, amt, ac, time, d });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isDefault: st === 'default', isLoading: st === 'loading', isEmpty: st === 'empty',
+      chips: [this.tr('Все'), this.tr('Входящие'), this.tr('Исходящие'), 'P2P'].map((label, i) => ({ label, on: i === 0 ? 'true' : 'false', cls: i === 0 ? 'btn-p' : 'btn-o' })),
+      days: [
+        { label: this.tr('СЕГОДНЯ'), items: [x(this.tr('Получено ETH'), this.tr('Подтверждается 3/12'), 'var(--info)', this.tr('+0,05'), 'var(--sigt)', '12:41', R), x(this.tr('Эскроу P2P-48213'), this.tr('В эскроу'), 'var(--info)', '250 USDT', 'var(--t1)', '10:10', E), x(this.tr('Вывод BTC'), this.tr('На ручной проверке'), 'var(--warn)', this.tr('−0,0012'), 'var(--t1)', '09:30', S)] },
+        { label: this.tr('ВЧЕРА'), items: [x(this.tr('Отправлено USDT'), this.tr('Выполнен'), 'var(--sigt)', this.tr('−250,00'), 'var(--t1)', '18:02', S), x(this.tr('P2P-продажа'), this.tr('Завершена'), 'var(--sigt)', '−100 USDT', 'var(--t1)', '15:40', 'M4 8h13l-3-3M20 16H7l3 3'), x(this.tr('Получено USDT'), this.tr('Зачислен'), 'var(--sigt)', this.tr('+500,00'), 'var(--sigt)', '14:20', R)] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

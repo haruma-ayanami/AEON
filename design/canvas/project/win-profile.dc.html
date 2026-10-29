@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — профиль и безопасность</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="profile" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1></div>
+      <div style="flex: 1; min-height: 0; display: flex; gap: 16px; padding: 4px 28px 20px">
+        <nav aria-label="{{ L.k3 }}" style="width: 220px; flex: none; display: flex; flex-direction: column; gap: 2px">
+          <div class="wcard" style="padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 15px Inter, sans-serif">{{ L.k48 }}</span><span style="display: flex; flex-direction: column; gap: 3px; min-width: 0"><span style="font-weight: 600">alex_tk</span><span class="chip c-ok" style="height: 20px; font-size: 11px; align-self: flex-start">{{ L.k4 }}</span></span></div>
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5"><a href="{{ t.href }}" aria-current="{{ t.cur }}" style="height: 36px; padding: 0 12px; border-radius: 4px; display: flex; align-items: center; gap: 12px; text-decoration: none; background: {{ t.bg }}; font-weight: {{ t.w }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ t.d }}"></path></svg>{{ t.t }}</a></sc-for>
+        </nav>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+          <section class="wcard">
+            <div style="padding: 14px 16px 6px"><span style="font: 600 15px Inter, sans-serif">{{ L.k5 }}</span></div>
+            <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--bs)"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k6 }}</span><span class="faint" style="font-size: 12px">{{ L.k7 }}</span></span><button class="wbtn">{{ L.k8 }}</button></div>
+            <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--bs)"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k9 }}</span><span class="faint" style="font-size: 12px">{{ L.k10 }}</span></span><span class="chip c-ok" style="height: 24px">{{ L.k11 }}</span><button class="wbtn">{{ L.k12 }}</button></div>
+            <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--bs)"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>Windows Hello</span><span class="faint" style="font-size: 12px">{{ L.k13 }}</span></span><span class="sw on" aria-hidden="true"></span></div>
+            <div style="display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--bs); border-bottom: 0"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k14 }}</span><span class="faint" style="font-size: 12px">{{ L.k15 }}</span></span><button class="wbtn">{{ L.k16 }}</button></div>
+          </section>
+          <section class="wcard" style="overflow: hidden">
+            <div style="padding: 14px 16px 6px; display: flex; align-items: center"><span style="font: 600 15px Inter, sans-serif; flex: 1">{{ L.k17 }}</span><button class="wbtn" style="color: var(--neg)">{{ L.k18 }}</button></div>
+            <table class="tbl"><thead><tr><th>{{ L.k19 }}</th><th>{{ L.k20 }}</th><th>{{ L.k21 }}</th><th>{{ L.k22 }}</th><th></th></tr></thead>
+              <tbody><sc-for list="{{ devices }}" as="d" hint-placeholder-count="3"><tr><td><span style="display: flex; flex-direction: column"><span style="font-weight: 600">{{ d.n }}</span><span class="faint" style="font-size: 11px">{{ d.app }}</span></span></td><td><span class="chip {{ d.cls }}" style="height: 24px">{{ d.i }}</span></td><td class="muted" style="font-size: 12px">{{ d.where }}</td><td class="muted" style="font-size: 12px">{{ d.when }}</td><td style="text-align: right"><sc-if value="{{ d.canEnd }}" hint-placeholder-val="{{ true }}"><button class="wbtn">{{ L.k23 }}</button></sc-if><sc-if value="{{ d.isThis }}" hint-placeholder-val="{{ false }}"><span class="faint" style="font-size: 12px">{{ L.k24 }}</span></sc-if></td></tr></sc-for></tbody>
+            </table>
+          </section>
+          <section class="wcard" style="overflow: hidden">
+            <div style="padding: 14px 16px 6px; display: flex; align-items: center"><span style="font: 600 15px Inter, sans-serif; flex: 1">{{ L.k25 }}</span><button type="button" class="muted" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; font-size: 12px">{{ L.k26 }}</button></div>
+            <table class="tbl"><tbody><sc-for list="{{ log }}" as="l" hint-placeholder-count="3"><tr><td class="mono muted" style="font-size: 12px; width: 150px">{{ l.t }}</td><td>{{ l.e }}</td><td class="muted" style="font-size: 12px">{{ l.w }}</td><td style="text-align: right"><span class="chip {{ l.cls }}" style="height: 22px">{{ l.r }}</span></td></tr></sc-for></tbody></table>
+          </section>
+        </div>
+      </div>
+      <footer class="wstatus"><span>{{ L.k27 }}</span><span style="flex: 1"></span><span>{{ L.k28 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON · Профиль": "AEON · Profile", "Профиль и безопасность": "Profile and security", "Разделы профиля": "Profile sections", "KYC · уровень 1": "KYC · level 1", "Вход и подтверждение операций": "Sign-in and transaction approval", "Пароль": "Password", "Изменён 02.09.2026": "Changed 02.09.2026", "Сменить": "Change", "Приложение-аутентификатор": "Authenticator app", "Коды для входа и вывода · 6 резервных кодов осталось": "Codes for sign-in and withdrawals · 6 backup codes left", "Включено": "On", "Настроить": "Configure", "Разблокировка AEON и подтверждение выпуска из эскроу": "Unlock AEON and approve escrow release", "Ключи доступа (passkey)": "Passkeys", "iPhone 16 Pro · добавлен 03.09.2026": "iPhone 16 Pro · added 03.09.2026", "Добавить ключ": "Add key", "Устройства и сеансы": "Devices and sessions", "Завершить все, кроме этого": "End all except this one", "УСТРОЙСТВО": "DEVICE", "ЦЕЛОСТНОСТЬ": "INTEGRITY", "МЕСТО · IP": "LOCATION · IP", "ПОСЛЕДНИЙ ВХОД": "LAST SIGN-IN", "Завершить": "End", "это устройство": "this device", "Журнал входов": "Sign-in log", "Весь журнал": "Full log", "ПРОВЕРКА ЦЕЛОСТНОСТИ: ПРОЙДЕНА · 23.10, 12:40": "INTEGRITY CHECK: PASSED · 23.10, 12:40", "CTRL+L — ЗАБЛОКИРОВАТЬ AEON": "CTRL+L — LOCK AEON", "Успешно": "Success", "Отказ": "Denied", "Личные данные": "Personal data", "Безопасность": "Security", "Адресная книга": "Address book", "Реквизиты P2P": "P2P payment details", "Лимиты": "Limits", "AEON для Windows 0.9.2": "AEON for Windows 0.9.2", "Пройдена": "Passed", "Москва · 85.140.•.•": "Moscow · 85.140.•.•", "сейчас": "now", "Приложение AEON": "AEON app", "сегодня, 08:12": "today, 08:12", "Браузер · веб": "Browser · web", "Не проверялось": "Not checked", "21.10, 22:40": "21.10, 22:40", "Вход по Windows Hello": "Sign-in with Windows Hello", "Вход по паролю и 2FA": "Sign-in with password and 2FA", "Неверный код 2FA": "Wrong 2FA code", "АТ": "AT"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · Профиль"), k2: this.tr("Профиль и безопасность"), k3: this.tr("Разделы профиля"), k4: this.tr("KYC · уровень 1"), k5: this.tr("Вход и подтверждение операций"), k6: this.tr("Пароль"), k7: this.tr("Изменён 02.09.2026"), k8: this.tr("Сменить"), k9: this.tr("Приложение-аутентификатор"), k10: this.tr("Коды для входа и вывода · 6 резервных кодов осталось"), k11: this.tr("Включено"), k12: this.tr("Настроить"), k13: this.tr("Разблокировка AEON и подтверждение выпуска из эскроу"), k14: this.tr("Ключи доступа (passkey)"), k15: this.tr("iPhone 16 Pro · добавлен 03.09.2026"), k16: this.tr("Добавить ключ"), k17: this.tr("Устройства и сеансы"), k18: this.tr("Завершить все, кроме этого"), k19: this.tr("УСТРОЙСТВО"), k20: this.tr("ЦЕЛОСТНОСТЬ"), k21: this.tr("МЕСТО · IP"), k22: this.tr("ПОСЛЕДНИЙ ВХОД"), k23: this.tr("Завершить"), k24: this.tr("это устройство"), k25: this.tr("Журнал входов"), k26: this.tr("Весь журнал"), k27: this.tr("ПРОВЕРКА ЦЕЛОСТНОСТИ: ПРОЙДЕНА · 23.10, 12:40"), k28: this.tr("CTRL+L — ЗАБЛОКИРОВАТЬ AEON"), k29: this.tr("Успешно"), k30: this.tr("Отказ"), k31: this.tr("Личные данные"), k32: this.tr("Безопасность"), k33: this.tr("Адресная книга"), k34: this.tr("Реквизиты P2P"), k35: this.tr("Лимиты"), k36: this.tr("AEON для Windows 0.9.2"), k37: this.tr("Пройдена"), k38: this.tr("Москва · 85.140.•.•"), k39: this.tr("сейчас"), k40: this.tr("Приложение AEON"), k41: this.tr("сегодня, 08:12"), k42: this.tr("Браузер · веб"), k43: this.tr("Не проверялось"), k44: this.tr("21.10, 22:40"), k45: this.tr("Вход по Windows Hello"), k46: this.tr("Вход по паролю и 2FA"), k47: this.tr("Неверный код 2FA"), k48: this.tr("АТ") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const tab = (t, d, href, cur) => ({ t, d, href, cur: cur ? 'page' : 'false', bg: cur ? 'var(--wsel)' : 'transparent', w: cur ? 600 : 400 });
+    const dev = (n, app, i, cls, where, when, isThis) => ({ n, app, i, cls, where, when, isThis, canEnd: !isThis });
+    const lg = (t, e, w, ok) => ({ t, e, w, r: ok ? this.tr("Успешно") : this.tr("Отказ"), cls: ok ? 'c-ok' : 'c-neg' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      tabs: [tab(this.tr("Личные данные"), 'M8.5 8.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0M5 19.5c1.2-3.2 3.8-5 7-5s5.8 1.8 7 5', '#'), tab(this.tr("Безопасность"), 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3', '#', true), tab(this.tr("Адресная книга"), 'M3 9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z', 'win-address-book.dc.html'), tab(this.tr("Реквизиты P2P"), 'M4 5h16v14H4zM8 9h8M8 13h5', '#'), tab(this.tr("Лимиты"), 'M4 19h16M6 15l4-5 3 3 5-7', '#')],
+      devices: [dev('Windows 11 · DESKTOP-AT', this.tr("AEON для Windows 0.9.2"), this.tr("Пройдена"), 'c-ok', this.tr("Москва · 85.140.•.•"), this.tr("сейчас"), true), dev('iPhone 16 Pro', this.tr("Приложение AEON"), this.tr("Пройдена"), 'c-ok', this.tr("Москва · 85.140.•.•"), this.tr("сегодня, 08:12"), false), dev('Firefox · macOS', this.tr("Браузер · веб"), this.tr("Не проверялось"), 'c-off', this.tr("Москва · 85.140.•.•"), this.tr("21.10, 22:40"), false)],
+      log: [lg('23.10.2026 12:02', this.tr("Вход по Windows Hello"), 'Windows 11 · 85.140.•.•', true), lg('23.10.2026 08:12', this.tr("Вход по паролю и 2FA"), 'iPhone 16 Pro · 85.140.•.•', true), lg('22.10.2026 23:51', this.tr("Неверный код 2FA"), 'Firefox · 31.173.•.•', false)]
+    };
+  }
+}
+</script>
+</body>
+</html>

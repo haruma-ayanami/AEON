@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — лимиты</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-profile.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div class="icard" style="padding: 16px; display: flex; flex-direction: column; gap: 14px">
+      <span style="display: flex; justify-content: space-between; align-items: center"><span class="chip c-ok">{{ L.k4 }}</span><span class="faint" style="font-size: 12px">{{ L.k5 }}</span></span>
+      <sc-for list="{{ meters }}" as="m" hint-placeholder-count="4"><div style="display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between; font-size: 14px"><span class="muted">{{ m.l }}</span><span class="num"><b style="font-weight: 600">{{ m.u }}</b><span class="faint"> / {{ m.t }}</span></span></span><span role="img" aria-label="{{ m.aria }}" style="height: 6px; border-radius: 999px; background: var(--raised); overflow: hidden; display: block"><span style="display: block; height: 100%; width: {{ m.p }}; border-radius: 999px; background: {{ m.c }}"></span></span></div></sc-for>
+      <span class="hint" style="color: var(--warn)">{{ L.k6 }}</span>
+    </div>
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k7 }}</span>
+    <div class="icard"><sc-for list="{{ levels }}" as="v" hint-placeholder-count="3"><div class="irow" style="align-items: flex-start; padding-top: 12px; padding-bottom: 12px"><span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-weight: 600">{{ v.t }}</span><span class="muted" style="font-size: 13px; line-height: 18px">{{ v.d }}</span></span><span class="chip {{ v.cls }}" style="height: 24px">{{ v.s }}</span></div></sc-for></div>
+  </div>
+  <div class="ios-fade"></div><div class="ios-bar"><a href="ios-kyc.dc.html" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k8 }}</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Лимиты": "Limits", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "KYC · уровень 1": "KYC · level 1", "Сброс в 00:00 МСК": "Resets at 00:00 MSK", "P2P: осталось 900 USDT до конца суток": "P2P: 900 USDT left until the end of the day", "УРОВНИ ВЕРИФИКАЦИИ": "VERIFICATION LEVELS", "Пройти уровень 2 · ~5 минут": "Complete level 2 · ~5 minutes", "использовано": "used", "Вывод за сутки": "Daily withdrawals", "1 200": "1,200", "5 000 USDT": "5,000 USDT", "Вывод за месяц": "Monthly withdrawals", "4 600": "4,600", "50 000 USDT": "50,000 USDT", "P2P за сутки": "Daily P2P", "4 100": "4,100", "Объём своих объявлений": "Own offers volume", "1 000": "1,000", "Уровень 0 · почта": "Level 0 · email", "Кошелёк, получение, вывод до 500 USDT в сутки": "Wallet, receiving, withdrawals up to 500 USDT a day", "Пройден": "Done", "Уровень 1 · телефон и имя": "Level 1 · phone and name", "P2P до 5 000 USDT в сутки, вывод до 5 000": "P2P up to 5,000 USDT a day, withdrawals up to 5,000", "Текущий": "Current", "Уровень 2 · документ и селфи": "Level 2 · ID and selfie", "P2P и вывод до 50 000 USDT, свои объявления без ограничений": "P2P and withdrawals up to 50,000 USDT, unlimited own offers", "Не пройден": "Not done"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Лимиты"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("KYC · уровень 1"), k5: this.tr("Сброс в 00:00 МСК"), k6: this.tr("P2P: осталось 900 USDT до конца суток"), k7: this.tr("УРОВНИ ВЕРИФИКАЦИИ"), k8: this.tr("Пройти уровень 2 · ~5 минут"), k9: this.tr("использовано"), k10: this.tr("Вывод за сутки"), k11: this.tr("1 200"), k12: this.tr("5 000 USDT"), k13: this.tr("Вывод за месяц"), k14: this.tr("4 600"), k15: this.tr("50 000 USDT"), k16: this.tr("P2P за сутки"), k17: this.tr("4 100"), k18: this.tr("Объём своих объявлений"), k19: this.tr("1 000"), k20: this.tr("Уровень 0 · почта"), k21: this.tr("Кошелёк, получение, вывод до 500 USDT в сутки"), k22: this.tr("Пройден"), k23: this.tr("Уровень 1 · телефон и имя"), k24: this.tr("P2P до 5 000 USDT в сутки, вывод до 5 000"), k25: this.tr("Текущий"), k26: this.tr("Уровень 2 · документ и селфи"), k27: this.tr("P2P и вывод до 50 000 USDT, свои объявления без ограничений"), k28: this.tr("Не пройден") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const m = (l, u, t, p, warn) => ({ l, u, t, p: p + '%', c: warn ? 'var(--warn)' : 'var(--sig)', aria: l + ': ' + p + '% ' + this.tr("использовано") });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      meters: [m(this.tr("Вывод за сутки"), this.tr("1 200"), this.tr("5 000 USDT"), 24), m(this.tr("Вывод за месяц"), this.tr("4 600"), this.tr("50 000 USDT"), 9), m(this.tr("P2P за сутки"), this.tr("4 100"), this.tr("5 000 USDT"), 82, true), m(this.tr("Объём своих объявлений"), this.tr("1 000"), this.tr("5 000 USDT"), 20)],
+      levels: [
+        { t: this.tr("Уровень 0 · почта"), d: this.tr("Кошелёк, получение, вывод до 500 USDT в сутки"), s: this.tr("Пройден"), cls: 'c-off' },
+        { t: this.tr("Уровень 1 · телефон и имя"), d: this.tr("P2P до 5 000 USDT в сутки, вывод до 5 000"), s: this.tr("Текущий"), cls: 'c-ok' },
+        { t: this.tr("Уровень 2 · документ и селфи"), d: this.tr("P2P и вывод до 50 000 USDT, свои объявления без ограничений"), s: this.tr("Не пройден"), cls: 'c-warn' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

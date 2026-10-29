@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — push и Live Activity</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} dots" style="width: 390px; height: 520px; box-sizing: border-box; padding: 24px 12px; display: flex; flex-direction: column; gap: 14px; background-color: var(--sunken)">
+  <span class="lbl" style="padding: 0 6px">{{ L.k1 }}</span>
+  <div class="glass" style="border-radius: 24px; padding: 12px 14px; display: flex; gap: 12px; align-items: flex-start">
+    <span aria-hidden="true" style="width: 38px; height: 38px; flex: none; border-radius: 10px; background: #0A0C0B; display: flex; align-items: center; justify-content: center"><span style="width: 18px; height: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5px"><span style="background: #B6F36B"></span><span style="background: #F2F5F1"></span><span style="background: #F2F5F1"></span><span style="background: #F2F5F1"></span><span></span><span style="background: #F2F5F1"></span><span style="background: #F2F5F1"></span><span style="background: #F2F5F1"></span><span style="background: #F2F5F1"></span></span></span>
+    <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="display: flex; justify-content: space-between"><span style="display: flex; align-items: center; gap: 6px"><span style="font-weight: 600; font-size: 14px">AEON</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><span class="faint" style="font-size: 12px">{{ L.k2 }}</span></span><span style="font-weight: 600; font-size: 14px">{{ L.k3 }}</span><span class="muted" style="font-size: 13px; line-height: 18px">{{ L.k4 }}</span></span>
+  </div>
+  <span class="lbl" style="padding: 8px 6px 0">{{ L.k5 }}</span>
+  <div style="border-radius: 24px; background: rgba(10,12,11,0.88); color: #F2F5F1; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span aria-hidden="true" style="position: relative; width: 44px; height: 44px; flex: none"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" fill="none" stroke="#2E342F" stroke-width="4"></circle><circle cx="22" cy="22" r="19" fill="none" stroke="#F5B941" stroke-width="4" stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="84" transform="rotate(-90 22 22)"></circle></svg></span>
+      <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k6 }}</span><span style="font-size: 13px; color: #A3ACA5">{{ L.k7 }}</span></span>
+      <span class="mono" style="font-size: 22px; color: #F5B941">04:12</span>
+    </div>
+    <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px"><span style="height: 4px; border-radius: 2px; background: #B6F36B"></span><span style="height: 4px; border-radius: 2px; background: #B6F36B"></span><span style="height: 4px; border-radius: 2px; background: #F2F5F1"></span><span style="height: 4px; border-radius: 2px; background: #2E342F"></span></div>
+    <span style="font-size: 12px; color: #8A938C">{{ L.k8 }}</span>
+  </div>
+  <span class="lbl" style="padding: 8px 6px 0">{{ L.k9 }}</span>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+    <div style="height: 36px; padding: 0 14px; border-radius: 999px; background: #000000; color: #F2F5F1; display: flex; align-items: center; gap: 70px"><span style="display: flex; align-items: center; gap: 6px; font-size: 12px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; background: #B6F36B"></span>P2P</span><span class="mono" style="font-size: 13px; color: #F5B941">04:12</span></div>
+    <div style="width: 360px; box-sizing: border-box; border-radius: 40px; background: #000000; color: #F2F5F1; padding: 14px 20px; display: flex; align-items: center; gap: 12px"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 14px">{{ L.k10 }}</span><span style="font-size: 12px; color: #A3ACA5">{{ L.k11 }}</span></span><span class="mono" style="font-size: 20px; color: #F5B941">04:12</span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 520}}'>
+class Component extends DCLogic {
+  static EN = {"PUSH-УВЕДОМЛЕНИЕ": "PUSH NOTIFICATION", "сейчас": "now", "Покупатель отметил оплату": "The buyer marked the payment", "P2P-48216 · проверьте поступление 9 240 ₽ и выпустите 100 USDT": "P2P-48216 · check the 9,240 ₽ payment and release 100 USDT", "LIVE ACTIVITY · АКТИВНАЯ СДЕЛКА": "LIVE ACTIVITY · ACTIVE DEAL", "Оплатите 23 100 ₽": "Pay 23,100 ₽", "P2P-48213 · crypto_mila · СБП": "P2P-48213 · crypto_mila · SBP", "250 USDT в эскроу · нажмите, чтобы открыть реквизиты": "250 USDT in escrow · tap to open payment details", "DYNAMIC ISLAND · КОМПАКТНО И РАЗВЁРНУТО": "DYNAMIC ISLAND · COMPACT AND EXPANDED", "Сделка P2P-48213": "Deal P2P-48213", "ждёт вашей оплаты": "awaiting your payment"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("PUSH-УВЕДОМЛЕНИЕ"), k2: this.tr("сейчас"), k3: this.tr("Покупатель отметил оплату"), k4: this.tr("P2P-48216 · проверьте поступление 9 240 ₽ и выпустите 100 USDT"), k5: this.tr("LIVE ACTIVITY · АКТИВНАЯ СДЕЛКА"), k6: this.tr("Оплатите 23 100 ₽"), k7: this.tr("P2P-48213 · crypto_mila · СБП"), k8: this.tr("250 USDT в эскроу · нажмите, чтобы открыть реквизиты"), k9: this.tr("DYNAMIC ISLAND · КОМПАКТНО И РАЗВЁРНУТО"), k10: this.tr("Сделка P2P-48213"), k11: this.tr("ждёт вашей оплаты") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — регистрация</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }}" style="min-height: 900px; display: flex; flex-wrap: wrap">
+  <div style="flex: 1 1 560px; min-width: 0; display: flex"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AuthArt" hint-size="100%,900px"></dc-import></div>
+  <main style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; padding: 32px 40px; box-sizing: border-box">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+      <ol aria-label="{{ L.k1 }}" style="margin: 0; padding: 0; list-style: none; display: flex; gap: 6px"><sc-for list="{{ steps }}" as="s" hint-placeholder-count="3"><li aria-current="{{ s.cur }}" style="width: 44px; height: 4px; border-radius: 2px; background: {{ s.c }}"><span class="sr">{{ s.label }}</span></li></sc-for></ol>
+      <span class="testnet">{{ L.k2 }}</span>
+    </div>
+    <div style="flex: 1; display: flex; align-items: center; justify-content: center">
+      <sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+        <form style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; flex-direction: column; gap: 6px"><h1 class="disp" style="margin: 0; font-size: 34px">{{ L.k3 }}</h1><span class="muted">{{ L.k4 }} <a href="web-auth-login.dc.html">{{ L.k5 }}</a></span></div>
+          <label class="field"><span>{{ L.k6 }}</span><span class="inp"><input type="email" value="alex.t@mail.test"></span></label>
+          <div class="field"><label for="np">{{ L.k7 }}</label><span class="inp focus"><input id="np" type="password" value="aeon-test-2026"></span>
+            <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px"><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--bd)"></span></div>
+            <span class="hint ok">{{ L.k8 }}</span>
+          </div>
+          <label class="field"><span>{{ L.k9 }}</span><span class="inp"><input type="password" value="aeon-test-2026"></span></label>
+          <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px"><legend class="sr">{{ L.k10 }}</legend>
+            <sc-for list="{{ consents }}" as="c" hint-placeholder-count="3"><label style="display: flex; gap: 10px; font-size: 13px; line-height: 19px"><span class="cb {{ c.cls }}" aria-hidden="true"><sc-if value="{{ c.on }}" hint-placeholder-val="{{ true }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></sc-if></span><input type="checkbox" checked="{{ c.on }}" class="sr"><span>{{ c.pre }} <a href="web-settings.dc.html">{{ c.doc }}</a> <span class="faint">{{ c.ver }}</span></span></label></sc-for>
+          </fieldset>
+          <a href="st-web-auth-register-code.dc.html" class="btn btn-p btn-l">{{ L.k11 }}</a>
+        </form>
+      </sc-if>
+
+      <sc-if value="{{ isCode }}" hint-placeholder-val="{{ false }}">
+        <div style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 18px">
+          <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 18px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3zM3 7l9 6 9-6"></path></svg></span>
+          <div style="display: flex; flex-direction: column; gap: 6px"><h1 class="disp" style="margin: 0; font-size: 32px">{{ L.k12 }}</h1><span class="muted" style="line-height: 22px">{{ L.k13 }} <b style="color: var(--t1); font-weight: 600">alex.t@mail.test</b>{{ L.k14 }}</span></div>
+          <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px"><sc-for list="{{ otp }}" as="o" hint-placeholder-count="6"><input aria-label="{{ o.aria }}" value="{{ o.v }}" maxlength="1" style="height: 64px; min-width: 0; border-radius: 14px; border: 1px solid {{ o.b }}; background: var(--raised); color: var(--t1); text-align: center; font: 600 26px 'Inter Tight', sans-serif; outline: none"></sc-for></div>
+          <span class="hint">{{ L.k15 }} <button style="border: 0; background: none; padding: 0; color: var(--t3); font: inherit">{{ L.k16 }} <span class="mono">0:41</span></button></span>
+          <a href="st-web-auth-register-custody.dc.html" class="btn btn-p btn-l">{{ L.k17 }}</a>
+          <a href="web-auth-register.dc.html" style="font-size: 14px; text-align: center">{{ L.k18 }}</a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isCustody }}" hint-placeholder-val="{{ false }}">
+        <div style="width: 100%; max-width: 560px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-direction: column; gap: 6px"><h1 class="disp" style="margin: 0; font-size: 32px">{{ L.k19 }}</h1><span class="muted">{{ L.k20 }}</span></div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 12px" role="radiogroup" aria-label="{{ L.k21 }}">
+            <label style="display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 22px; border: 1.5px solid var(--t1); background: var(--surface); cursor: pointer">
+              <span style="display: flex; justify-content: space-between; align-items: center"><span class="rb on" aria-hidden="true"></span><input type="radio" name="cust" checked="" class="sr"><span class="chip c-ok">{{ L.k22 }}</span></span>
+              <span class="disp" style="font-size: 20px">{{ L.k23 }}</span>
+              <span class="muted" style="font-size: 13px; line-height: 19px">{{ L.k24 }}</span>
+              <ul style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 4px; font-size: 13px"><li>{{ L.k25 }}</li><li>{{ L.k26 }}</li><li>{{ L.k27 }}</li></ul>
+            </label>
+            <label style="display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 22px; border: 1px solid var(--bd); background: var(--surface); cursor: pointer">
+              <span style="display: flex; justify-content: space-between; align-items: center"><span class="rb" aria-hidden="true"></span><input type="radio" name="cust" class="sr"><span class="chip c-off">{{ L.k28 }}</span></span>
+              <span class="disp" style="font-size: 20px">{{ L.k29 }}</span>
+              <span class="muted" style="font-size: 13px; line-height: 19px">{{ L.k30 }}</span>
+              <ul style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 4px; font-size: 13px"><li>{{ L.k31 }}</li><li>{{ L.k32 }}</li><li>{{ L.k33 }}</li></ul>
+            </label>
+          </div>
+          <a href="web-wallet-home.dc.html" class="btn btn-p btn-l">{{ L.k34 }}</a>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "step": {"editor": "enum", "options": ["form", "code", "custody"], "default": "form"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"ТЕСТОВАЯ СЕТЬ": "TESTNET", "Кошелёк": "Wallet", "Электронная почта": "Email", "Пароль": "Password", "Войти": "Sign in", "Почта": "Email", "Как хранить ключи?": "How should keys be stored?", "Кастодиальный": "Custodial", "Некастодиальный": "Non-custodial", "Потеряли фразу — потеряли доступ": "Lose the phrase — lose access", "Продолжить": "Continue", "Создать аккаунт": "Create account", "Цифра ": "Digit ", "Условия использования": "Terms of Use", "Шаги регистрации": "Sign-up steps", "Уже есть аккаунт?": "Already have an account?", "Надёжный: 14 символов, есть буквы и цифры": "Strong: 14 characters, letters and digits", "Повторите пароль": "Repeat password", "Согласия": "Consents", "Подтвердите почту": "Confirm your email", "Мы отправили 6-значный код на": "We sent a 6-digit code to", ". Код действует 10 минут.": ". The code is valid for 10 minutes.", "Не пришло? Проверьте «Спам» или": "Didn't get it? Check Spam or", "отправьте снова через": "resend in", "Подтвердить": "Confirm", "Изменить адрес почты": "Change email address", "Выбор можно изменить позже, создав второй кошелёк.": "You can change this later by creating a second wallet.", "Тип кошелька": "Wallet type", "Рекомендуем": "Recommended", "Ключи хранит AEON в защищённом хранилище. Доступно P2P с внутренним эскроу.": "AEON stores the keys in secure storage. P2P with internal escrow is available.", "Восстановление через почту и 2FA": "Recovery via email and 2FA", "Быстрые P2P-сделки": "Fast P2P deals", "Проверка выводов скорингом": "Withdrawals checked by scoring", "Для опытных": "For advanced users", "Ключ хранится только на вашем устройстве. Транзакции подписываете вы.": "The key is stored only on your device. You sign transactions.", "Секретная фраза из 12 слов": "12-word secret phrase", "P2P через смарт-контракт": "P2P via a smart contract", "Создать кошелёк": "Create wallet", "Данные": "Details", "Принимаю": "I accept the", "v2.1 от 01.10.2026": "v2.1 of 01.10.2026", "Согласен на": "I consent to", "обработку персональных данных": "personal data processing", "Хочу получать новости AEON на почту": "Send me AEON news by email", "необязательно": "optional"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Шаги регистрации"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("Создать аккаунт"), k4: this.tr("Уже есть аккаунт?"), k5: this.tr("Войти"), k6: this.tr("Электронная почта"), k7: this.tr("Пароль"), k8: this.tr("Надёжный: 14 символов, есть буквы и цифры"), k9: this.tr("Повторите пароль"), k10: this.tr("Согласия"), k11: this.tr("Продолжить"), k12: this.tr("Подтвердите почту"), k13: this.tr("Мы отправили 6-значный код на"), k14: this.tr(". Код действует 10 минут."), k15: this.tr("Не пришло? Проверьте «Спам» или"), k16: this.tr("отправьте снова через"), k17: this.tr("Подтвердить"), k18: this.tr("Изменить адрес почты"), k19: this.tr("Как хранить ключи?"), k20: this.tr("Выбор можно изменить позже, создав второй кошелёк."), k21: this.tr("Тип кошелька"), k22: this.tr("Рекомендуем"), k23: this.tr("Кастодиальный"), k24: this.tr("Ключи хранит AEON в защищённом хранилище. Доступно P2P с внутренним эскроу."), k25: this.tr("Восстановление через почту и 2FA"), k26: this.tr("Быстрые P2P-сделки"), k27: this.tr("Проверка выводов скорингом"), k28: this.tr("Для опытных"), k29: this.tr("Некастодиальный"), k30: this.tr("Ключ хранится только на вашем устройстве. Транзакции подписываете вы."), k31: this.tr("Секретная фраза из 12 слов"), k32: this.tr("Потеряли фразу — потеряли доступ"), k33: this.tr("P2P через смарт-контракт"), k34: this.tr("Создать кошелёк"), k35: this.tr("Данные"), k36: this.tr("Почта"), k37: this.tr("Кошелёк"), k38: this.tr("Принимаю"), k39: this.tr("Условия использования"), k40: this.tr("v2.1 от 01.10.2026"), k41: this.tr("Согласен на"), k42: this.tr("обработку персональных данных"), k43: this.tr("Хочу получать новости AEON на почту"), k44: this.tr("необязательно"), k45: this.tr("Цифра ") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const step = this.props.step ?? 'form';
+    const idx = ['form', 'code', 'custody'].indexOf(step);
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isForm: step === 'form', isCode: step === 'code', isCustody: step === 'custody',
+      steps: [this.tr('Данные'), this.tr('Почта'), this.tr('Кошелёк')].map((label, i) => ({ label, cur: i === idx ? 'step' : 'false', c: i < idx ? 'var(--sig)' : i === idx ? 'var(--t1)' : 'var(--bd)' })),
+      consents: [
+        { pre: this.tr('Принимаю'), doc: this.tr('Условия использования'), ver: this.tr('v2.1 от 01.10.2026'), on: true, cls: 'on' },
+        { pre: this.tr('Согласен на'), doc: this.tr('обработку персональных данных'), ver: 'v1.4', on: true, cls: 'on' },
+        { pre: this.tr('Хочу получать новости AEON на почту'), doc: '', ver: this.tr('необязательно'), on: false, cls: '' }
+      ],
+      otp: ['4', '8', '1', '', '', ''].map((v, i) => ({ v, aria: this.tr('Цифра ') + (i + 1), b: i === 3 ? 'var(--sig)' : 'var(--bd)' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

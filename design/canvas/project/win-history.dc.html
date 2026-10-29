@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — история</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="wallet" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px">
+        <h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1>
+        <span class="winp" style="width: 280px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg><input aria-label="{{ L.k3 }}" placeholder="{{ L.k4 }}"></span>
+        <button class="wbtn">{{ L.k5 }}</button><button class="wbtn">{{ L.k6 }}</button><button class="wbtn">{{ L.k7 }}</button><button class="wbtn wbtn-p">{{ L.k8 }}</button>
+      </div>
+      <div style="flex: 1; min-height: 0; display: flex; border-top: 1px solid var(--bs)">
+        <div style="flex: 1; min-width: 0; overflow: hidden">
+          <table class="tbl"><thead><tr><th>{{ L.k9 }}</th><th>{{ L.k10 }}</th><th>{{ L.k11 }}</th><th>{{ L.k12 }}</th><th style="text-align: right">{{ L.k13 }}</th></tr></thead>
+            <tbody><sc-for list="{{ rows }}" as="r" hint-placeholder-count="12"><tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}"><td class="mono faint" style="font-size: 12px; height: 44px">{{ r.time }}</td><td style="height: 44px"><span style="display: flex; flex-direction: column"><span style="font-weight: 500">{{ r.title }}</span><span class="mono faint" style="font-size: 11px">{{ r.sub }}</span></span></td><td class="muted" style="height: 44px; font-size: 12px">{{ r.net }}</td><td style="height: 44px"><span class="chip {{ r.cls }}" style="height: 22px; border-radius: 4px; font-size: 11px">{{ r.status }}</span></td><td class="num" style="height: 44px; text-align: right; font-weight: 600; color: {{ r.ac }}">{{ r.amt }}</td></tr></sc-for></tbody>
+          </table>
+        </div>
+        <aside aria-label="{{ L.k14 }}" style="width: 360px; flex: none; border-left: 1px solid var(--bs); background: var(--card); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+          <span class="lbl">{{ L.k15 }}</span>
+          <span class="disp" style="font-size: 28px; color: var(--sigt)">{{ L.k16 }}</span>
+          <span class="muted">{{ L.k17 }}</span>
+          <div style="display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between"><span>{{ L.k18 }}</span><span class="mono">3 / 12</span></span><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; height: 6px"><sc-for list="{{ conf }}" as="c" hint-placeholder-count="12"><span style="border-radius: 1px; background: {{ c }}"></span></sc-for></span></div>
+          <div style="display: flex; flex-direction: column"><div class="rowline" style="font-size: 13px"><span>{{ L.k19 }}</span><span class="mono">0x4c2E…a1F2</span></div><div class="rowline" style="font-size: 13px"><span>{{ L.k20 }}</span><span class="mono">0x9f2c…e41b</span></div><div class="rowline" style="font-size: 13px"><span>{{ L.k21 }}</span><span class="mono">{{ L.k22 }}</span></div><div class="rowline" style="font-size: 13px"><span>{{ L.k23 }}</span><span style="color: var(--sigt)">{{ L.k24 }}</span></div></div>
+          <div style="display: flex; gap: 6px"><button class="wbtn" style="flex: 1">{{ L.k25 }}</button><button class="wbtn" style="flex: 1">{{ L.k26 }}</button></div>
+        </aside>
+      </div>
+      <footer class="wstatus"><span>{{ L.k27 }}</span><span style="flex: 1"></span><span>{{ L.k28 }}</span></footer>
+    </main>
+  </div>
+
+  <sc-if value="{{ showReceive }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: var(--scrim)"></div>
+    <div role="dialog" aria-modal="true" aria-label="{{ L.k29 }}" style="position: absolute; left: 50%; top: 50%; width: 520px; margin-left: -260px; transform: translateY(-50%); border-radius: 8px; background: var(--flyout); border: 1px solid var(--bd); box-shadow: 0 32px 64px rgba(0,0,0,0.5); overflow: hidden">
+      <div style="padding: 24px; display: flex; gap: 20px; align-items: center">
+        <div style="padding: 10px; border-radius: 8px; background: #FFFFFF"><div role="img" aria-label="{{ L.k30 }}" style="display: grid; grid-template-columns: repeat(25, 6px)"><sc-for list="{{ qr }}" as="q" hint-placeholder-count="625"><span style="width: 6px; height: 6px; background: {{ q }}"></span></sc-for></div></div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 10px"><h2 class="disp" style="margin: 0; font-size: 20px">{{ L.k31 }}</h2><button class="winp" style="color: var(--t1); justify-content: space-between">Ethereum Sepolia<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button><span class="mono" style="font-size: 12px; line-height: 18px; word-break: break-all">0x7a3F5c1E8b2D4a6F9e0C3b7A1d5E8f2C4b6A9c2E</span><span class="hint" style="font-size: 12px">{{ L.k32 }}</span></div>
+      </div>
+      <div style="padding: 20px 24px; background: var(--dfoot); border-top: 1px solid var(--bs); display: grid; grid-template-columns: 1fr 1fr; gap: 8px"><button class="wbtn">{{ L.k33 }}</button><button class="wbtn wbtn-p">{{ L.k34 }}</button></div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "receive": {"editor": "boolean", "default": false}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"СУММА": "AMOUNT", "СТАТУС": "STATUS", "Завершена": "Completed", "В эскроу": "In escrow", "Ручная проверка": "Manual review", "250,00 USDT": "250.00 USDT", "Комиссия сети": "Network fee", "Получить": "Receive", "Отклонён": "Rejected", "Подтверждается 3/12": "Confirming 3/12", "Эскроу P2P-48213": "Escrow P2P-48213", "Выполнен": "Completed", "P2P-продажа": "P2P sale", "Зачислен": "Credited", "Получено": "Received", "Отправлено": "Sent", "Закрыть": "Close", "QR-код адреса": "Address QR code", "Подтверждения": "Confirmations", "Хеш": "Hash", "−250,00 USDT": "−250.00 USDT", "ОПЕРАЦИЯ": "TRANSACTION", "История операций": "Transaction history", "Октябрь 2026": "October 2026", "ВХОДЯЩИЙ ПЕРЕВОД": "INCOMING TRANSFER", "+0,05 ETH": "+0.05 ETH", "≈ $170,61 · Ethereum Sepolia": "≈ $170.61 · Ethereum Sepolia", "От": "From", "Копировать хеш": "Copy hash", "Блок": "Block", "6 812 001": "6,812,001", "Вывод": "Withdrawal", "−0,0012 BTC": "−0.0012 BTC", "Списана": "Charged", "−0,00021 ETH": "−0.00021 ETH", "−100,00 USDT": "−100.00 USDT", "+500,00 USDT": "+500.00 USDT", "Перевод отклонён": "Transfer rejected", "−60,00 USDT": "−60.00 USDT", "ДАТА": "DATE", "Копировать адрес": "Copy address", "AEON · История": "AEON · History", "Поиск по хешу или адресу": "Search by hash or address", "Хеш, адрес, сделка": "Hash, address, deal", "Тип: все": "Type: all", "Экспорт": "Export", "Получить…": "Receive…", "СЕТЬ": "NETWORK", "Детали операции": "Transaction details", "Скоринг": "Scoring", "низкий · 4": "low · 4", "Обозреватель": "Explorer", "12 ОПЕРАЦИЙ · ОКТЯБРЬ": "12 TRANSACTIONS · OCTOBER", "CTRL+F ПОИСК · CTRL+E ЭКСПОРТ": "CTRL+F SEARCH · CTRL+E EXPORT", "Получить USDT": "Receive USDT", "Только USDT в сети Sepolia · минимум 1 USDT": "Only USDT on the Sepolia network · minimum 1 USDT", "от 0x4c2E…a1F2": "from 0x4c2E…a1F2", "покупка у crypto_mila": "bought from crypto_mila", "Внутренний": "Internal", "на tb1q…jzsx": "to tb1q…jzsx", "на 0x1b9C…0a91": "to 0x1b9C…0a91", "от 0x9e41…44Bc": "from 0x9e41…44Bc", "на 0x1f98…F984": "to 0x1f98…F984", "от 9xQe…2fPa": "from 9xQe…2fPa", "+4,0 SOL": "+4.0 SOL", "от 0x33Ab…77Cd": "from 0x33Ab…77Cd", "+312,5 POL": "+312.5 POL", "Депозит ниже минимума": "Deposit below minimum", "от 0x0aa1…0b2c": "from 0x0aa1…0b2c", "Ниже минимума": "Below minimum", "0,5 USDT": "0.5 USDT", "от tb1q…9xk2": "from tb1q…9xk2", "+0,003 BTC": "+0.003 BTC"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · История"), k2: this.tr("История операций"), k3: this.tr("Поиск по хешу или адресу"), k4: this.tr("Хеш, адрес, сделка"), k5: this.tr("Тип: все"), k6: this.tr("Октябрь 2026"), k7: this.tr("Экспорт"), k8: this.tr("Получить…"), k9: this.tr("ДАТА"), k10: this.tr("ОПЕРАЦИЯ"), k11: this.tr("СЕТЬ"), k12: this.tr("СТАТУС"), k13: this.tr("СУММА"), k14: this.tr("Детали операции"), k15: this.tr("ВХОДЯЩИЙ ПЕРЕВОД"), k16: this.tr("+0,05 ETH"), k17: this.tr("≈ $170,61 · Ethereum Sepolia"), k18: this.tr("Подтверждения"), k19: this.tr("От"), k20: this.tr("Хеш"), k21: this.tr("Блок"), k22: this.tr("6 812 001"), k23: this.tr("Скоринг"), k24: this.tr("низкий · 4"), k25: this.tr("Копировать хеш"), k26: this.tr("Обозреватель"), k27: this.tr("12 ОПЕРАЦИЙ · ОКТЯБРЬ"), k28: this.tr("CTRL+F ПОИСК · CTRL+E ЭКСПОРТ"), k29: this.tr("Получить"), k30: this.tr("QR-код адреса"), k31: this.tr("Получить USDT"), k32: this.tr("Только USDT в сети Sepolia · минимум 1 USDT"), k33: this.tr("Закрыть"), k34: this.tr("Копировать адрес"), k35: this.tr("Получено"), k36: this.tr("от 0x4c2E…a1F2"), k37: this.tr("Подтверждается 3/12"), k38: this.tr("Эскроу P2P-48213"), k39: this.tr("покупка у crypto_mila"), k40: this.tr("Внутренний"), k41: this.tr("В эскроу"), k42: this.tr("250,00 USDT"), k43: this.tr("Вывод"), k44: this.tr("на tb1q…jzsx"), k45: this.tr("Ручная проверка"), k46: this.tr("−0,0012 BTC"), k47: this.tr("Отправлено"), k48: this.tr("на 0x1b9C…0a91"), k49: this.tr("Выполнен"), k50: this.tr("−250,00 USDT"), k51: this.tr("Комиссия сети"), k52: this.tr("Списана"), k53: this.tr("−0,00021 ETH"), k54: this.tr("P2P-продажа"), k55: this.tr("Завершена"), k56: this.tr("−100,00 USDT"), k57: this.tr("от 0x9e41…44Bc"), k58: this.tr("Зачислен"), k59: this.tr("+500,00 USDT"), k60: this.tr("Перевод отклонён"), k61: this.tr("на 0x1f98…F984"), k62: this.tr("Отклонён"), k63: this.tr("−60,00 USDT"), k64: this.tr("от 9xQe…2fPa"), k65: this.tr("+4,0 SOL"), k66: this.tr("от 0x33Ab…77Cd"), k67: this.tr("+312,5 POL"), k68: this.tr("Депозит ниже минимума"), k69: this.tr("от 0x0aa1…0b2c"), k70: this.tr("Ниже минимума"), k71: this.tr("0,5 USDT"), k72: this.tr("от tb1q…9xk2"), k73: this.tr("+0,003 BTC") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const C = { info: 'c-info', ok: 'c-ok', warn: 'c-warn', neg: 'c-neg', off: 'c-off' };
+    const rows = [
+      ['23.10 12:41', this.tr('Получено'), this.tr('от 0x4c2E…a1F2'), 'Sepolia', this.tr('Подтверждается 3/12'), 'info', this.tr('+0,05 ETH'), 'var(--sigt)', true],
+      ['23.10 10:10', this.tr('Эскроу P2P-48213'), this.tr('покупка у crypto_mila'), this.tr('Внутренний'), this.tr('В эскроу'), 'info', this.tr('250,00 USDT'), 'var(--t1)'],
+      ['23.10 09:30', this.tr('Вывод'), this.tr('на tb1q…jzsx'), 'BTC Testnet', this.tr('Ручная проверка'), 'warn', this.tr('−0,0012 BTC'), 'var(--t1)'],
+      ['22.10 18:02', this.tr('Отправлено'), this.tr('на 0x1b9C…0a91'), 'Sepolia', this.tr('Выполнен'), 'ok', this.tr('−250,00 USDT'), 'var(--t1)'],
+      ['22.10 18:02', this.tr('Комиссия сети'), 'tx 0x9f2c…e41b', 'Sepolia', this.tr('Списана'), 'off', this.tr('−0,00021 ETH'), 'var(--t1)'],
+      ['22.10 15:40', this.tr('P2P-продажа'), 'P2P-47812 · eva_s', this.tr('Внутренний'), this.tr('Завершена'), 'ok', this.tr('−100,00 USDT'), 'var(--t1)'],
+      ['21.10 14:20', this.tr('Получено'), this.tr('от 0x9e41…44Bc'), 'Sepolia', this.tr('Зачислен'), 'ok', this.tr('+500,00 USDT'), 'var(--sigt)'],
+      ['21.10 11:02', this.tr('Перевод отклонён'), this.tr('на 0x1f98…F984'), 'Sepolia', this.tr('Отклонён'), 'neg', this.tr('−60,00 USDT'), 'var(--t3)'],
+      ['20.10 19:15', this.tr('Получено'), this.tr('от 9xQe…2fPa'), 'Solana Devnet', this.tr('Зачислен'), 'ok', this.tr('+4,0 SOL'), 'var(--sigt)'],
+      ['19.10 12:00', this.tr('Получено'), this.tr('от 0x33Ab…77Cd'), 'Polygon Amoy', this.tr('Зачислен'), 'ok', this.tr('+312,5 POL'), 'var(--sigt)'],
+      ['18.10 09:44', this.tr('Депозит ниже минимума'), this.tr('от 0x0aa1…0b2c'), 'Sepolia', this.tr('Ниже минимума'), 'off', this.tr('0,5 USDT'), 'var(--t3)'],
+      ['17.10 16:21', this.tr('Получено'), this.tr('от tb1q…9xk2'), 'BTC Testnet', this.tr('Зачислен'), 'ok', this.tr('+0,003 BTC'), 'var(--sigt)']
+    ];
+    let s = 23;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const qr = [];
+    const fin = (r, c) => { for (const [r0, c0] of [[0, 0], [0, 18], [18, 0]]) { if (r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7) { const a = r - r0, b = c - c0; return (a === 0 || a === 6 || b === 0 || b === 6 || (a >= 2 && a <= 4 && b >= 2 && b <= 4)) ? 1 : 0; } if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) return 0; } return -1; };
+    for (let r = 0; r < 25; r++) for (let c = 0; c < 25; c++) { const f = fin(r, c); qr.push((f === -1 ? rnd() > 0.52 : f === 1) ? '#0A0C0B' : '#FFFFFF'); }
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      showReceive: !!this.props.receive,
+      rows: rows.map((r) => ({ time: r[0], title: r[1], sub: r[2], net: r[3], status: r[4], cls: C[r[5]], amt: r[6], ac: r[7], sel: r[8] ? 'true' : 'false', bg: r[8] ? 'var(--wsel)' : 'transparent' })),
+      conf: Array.from({ length: 12 }, (_, i) => (i < 3 ? 'var(--info)' : 'var(--bd)')),
+      qr
+    };
+  }
+}
+</script>
+</body>
+</html>

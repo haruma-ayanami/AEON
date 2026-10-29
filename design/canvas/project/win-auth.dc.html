@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — вход</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1100px; height: 720px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="AEON" with-nav="{{ false }}" hint-size="1100px,48px"></dc-import>
+  <div class="dots" style="flex: 1; display: flex; align-items: center; justify-content: center; border-top: 1px solid var(--bs)">
+    <div class="wcard" style="width: 420px; padding: 28px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 16px 48px rgba(0,0,0,0.35)">
+      <span aria-hidden="true" style="width: 28px; height: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px"><span style="background: var(--sig); border-radius: 1px"></span><span style="background: var(--t1); border-radius: 1px"></span><span style="background: var(--t1); border-radius: 1px"></span><span style="background: var(--t1); border-radius: 1px"></span><span></span><span style="background: var(--t1); border-radius: 1px"></span><span style="background: var(--t1); border-radius: 1px"></span><span style="background: var(--t1); border-radius: 1px"></span><span style="background: var(--t1); border-radius: 1px"></span></span>
+      <sc-if value="{{ isPassword }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; flex-direction: column; gap: 4px"><h1 class="disp" style="margin: 0; font-size: 24px">{{ L.k1 }}</h1><span class="muted">{{ L.k2 }}</span></div>
+          <label style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k3 }}</span><span class="winp" style="height: 36px"><input value="alex.t@mail.test"></span></label>
+          <label style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k4 }}</span><span class="winp" style="height: 36px; border-bottom: 2px solid var(--sigt)"><input type="password" value="aeon-test-2026"></span></label>
+          <label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k5 }}</label>
+          <a href="win-wallet-home.dc.html" class="wbtn wbtn-p" style="height: 36px">{{ L.k6 }}</a>
+          <button class="wbtn" style="height: 36px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0"></path></svg>{{ L.k7 }}</button>
+          <span style="display: flex; justify-content: space-between; font-size: 12px"><button type="button"  style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0;">{{ L.k8 }}</button><a href="win-auth-register.dc.html">{{ L.k9 }}</a></span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isHello }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+          <span aria-hidden="true" style="width: 88px; height: 88px; border-radius: 8px; background: var(--raised); color: var(--sig); display: flex; align-items: center; justify-content: center"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0"></path></svg></span>
+          <h1 class="disp" style="margin: 0; font-size: 22px">{{ L.k10 }}</h1>
+          <span class="muted" style="line-height: 19px">{{ L.k11 }}</span>
+          <button class="wbtn" style="width: 100%; height: 36px">{{ L.k12 }}</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isLocked }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 8px; background: var(--negs); color: var(--neg); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v5l3 2"></path></svg></span>
+          <div style="display: flex; flex-direction: column; gap: 4px"><h1 class="disp" style="margin: 0; font-size: 24px">{{ L.k13 }}</h1><span class="muted" style="line-height: 19px">{{ L.k14 }}</span></div>
+          <div role="timer" aria-label="{{ L.k15 }}" style="padding: 14px; border-radius: 4px; background: var(--raised); display: flex; align-items: baseline; justify-content: space-between"><span class="muted">{{ L.k16 }}</span><span class="mono" style="font-size: 28px; font-weight: 500">14:32</span></div>
+          <button class="wbtn wbtn-p" style="height: 36px">{{ L.k17 }}</button>
+          <span class="faint" style="font-size: 12px; line-height: 17px">{{ L.k18 }}</span>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["password", "hello", "locked"], "default": "password"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1100, "height": 720}}'>
+class Component extends DCLogic {
+  static EN = {"Электронная почта": "Email", "Пароль": "Password", "Забыли пароль?": "Forgot password?", "Войти": "Sign in", "С возвращением, alex_tk": "Welcome back, alex_tk", "Создать аккаунт": "Create account", "Вход в AEON": "Sign in to AEON", "Тестовая сеть · реальные деньги не используются": "Testnet · no real money is used", "Запускать вместе с Windows": "Start with Windows", "Войти через Windows Hello": "Sign in with Windows Hello", "Подтвердите вход в окне Windows Hello: лицо, отпечаток или PIN-код устройства.": "Confirm the sign-in in the Windows Hello window: face, fingerprint or device PIN.", "Войти с паролем": "Sign in with password", "Вход временно заблокирован": "Sign-in temporarily locked", "После 5 неудачных попыток вход закрыт на 15 минут — это защищает аккаунт от подбора пароля.": "After 5 failed attempts sign-in is locked for 15 minutes — this protects the account from password guessing.", "Осталось 14 минут 32 секунды": "14 minutes 32 seconds left", "Повторить через": "Try again in", "Восстановить пароль": "Reset password", "Если это были не вы, после входа смените пароль и проверьте активные сеансы.": "If it wasn't you, change your password after signing in and check active sessions."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Вход в AEON"), k2: this.tr("Тестовая сеть · реальные деньги не используются"), k3: this.tr("Электронная почта"), k4: this.tr("Пароль"), k5: this.tr("Запускать вместе с Windows"), k6: this.tr("Войти"), k7: this.tr("Войти через Windows Hello"), k8: this.tr("Забыли пароль?"), k9: this.tr("Создать аккаунт"), k10: this.tr("С возвращением, alex_tk"), k11: this.tr("Подтвердите вход в окне Windows Hello: лицо, отпечаток или PIN-код устройства."), k12: this.tr("Войти с паролем"), k13: this.tr("Вход временно заблокирован"), k14: this.tr("После 5 неудачных попыток вход закрыт на 15 минут — это защищает аккаунт от подбора пароля."), k15: this.tr("Осталось 14 минут 32 секунды"), k16: this.tr("Повторить через"), k17: this.tr("Восстановить пароль"), k18: this.tr("Если это были не вы, после входа смените пароль и проверьте активные сеансы.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'password';
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark', isLocked: (this.props.state ?? 'password') === 'locked', isPassword: st === 'password', isHello: st === 'hello' };
+  }
+}
+</script>
+</body>
+</html>

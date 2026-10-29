@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — риски и прогнозы</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1440px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="analytics" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <nav class="tabs" aria-label="{{ L.k2 }}"><a href="web-analytics-portfolio.dc.html">{{ L.k3 }}</a><a href="web-analytics-risk.dc.html" aria-current="page">{{ L.k4 }}</a><a href="web-analytics-portfolio.dc.html">{{ L.k5 }}<span class="badge">3</span></a></nav>
+      <div class="split">
+        <section class="card" style="flex: 1 1 520px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <span class="disp" style="font-size: 20px">{{ L.k6 }}</span>
+          <div style="display: flex; gap: 8px"><label class="inp" style="flex: 1"><span class="sr">{{ L.k7 }}</span><input class="mono" defaultValue="{{ addr }}" placeholder="{{ L.k54 }}" style="font: 400 14px 'JetBrains Mono', monospace"></label><button class="btn btn-p" style="height: 48px">{{ L.k8 }}</button></div>
+<sc-if value="{{ isResult }}" hint-placeholder-val="{{ true }}">          <div class="tile" style="padding: 18px; display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; align-items: flex-end; gap: 14px"><span class="disp" style="font-size: 56px; line-height: 1; color: var(--neg)">82</span><span style="display: flex; flex-direction: column; gap: 3px; padding-bottom: 4px"><span style="font-weight: 600; color: var(--neg)">{{ L.k9 }}</span><span class="faint" style="font-size: 12px">Ethereum Sepolia · 23.10.2026, 12:40</span></span></div>
+            <div aria-hidden="true" style="position: relative; display: grid; grid-template-columns: 24fr 35fr 25fr 16fr; gap: 3px; height: 8px"><span style="border-radius: 2px; background: #B6F36B"></span><span style="border-radius: 2px; background: #F5B941"></span><span style="border-radius: 2px; background: #FF9A5B"></span><span style="border-radius: 2px; background: #FF5A4A"></span><span style="position: absolute; left: 82%; top: -4px; width: 3px; height: 16px; border-radius: 2px; background: var(--t1)"></span></div>
+            <sc-for list="{{ labels }}" as="l" hint-placeholder-count="4"><div style="display: flex; gap: 10px; align-items: center; font-size: 14px"><span class="chip {{ l.cls }}">{{ l.tag }}</span><span class="muted">{{ l.t }}</span></div></sc-for>
+          </div></sc-if>
+          <sc-if value="{{ isCheckEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 28px 20px; border-radius: 18px; background: var(--raised); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg></span><span style="font-weight: 600; font-size: 16px">{{ L.k55 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k56 }}</span></div></sc-if>
+          <sc-if value="{{ isNotFound }}" hint-placeholder-val="{{ false }}"><div class="tile" style="padding: 18px; display: flex; flex-direction: column; gap: 10px"><span style="display: flex; align-items: center; gap: 12px"><span style="font: 600 17px Inter, sans-serif">{{ L.k57 }}</span><span class="chip c-off">{{ L.k58 }}</span></span><span class="faint" style="font-size: 12px">Solana Devnet · 23.10.2026, 12:44</span><span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k59 }}</span></div></sc-if>
+          <span class="hint">{{ L.k10 }}</span>
+        </section>
+        <section class="card" style="flex: 1 1 520px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+          <div style="display: flex; justify-content: space-between; align-items: center"><span class="disp" style="font-size: 20px">{{ L.k11 }}</span><div style="display: flex; gap: 4px"><button class="btn btn-s btn-o">{{ L.k12 }}</button><button class="btn btn-s btn-p">{{ L.k13 }}</button><button class="btn btn-s btn-o">{{ L.k14 }}</button></div></div>
+          <span class="disp" style="font-size: 30px">{{ L.k15 }} <span class="muted" style="font-size: 16px; font-weight: 500">USDT</span></span>
+          <svg viewBox="0 0 600 180" preserveAspectRatio="none" style="width: 100%; height: 180px" role="img" aria-label="{{ L.k16 }}"><line x1="360" y1="0" x2="360" y2="180" stroke="var(--bst)" stroke-dasharray="4 4"></line><path d="M360 84 C410 74 480 54 600 36 L600 136 C480 120 410 106 360 92 Z" fill="rgba(182,243,107,0.14)"></path><path d="M360 88 C430 84 500 76 600 84" fill="none" stroke="#B6F36B" stroke-width="1.5" stroke-dasharray="5 5" vector-effect="non-scaling-stroke"></path><path d="M0 118 C30 114 60 126 90 116 S140 90 170 98 S220 120 260 102 S320 82 360 88" fill="none" stroke="var(--t1)" stroke-width="2" vector-effect="non-scaling-stroke"></path></svg>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--bs); border-radius: 14px; overflow: hidden"><span style="background: var(--raised); padding: 12px; display: flex; flex-direction: column; gap: 3px"><span class="lbl">{{ L.k17 }}</span><span style="font-weight: 600">{{ L.k18 }}</span></span><span style="background: var(--raised); padding: 12px; display: flex; flex-direction: column; gap: 3px"><span class="lbl">{{ L.k19 }}</span><span style="font-weight: 600">{{ L.k20 }}</span></span><span style="background: var(--raised); padding: 12px; display: flex; flex-direction: column; gap: 3px"><span class="lbl">{{ L.k21 }}</span><span style="font-weight: 600">{{ L.k22 }}</span></span></div>
+          <span class="hint">{{ L.k23 }}</span>
+        </section>
+      </div>
+      <section class="card" style="border-radius: 18px; overflow-x: auto">
+        <div style="padding: 16px 16px 4px"><span class="disp" style="font-size: 18px">{{ L.k24 }}</span></div>
+        <table class="tbl" style="min-width: 760px"><thead><tr><th>{{ L.k25 }}</th><th>{{ L.k26 }}</th><th>{{ L.k27 }}</th><th>{{ L.k28 }}</th><th>{{ L.k29 }}</th></tr></thead>
+          <tbody><sc-for list="{{ ops }}" as="o" hint-placeholder-count="4"><tr><td style="font-weight: 500">{{ o.op }}</td><td class="mono muted" style="font-size: 12px">{{ o.addr }}</td><td><span class="chip {{ o.cls }}">{{ o.risk }}</span></td><td class="muted" style="font-size: 13px">{{ o.why }}</td><td style="font-size: 13px">{{ o.res }}</td></tr></sc-for></tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "check": {"editor": "enum", "options": ["result", "empty", "not_found"], "default": "result"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1440}}'>
+class Component extends DCLogic {
+  static EN = {"Аналитика": "Analytics", "РИСК": "RISK", "АДРЕС": "ADDRESS", "Новый адрес вывода": "New withdrawal address", "Разделы аналитики": "Analytics sections", "Портфель": "Portfolio", "Рекомендации": "Insights", "7Д": "7D", "30Д": "30D", "Риски и прогнозы": "Risks and forecasts", "Проверка адреса": "Address check", "Адрес": "Address", "Проверить": "Review", "Высокий риск": "High risk", "Проверка не блокирует перевод сама по себе: при высоком риске вывод уходит на ручную проверку.": "The check doesn't block a transfer by itself: at high risk the withdrawal goes to manual review.", "Прогноз курса · ETH/USDT": "Rate forecast · ETH/USDT", "24Ч": "24H", "3 280 – 3 690": "3,280 – 3,690", "История курса и коридор прогноза на 7 дней": "Rate history and 7-day forecast range", "СЕЙЧАС": "NOW", "3 412,18": "3,412.18", "СЕРЕДИНА": "MIDPOINT", "3 470": "3,470", "УВЕРЕННОСТЬ": "CONFIDENCE", "Средняя · 68%": "Medium · 68%", "Рассчитано 23.10.2026, 06:00 UTC по данным тестовой сети. Не является инвестиционной рекомендацией.": "Calculated 23.10.2026, 06:00 UTC from testnet data. Not investment advice.", "Оценки моих операций": "Scores of my transactions", "ОПЕРАЦИЯ": "TRANSACTION", "ПРИЧИНЫ": "REASONS", "РЕШЕНИЕ": "DECISION", "МИКСЕР": "MIXER", "Связь с сервисом-миксером в 2 переходах": "Linked to a mixing service within 2 hops", "ОБЪЁМ": "VOLUME", "Аномальный объём за 24 часа": "Unusual volume in 24 hours", "НОВЫЙ": "NEW", "Адрес создан 3 дня назад": "Address created 3 days ago", "САНКЦИИ": "SANCTIONS", "Совпадений не найдено": "No matches found", "Отправка 250 USDT": "Sending 250 USDT", "Низкий · 6": "Low · 6", "Адрес из адресной книги": "Address from the address book", "Отправлено автоматически": "Sent automatically", "Вывод 0,0012 BTC": "Withdrawal of 0.0012 BTC", "Средний · 31": "Medium · 31", "Ручная проверка, до 2 ч": "Manual review, up to 2 h", "Получено 0,05 ETH": "Received 0.05 ETH", "Низкий · 4": "Low · 4", "История без меток": "History without flags", "Зачисление после 12 подтв.": "Credited after 12 conf.", "Отправка 60 USDT": "Sending 60 USDT", "Высокий · 82": "High · 82", "Связь с миксером": "Linked to a mixer", "Отклонено, средства возвращены": "Rejected, funds returned", "0x…, tb1… или адрес Solana": "0x…, tb1… or a Solana address", "Вставьте адрес любой из шести сетей": "Paste an address from any of the six networks", "Покажем уровень риска, метки и источник. Владелец адреса о проверке не узнает. Проверено за месяц: 14 адресов.": "We'll show the risk level, labels and source. The owner won't know about the check. Checked this month: 14 addresses.", "Адрес не найден в базах меток": "Address not found in label databases", "Нет данных": "No data", "Это не гарантия безопасности: у адреса нет истории операций. Для первого перевода выберите небольшую сумму.": "This doesn't guarantee safety: the address has no history. Use a small amount for the first transfer."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Аналитика"), k2: this.tr("Разделы аналитики"), k3: this.tr("Портфель"), k4: this.tr("Риски и прогнозы"), k5: this.tr("Рекомендации"), k6: this.tr("Проверка адреса"), k7: this.tr("Адрес"), k8: this.tr("Проверить"), k9: this.tr("Высокий риск"), k10: this.tr("Проверка не блокирует перевод сама по себе: при высоком риске вывод уходит на ручную проверку."), k11: this.tr("Прогноз курса · ETH/USDT"), k12: this.tr("24Ч"), k13: this.tr("7Д"), k14: this.tr("30Д"), k15: this.tr("3 280 – 3 690"), k16: this.tr("История курса и коридор прогноза на 7 дней"), k17: this.tr("СЕЙЧАС"), k18: this.tr("3 412,18"), k19: this.tr("СЕРЕДИНА"), k20: this.tr("3 470"), k21: this.tr("УВЕРЕННОСТЬ"), k22: this.tr("Средняя · 68%"), k23: this.tr("Рассчитано 23.10.2026, 06:00 UTC по данным тестовой сети. Не является инвестиционной рекомендацией."), k24: this.tr("Оценки моих операций"), k25: this.tr("ОПЕРАЦИЯ"), k26: this.tr("АДРЕС"), k27: this.tr("РИСК"), k28: this.tr("ПРИЧИНЫ"), k29: this.tr("РЕШЕНИЕ"), k30: this.tr("МИКСЕР"), k31: this.tr("Связь с сервисом-миксером в 2 переходах"), k32: this.tr("ОБЪЁМ"), k33: this.tr("Аномальный объём за 24 часа"), k34: this.tr("НОВЫЙ"), k35: this.tr("Адрес создан 3 дня назад"), k36: this.tr("САНКЦИИ"), k37: this.tr("Совпадений не найдено"), k38: this.tr("Отправка 250 USDT"), k39: this.tr("Низкий · 6"), k40: this.tr("Адрес из адресной книги"), k41: this.tr("Отправлено автоматически"), k42: this.tr("Вывод 0,0012 BTC"), k43: this.tr("Средний · 31"), k44: this.tr("Новый адрес вывода"), k45: this.tr("Ручная проверка, до 2 ч"), k46: this.tr("Получено 0,05 ETH"), k47: this.tr("Низкий · 4"), k48: this.tr("История без меток"), k49: this.tr("Зачисление после 12 подтв."), k50: this.tr("Отправка 60 USDT"), k51: this.tr("Высокий · 82"), k52: this.tr("Связь с миксером"), k53: this.tr("Отклонено, средства возвращены"), k54: this.tr("0x…, tb1… или адрес Solana"), k55: this.tr("Вставьте адрес любой из шести сетей"), k56: this.tr("Покажем уровень риска, метки и источник. Владелец адреса о проверке не узнает. Проверено за месяц: 14 адресов."), k57: this.tr("Адрес не найден в базах меток"), k58: this.tr("Нет данных"), k59: this.tr("Это не гарантия безопасности: у адреса нет истории операций. Для первого перевода выберите небольшую сумму.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const ck = this.props.check ?? 'result';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isResult: ck === 'result', isCheckEmpty: ck === 'empty', isNotFound: ck === 'not_found', addr: { result: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', empty: '', not_found: '7EcDhSYGxXyscszYEp35KHN8vvw3svAuLKTzXwCFLtV' }[ck],
+      labels: [{ tag: this.tr('МИКСЕР'), cls: 'c-neg', t: this.tr('Связь с сервисом-миксером в 2 переходах') }, { tag: this.tr('ОБЪЁМ'), cls: 'c-warn', t: this.tr('Аномальный объём за 24 часа') }, { tag: this.tr('НОВЫЙ'), cls: 'c-warn', t: this.tr('Адрес создан 3 дня назад') }, { tag: this.tr('САНКЦИИ'), cls: 'c-off', t: this.tr('Совпадений не найдено') }],
+      ops: [
+        { op: this.tr('Отправка 250 USDT'), addr: '0x1b9C…0a91', risk: this.tr('Низкий · 6'), cls: 'c-ok', why: this.tr('Адрес из адресной книги'), res: this.tr('Отправлено автоматически') },
+        { op: this.tr('Вывод 0,0012 BTC'), addr: 'tb1q…jzsx', risk: this.tr('Средний · 31'), cls: 'c-warn', why: this.tr('Новый адрес вывода'), res: this.tr('Ручная проверка, до 2 ч') },
+        { op: this.tr('Получено 0,05 ETH'), addr: '0x4c2E…a1F2', risk: this.tr('Низкий · 4'), cls: 'c-ok', why: this.tr('История без меток'), res: this.tr('Зачисление после 12 подтв.') },
+        { op: this.tr('Отправка 60 USDT'), addr: '0x1f98…F984', risk: this.tr('Высокий · 82'), cls: 'c-neg', why: this.tr('Связь с миксером'), res: this.tr('Отклонено, средства возвращены') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

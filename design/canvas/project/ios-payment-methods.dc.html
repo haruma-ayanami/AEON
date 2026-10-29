@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — реквизиты P2P</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-profile.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--raised); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k4 }}</span></span></div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 10px">
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k5 }}</span>
+    <div class="icard"><sc-for list="{{ methods }}" as="m" hint-placeholder-count="4"><button type="button" class="irow" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; min-height: 68px"><span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 12px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ m.d }}"></path></svg></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><span style="font-weight: 600">{{ m.t }}</span><span class="chip {{ m.cls }}" style="height: 22px; font-size: 11px">{{ m.u }}</span></span><span class="faint" style="font-size: 12px">{{ m.s }}</span></span></button></sc-for></div>
+    <span class="hint" style="padding: 0 4px">{{ L.k6 }}</span>
+</div></sc-if>
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 36px 20px 30px; border-radius: 22px; background: var(--surface); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 10h18M7 15h4"></path></svg></span><span style="font-weight: 600; font-size: 17px">{{ L.k19 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k20 }}</span></div></sc-if>
+
+  </div>
+  <div class="ios-fade"></div><div class="ios-bar"><button type="button" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k7 }}</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Реквизиты P2P": "P2P payment details", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Покупатель видит реквизиты только внутри сделки — после того как USDT заблокированы в эскроу.": "A buyer sees your details only inside a deal — after the USDT is locked in escrow.", "СПОСОБЫ ОПЛАТЫ · 4": "PAYMENT METHODS · 4", "Тестовый прототип: используйте вымышленные данные.": "Test prototype: use fictional data.", "Добавить способ оплаты": "Add payment method", "СБП": "SBP (Faster Payments)", "Алексей Т. · +7 900 ••• •• 00 · [Банк]": "Alexey T. · +7 900 ••• •• 00 · [Bank]", "В 2 объявлениях": "In 2 offers", "Банковский перевод": "Bank transfer", "Счёт •• 4821 · [Банк]": "Account •• 4821 · [Bank]", "В 1 объявлении": "In 1 offer", "Карта": "Card", "•• 7712 · [Банк]": "•• 7712 · [Bank]", "Не используется": "Not used", "Наличные": "Cash", "Москва, м. Курская · до 50 000 ₽": "Moscow, Kurskaya metro · up to 50,000 ₽", "Реквизитов пока нет": "No payment details yet", "Чтобы продавать USDT через P2P, добавьте хотя бы один способ получения оплаты — СБП или банковский перевод. Покупатель увидит реквизиты только в активной сделке.": "To sell USDT via P2P, add at least one way to receive payment — SBP or bank transfer. Buyers see your details only inside an active deal."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Реквизиты P2P"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Покупатель видит реквизиты только внутри сделки — после того как USDT заблокированы в эскроу."), k5: this.tr("СПОСОБЫ ОПЛАТЫ · 4"), k6: this.tr("Тестовый прототип: используйте вымышленные данные."), k7: this.tr("Добавить способ оплаты"), k8: this.tr("СБП"), k9: this.tr("Алексей Т. · +7 900 ••• •• 00 · [Банк]"), k10: this.tr("В 2 объявлениях"), k11: this.tr("Банковский перевод"), k12: this.tr("Счёт •• 4821 · [Банк]"), k13: this.tr("В 1 объявлении"), k14: this.tr("Карта"), k15: this.tr("•• 7712 · [Банк]"), k16: this.tr("Не используется"), k17: this.tr("Наличные"), k18: this.tr("Москва, м. Курская · до 50 000 ₽"), k19: this.tr("Реквизитов пока нет"), k20: this.tr("Чтобы продавать USDT через P2P, добавьте хотя бы один способ получения оплаты — СБП или банковский перевод. Покупатель увидит реквизиты только в активной сделке.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isDefault: st === 'default', isEmpty: st === 'empty',
+      methods: [
+        { t: this.tr("СБП"), s: this.tr("Алексей Т. · +7 900 ••• •• 00 · [Банк]"), u: this.tr("В 2 объявлениях"), cls: 'c-ok', d: 'M13 3L5 14h6l-1 7 8-11h-6z' },
+        { t: this.tr("Банковский перевод"), s: this.tr("Счёт •• 4821 · [Банк]"), u: this.tr("В 1 объявлении"), cls: 'c-ok', d: 'M3 10l9-6 9 6M5 10v8M19 10v8M9 10v8M15 10v8M3 20h18' },
+        { t: this.tr("Карта"), s: this.tr("•• 7712 · [Банк]"), u: this.tr("Не используется"), cls: 'c-off', d: 'M3 6h18v12H3zM3 10h18M7 15h3' },
+        { t: this.tr("Наличные"), s: this.tr("Москва, м. Курская · до 50 000 ₽"), u: this.tr("Не используется"), cls: 'c-off', d: 'M3 7h18v10H3zM12 12m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

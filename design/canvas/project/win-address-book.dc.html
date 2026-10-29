@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — адресная книга</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="profile" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1><button class="wbtn wbtn-p"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>{{ L.k3 }}</button></div>
+      <div style="padding: 0 28px 12px"><div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v5l3 2"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k4 }}</span></span></div></div>
+      <div style="flex: 1; min-height: 0; display: flex; border-top: 1px solid var(--bs)">
+        <div style="flex: 1; min-width: 0">
+          <table class="tbl"><thead><tr><th>{{ L.k5 }}</th><th>{{ L.k6 }}</th><th>{{ L.k7 }}</th><th>{{ L.k8 }}</th><th>{{ L.k9 }}</th></tr></thead>
+            <tbody><sc-for list="{{ rows }}" as="r" hint-placeholder-count="4"><tr><td style="font-weight: 600">{{ r.n }}</td><td><span style="display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; background: {{ r.c }}"></span>{{ r.net }}</span></td><td class="mono" style="font-size: 12px">{{ r.a }}</td><td class="muted" style="font-size: 12px">{{ r.d }}</td><td><span class="chip {{ r.cls }}" style="height: 24px">{{ r.s }}</span></td></tr></sc-for></tbody>
+          </table>
+        </div>
+        <aside aria-label="{{ L.k10 }}" style="width: 380px; flex: none; border-left: 1px solid var(--bs); background: var(--card); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+          <span class="lbl">{{ L.k11 }}</span>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k12 }}</span><span class="winp" style="height: 36px"><input defaultValue="{{ L.k13 }}"></span></label>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k14 }}</span><span class="winp" style="height: 36px"><input defaultValue="Ethereum Sepolia" readonly><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span></label>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k15 }}</span><span class="winp" style="height: 36px; border-bottom: 2px solid var(--sigt)"><input class="mono" defaultValue="0x9C1d…7Be4" style="font: 400 12px 'JetBrains Mono', monospace"></span><span class="hint ok" style="font-size: 12px">{{ L.k16 }}</span></label>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k17 }}</span><span class="winp" style="height: 36px"><input defaultValue="" placeholder="{{ L.k18 }}"></span></label>
+          <label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k19 }}</label>
+          <div style="flex: 1"></div>
+          <span class="faint" style="font-size: 12px; line-height: 17px">{{ L.k20 }}</span>
+          <div style="display: flex; gap: 6px"><button class="wbtn" style="flex: 1">{{ L.k21 }}</button><button class="wbtn wbtn-p" style="flex: 1">{{ L.k22 }}</button></div>
+        </aside>
+      </div>
+      <footer class="wstatus"><span>{{ L.k23 }}</span><span style="flex: 1"></span><span>{{ L.k24 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON · Адресная книга": "AEON · Address book", "Адресная книга": "Address book", "Добавить адрес · Ctrl+N": "Add address · Ctrl+N", "«Холодный BTC» станет доступен для вывода через 19 ч. Новые адреса активируются через 24 часа — это защита от кражи аккаунта.": "“Cold BTC” will be available for withdrawals in 19 h. New addresses activate after 24 hours — this protects against account takeover.", "МЕТКА": "LABEL", "СЕТЬ": "NETWORK", "АДРЕС": "ADDRESS", "ДОБАВЛЕН": "ADDED", "СТАТУС": "STATUS", "Новый адрес": "New address", "НОВЫЙ АДРЕС": "NEW ADDRESS", "Метка": "Label", "Биржа · тест": "Exchange · test", "Сеть": "Network", "Адрес": "Address", "Формат подходит для Sepolia · риск низкий": "Format matches Sepolia · low risk", "Код 2FA": "2FA code", "6 цифр из приложения": "6 digits from the app", "Проверил адрес по первым и последним символам": "I checked the first and last characters of the address", "Адрес можно будет использовать для вывода через 24 часа. Мы пришлём уведомление.": "The address can be used for withdrawals in 24 hours. We'll notify you.", "Отмена": "Cancel", "Добавить · Ctrl+S": "Add · Ctrl+S", "4 АДРЕСА · 1 ОЖИДАЕТ АКТИВАЦИИ": "4 ADDRESSES · 1 PENDING ACTIVATION", "DEL — УДАЛИТЬ · F2 — ПЕРЕИМЕНОВАТЬ": "DEL — DELETE · F2 — RENAME", "Доверенный": "Trusted", "Через 19 ч": "In 19 h", "Ledger тест": "Ledger test", "Кошелёк Маши": "Masha's wallet", "Холодный BTC": "Cold BTC", "Тестовый SOL": "Test SOL"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · Адресная книга"), k2: this.tr("Адресная книга"), k3: this.tr("Добавить адрес · Ctrl+N"), k4: this.tr("«Холодный BTC» станет доступен для вывода через 19 ч. Новые адреса активируются через 24 часа — это защита от кражи аккаунта."), k5: this.tr("МЕТКА"), k6: this.tr("СЕТЬ"), k7: this.tr("АДРЕС"), k8: this.tr("ДОБАВЛЕН"), k9: this.tr("СТАТУС"), k10: this.tr("Новый адрес"), k11: this.tr("НОВЫЙ АДРЕС"), k12: this.tr("Метка"), k13: this.tr("Биржа · тест"), k14: this.tr("Сеть"), k15: this.tr("Адрес"), k16: this.tr("Формат подходит для Sepolia · риск низкий"), k17: this.tr("Код 2FA"), k18: this.tr("6 цифр из приложения"), k19: this.tr("Проверил адрес по первым и последним символам"), k20: this.tr("Адрес можно будет использовать для вывода через 24 часа. Мы пришлём уведомление."), k21: this.tr("Отмена"), k22: this.tr("Добавить · Ctrl+S"), k23: this.tr("4 АДРЕСА · 1 ОЖИДАЕТ АКТИВАЦИИ"), k24: this.tr("DEL — УДАЛИТЬ · F2 — ПЕРЕИМЕНОВАТЬ"), k25: this.tr("Доверенный"), k26: this.tr("Через 19 ч"), k27: this.tr("Ledger тест"), k28: this.tr("Кошелёк Маши"), k29: this.tr("Холодный BTC"), k30: this.tr("Тестовый SOL") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const a = (n, net, c, ad, d, ok) => ({ n, net, c, a: ad, d, s: ok ? this.tr("Доверенный") : this.tr("Через 19 ч"), cls: ok ? 'c-ok' : 'c-warn' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      rows: [a(this.tr("Ledger тест"), 'Ethereum Sepolia', '#8A9BFF', '0x1b9C4e…77D20a91', '02.09.2026', true), a(this.tr("Кошелёк Маши"), 'Ethereum Sepolia', '#8A9BFF', '0x4c2E9a…3B0ca1F2', '11.09.2026', true), a(this.tr("Холодный BTC"), 'Bitcoin Testnet', '#F7931A', 'tb1qw508d6…kxpjzsx', '23.10.2026', false), a(this.tr("Тестовый SOL"), 'Solana Devnet', '#14F195', '7EcDhSYG…wCFLtV', '05.10.2026', true)]
+    };
+  }
+}
+</script>
+</body>
+</html>

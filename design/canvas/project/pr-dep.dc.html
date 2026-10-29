@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Прототип · Сценарий 8 · Депозит в реальном времени</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="th-dark" style="width: 1440px; height: 1312px; overflow: hidden; background: var(--sunken)">
+  <div style="height: 72px; box-sizing: border-box; padding: 0 12px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--bs); background: var(--surface)">
+    <button onClick="{{ back }}" disabled="{{ atFirst }}" aria-label="{{ t.back }}" class="ibtn" style="opacity: {{ backOp }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+      <span class="lbl" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ t.scn }}</span>
+      <span aria-live="polite" style="font: 600 14px Inter, sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ t.step }}</span>
+      <div style="display: flex; gap: 3px">
+        <sc-for list="{{ segs }}" as="g" hint-placeholder-count="3"><button onClick="{{ g.go }}" aria-label="{{ g.label }}" aria-current="{{ g.cur }}" style="flex: 1; height: 10px; padding: 3px 0; border: 0; background: transparent; cursor: pointer; box-sizing: border-box"><span style="display: block; height: 4px; border-radius: 2px; background: {{ g.bg }}"></span></button></sc-for>
+      </div>
+    </div>
+    <button onClick="{{ restart }}" aria-label="{{ t.restart }}" class="ibtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"></path></svg></button>
+  </div>
+  <div style="position: relative; height: 1240px; display: flex; justify-content: center; align-items: flex-start">
+    <sc-if value="{{ on1 }}" hint-placeholder-val="{{ true }}">
+    <div style="position: relative; width: 1440px; height: 1240px; overflow: hidden">
+  <dc-import name="web-wallet-home" lang="{{ lang }}" hint-size="1440px,1240px"></dc-import>
+
+  <div class="th-dark" role="status" style="position: absolute; right: 28px; bottom: 28px; width: 400px; background: transparent">
+    <button onClick="{{ go2 }}" style="width: 100%; font: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 18px; background: var(--raised); border: 1px solid var(--bd); box-shadow: 0 16px 48px rgba(0,0,0,0.45); text-decoration: none; color: var(--t1)">
+      <span aria-hidden="true" style="width: 34px; height: 34px; flex: none; border-radius: 10px; background: var(--surface); color: var(--info); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10M8 10l4 4 4-4M5 20h14"></path></svg></span>
+      <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px Inter, sans-serif">{{ s1.ttitle }}</span><span style="font-size: 13px; line-height: 18px; color: var(--t2)">{{ s1.ttext }}</span></span>
+      <span class="btn btn-s btn-p" style="flex: none">{{ s1.tcta }}</span>
+    </button>
+  </div>
+</div>
+    </sc-if>
+    <sc-if value="{{ on2 }}" hint-placeholder-val="{{ false }}">
+    <div style="position: relative; width: 1440px; height: 1100px; overflow: hidden">
+  <dc-import name="web-history" lang="{{ lang }}" hint-size="1440px,1100px"></dc-import>
+
+  <div class="th-dark" role="status" style="position: absolute; right: 28px; bottom: 28px; width: 400px; background: transparent">
+    <button onClick="{{ go3 }}" style="width: 100%; font: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 18px; background: var(--raised); border: 1px solid var(--bd); box-shadow: 0 16px 48px rgba(0,0,0,0.45); text-decoration: none; color: var(--t1)">
+      <span aria-hidden="true" style="width: 34px; height: 34px; flex: none; border-radius: 10px; background: var(--surface); color: var(--sig); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+      <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px Inter, sans-serif">{{ s2.ttitle }}</span><span style="font-size: 13px; line-height: 18px; color: var(--t2)">{{ s2.ttext }}</span></span>
+      <span class="btn btn-s btn-p" style="flex: none">{{ s2.tcta }}</span>
+    </button>
+  </div>
+</div>
+    </sc-if>
+    <sc-if value="{{ on3 }}" hint-placeholder-val="{{ false }}">
+    <div style="position: relative; width: 1440px; height: 1240px; overflow: hidden">
+  <dc-import name="web-wallet-home" lang="{{ lang }}" hint-size="1440px,1240px"></dc-import>
+
+  <div class="th-dark" role="status" style="position: absolute; right: 28px; bottom: 28px; width: 400px; background: transparent">
+    <button onClick="{{ go1 }}" style="width: 100%; font: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 18px; background: var(--raised); border: 1px solid var(--bd); box-shadow: 0 16px 48px rgba(0,0,0,0.45); text-decoration: none; color: var(--t1)">
+      <span aria-hidden="true" style="width: 34px; height: 34px; flex: none; border-radius: 10px; background: var(--surface); color: var(--sig); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+      <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 14px Inter, sans-serif">{{ s3.ttitle }}</span><span style="font-size: 13px; line-height: 18px; color: var(--t2)">{{ s3.ttext }}</span></span>
+      <span class="btn btn-s btn-p" style="flex: none">{{ s3.tcta }}</span>
+    </button>
+  </div>
+</div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1312}}'>
+// Кликабельный сценарий 8: шаги — окна в исходные экраны, подсвеченные зоны переключают шаг. Экраны правьте в оригиналах.
+class Component extends DCLogic {
+  renderVals() {
+    const lang = this.props.lang ?? "ru";
+    const en = lang === 'en';
+    const n = 3;
+    const step = Math.min(Math.max((this.state && this.state.step) || 1, 1), n);
+    const go = (k) => () => this.setState({ step: k });
+    const names = ["перевод обнаружен", "подтверждения 3 из 12", "зачислен"];
+    const namesEn = ["transfer detected", "confirmations 3 of 12", "credited"];
+    const v = { lang };
+    for (let k = 1; k <= n; k++) { v['on' + k] = step === k; v['go' + k] = go(k); }
+    v.back = go(Math.max(step - 1, 1));
+    v.restart = go(1);
+    v.atFirst = step === 1;
+    v.backOp = step === 1 ? '0.4' : '1';
+    v.t = {
+      scn: en ? "Scenario 8 · Real-time deposit" : "Сценарий 8 · Депозит в реальном времени",
+      step: (en ? 'Step ' + step + ' of ' + n + ' · ' + namesEn[step - 1] : 'Шаг ' + step + ' из ' + n + ' · ' + names[step - 1]),
+      back: en ? 'Previous step' : 'Предыдущий шаг',
+      restart: en ? 'Start over' : 'Начать сначала'
+    };
+    v.segs = names.map((nm, i) => ({ go: go(i + 1), label: (en ? 'Step ' + (i + 1) + ': ' + namesEn[i] : 'Шаг ' + (i + 1) + ': ' + nm), cur: i + 1 === step ? 'step' : 'false', bg: i + 1 <= step ? 'var(--sigt)' : 'var(--bd)' }));
+    v.s1 = { ttitle: en ? "Incoming transfer detected" : "Обнаружен входящий перевод", ttext: en ? "+0.05 ETH · Ethereum Sepolia · 0 of 12 confirmations" : "+0,05 ETH · Ethereum Sepolia · 0 из 12 подтверждений", tcta: en ? "Open" : "Открыть" };
+    v.s2 = { ttitle: en ? "12 of 12 confirmed" : "Подтверждено 12 из 12", ttext: en ? "The +0.05 ETH transfer passed the check and is being credited." : "Перевод +0,05 ETH прошёл проверку и зачисляется на баланс.", tcta: en ? "To balance" : "К балансу" };
+    v.s3 = { ttitle: en ? "+0.05 ETH credited" : "Зачислено +0,05 ETH", ttext: en ? "ETH balance: 0.4821 → 0.5321. The transfer is in your history." : "Баланс ETH: 0,4821 → 0,5321. Перевод в истории операций.", tcta: en ? "Restart" : "Сначала" };
+    return v;
+  }
+}
+</script>
+</body>
+</html>

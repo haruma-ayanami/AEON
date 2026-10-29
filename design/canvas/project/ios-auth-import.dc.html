@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — импорт кошелька</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-auth-setup.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title"></span><span class="testnet">{{ L.k2 }}</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 126px; gap: 14px">
+    <h1 class="disp" style="margin: 0 4px; font-size: 34px">{{ L.k4 }}</h1>
+    <span class="muted" style="padding: 0 4px; font-size: 15px; line-height: 21px">{{ L.k5 }}</span>
+    <div role="tablist" aria-label="{{ L.k6 }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface)"><button role="tab" aria-selected="true" class="btn btn-s" style="flex: 1; background: var(--raised)">{{ L.k7 }}</button><button role="tab" aria-selected="false" class="btn btn-s" style="flex: 1; background: transparent; color: var(--t2)">{{ L.k8 }}</button></div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px"><sc-for list="{{ words }}" as="w" hint-placeholder-count="12"><label style="height: 44px; min-width: 0; border-radius: 12px; background: var(--surface); border: 1px solid {{ w.b }}; display: flex; align-items: center; gap: 6px; padding: 0 10px; box-sizing: border-box"><span class="mono faint" style="font-size: 11px; width: 16px; flex: none">{{ w.n }}</span><input aria-label="{{ w.aria }}" defaultValue="{{ w.v }}" autocapitalize="off" style="flex: 1; min-width: 0; border: 0; background: transparent; color: {{ w.c }}; font: 400 14px 'JetBrains Mono', monospace; outline: none"></label></sc-for></div>
+    <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--negs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k9 }}</span></span></div></sc-if>
+    <button class="btn btn-s" style="align-self: flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8v3H8zM6 6H5v15h14V6h-1"></path></svg>{{ L.k10 }}</button>
+    <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--raised); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k11 }}</span></span></div>
+  </div>
+  <div class="ios-bar"><a href="ios-wallet-home.dc.html" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k12 }}</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "error"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "ТЕСТОВАЯ СЕТЬ": "TESTNET", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Импорт кошелька": "Import wallet", "Введите фразу восстановления в том порядке, в котором её записали.": "Enter your recovery phrase in the order you wrote it down.", "Длина фразы": "Phrase length", "12 слов": "12 words", "24 слова": "24 words", "Слово 7 «abandn» не из словаря BIP-39. Возможно, вы имели в виду «abandon».": "Word 7 “abandn” is not in the BIP-39 wordlist. Did you mean “abandon”?", "Вставить из буфера": "Paste from clipboard", "Фраза не покидает устройство: ключ хранится в Secure Enclave. AEON не видит фразу и не сможет её восстановить.": "The phrase never leaves the device: the key is kept in the Secure Enclave. AEON can't see the phrase and can't recover it.", "Импортировать": "Import", "Слово ": "Word "};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Импорт кошелька"), k5: this.tr("Введите фразу восстановления в том порядке, в котором её записали."), k6: this.tr("Длина фразы"), k7: this.tr("12 слов"), k8: this.tr("24 слова"), k9: this.tr("Слово 7 «abandn» не из словаря BIP-39. Возможно, вы имели в виду «abandon»."), k10: this.tr("Вставить из буфера"), k11: this.tr("Фраза не покидает устройство: ключ хранится в Secure Enclave. AEON не видит фразу и не сможет её восстановить."), k12: this.tr("Импортировать"), k13: this.tr("Слово ") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const err = (this.props.state ?? 'default') === 'error';
+    const list = ['orbit', 'velvet', 'cabin', 'harvest', 'lunar', 'pepper', err ? 'abandn' : 'abandon', 'silent', 'gravity', 'ozone', 'tribe', ''];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isError: err,
+      words: list.map((v, i) => ({ v, n: i + 1, aria: this.tr("Слово ") + (i + 1), b: (err && i === 6) ? 'var(--neg)' : (i === 11 ? 'var(--sig)' : 'var(--bs)'), c: (err && i === 6) ? 'var(--neg)' : 'var(--t1)' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

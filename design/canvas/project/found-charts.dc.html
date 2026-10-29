@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — графики и данные</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 1600px; min-height: 1940px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">ОСНОВЫ · 09 · ГРАФИКИ И ДАННЫЕ</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Одна линия, много серого, один акцент</h2>
+    </div>
+    <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 22px; color: #A3ACA5">Графики спокойные: без сетки и легенд-простыней. Сигнальный цвет — у главной серии и выделенного актива, остальное в оттенках серого. Рост и падение различаются цветом, стрелкой и знаком.</p>
+  </div>
+
+  <section style="display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 24px">
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ЛИНЕЙНЫЙ ГРАФИК · chart/line</span>
+        <div role="group" aria-label="Период" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: #1B1F1C"><sc-for list="{{ periods }}" as="p" hint-placeholder-count="4"><button aria-pressed="{{ p.on }}" style="height: 32px; padding: 0 14px; border-radius: 999px; border: 0; background: {{ p.bg }}; color: {{ p.fg }}; font: 600 12px 'JetBrains Mono', monospace; cursor: pointer">{{ p.t }}</button></sc-for></div>
+      </div>
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 44px; letter-spacing: -0.02em; font-feature-settings: 'tnum'"><span style="color: #8A938C">$</span>3 412<span style="color: #8A938C">,18</span> <span style="font: 600 15px Inter, sans-serif; color: #B6F36B">↑ +16,1%</span></span>
+      <svg viewBox="0 0 800 220" style="width: 100%; height: 220px" role="img" aria-label="Стоимость портфеля за 30 дней: рост с 2 940 до 3 412 долларов"><defs><linearGradient id="fc-g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#B6F36B" stop-opacity="0.16"></stop><stop offset="1" stop-color="#B6F36B" stop-opacity="0"></stop></linearGradient></defs><path d="M0 176 C60 170 100 150 160 158 S260 130 320 138 S420 104 480 112 S580 80 640 70 S740 44 790 36 L790 220 L0 220 Z" fill="url(#fc-g)"></path><path d="M0 176 C60 170 100 150 160 158 S260 130 320 138 S420 104 480 112 S580 80 640 70 S740 44 790 36" fill="none" stroke="#B6F36B" stroke-width="2"></path><line x1="640" y1="0" x2="640" y2="220" stroke="#48504A" stroke-dasharray="3 4"></line><circle cx="640" cy="70" r="5" fill="#0A0C0B" stroke="#B6F36B" stroke-width="2"></circle><circle cx="790" cy="36" r="4" fill="#B6F36B"></circle></svg>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap"><sc-for list="{{ lineSpec }}" as="s" hint-placeholder-count="5"><span style="display: flex; gap: 8px; align-items: baseline; font-size: 13px; color: #A3ACA5"><span style="font-family: 'JetBrains Mono', monospace; color: #F2F5F1">{{ s.k }}</span>{{ s.v }}</span></sc-for></div>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">РОСТ И ПАДЕНИЕ · trend/*</span>
+      <sc-for list="{{ trend }}" as="t" hint-placeholder-count="2">
+        <div style="border-radius: 16px; padding: 18px 20px; background: {{ t.canvas }}; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: {{ t.muted }}; grid-column: span 2">{{ t.name }}</span>
+          <span style="display: flex; flex-direction: column; gap: 4px"><span style="font: 600 22px 'Inter Tight', sans-serif; color: {{ t.up }}; font-feature-settings: 'tnum'">↑ +2,4%</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: {{ t.muted }}">{{ t.upHex }}</span></span>
+          <span style="display: flex; flex-direction: column; gap: 4px"><span style="font: 600 22px 'Inter Tight', sans-serif; color: {{ t.down }}; font-feature-settings: 'tnum'">↓ −1,1%</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: {{ t.muted }}">{{ t.downHex }}</span></span>
+        </div>
+      </sc-for>
+      <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Пара отличается и светлотой: на тёмном рост светлее падения, на светлом — наоборот. Цвет никогда не единственный носитель смысла.</span>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 24px"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">КАТЕГОРИИ · chart/cat/1–8</span><span style="font-size: 14px; color: #A3ACA5">До 5 активов — оттенки серого и акцент; все восемь цветов — только когда категорий больше</span></div>
+    <sc-for list="{{ cats }}" as="t" hint-placeholder-count="2">
+      <div style="border-radius: 20px; padding: 24px; background: {{ t.canvas }}; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 12px">
+        <sc-for list="{{ t.items }}" as="c" hint-placeholder-count="8"><div style="display: flex; flex-direction: column; gap: 8px"><span style="height: 56px; border-radius: 12px; background: {{ c.hex }}; border: 1px solid {{ t.bd }}"></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: {{ t.fg }}">cat/{{ c.n }} · {{ c.hex }}</span><span style="font-size: 12px; color: {{ t.muted }}">{{ c.use }}</span></div></sc-for>
+      </div>
+    </sc-for>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 15px; font-weight: 600">Распределение · полоса</span>
+        <div role="img" aria-label="ETH 48%, USDT 37%, BTC 7%, SOL 5%, другие 3%" style="display: flex; height: 14px; gap: 3px"><span style="flex: 48; border-radius: 3px; background: #B6F36B"></span><span style="flex: 37; border-radius: 3px; background: #F2F5F1"></span><span style="flex: 7; border-radius: 3px; background: #A3ACA5"></span><span style="flex: 5; border-radius: 3px; background: #8A938C"></span><span style="flex: 3; border-radius: 3px; background: #626B64"></span></div>
+        <span style="font-size: 13px; line-height: 18px; color: #A3ACA5">Сегменты через 3 px, порядок — по убыванию доли, выделенный актив сигнальным цветом. Подписи — списком под полосой.</span>
+      </div>
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; gap: 20px; align-items: center">
+        <svg width="120" height="120" viewBox="0 0 42 42" role="img" aria-label="Кольцо распределения: ETH 48%, USDT 37%, другие 15%" style="flex: none"><circle cx="21" cy="21" r="15.9" fill="none" stroke="#48504A" stroke-width="5"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#B6F36B" stroke-width="5" stroke-dasharray="47 53" stroke-dashoffset="25"></circle><circle cx="21" cy="21" r="15.9" fill="none" stroke="#F2F5F1" stroke-width="5" stroke-dasharray="36 64" stroke-dashoffset="77"></circle></svg>
+        <span style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 15px; font-weight: 600">Распределение · кольцо</span><span style="font-size: 13px; line-height: 18px; color: #A3ACA5">Толщина 5/42 диаметра, зазор 1%, в центре — итог или выделенный актив. Не больше пяти сегментов.</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px">
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ПОСЛЕДОВАТЕЛЬНАЯ ШКАЛА · chart/seq/1–7</span>
+      <sc-for list="{{ seq }}" as="t" hint-placeholder-count="2"><div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; padding: 12px; border-radius: 14px; background: {{ t.canvas }}"><sc-for list="{{ t.items }}" as="s" hint-placeholder-count="7"><span style="display: flex; flex-direction: column; gap: 6px"><span style="height: 36px; border-radius: 8px; background: {{ s.hex }}; border: 1px solid {{ t.bd }}"></span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: {{ t.muted }}">{{ s.hex }}</span></span></sc-for></div></sc-for>
+      <span style="font-size: 15px; font-weight: 600; padding-top: 6px">Тепловая карта · сделки P2P по часам, неделя</span>
+      <div role="img" aria-label="Тепловая карта сделок по часам: пик с 18 до 22 часов в будни" style="display: flex; flex-direction: column; gap: 3px">
+        <sc-for list="{{ heat }}" as="r" hint-placeholder-count="7"><div style="display: flex; gap: 3px; align-items: center"><span style="width: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A938C">{{ r.day }}</span><sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="24"><span style="flex: 1; height: 18px; border-radius: 3px; background: {{ c.bg }}"></span></sc-for></div></sc-for>
+        <div style="display: flex; justify-content: space-between; padding-left: 31px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A938C"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+      </div>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">СЧЁТЧИКИ · ШКАЛА И ТОЧЕЧНАЯ СЕТКА</span>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="display: flex; justify-content: space-between; font-size: 14px"><span>Подтверждения</span><span style="font-family: 'JetBrains Mono', monospace">3 / 12</span></span>
+        <div role="img" aria-label="Подтверждения: 3 из 12" style="display: flex; gap: 4px; height: 28px"><sc-for list="{{ ticks }}" as="t" hint-placeholder-count="12"><span style="flex: 1; border-radius: 2px; background: {{ t.bg }}"></span></sc-for></div>
+        <span style="font-size: 13px; line-height: 18px; color: #A3ACA5">Вертикальные штрихи — подтверждения, таймер сделки, лимиты. Меньше 5 минут таймера — штрихи становятся жёлтыми.</span>
+      </div>
+      <div style="display: flex; gap: 24px; align-items: center">
+        <div role="img" aria-label="Доля ETH в портфеле: 48 из 100" style="display: grid; grid-template-columns: repeat(10, 12px); gap: 4px; flex: none"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="100"><span style="width: 12px; height: 12px; border-radius: 2px; background: {{ d.bg }}"></span></sc-for></div>
+        <span style="display: flex; flex-direction: column; gap: 8px"><span style="font: 600 28px 'Inter Tight', sans-serif; font-feature-settings: 'tnum'">48%</span><span style="font-size: 15px; font-weight: 600">Точечная сетка 10 × 10</span><span style="font-size: 13px; line-height: 18px; color: #A3ACA5">Доля актива в портфеле, процент завершённых сделок трейдера. Квадраты 12 px через 4 px.</span></span>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1940}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const seqD = ['#1B1F1C', '#26331F', '#344A25', '#46652C', '#5E8A35', '#86BC4C', '#B6F36B'];
+    const seqL = ['#F7F8F5', '#E3F0D6', '#C8E3AE', '#A4CF80', '#77B04F', '#4B8C28', '#286913'];
+    const days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+    const level = (d, h) => {
+      const evening = Math.max(0, 6 - Math.abs(h - 20) * 1.4);
+      const day = h >= 9 && h <= 17 ? 2.4 : 0;
+      const night = h < 7 ? -2 : 0;
+      const weekend = d >= 5 ? (h >= 11 && h <= 22 ? 1 : -1) : 0;
+      return Math.max(0, Math.min(6, Math.round(1 + evening * 0.7 + day + night + weekend + ((d * 7 + h * 3) % 5 === 0 ? 1 : 0))));
+    };
+    const catUse = ['Выделенный актив', 'Крупнейшая доля', 'Третья серия', 'Ожидание, вывод', 'Риск 60–85', 'Прочие', 'Прочие', 'Остаток'];
+    const cat = (hexes) => hexes.map((hex, i) => ({ n: i + 1, hex, use: catUse[i] }));
+    return {
+      periods: ['24Ч', '7Д', '30Д', '1Г'].map((t) => ({ t, on: t === '30Д' ? 'true' : 'false', bg: t === '30Д' ? '#F2F5F1' : 'transparent', fg: t === '30Д' ? '#0A0C0B' : '#A3ACA5' })),
+      lineSpec: [{ k: '2 px', v: 'линия signal' }, { k: '16% → 0', v: 'заливка' }, { k: 'без сетки', v: 'и без оси Y' }, { k: '●', v: 'текущее значение' }, { k: '┆', v: 'точка наведения с подписью' }],
+      trend: [
+        { name: 'ТЁМНАЯ ТЕМА', canvas: '#0A0C0B', muted: '#8A938C', up: '#B6F36B', down: '#FF7A6B', upHex: '#B6F36B · 15,0:1', downHex: '#FF7A6B · 7,7:1' },
+        { name: 'СВЕТЛАЯ ТЕМА', canvas: '#FFFFFF', muted: '#4D554F', up: '#286913', down: '#A62E23', upHex: '#286913 · 6,7:1', downHex: '#A62E23 · 6,9:1' }
+      ],
+      cats: [
+        { canvas: '#0A0C0B', fg: '#F2F5F1', muted: '#8A938C', bd: '#232824', items: cat(['#B6F36B', '#F2F5F1', '#6EA2FF', '#F5B941', '#FF9A5B', '#A3ACA5', '#8A938C', '#626B64']) },
+        { canvas: '#FFFFFF', fg: '#0E110F', muted: '#4D554F', bd: '#E2E5DF', items: cat(['#286913', '#0E110F', '#2755BA', '#7E5200', '#8F4416', '#4D554F', '#606862', '#8A938C']) }
+      ],
+      seq: [
+        { canvas: '#0A0C0B', muted: '#8A938C', bd: '#232824', items: seqD.map((hex) => ({ hex })) },
+        { canvas: '#FFFFFF', muted: '#4D554F', bd: '#E2E5DF', items: seqL.map((hex) => ({ hex })) }
+      ],
+      heat: days.map((day, d) => ({ day, cells: Array.from({ length: 24 }, (_, h) => ({ bg: seqD[level(d, h)] })) })),
+      ticks: Array.from({ length: 12 }, (_, i) => ({ bg: i < 3 ? '#B6F36B' : '#2E342F' })),
+      dots: Array.from({ length: 100 }, (_, i) => ({ bg: i < 48 ? '#B6F36B' : '#2E342F' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

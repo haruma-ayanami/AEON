@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — приветствие</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} dots" style="position: relative; width: 100%; min-height: 900px; display: flex; flex-direction: column; overflow: hidden">
+  <header class="wl-pad" style="min-height: 72px; padding: 0 56px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--bs); flex-wrap: wrap">
+    <a href="web-welcome.dc.html" aria-label="{{ L.k1 }}" style="display: flex; align-items: center; gap: 10px; text-decoration: none"><span aria-hidden="true" style="width: 22px; height: 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px"><sc-for list="{{ logo }}" as="c" hint-placeholder-count="9"><span style="background: {{ c }}; border-radius: 1px"></span></sc-for></span><span style="font: 600 18px 'Inter Tight', sans-serif; letter-spacing: 0.02em">AEON</span></a>
+    <span style="flex: 1"></span>
+    <span class="testnet">{{ L.k2 }}</span>
+    <button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 36px; padding: 3px; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bd); background: var(--raised); display: inline-flex; gap: 2px; cursor: pointer; font: 500 11px 'JetBrains Mono', monospace; flex: none"><span style="min-width: 34px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button>
+    <a href="web-auth-login.dc.html" class="btn btn-s btn-o">{{ L.k4 }}</a>
+  </header>
+  <main class="wl-pad wl-main" style="flex: 1; width: 100%; max-width: 1320px; margin: 0 auto; padding: 56px 56px 140px; box-sizing: border-box; display: flex; flex-direction: column; gap: 48px">
+    <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+      <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+        <span class="lbl">{{ L.k5 }}</span>
+        <h1 class="disp wl-h1" style="margin: 0; font-size: 68px; line-height: 1.02">{{ L.k6 }}</h1>
+        <p class="muted" style="margin: 0; font-size: 18px; line-height: 27px; max-width: 540px">{{ L.k7 }}</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap"><a href="web-auth-register.dc.html" class="btn btn-p btn-l">{{ L.k8 }}</a><a href="web-auth-login.dc.html" class="btn btn-o btn-l">{{ L.k4 }}</a></div>
+        <span style="display: flex; gap: 10px; align-items: center; font-size: 13px" class="faint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--tnf)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 11v5M12 7.5v.5"></path></svg>{{ L.k9 }}</span>
+      </div>
+      <div aria-hidden="true" class="dots wl-art" style="flex: 1 1 440px; min-width: 0; position: relative; height: 440px; border-radius: 28px; border: 1px solid var(--bs)">
+        <div class="card" style="position: absolute; left: 7%; top: 40px; width: min(330px, 80%); padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="lbl">{{ L.k10 }}</span><span class="disp" style="font-size: 36px">$3 412,18</span><span style="color: var(--sigt); font-size: 13px; font-weight: 600">+2,4% {{ L.k11 }}</span><div style="display: flex; gap: 6px; margin-top: 6px"><span class="chip c-off">ETH · Sepolia</span><span class="chip c-off">USDT</span><span class="chip c-off">+4</span></div></div>
+        <div class="card" style="position: absolute; right: 5%; top: 222px; width: min(300px, 74%); padding: 18px; display: flex; flex-direction: column; gap: 10px"><span style="display: flex; justify-content: space-between"><span class="lbl">P2P-48213</span><span class="chip c-warn" style="height: 24px">{{ L.k12 }}</span></span><span style="font: 600 18px Inter, sans-serif">250 USDT · 23 100 ₽</span><span aria-hidden="true" style="height: 4px; border-radius: 2px; background: var(--bd)"><span style="display: block; width: 62%; height: 4px; border-radius: 2px; background: var(--sig)"></span></span><span class="mono faint" style="font-size: 12px">crypto_mila ★ 4,9 · 11:42</span></div>
+        <div class="card" style="position: absolute; left: 6%; bottom: 10px; width: min(280px, 70%); padding: 14px 16px; display: flex; align-items: center; gap: 12px"><span class="disp" style="font-size: 28px; color: var(--sigt)">6</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 14px">{{ L.k13 }}</span><span class="mono faint" style="font-size: 11px">0x1b9C…0a91</span></span></div>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 14px"><sc-for list="{{ feats }}" as="f" hint-placeholder-count="3"><article class="card" style="padding: 20px 22px; border-radius: 20px; display: flex; gap: 14px; align-items: flex-start"><span aria-hidden="true" style="width: 40px; height: 40px; flex: none; border-radius: 12px; background: var(--raised); color: var(--sigt); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ f.d }}"></path></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font: 600 16px Inter, sans-serif">{{ f.t }}</span><span class="muted" style="font-size: 14px; line-height: 20px">{{ f.s }}</span></span></article></sc-for></div>
+  </main>
+  <sc-if value="{{ showCookie }}" hint-placeholder-val="{{ true }}">
+    <section role="region" aria-label="{{ L.k14 }}" class="card" style="position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); width: min(980px, calc(100% - 32px)); box-sizing: border-box; padding: 18px 20px; border-radius: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; box-shadow: 0 24px 48px rgba(0,0,0,.35)">
+      <span style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">{{ L.k15 }}</span><span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k16 }} <a href="web-settings.dc.html">{{ L.k17 }}</a></span></span>
+      <span style="display: flex; gap: 8px; flex-wrap: wrap"><button class="btn btn-o">{{ L.k18 }}</button><button class="btn">{{ L.k19 }}</button><button class="btn btn-p">{{ L.k20 }}</button></span>
+    </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "cookie": {"editor": "enum", "options": ["shown", "hidden"], "default": "shown"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON, на главную": "AEON, home", "ТЕСТОВАЯ СЕТЬ": "TESTNET", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Войти": "Sign in", "КОШЕЛЁК · P2P · АНАЛИТИКА": "WALLET · P2P · ANALYTICS", "Криптовалюта без лишних шагов": "Crypto without extra steps", "Храните активы шести тестовых сетей, покупайте USDT у людей через эскроу и проверяйте адреса до отправки — в одном приложении для веба, Windows и iPhone.": "Hold assets on six test networks, buy USDT from people via escrow and check addresses before sending — in one app for web, Windows and iPhone.", "Создать аккаунт": "Create account", "Работает только в тестовых сетях: реальные средства не используются.": "Runs on test networks only: no real funds are used.", "ОБЩИЙ БАЛАНС": "TOTAL BALANCE", "за 24 ч": "in 24 h", "В эскроу": "In escrow", "Низкий риск адреса": "Low address risk", "Настройки cookie": "Cookie settings", "Cookie на этом сайте": "Cookies on this site", "Обязательные cookie нужны для входа и защиты аккаунта. Аналитические — только с вашего согласия, их можно отключить в любой момент.": "Essential cookies are needed for sign-in and account protection. Analytics cookies only with your consent — you can turn them off at any time.", "Политика cookie": "Cookie policy", "Настроить": "Customize", "Только обязательные": "Essential only", "Принять все": "Accept all", "Кошелёк на шесть сетей": "Wallet for six networks", "ETH, USDT, POL, BNB, BTC и SOL. Отправка за 6 действий с проверкой адреса и комиссии.": "ETH, USDT, POL, BNB, BTC and SOL. Send in 6 steps with address and fee checks.", "P2P с эскроу": "P2P with escrow", "USDT блокируются до подтверждения оплаты. Спор решает арбитр по чату и чекам.": "USDT is locked until payment is confirmed. Disputes are resolved by an arbiter from the chat and receipts.", "Аналитика и скоринг": "Analytics and scoring", "Состав портфеля, риск адресов и коридор курса — с датой расчёта и пояснениями.": "Portfolio mix, address risk and rate range — with calculation date and explanations."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON, на главную"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Войти"), k5: this.tr("КОШЕЛЁК · P2P · АНАЛИТИКА"), k6: this.tr("Криптовалюта без лишних шагов"), k7: this.tr("Храните активы шести тестовых сетей, покупайте USDT у людей через эскроу и проверяйте адреса до отправки — в одном приложении для веба, Windows и iPhone."), k8: this.tr("Создать аккаунт"), k9: this.tr("Работает только в тестовых сетях: реальные средства не используются."), k10: this.tr("ОБЩИЙ БАЛАНС"), k11: this.tr("за 24 ч"), k12: this.tr("В эскроу"), k13: this.tr("Низкий риск адреса"), k14: this.tr("Настройки cookie"), k15: this.tr("Cookie на этом сайте"), k16: this.tr("Обязательные cookie нужны для входа и защиты аккаунта. Аналитические — только с вашего согласия, их можно отключить в любой момент."), k17: this.tr("Политика cookie"), k18: this.tr("Настроить"), k19: this.tr("Только обязательные"), k20: this.tr("Принять все"), k21: this.tr("Кошелёк на шесть сетей"), k22: this.tr("ETH, USDT, POL, BNB, BTC и SOL. Отправка за 6 действий с проверкой адреса и комиссии."), k23: this.tr("P2P с эскроу"), k24: this.tr("USDT блокируются до подтверждения оплаты. Спор решает арбитр по чату и чекам."), k25: this.tr("Аналитика и скоринг"), k26: this.tr("Состав портфеля, риск адресов и коридор курса — с датой расчёта и пояснениями.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      showCookie: (this.props.cookie ?? 'shown') === 'shown',
+      logo: ['var(--sig)', 'var(--t1)', 'var(--t1)', 'var(--t1)', 'transparent', 'var(--t1)', 'var(--t1)', 'var(--t1)', 'var(--t1)'],
+      feats: [
+        { t: this.tr("Кошелёк на шесть сетей"), s: this.tr("ETH, USDT, POL, BNB, BTC и SOL. Отправка за 6 действий с проверкой адреса и комиссии."), d: 'M3 9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3zM3 9h15M16 12.5h2' },
+        { t: this.tr("P2P с эскроу"), s: this.tr("USDT блокируются до подтверждения оплаты. Спор решает арбитр по чату и чекам."), d: 'M4 8h13l-3-3M20 16H7l3 3' },
+        { t: this.tr("Аналитика и скоринг"), s: this.tr("Состав портфеля, риск адресов и коридор курса — с датой расчёта и пояснениями."), d: 'M4 19h16M6 15l4-5 3 3 5-7' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

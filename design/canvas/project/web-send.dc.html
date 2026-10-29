@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — отправка</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+.th-dark{--canvas:#0A0C0B;--surface:#131614;--raised:#1B1F1C;--sunken:#070807;--bs:#232824;--bd:#2E342F;--bst:#48504A;--t1:#F2F5F1;--t2:#A3ACA5;--t3:#8A938C;--pbg:#F2F5F1;--pfg:#0A0C0B;--sig:#B6F36B;--sigt:#B6F36B;--sigs:rgba(182,243,107,.12);--neg:#FF7A6B;--negs:rgba(255,122,107,.12);--warn:#F5B941;--warns:rgba(245,185,65,.12);--info:#6EA2FF;--infos:rgba(110,162,255,.12);--tnf:#F5B941;--tnb:#2A230F;--orange:#FF9A5B;--onacc:#0A0C0B}
+.th-light{--canvas:#EEF0EC;--surface:#FFFFFF;--raised:#F7F8F5;--sunken:#E4E7E1;--bs:#E2E5DF;--bd:#D3D7D0;--bst:#A9AFA6;--t1:#0E110F;--t2:#4D554F;--t3:#606862;--pbg:#0E110F;--pfg:#FFFFFF;--sig:#B6F36B;--sigt:#286913;--sigs:rgba(47,122,22,.12);--neg:#A62E23;--negs:rgba(200,55,42,.1);--warn:#7E5200;--warns:rgba(154,100,0,.12);--info:#2755BA;--infos:rgba(45,98,214,.1);--tnf:#7A4F00;--tnb:#FFF1CC;--orange:#8F4416;--onacc:#FFFFFF}
+input::placeholder{color:var(--t3)}
+a{color:var(--t1)}
+</style>
+</helmet>
+<div class="{{ themeClass }}" style="min-height: 1040px; background: var(--canvas); color: var(--t1); font-family: Inter, system-ui, sans-serif; display: flex; flex-wrap: wrap; align-items: stretch">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="wallet" hint-size="240px,960px"></dc-import>
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+
+    <div style="padding: 24px 32px 48px; display: flex; flex-direction: column; gap: 24px; max-width: 1120px; box-sizing: border-box; width: 100%">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+        <a href="web-wallet-home.dc.html" style="display: inline-flex; align-items: center; gap: 6px; font: 500 14px Inter, sans-serif; color: var(--t2); text-decoration: none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>{{ L.k2 }}</a>
+        <ol aria-label="{{ L.k3 }}" style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; flex: 1">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+            <li aria-current="{{ s.current }}" style="height: 32px; padding: 0 12px 0 6px; border-radius: 999px; background: {{ s.bg }}; color: {{ s.fg }}; display: inline-flex; align-items: center; gap: 8px; font: 500 13px Inter, sans-serif"><span style="width: 20px; height: 20px; border-radius: 999px; background: {{ s.dotBg }}; color: {{ s.dotFg }}; font: 600 11px Inter, sans-serif; display: inline-flex; align-items: center; justify-content: center">{{ s.mark }}</span>{{ s.label }}</li>
+          </sc-for>
+        </ol>
+        <span style="height: 28px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--bd); font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t2); display: inline-flex; align-items: center">{{ counter }}</span>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+        <section style="flex: 2 1 520px; min-width: 0; border-radius: 28px; background: var(--surface); border: 1px solid var(--bs); padding: 28px; display: flex; flex-direction: column; gap: 22px">
+
+          <sc-if value="{{ isRecipient }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 22px">
+              <h2 style="margin: 0; font: 600 26px 'Inter Tight', sans-serif">{{ L.k4 }}</h2>
+              <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+                <legend style="font-size: 14px; font-weight: 500; color: var(--t2); margin-bottom: 10px">{{ L.k5 }}</legend>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 8px">
+                  <sc-for list="{{ assetPick }}" as="a" hint-placeholder-count="4">
+                    <button aria-pressed="{{ a.sel }}" style="height: 64px; padding: 0 14px; border-radius: 18px; border: {{ a.border }}; background: var(--raised); color: var(--t1); display: flex; align-items: center; gap: 10px; text-align: left; cursor: pointer">
+                      <span style="position: relative; width: 34px; height: 34px; flex: none"><span style="width: 34px; height: 34px; border-radius: 999px; background: var(--surface); border: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; font: 500 9px 'JetBrains Mono', monospace">{{ a.t }}</span><span aria-hidden="true" style="position: absolute; right: -2px; bottom: -2px; width: 11px; height: 11px; border-radius: 3px; background: {{ a.nc }}; border: 2px solid var(--raised)"></span></span>
+                      <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font: 600 14px Inter, sans-serif">{{ a.t }} · {{ a.net }}</span><span style="font-size: 12px; color: var(--t2); font-feature-settings: 'tnum'">{{ a.bal }}</span></span>
+                    </button>
+                  </sc-for>
+                </div>
+              </fieldset>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <label for="to" style="font-size: 14px; font-weight: 500; color: var(--t2)">{{ L.k6 }}</label>
+                <div style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 8px 0 16px; border-radius: 16px; background: var(--raised); border: {{ toBorder }}">
+                  <input id="to" defaultValue="{{ toVal }}" aria-invalid="{{ toInvalid }}" aria-describedby="to-hint" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 14px 'JetBrains Mono', monospace; outline: none">
+                  <button style="height: 40px; padding: 0 14px; border-radius: 999px; border: 0; background: var(--surface); color: var(--t1); font: 500 13px Inter, sans-serif; cursor: pointer">{{ L.k7 }}</button>
+                </div>
+                <span id="to-hint" role="{{ toRole }}" style="display: flex; gap: 8px; font-size: 13px; line-height: 18px; color: {{ toHintC }}"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex: none; border-radius: 2px; background: {{ toHintC }}"></span>{{ toHint }}</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ L.k9 }}</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                  <button style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--t1); background: var(--raised); color: var(--t1); font: 500 13px Inter, sans-serif; display: inline-flex; align-items: center; gap: 8px; cursor: pointer">{{ L.k10 }}<span style="font: 400 12px 'JetBrains Mono', monospace; color: var(--t2)">0x1b…0a91</span></button>
+                  <button style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--bd); background: transparent; color: var(--t1); font: 500 13px Inter, sans-serif; display: inline-flex; align-items: center; gap: 8px; cursor: pointer">{{ L.k11 }}<span style="font: 400 12px 'JetBrains Mono', monospace; color: var(--t2)">0x9e…44Bc</span></button>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: flex-end"><button onClick="{{ toAmount }}" disabled="{{ toInvalidB }}" style="height: 52px; padding: 0 32px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 16px Inter, sans-serif; cursor: pointer; opacity: {{ nextOp }}">{{ L.k12 }}</button></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isAmount }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 22px">
+              <h2 style="margin: 0; font: 600 26px 'Inter Tight', sans-serif">{{ L.k13 }}</h2>
+              <div style="border-radius: 22px; background: var(--raised); border: {{ amtBorder }}; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px">
+                <div style="display: flex; justify-content: space-between; align-items: center"><label for="amt" style="font-size: 14px; font-weight: 500; color: var(--t2)">{{ L.k14 }}</label><span style="font-size: 13px; color: var(--t3)">{{ L.k15 }} <span style="color: var(--t1); font-feature-settings: 'tnum'">{{ avail }}</span></span></div>
+                <div style="display: flex; align-items: center; gap: 12px"><input id="amt" defaultValue="{{ amtVal }}" aria-invalid="{{ fundsInvalid }}" inputmode="decimal" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 600 48px 'Inter Tight', sans-serif; letter-spacing: -0.03em; outline: none"><span style="font: 600 20px 'Inter Tight', sans-serif; color: var(--t2)">{{ amtUnit }}</span></div>
+                <div style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 14px; color: var(--t2)">{{ fiatEq }}</span><div style="display: flex; gap: 6px"><button style="height: 30px; padding: 0 12px; border-radius: 999px; border: 0; background: var(--surface); color: var(--t1); font: 600 12px 'JetBrains Mono', monospace; cursor: pointer">50%</button><button style="height: 30px; padding: 0 12px; border-radius: 999px; border: 0; background: var(--surface); color: var(--t1); font: 600 12px 'JetBrains Mono', monospace; cursor: pointer">{{ L.k18 }}</button></div></div>
+              </div>
+              <sc-if value="{{ isFunds }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 16px; background: var(--negs); font-size: 14px; line-height: 20px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1">{{ fundsText }}</span><button style="height: 32px; padding: 0 12px; border-radius: 999px; border: 0; background: var(--surface); color: var(--t1); font: 600 13px Inter, sans-serif; cursor: pointer; flex: none">{{ fundsFix }}</button></div></sc-if>
+              <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+                <legend style="font-size: 14px; font-weight: 500; color: var(--t2); margin-bottom: 10px">{{ L.k19 }}</legend>
+                <sc-for list="{{ fees }}" as="f" hint-placeholder-count="3">
+                  <label style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; border: {{ f.border }}; background: var(--raised); cursor: pointer">
+                    <span aria-hidden="true" style="width: 20px; height: 20px; border-radius: 999px; box-sizing: border-box; border: {{ f.ring }}"></span>
+                    <input type="radio" name="fee" checked="{{ f.sel }}" style="position: absolute; opacity: 0; width: 1px; height: 1px">
+                    <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 500">{{ f.name }}</span><span style="font-size: 13px; color: var(--t2)">{{ f.time }}</span></span>
+                    <span style="font: 400 13px 'JetBrains Mono', monospace; color: var(--t2)">{{ f.cost }}</span>
+                  </label>
+                </sc-for>
+              </fieldset>
+              <div style="display: flex; justify-content: space-between; gap: 10px"><button onClick="{{ toRecipient }}" style="height: 52px; padding: 0 24px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); font: 600 15px Inter, sans-serif; cursor: pointer">{{ L.k20 }}</button><button onClick="{{ toConfirm }}" disabled="{{ fundsInvalidB }}" style="height: 52px; padding: 0 32px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 16px Inter, sans-serif; cursor: pointer; opacity: {{ confOp }}">{{ L.k21 }}</button></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 20px">
+              <h2 style="margin: 0; font: 600 26px 'Inter Tight', sans-serif">{{ L.k22 }}</h2>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0"><span style="font: 600 52px 'Inter Tight', sans-serif; letter-spacing: -0.03em; font-feature-settings: 'tnum'">250<span style="color: var(--t3)">{{ L.k23 }}</span> <span style="font-size: 26px; color: var(--t2)">USDT</span></span><span style="font-size: 15px; color: var(--t2)">{{ L.k24 }}</span></div>
+              <div style="border-radius: 20px; background: var(--raised); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px">
+                <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ L.k25 }}</span>
+                <span style="font: 400 17px 'JetBrains Mono', monospace; line-height: 26px; word-break: break-all"><span style="font-weight: 500; background: var(--sigs); border-radius: 4px; padding: 0 2px">0x1b9C4e</span><span style="color: var(--t2)">7A2f0D8c3B5a6E9f1D7c2A4b8E3f6D</span><span style="font-weight: 500; background: var(--sigs); border-radius: 4px; padding: 0 2px">0a91</span></span>
+                <span style="font-size: 13px; color: var(--t2)">{{ L.k26 }}</span>
+              </div>
+              <div style="border-radius: 20px; background: var(--raised); padding: 4px 20px">
+                <sc-for list="{{ summary }}" as="s" hint-placeholder-count="4">
+                  <div style="display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid {{ s.line }}; font-size: 15px"><span style="color: var(--t2)">{{ s.k }}</span><span style="font-weight: {{ s.w }}; text-align: right; font-feature-settings: 'tnum'">{{ s.v }}</span></div>
+                </sc-for>
+              </div>
+              <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ L.k27 }}</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 10px"><button onClick="{{ toAmount }}" style="height: 52px; padding: 0 24px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); font: 600 15px Inter, sans-serif; cursor: pointer">{{ L.k28 }}</button><button onClick="{{ toTwofa }}" style="height: 52px; padding: 0 32px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 16px Inter, sans-serif; cursor: pointer">{{ L.k29 }}</button></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isTwofa }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 22px; align-items: center; text-align: center; padding: 12px 0">
+              <span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 999px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--t1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg></span>
+              <div style="display: flex; flex-direction: column; gap: 6px"><h2 style="margin: 0; font: 600 26px 'Inter Tight', sans-serif">{{ L.k30 }}</h2><span style="font-size: 15px; color: var(--t2)">{{ L.k31 }}</span></div>
+              <div style="display: grid; grid-template-columns: repeat(6, 56px); gap: 8px">
+                <sc-for list="{{ otp }}" as="o" hint-placeholder-count="6"><input aria-label="{{ o.aria }}" value="{{ o.v }}" maxlength="1" style="height: 64px; width: 56px; box-sizing: border-box; border-radius: 16px; border: 1px solid {{ o.border }}; background: var(--raised); color: var(--t1); text-align: center; font: 600 26px 'Inter Tight', sans-serif; outline: none"></sc-for>
+              </div>
+              <span style="font-size: 13px; color: var(--t3)">{{ L.k32 }} <span style="font-family: 'JetBrains Mono', monospace; color: var(--t1)">0:24</span> · <button type="button" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; color: var(--t1)">{{ L.k33 }}</button></span>
+              <div style="display: flex; gap: 10px"><button onClick="{{ toConfirm }}" style="height: 52px; padding: 0 24px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); font: 600 15px Inter, sans-serif; cursor: pointer">{{ L.k20 }}</button><button onClick="{{ toResult }}" style="height: 52px; padding: 0 32px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 16px Inter, sans-serif; cursor: pointer">{{ L.k34 }}</button></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 22px">
+              <div style="display: flex; align-items: center; gap: 16px">
+                <span aria-hidden="true" style="width: 56px; height: 56px; flex: none; border-radius: 999px; background: {{ res.bg }}; color: {{ res.fg }}; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ res.d }}"></path></svg></span>
+                <div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font: 600 26px 'Inter Tight', sans-serif">{{ res.title }}</h2><span style="font-size: 15px; line-height: 22px; color: var(--t2)">{{ res.text }}</span></div>
+              </div>
+              <ol aria-label="{{ L.k35 }}" style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-radius: 20px; background: var(--raised); padding: 8px 20px">
+                <sc-for list="{{ res.track }}" as="t" hint-placeholder-count="5">
+                  <li style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid {{ t.line }}">
+                    <span aria-hidden="true" style="width: 22px; height: 22px; flex: none; border-radius: 999px; background: {{ t.bg }}; border: {{ t.border }}; box-sizing: border-box; color: #0A0C0B; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="{{ t.d }}"></path></svg></span>
+                    <span style="flex: 1; font-size: 15px; font-weight: {{ t.w }}; color: {{ t.fg }}">{{ t.label }}</span>
+                    <span style="font: 400 12px 'JetBrains Mono', monospace; color: var(--t3)">{{ t.time }}</span>
+                  </li>
+                </sc-for>
+              </ol>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px"><a href="web-wallet-home.dc.html" style="height: 52px; padding: 0 28px; border-radius: 999px; background: var(--pbg); color: var(--pfg); font: 600 15px Inter, sans-serif; text-decoration: none; display: flex; align-items: center">{{ L.k36 }}</a><button onClick="{{ restart }}" style="height: 52px; padding: 0 24px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); font: 600 15px Inter, sans-serif; cursor: pointer">{{ L.k37 }}</button><sc-if value="{{ res.explorer }}" hint-placeholder-val="{{ true }}"><a href="https://sepolia.etherscan.io/" target="_blank" rel="noopener" style="height: 52px; padding: 0 18px; display: flex; align-items: center; gap: 6px; font: 500 14px Inter, sans-serif; color: var(--t2); text-decoration: none">{{ L.k38 }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></a></sc-if></div>
+            </div>
+          </sc-if>
+        </section>
+
+        <aside aria-label="{{ L.k39 }}" style="flex: 1 1 280px; min-width: 0; border-radius: 24px; background: var(--surface); border: 1px solid var(--bs); padding: 22px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3); padding-bottom: 10px">{{ L.k40 }}</span>
+          <sc-for list="{{ side }}" as="s" hint-placeholder-count="6">
+            <div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--bs); font-size: 14px"><span style="color: var(--t2)">{{ s.k }}</span><span style="text-align: right; font-weight: 500; color: {{ s.c }}; font-family: {{ s.f }}; font-feature-settings: 'tnum'">{{ s.v }}</span></div>
+          </sc-for>
+          <div style="margin-top: 12px; padding: 12px 14px; border-radius: 14px; background: var(--raised); font-size: 13px; line-height: 18px; color: var(--t2)">{{ L.k41 }} <span style="color: var(--t1); font-weight: 600">{{ L.k42 }}</span> {{ L.k43 }}</div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "step": {"editor": "enum", "options": ["recipient", "amount", "confirm", "twofa", "result"], "default": "recipient"}, "result": {"editor": "enum", "options": ["success", "review", "rejected"], "default": "success"}, "error": {"editor": "enum", "options": ["none", "address", "funds"], "default": "none"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1040}}'>
+class Component extends DCLogic {
+  static EN = {"Кошелёк": "Wallet", "1 250,00 USDT": "1,250.00 USDT", ",00": ".00", "250,00 USDT": "250.00 USDT", "Выполнен": "Completed", "Отправка": "Send", "Шаги отправки": "Send steps", "Что и кому отправить": "What and to whom", "Актив": "Asset", "Адрес получателя · Ethereum Sepolia": "Recipient address · Ethereum Sepolia", "Вставить": "Paste", "Формат верный · риск низкий (балл 6) · вы уже отправляли на этот адрес": "Valid format · low risk (score 6) · you have sent to this address before", "АДРЕСНАЯ КНИГА": "ADDRESS BOOK", "Ledger тест": "Ledger test", "Кошелёк Маши": "Masha's wallet", "Далее": "Next", "Сколько отправить": "How much to send", "Сумма": "Amount", "Доступно:": "Available:", "≈ $250,00 · 23 100 ₽": "≈ $250.00 · 23,100 ₽", "МАКС": "MAX", "Скорость · комиссия сети платится в ETH": "Speed · network fee is paid in ETH", "Назад": "Back", "Проверить": "Review", "Проверьте перевод": "Review the transfer", "≈ $250,00 · сеть Ethereum Sepolia": "≈ $250.00 · Ethereum Sepolia network", "АДРЕС ПОЛУЧАТЕЛЯ · СВЕРЬТЕ НАЧАЛО И КОНЕЦ": "RECIPIENT ADDRESS · CHECK THE START AND END", "Ledger тест · из адресной книги": "Ledger test · from address book", "Перевод в блокчейне нельзя отменить. Если адрес неверный, средства не вернуть.": "Blockchain transfers can't be reversed. If the address is wrong, the funds are lost.", "Изменить": "Edit", "Подтвердить отправку": "Confirm sending", "Код подтверждения": "Verification code", "Введите 6 цифр из приложения-аутентификатора": "Enter the 6 digits from your authenticator app", "Новый код через": "New code in", "Войти по passkey": "Use a passkey", "Подтвердить": "Confirm", "Статус вывода": "Withdrawal status", "К кошельку": "Back to wallet", "Новый перевод": "New transfer", "Открыть в обозревателе Sepolia": "Open in Sepolia explorer", "Сводка": "Summary", "СВОДКА": "SUMMARY", "Лимит вывода для KYC уровня 1: осталось": "KYC level 1 withdrawal limit: remaining", "4 750 USDT": "4,750 USDT", "из 5 000 на сегодня.": "of 5,000 today.", "Получатель": "Recipient", "Проверка": "Review", "Подтверждение": "Confirmation", "ДЕЙСТВИЯ 2–3 ИЗ 6": "ACTIONS 2–3 OF 6", "ДЕЙСТВИЯ 4–5 ИЗ 6": "ACTIONS 4–5 OF 6", "ДЕЙСТВИЕ 6 ИЗ 6": "ACTION 6 OF 6", "ВТОРОЙ ФАКТОР": "SECOND FACTOR", "ГОТОВО": "DONE", "1 250,00 доступно": "1,250.00 available", "0,4821 доступно": "0.4821 available", "14,2 доступно": "14.2 available", "0,00184 доступно": "0.00184 available", "Медленно": "Slow", "≈ 5 минут": "≈ 5 minutes", "0,00012 ETH · $0,41": "0.00012 ETH · $0.41", "Обычно": "Normal", "≈ 30 секунд": "≈ 30 seconds", "0,00021 ETH · $0,72": "0.00021 ETH · $0.72", "Быстро": "Fast", "≈ 12 секунд": "≈ 12 seconds", "0,00034 ETH · $1,16": "0.00034 ETH · $1.16", "Кому": "To", "Комиссия сети": "Network fee", "0,00021 ETH": "0.00021 ETH", "Комиссия AEON": "AEON fee", "1,00 USDT": "1.00 USDT", "Спишется всего": "Total to be debited", "251,00 USDT": "251.00 USDT", "Перевод отправлен": "Transfer sent", "Заявка прошла проверку и отправлена в сеть. Зачисление получателю — после 12 подтверждений.": "The request passed checks and was broadcast. The recipient is credited after 12 confirmations.", "Подтверждён вторым фактором": "Confirmed with second factor", "Проверка риска и лимитов": "Risk and limit check", "Подписан и отправлен в сеть": "Signed and broadcast", "Подтверждения 3 / 12": "Confirmations 3 / 12", "≈ 2 мин": "≈ 2 min", "Перевод на ручной проверке": "Transfer under manual review", "Сумма выше порога автоматического вывода. Сотрудник проверит заявку в течение 2 часов, средства пока удержаны.": "The amount is above the automatic withdrawal threshold. Staff will review the request within 2 hours; the funds are on hold until then.", "Ручная проверка": "Manual review", "до 14:44": "until 14:44", "Отправка в сеть": "Broadcast to network", "Перевод отклонён": "Transfer rejected", "Адрес получателя связан с сервисом-миксером (балл 82). 251 USDT вернулись на ваш баланс. Уточните адрес у получателя.": "The recipient address is linked to a mixing service (score 82). 251 USDT were returned to your balance. Check the address with the recipient.", "Проверка риска: высокий риск": "Risk check: high risk", "Средства возвращены на баланс": "Funds returned to balance", "0,00021 ETH · ≈ $0,72": "0.00021 ETH · ≈ $0.72", "Время": "Time", "251,00 USDT + 0,00021 ETH": "251.00 USDT + 0.00021 ETH", "Цифра ": "Digit ", "Адрес не подходит для сети Sepolia. Проверьте, что адрес начинается с 0x и содержит 42 символа — сейчас 41.": "This address doesn't fit the Sepolia network. Check that it starts with 0x and has 42 characters — it has 41 now.", "0,05": "0.05", "0,0500 ETH": "0.0500 ETH", "≈ $170,61 · 15 765 ₽": "≈ $170.61 · 15,765 ₽", "Недостаточно средств. С учётом комиссии сети нужно 0,0521 ETH, доступно 0,0500 ETH. Уменьшите сумму.": "Insufficient funds. Including the network fee you need 0.0521 ETH, 0.0500 ETH is available. Reduce the amount.", "Отправить 0,0479": "Send 0.0479"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Отправка"), k2: this.tr("Кошелёк"), k3: this.tr("Шаги отправки"), k4: this.tr("Что и кому отправить"), k5: this.tr("Актив"), k6: this.tr("Адрес получателя · Ethereum Sepolia"), k7: this.tr("Вставить"), k8: this.tr("Формат верный · риск низкий (балл 6) · вы уже отправляли на этот адрес"), k9: this.tr("АДРЕСНАЯ КНИГА"), k10: this.tr("Ledger тест"), k11: this.tr("Кошелёк Маши"), k12: this.tr("Далее"), k13: this.tr("Сколько отправить"), k14: this.tr("Сумма"), k15: this.tr("Доступно:"), k16: this.tr("1 250,00 USDT"), k17: this.tr("≈ $250,00 · 23 100 ₽"), k18: this.tr("МАКС"), k19: this.tr("Скорость · комиссия сети платится в ETH"), k20: this.tr("Назад"), k21: this.tr("Проверить"), k22: this.tr("Проверьте перевод"), k23: this.tr(",00"), k24: this.tr("≈ $250,00 · сеть Ethereum Sepolia"), k25: this.tr("АДРЕС ПОЛУЧАТЕЛЯ · СВЕРЬТЕ НАЧАЛО И КОНЕЦ"), k26: this.tr("Ledger тест · из адресной книги"), k27: this.tr("Перевод в блокчейне нельзя отменить. Если адрес неверный, средства не вернуть."), k28: this.tr("Изменить"), k29: this.tr("Подтвердить отправку"), k30: this.tr("Код подтверждения"), k31: this.tr("Введите 6 цифр из приложения-аутентификатора"), k32: this.tr("Новый код через"), k33: this.tr("Войти по passkey"), k34: this.tr("Подтвердить"), k35: this.tr("Статус вывода"), k36: this.tr("К кошельку"), k37: this.tr("Новый перевод"), k38: this.tr("Открыть в обозревателе Sepolia"), k39: this.tr("Сводка"), k40: this.tr("СВОДКА"), k41: this.tr("Лимит вывода для KYC уровня 1: осталось"), k42: this.tr("4 750 USDT"), k43: this.tr("из 5 000 на сегодня."), k44: this.tr("Получатель"), k45: this.tr("Проверка"), k46: this.tr("Подтверждение"), k47: this.tr("ДЕЙСТВИЯ 2–3 ИЗ 6"), k48: this.tr("ДЕЙСТВИЯ 4–5 ИЗ 6"), k49: this.tr("ДЕЙСТВИЕ 6 ИЗ 6"), k50: this.tr("ВТОРОЙ ФАКТОР"), k51: this.tr("ГОТОВО"), k52: this.tr("1 250,00 доступно"), k53: this.tr("0,4821 доступно"), k54: this.tr("14,2 доступно"), k55: this.tr("0,00184 доступно"), k56: this.tr("Медленно"), k57: this.tr("≈ 5 минут"), k58: this.tr("0,00012 ETH · $0,41"), k59: this.tr("Обычно"), k60: this.tr("≈ 30 секунд"), k61: this.tr("0,00021 ETH · $0,72"), k62: this.tr("Быстро"), k63: this.tr("≈ 12 секунд"), k64: this.tr("0,00034 ETH · $1,16"), k65: this.tr("Кому"), k66: this.tr("250,00 USDT"), k67: this.tr("Комиссия сети"), k68: this.tr("0,00021 ETH"), k69: this.tr("Комиссия AEON"), k70: this.tr("1,00 USDT"), k71: this.tr("Спишется всего"), k72: this.tr("251,00 USDT"), k73: this.tr("Перевод отправлен"), k74: this.tr("Заявка прошла проверку и отправлена в сеть. Зачисление получателю — после 12 подтверждений."), k75: this.tr("Подтверждён вторым фактором"), k76: this.tr("Проверка риска и лимитов"), k77: this.tr("Подписан и отправлен в сеть"), k78: this.tr("Подтверждения 3 / 12"), k79: this.tr("≈ 2 мин"), k80: this.tr("Выполнен"), k81: this.tr("Перевод на ручной проверке"), k82: this.tr("Сумма выше порога автоматического вывода. Сотрудник проверит заявку в течение 2 часов, средства пока удержаны."), k83: this.tr("Ручная проверка"), k84: this.tr("до 14:44"), k85: this.tr("Отправка в сеть"), k86: this.tr("Перевод отклонён"), k87: this.tr("Адрес получателя связан с сервисом-миксером (балл 82). 251 USDT вернулись на ваш баланс. Уточните адрес у получателя."), k88: this.tr("Проверка риска: высокий риск"), k89: this.tr("Средства возвращены на баланс"), k90: this.tr("0,00021 ETH · ≈ $0,72"), k91: this.tr("Время"), k92: this.tr("251,00 USDT + 0,00021 ETH"), k93: this.tr("Цифра ") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const step = (this.state && this.state.step) || this.props.step || 'recipient';
+    const result = this.props.result ?? 'success';
+    const error = this.props.error ?? 'none';
+    const badTo = error === 'address', badFunds = error === 'funds';
+    const go = (s) => () => this.setState({ step: s });
+    const order = ['recipient', 'amount', 'confirm', 'twofa', 'result'];
+    const idx = order.indexOf(step);
+    const labels = [[this.tr('Получатель'), 0], [this.tr('Сумма'), 1], [this.tr('Проверка'), 2], [this.tr('Подтверждение'), 3]];
+    const steps = labels.map(([label, i]) => {
+      const done = idx > i || step === 'result';
+      const cur = idx === i;
+      return {
+        label, current: cur ? 'step' : 'false', mark: done ? '✓' : String(i + 1),
+        bg: cur ? 'var(--raised)' : 'transparent', fg: cur || done ? 'var(--t1)' : 'var(--t3)',
+        dotBg: done ? 'var(--sig)' : cur ? 'var(--pbg)' : 'var(--raised)', dotFg: done ? '#0A0C0B' : cur ? 'var(--pfg)' : 'var(--t3)'
+      };
+    });
+    const counters = { recipient: this.tr('ДЕЙСТВИЯ 2–3 ИЗ 6'), amount: this.tr('ДЕЙСТВИЯ 4–5 ИЗ 6'), confirm: this.tr('ДЕЙСТВИЕ 6 ИЗ 6'), twofa: this.tr('ВТОРОЙ ФАКТОР'), result: this.tr('ГОТОВО') };
+    const sel = 'USDT';
+    const assetPick = [
+      { t: 'USDT', net: 'Sepolia', bal: this.tr('1 250,00 доступно'), nc: '#8A9BFF' },
+      { t: 'ETH', net: 'Sepolia', bal: this.tr('0,4821 доступно'), nc: '#8A9BFF' },
+      { t: 'SOL', net: 'Devnet', bal: this.tr('14,2 доступно'), nc: '#5EE3C1' },
+      { t: 'BTC', net: 'Testnet', bal: this.tr('0,00184 доступно'), nc: '#F7A23B' }
+    ].map((a) => ({ ...a, sel: a.t === sel ? 'true' : 'false', border: a.t === sel ? '1.5px solid var(--t1)' : '1px solid var(--bd)' }));
+    const fees = [
+      { name: this.tr('Медленно'), time: this.tr('≈ 5 минут'), cost: this.tr('0,00012 ETH · $0,41'), on: false },
+      { name: this.tr('Обычно'), time: this.tr('≈ 30 секунд'), cost: this.tr('0,00021 ETH · $0,72'), on: true },
+      { name: this.tr('Быстро'), time: this.tr('≈ 12 секунд'), cost: this.tr('0,00034 ETH · $1,16'), on: false }
+    ].map((f) => ({ ...f, sel: f.on, border: f.on ? '1.5px solid var(--t1)' : '1px solid var(--bd)', ring: f.on ? '6px solid var(--t1)' : '1.5px solid var(--bst)' }));
+    const filled = idx >= 1;
+    const amountKnown = idx >= 2;
+    const side = [
+      { k: this.tr('Актив'), v: badFunds ? 'ETH · Sepolia' : 'USDT · Sepolia', c: 'var(--t1)', f: 'Inter, sans-serif' },
+      { k: this.tr('Кому'), v: filled ? '0x1b9C…0a91' : '—', c: filled ? 'var(--t1)' : 'var(--t3)', f: "'JetBrains Mono', monospace" },
+      { k: this.tr('Сумма'), v: amountKnown ? this.tr('250,00 USDT') : '—', c: amountKnown ? 'var(--t1)' : 'var(--t3)', f: 'Inter, sans-serif' },
+      { k: this.tr('Комиссия сети'), v: amountKnown ? this.tr('0,00021 ETH') : '—', c: amountKnown ? 'var(--t1)' : 'var(--t3)', f: 'Inter, sans-serif' },
+      { k: this.tr('Комиссия AEON'), v: amountKnown ? this.tr('1,00 USDT') : '—', c: amountKnown ? 'var(--t1)' : 'var(--t3)', f: 'Inter, sans-serif' },
+      { k: this.tr('Спишется всего'), v: amountKnown ? this.tr('251,00 USDT') : '—', c: amountKnown ? 'var(--t1)' : 'var(--t3)', f: 'Inter, sans-serif' }
+    ];
+    const ok = 'M5 12l5 5 9-10';
+    const tr = (label, st, time) => ({
+      label, time,
+      d: st === 'done' ? ok : st === 'bad' ? 'M6 6l12 12M18 6L6 18' : '',
+      bg: st === 'done' ? 'var(--sig)' : st === 'bad' ? 'var(--neg)' : st === 'cur' ? 'var(--warns)' : 'transparent',
+      border: st === 'cur' ? '2px solid var(--warn)' : st === 'todo' ? '1.5px solid var(--bst)' : '0',
+      fg: st === 'todo' ? 'var(--t3)' : 'var(--t1)', w: st === 'cur' ? '600' : '400', line: 'var(--bd)'
+    });
+    const results = {
+      success: { title: this.tr('Перевод отправлен'), text: this.tr('Заявка прошла проверку и отправлена в сеть. Зачисление получателю — после 12 подтверждений.'), bg: 'var(--sigs)', fg: 'var(--sigt)', d: ok, explorer: true,
+        track: [tr(this.tr('Подтверждён вторым фактором'), 'done', '12:44:02'), tr(this.tr('Проверка риска и лимитов'), 'done', '12:44:03'), tr(this.tr('Подписан и отправлен в сеть'), 'done', '12:44:05'), tr(this.tr('Подтверждения 3 / 12'), 'cur', this.tr('≈ 2 мин')), tr(this.tr('Выполнен'), 'todo', '')] },
+      review: { title: this.tr('Перевод на ручной проверке'), text: this.tr('Сумма выше порога автоматического вывода. Сотрудник проверит заявку в течение 2 часов, средства пока удержаны.'), bg: 'var(--warns)', fg: 'var(--warn)', d: 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v5l3 2', explorer: false,
+        track: [tr(this.tr('Подтверждён вторым фактором'), 'done', '12:44:02'), tr(this.tr('Проверка риска и лимитов'), 'done', '12:44:03'), tr(this.tr('Ручная проверка'), 'cur', this.tr('до 14:44')), tr(this.tr('Отправка в сеть'), 'todo', ''), tr(this.tr('Выполнен'), 'todo', '')] },
+      rejected: { title: this.tr('Перевод отклонён'), text: this.tr('Адрес получателя связан с сервисом-миксером (балл 82). 251 USDT вернулись на ваш баланс. Уточните адрес у получателя.'), bg: 'var(--negs)', fg: 'var(--neg)', d: 'M6 6l12 12M18 6L6 18', explorer: false,
+        track: [tr(this.tr('Подтверждён вторым фактором'), 'done', '12:44:02'), tr(this.tr('Проверка риска: высокий риск'), 'bad', '12:44:03'), tr(this.tr('Средства возвращены на баланс'), 'done', '12:44:03')] }
+    };
+    const res = results[result] || results.success;
+    res.track = res.track.map((t, i, arr) => ({ ...t, line: i === arr.length - 1 ? 'transparent' : 'var(--bd)' }));
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isRecipient: step === 'recipient', isAmount: step === 'amount', isConfirm: step === 'confirm', isTwofa: step === 'twofa', isResult: step === 'result',
+      steps, counter: counters[step], assetPick, fees, side, res,
+      toVal: badTo ? '0x1b9C4e7A2f0D8c3B5a6E9f1D7c2A4b8E3f6D0a9' : '0x1b9C4e7A2f0D8c3B5a6E9f1D7c2A4b8E3f6D0a91',
+      toBorder: badTo ? '1.5px solid var(--neg)' : '1px solid var(--bd)', toInvalid: badTo ? 'true' : 'false', toInvalidB: badTo, nextOp: badTo ? '0.4' : '1', toRole: badTo ? 'alert' : 'status',
+      toHintC: badTo ? 'var(--neg)' : 'var(--sigt)',
+      toHint: badTo ? this.tr('Адрес не подходит для сети Sepolia. Проверьте, что адрес начинается с 0x и содержит 42 символа — сейчас 41.') : this.tr('Формат верный · риск низкий (балл 6) · вы уже отправляли на этот адрес'),
+      isFunds: badFunds, fundsInvalid: badFunds ? 'true' : 'false', fundsInvalidB: badFunds, confOp: badFunds ? '0.4' : '1',
+      amtBorder: badFunds ? '1.5px solid var(--neg)' : '1px solid var(--bd)',
+      amtVal: badFunds ? this.tr('0,05') : '250', amtUnit: badFunds ? 'ETH' : 'USDT',
+      avail: badFunds ? this.tr('0,0500 ETH') : this.tr('1 250,00 USDT'),
+      fiatEq: badFunds ? this.tr('≈ $170,61 · 15 765 ₽') : this.tr('≈ $250,00 · 23 100 ₽'),
+      fundsText: this.tr('Недостаточно средств. С учётом комиссии сети нужно 0,0521 ETH, доступно 0,0500 ETH. Уменьшите сумму.'),
+      fundsFix: this.tr('Отправить 0,0479'),
+      summary: [
+        { k: this.tr('Комиссия сети'), v: this.tr('0,00021 ETH · ≈ $0,72'), w: '500', line: 'var(--bd)' },
+        { k: this.tr('Комиссия AEON'), v: this.tr('1,00 USDT'), w: '500', line: 'var(--bd)' },
+        { k: this.tr('Время'), v: this.tr('≈ 30 секунд'), w: '500', line: 'var(--bd)' },
+        { k: this.tr('Спишется всего'), v: this.tr('251,00 USDT + 0,00021 ETH'), w: '600', line: 'transparent' }
+      ],
+      otp: [{ v: '4' }, { v: '8' }, { v: '1' }, { v: '9' }, { v: '' }, { v: '' }].map((o, i) => ({ ...o, aria: this.tr('Цифра ') + (i + 1), border: i === 4 ? 'var(--sig)' : 'var(--bd)' })),
+      toRecipient: go('recipient'), toAmount: go('amount'), toConfirm: go('confirm'), toTwofa: go('twofa'), toResult: go('result'), restart: go('recipient')
+    };
+  }
+}
+</script>
+</body>
+</html>

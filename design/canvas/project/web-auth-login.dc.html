@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — вход</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }}" style="min-height: 900px; display: flex; flex-wrap: wrap">
+  <div style="flex: 1 1 560px; min-width: 0; display: flex"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AuthArt" hint-size="100%,900px"></dc-import></div>
+  <main style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; padding: 32px 40px; box-sizing: border-box">
+    <div style="display: flex; justify-content: flex-end; gap: 8px"><span class="testnet">{{ L.k1 }}</span></div>
+    <div style="flex: 1; display: flex; align-items: center; justify-content: center">
+      <form style="width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; flex-direction: column; gap: 6px"><h1 class="disp" style="margin: 0; font-size: 36px">{{ L.k2 }}</h1><span class="muted">{{ L.k3 }} <a href="web-auth-register.dc.html">{{ L.k4 }}</a></span></div>
+
+        <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--negs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span><b style="font-weight: 600; color: var(--neg)">{{ L.k5 }}</b> {{ L.k6 }}</span></div></sc-if>
+        <sc-if value="{{ isLocked }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg><span><b style="font-weight: 600; color: var(--warn)">{{ L.k7 }}</b> {{ L.k8 }} <span class="mono">14:32</span> {{ L.k9 }}</span></div></sc-if>
+
+        <label class="field"><span>{{ L.k10 }}</span><span class="inp {{ emailCls }}"><input type="email" value="alex.t@mail.test" autocomplete="username"></span></label>
+        <div class="field">
+          <span style="display: flex; justify-content: space-between"><label for="pw" style="font-size: 14px; font-weight: 500; color: var(--t2)">{{ L.k11 }}</label><a href="web-auth-2fa.dc.html" style="font-size: 13px">{{ L.k12 }}</a></span>
+          <span class="inp {{ pwCls }}"><input id="pw" type="password" value="aeon-test-2026" autocomplete="current-password"><button type="button" aria-label="{{ L.k13 }}" class="ibtn" style="width: 32px; height: 32px; background: transparent; color: var(--t2)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg></button></span>
+          <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}"><span class="hint err">{{ L.k14 }}</span></sc-if>
+        </div>
+        <label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><span class="cb on" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked="" class="sr">{{ L.k15 }}</label>
+        <sc-if value="{{ notLocked }}" hint-placeholder-val="{{ true }}"><a href="web-auth-2fa.dc.html" class="btn btn-p btn-l">{{ L.k16 }}</a></sc-if>
+        <sc-if value="{{ isLocked }}" hint-placeholder-val="{{ false }}"><button type="button" disabled="" class="btn btn-l" style="color: var(--t3); cursor: not-allowed">{{ L.k17 }}</button></sc-if>
+        <div style="display: flex; align-items: center; gap: 12px" class="faint"><span style="flex: 1; height: 1px; background: var(--bs)"></span><span style="font-size: 13px">{{ L.k18 }}</span><span style="flex: 1; height: 1px; background: var(--bs)"></span></div>
+        <button type="button" class="btn btn-l btn-o"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15a4 4 0 1 0 8 0a4 4 0 1 0-8 0M11 12l8-8M16 7l3 3"></path></svg>{{ L.k19 }}</button>
+        <span class="hint" style="text-align: center">{{ L.k20 }} <a href="web-settings.dc.html">{{ L.k21 }}</a> {{ L.k22 }} <a href="web-settings.dc.html">{{ L.k23 }}</a></span>
+      </form>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;light&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;error&quot;,&quot;locked&quot;],&quot;default&quot;:&quot;default&quot;},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ru&quot;,&quot;en&quot;],&quot;default&quot;:&quot;ru&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  static EN = {"ТЕСТОВАЯ СЕТЬ": "TESTNET", "Вход": "Sign in", "Электронная почта": "Email", "Пароль": "Password", "Показать пароль": "Show password", "Забыли пароль?": "Forgot password?", "Войти": "Sign in", "Нет аккаунта?": "No account?", "Создать": "Create one", "Неверный email или пароль.": "Wrong email or password.", "Осталось 2 попытки, затем вход заблокируется на 15 минут. Проверьте раскладку и Caps Lock.": "2 attempts left, then sign-in will be locked for 15 minutes. Check your keyboard layout and Caps Lock.", "Вход временно заблокирован.": "Sign-in temporarily locked.", "Пять неверных попыток подряд. Повторите через": "Five wrong attempts in a row. Try again in", "или восстановите пароль — блокировка снимется сразу.": "or recover your password — the lock will be lifted right away.", "Пароль не подошёл": "Wrong password", "Запомнить устройство на 30 дней": "Remember this device for 30 days", "Войти · через 14:32": "Sign in · in 14:32", "или": "or", "Войти по ключу доступа (passkey)": "Sign in with a passkey", "Продолжая, вы принимаете": "By continuing, you accept the", "Условия использования": "Terms of Use", "и": "and", "Политику обработки данных": "Privacy Policy"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("ТЕСТОВАЯ СЕТЬ"), k2: this.tr("Вход"), k3: this.tr("Нет аккаунта?"), k4: this.tr("Создать"), k5: this.tr("Неверный email или пароль."), k6: this.tr("Осталось 2 попытки, затем вход заблокируется на 15 минут. Проверьте раскладку и Caps Lock."), k7: this.tr("Вход временно заблокирован."), k8: this.tr("Пять неверных попыток подряд. Повторите через"), k9: this.tr("или восстановите пароль — блокировка снимется сразу."), k10: this.tr("Электронная почта"), k11: this.tr("Пароль"), k12: this.tr("Забыли пароль?"), k13: this.tr("Показать пароль"), k14: this.tr("Пароль не подошёл"), k15: this.tr("Запомнить устройство на 30 дней"), k16: this.tr("Войти"), k17: this.tr("Войти · через 14:32"), k18: this.tr("или"), k19: this.tr("Войти по ключу доступа (passkey)"), k20: this.tr("Продолжая, вы принимаете"), k21: this.tr("Условия использования"), k22: this.tr("и"), k23: this.tr("Политику обработки данных") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const state = this.props.state ?? 'default';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isError: state === 'error', isLocked: state === 'locked', notLocked: state !== 'locked',
+      emailCls: state === 'default' ? '' : '',
+      pwCls: state === 'error' ? 'err' : state === 'default' ? 'focus' : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

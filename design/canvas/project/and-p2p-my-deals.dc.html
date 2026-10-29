@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — мои сделки</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }} " style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; gap: 4px; padding: 0 4px"><a href="and-p2p-market.dc.html" aria-label="{{ L.k1 }}" style="width: 48px; height: 48px; border-radius: 999px; color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"></path></svg></a><span style="flex: 1; font: 500 20px Inter, sans-serif">{{ L.k2 }}</span><span class="testnet">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></header>
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 12px">
+    <div role="tablist" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--bs)"><sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3"><button role="tab" aria-selected="{{ t.sel }}" style="height: 48px; border: 0; background: transparent; color: {{ t.fg }}; font: 500 14px Inter, sans-serif; border-bottom: 3px solid {{ t.bd }}">{{ t.l }}</button></sc-for></div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 12px">
+    <sc-for list="{{ deals }}" as="d" hint-placeholder-count="2"><a href="{{ d.href }}" style="border-radius: 24px; background: var(--surface); padding: 16px; display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--t1); border: 1px solid {{ d.bc }}"><span style="display: flex; justify-content: space-between"><span class="lbl">{{ d.id }} · {{ d.role }}</span><span class="mono" style="color: {{ d.tc }}">{{ d.timer }}</span></span><span class="disp" style="font-size: 22px">{{ d.amt }}</span><span class="muted" style="font-size: 13px">{{ d.meta }}</span><span style="display: flex; justify-content: space-between; align-items: center"><span class="chip {{ d.cls }}">{{ d.st }}</span><span style="font-weight: 600; font-size: 14px">{{ d.next }}</span></span></a></sc-for>
+    <span style="font: 500 16px Inter, sans-serif; padding: 6px 4px 0">{{ L.k4 }}</span>
+    <div style="border-radius: 24px; background: var(--surface); overflow: hidden"><sc-for list="{{ done }}" as="x" hint-placeholder-count="2"><a href="st-and-p2p-deal-done.dc.html" style="min-height: 64px; padding: 0 16px; display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--t1); border-bottom: 1px solid var(--bs)"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ x.t }}</span><span class="faint" style="font-size: 12px">{{ x.s }}</span></span><span class="chip c-ok">{{ L.k5 }}</span></a></sc-for></div>
+    </div></sc-if>
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 12px; padding-top: 4px"><div style="padding: 36px 20px 28px; border-radius: 24px; background: var(--surface); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg></span><span style="font-weight: 600; font-size: 17px">{{ L.k24 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k25 }}</span><a href="and-p2p-market.dc.html" class="btn btn-p" style="height: 48px; padding: 0 22px; margin-top: 6px; font-size: 14px">{{ L.k26 }}</a></div></div></sc-if>
+
+  </div>
+  <div style="position: absolute; left: 0; right: 0; bottom: 0"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AndNav" active="p2p" hint-size="412px,80px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Мои сделки": "My deals", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Недавно завершены": "Recently completed", "Завершена": "Completed", "Активные · 2": "Active · 2", "История": "History", "Споры · 1": "Disputes · 1", "ПОКУПКА": "BUY", "250,00 USDT": "250.00 USDT", "у crypto_mila · 23 100 ₽": "from crypto_mila · 23,100 ₽", "Средства в эскроу": "Funds in escrow", "Оплатить →": "Pay →", "ПРОДАЖА": "SELL", "100,00 USDT": "100.00 USDT", "покупатель eva_s · 9 240 ₽": "buyer eva_s · 9,240 ₽", "Оплата отправлена": "Payment sent", "Проверить →": "Check →", "Продажа 100 USDT · eva_s": "Sold 100 USDT · eva_s", "P2P-47812 · вчера · отзыв оставлен": "P2P-47812 · yesterday · review left", "Покупка 500 USDT · crypto_mila": "Bought 500 USDT · crypto_mila", "Активные": "Active", "Споры": "Disputes", "Активных сделок нет": "No active deals", "Купите или продайте USDT у проверенных пользователей: монеты продавца блокируются в эскроу до подтверждения оплаты.": "Buy or sell USDT with verified users: the seller's coins stay in escrow until payment is confirmed.", "Открыть P2P": "Open P2P"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Мои сделки"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Недавно завершены"), k5: this.tr("Завершена"), k6: this.tr("Активные · 2"), k7: this.tr("История"), k8: this.tr("Споры · 1"), k9: this.tr("ПОКУПКА"), k10: this.tr("250,00 USDT"), k11: this.tr("у crypto_mila · 23 100 ₽"), k12: this.tr("Средства в эскроу"), k13: this.tr("Оплатить →"), k14: this.tr("ПРОДАЖА"), k15: this.tr("100,00 USDT"), k16: this.tr("покупатель eva_s · 9 240 ₽"), k17: this.tr("Оплата отправлена"), k18: this.tr("Проверить →"), k19: this.tr("Продажа 100 USDT · eva_s"), k20: this.tr("P2P-47812 · вчера · отзыв оставлен"), k21: this.tr("Покупка 500 USDT · crypto_mila"), k22: this.tr("Активные"), k23: this.tr("Споры"), k24: this.tr("Активных сделок нет"), k25: this.tr("Купите или продайте USDT у проверенных пользователей: монеты продавца блокируются в эскроу до подтверждения оплаты."), k26: this.tr("Открыть P2P") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    const tab = (l, on) => ({ l, sel: on ? 'true' : 'false', fg: on ? 'var(--t1)' : 'var(--t2)', bd: on ? 'var(--sig)' : 'transparent' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isDefault: st === 'default', isEmpty: st === 'empty',
+      tabs: st === 'empty' ? [tab(this.tr("Активные"), true), tab(this.tr("История")), tab(this.tr("Споры"))] : [tab(this.tr("Активные · 2"), true), tab(this.tr("История")), tab(this.tr("Споры · 1"))],
+      deals: [{ id: 'P2P-48213', role: this.tr("ПОКУПКА"), timer: '04:12', tc: 'var(--warn)', amt: this.tr("250,00 USDT"), meta: this.tr("у crypto_mila · 23 100 ₽"), st: this.tr("Средства в эскроу"), cls: 'c-info', next: this.tr("Оплатить →"), href: 'and-p2p-deal.dc.html', bc: 'var(--warn)' },
+        { id: 'P2P-48216', role: this.tr("ПРОДАЖА"), timer: '12:05', tc: 'var(--t1)', amt: this.tr("100,00 USDT"), meta: this.tr("покупатель eva_s · 9 240 ₽"), st: this.tr("Оплата отправлена"), cls: 'c-warn', next: this.tr("Проверить →"), href: 'and-p2p-deal-seller.dc.html', bc: 'var(--bs)' }],
+      done: [{ t: this.tr("Продажа 100 USDT · eva_s"), s: this.tr("P2P-47812 · вчера · отзыв оставлен") }, { t: this.tr("Покупка 500 USDT · crypto_mila"), s: 'P2P-47790 · 20.10' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

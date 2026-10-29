@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Админ — боковая панель</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<nav aria-label="{{ L.k1 }}" style="width: 240px; min-height: 1100px; box-sizing: border-box; padding: 22px 12px 16px; background: var(--sunken, #070807); border-right: 1px solid var(--bs, #232824); color: var(--t1, #F2F5F1); font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 2px">
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0 10px 8px">
+    <span aria-hidden="true" style="width: 20px; height: 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px"><span style="background: var(--sig, #B6F36B); border-radius: 1px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 1px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 1px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 1px"></span><span></span><span style="background: var(--t1, #F2F5F1); border-radius: 1px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 1px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 1px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 1px"></span></span>
+    <span style="font: 600 17px 'Inter Tight', sans-serif; letter-spacing: 0.02em">AEON</span>
+    <span style="height: 20px; padding: 0 7px; border-radius: 4px; border: 1px solid var(--bd, #2E342F); font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t2, #A3ACA5); display: inline-flex; align-items: center">ADMIN</span>
+  </div>
+  <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+    <span style="padding: 16px 12px 6px; font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.08em; color: var(--t3, #8A938C)">{{ g.title }}</span>
+    <sc-for list="{{ g.items }}" as="n" hint-placeholder-count="4">
+      <a href="{{ n.href }}" aria-current="{{ n.current }}" style="height: 38px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: {{ n.fg }}; background: {{ n.bg }}; font: {{ n.font }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ n.d }}"></path></svg>
+        <span style="flex: 1">{{ n.label }}</span>
+        <sc-if value="{{ n.hasBadge }}" hint-placeholder-val="{{ false }}"><span style="min-width: 20px; height: 20px; padding: 0 6px; box-sizing: border-box; border-radius: 999px; background: {{ n.badgeBg }}; color: {{ n.badgeFg }}; font: 600 11px Inter, sans-serif; display: inline-flex; align-items: center; justify-content: center">{{ n.badge }}</span></sc-if>
+      </a>
+    </sc-for>
+  </sc-for>
+  <div style="flex: 1; min-height: 24px"></div>
+  <div style="display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 14px; background: var(--raised, #1B1F1C)">
+    <span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--bd, #2E342F); display: flex; align-items: center; justify-content: center; font: 600 12px Inter, sans-serif">{{ uIni }}</span>
+    <span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 14px; font-weight: 500">{{ uNick }}</span><span style="font: 500 10px 'JetBrains Mono', monospace; color: var(--t3, #8A938C)">{{ uRole }}</span></span>
+  </div>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"active": {"editor": "enum", "options": ["overview", "users", "offers", "deals", "disputes", "withdrawals", "deposits", "risk", "audit", "system", "refs"], "default": "users"}, "who": {"editor": "enum", "options": ["admin", "support"], "default": "admin"}, "cleared": {"editor": "enum", "options": ["none", "disputes", "withdrawals"], "default": "none"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "onLang": {"editor": null}, "$preview": {"width": 240, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Разделы администрирования": "Admin sections", "ОА": "OA", "АДМИНИСТРАТОР · АРБИТР": "ADMIN · ARBITRATOR", "ЛЮДИ И РЫНОК": "PEOPLE AND MARKET", "Обзор": "Overview", "Пользователи": "Users", "Объявления": "Offers", "Сделки": "Deals", "КОНТРОЛЬ": "CONTROL", "Споры": "Disputes", "Выводы на проверке": "Withdrawal review", "Депозиты на удержании": "Held deposits", "Риски и AML": "Risk and AML", "СИСТЕМА": "SYSTEM", "Журнал событий": "Event log", "Узлы и сверка": "Nodes & recon", "Справочники": "Reference data", "ПОДДЕРЖКА · ПРОСМОТР": "SUPPORT · VIEW ONLY", "ДС": "DS"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Разделы администрирования"), k2: this.tr("ОА"), k3: this.tr("АДМИНИСТРАТОР · АРБИТР"), k4: this.tr("ЛЮДИ И РЫНОК"), k5: this.tr("Обзор"), k6: this.tr("Пользователи"), k7: this.tr("Объявления"), k8: this.tr("Сделки"), k9: this.tr("КОНТРОЛЬ"), k10: this.tr("Споры"), k11: this.tr("Выводы на проверке"), k12: this.tr("Депозиты на удержании"), k13: this.tr("Риски и AML"), k14: this.tr("СИСТЕМА"), k15: this.tr("Журнал событий"), k16: this.tr("Узлы и сверка"), k17: this.tr("Справочники"), k18: this.tr("ПОДДЕРЖКА · ПРОСМОТР"), k19: this.tr("ДС") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const cleared = this.props.cleared ?? 'none';
+    const active = this.props.active ?? 'users';
+    const mk = (key, label, href, d, badge, warn) => {
+      if (key === cleared) badge = '';
+      const on = key === active;
+      return { label, href, d, badge: badge || '', hasBadge: !!badge, badgeBg: warn ? 'var(--warn, #F5B941)' : 'var(--sig, #B6F36B)', badgeFg: warn ? 'var(--onacc, #0A0C0B)' : '#0A0C0B', current: on ? 'page' : 'false', bg: on ? 'var(--raised, #1B1F1C)' : 'transparent', fg: on ? 'var(--t1, #F2F5F1)' : 'var(--t2, #A3ACA5)', font: on ? '600 14px Inter, sans-serif' : '500 14px Inter, sans-serif' };
+    };
+    const sup = (this.props.who ?? 'admin') === 'support';
+    return {
+      uIni: sup ? this.tr('ДС') : this.tr('ОА'), uNick: sup ? 'sup_dmitry' : 'arb_olga', uRole: sup ? this.tr('ПОДДЕРЖКА · ПРОСМОТР') : this.tr('АДМИНИСТРАТОР · АРБИТР'),
+      groups: [
+        { title: this.tr('ЛЮДИ И РЫНОК'), items: [
+          mk('overview', this.tr('Обзор'), 'admin-overview.dc.html', 'M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z'),
+          mk('users', this.tr('Пользователи'), 'admin-users.dc.html', 'M8.5 8.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0M5 19.5c1.2-3.2 3.8-5 7-5s5.8 1.8 7 5'),
+          mk('offers', this.tr('Объявления'), 'admin-offers.dc.html', 'M4 5h16v14H4zM8 9h8M8 13h5', '5', true),
+          mk('deals', this.tr('Сделки'), 'admin-deals.dc.html', 'M4 8h13l-3-3M20 16H7l3 3')
+        ] },
+        { title: this.tr('КОНТРОЛЬ'), items: [
+          mk('disputes', this.tr('Споры'), 'admin-disputes.dc.html', 'M5 21V4M5 4h11l-2 4 2 4H5', '4', true),
+          mk('withdrawals', this.tr('Выводы на проверке'), 'admin-withdrawals.dc.html', 'M7 17L17 7M9 7h8v8', '6', true),
+          mk('deposits', this.tr('Депозиты на удержании'), 'admin-deposits.dc.html', 'M17 7L7 17M7 9v8h8', '2', true),
+          mk('risk', this.tr('Риски и AML'), 'admin-risk.dc.html', 'M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6z')
+        ] },
+        { title: this.tr('СИСТЕМА'), items: [
+          mk('audit', this.tr('Журнал событий'), 'admin-audit.dc.html', 'M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h5'),
+          mk('system', this.tr('Узлы и сверка'), 'admin-system.dc.html', 'M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9'),
+          mk('refs', this.tr('Справочники'), 'admin-refs.dc.html', 'M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11M9 8h6')
+        ] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

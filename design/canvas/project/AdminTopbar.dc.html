@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Админ — шапка</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<header style="min-height: 88px; box-sizing: border-box; padding: 18px 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; background: var(--canvas, #0A0C0B); border-bottom: 1px solid var(--bs, #232824); color: var(--t1, #F2F5F1); font-family: Inter, system-ui, sans-serif">
+  <div style="display: flex; flex-direction: column; gap: 2px">
+    <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3, #8A938C)">{{ L.k1 }}</span>
+    <h1 style="margin: 0; font: 600 26px 'Inter Tight', sans-serif; letter-spacing: -0.02em">{{ heading }}</h1>
+  </div>
+  <button aria-label="{{ L.k2 }}" style="width: 30px; height: 30px; border-radius: 999px; border: 1px solid var(--bd, #2E342F); background: transparent; color: var(--t2, #A3ACA5); display: flex; align-items: center; justify-content: center; align-self: flex-end; margin-bottom: 2px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5"></path></svg></button>
+  <span style="flex: 1 1 24px"></span>
+  <label style="flex: 0 1 400px; min-width: 220px; height: 42px; padding: 0 8px 0 14px; box-sizing: border-box; border-radius: 12px; background: var(--raised, #1B1F1C); border: 1px solid var(--bd, #2E342F); display: flex; align-items: center; gap: 10px">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t2, #A3ACA5)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg>
+    <input aria-label="{{ L.k3 }}" placeholder="{{ L.k4 }}" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1, #F2F5F1); font: 400 14px Inter, sans-serif; outline: none">
+    <span style="font: 500 10px 'JetBrains Mono', monospace; color: var(--t3, #8A938C); border: 1px solid var(--bd, #2E342F); border-radius: 6px; padding: 2px 6px">/</span>
+  </label>
+  <span style="height: 30px; padding: 0 10px; border-radius: 999px; background: var(--tnb, #2A230F); color: var(--tnf, #F5B941); font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.06em; display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 1px; background: var(--tnf, #F5B941)"></span>{{ L.k5 }}</span>
+  <span role="status" style="height: 30px; padding: 0 10px; border-radius: 999px; border: 1px solid {{ hBd }}; background: {{ hBg }}; font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: {{ hFg }}; display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 6px; height: 6px; border-radius: 1px; background: {{ hDot }}"></span>{{ hTxt }}</span>
+  <button onClick="{{ toggleLang }}" aria-label="{{ L.k7 }}" style="height: 36px; padding: 3px; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bd, #2E342F); background: var(--raised, #1B1F1C); display: inline-flex; gap: 2px; cursor: pointer; font: 500 11px 'JetBrains Mono', monospace; flex: none"><span style="min-width: 34px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"heading": {"editor": "text", "default": "Пользователи"}, "health": {"editor": "enum", "options": ["ok", "incident"], "default": "ok"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "onLang": {"editor": null}, "$preview": {"width": 1200, "height": 88}}'>
+class Component extends DCLogic {
+  static EN = {"Пользователи": "Users", "АДМИНИСТРИРОВАНИЕ": "ADMINISTRATION", "Справка по разделу": "Section help", "Поиск по системе": "System search", "Пользователь, сделка, адрес или хеш": "User, deal, address or hash", "ТЕСТОВАЯ СЕТЬ": "TESTNET", "СИСТЕМА В НОРМЕ": "SYSTEM HEALTHY", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "ИНЦИДЕНТ · SEPOLIA": "INCIDENT · SEPOLIA"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("АДМИНИСТРИРОВАНИЕ"), k2: this.tr("Справка по разделу"), k3: this.tr("Поиск по системе"), k4: this.tr("Пользователь, сделка, адрес или хеш"), k5: this.tr("ТЕСТОВАЯ СЕТЬ"), k6: this.tr("СИСТЕМА В НОРМЕ"), k7: this.tr("Язык интерфейса: русский. Переключить на английский"), k8: this.tr("Пользователи"), k9: this.tr("ИНЦИДЕНТ · SEPOLIA") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const inc = (this.props.health ?? 'ok') === 'incident';
+    return { heading: this.props.heading ?? this.tr('Пользователи'), hTxt: inc ? this.tr('ИНЦИДЕНТ · SEPOLIA') : this.tr('СИСТЕМА В НОРМЕ'), hBd: inc ? 'var(--neg, #FF7A6B)' : 'var(--bd, #2E342F)', hBg: inc ? 'var(--negs, rgba(255,122,107,.12))' : 'transparent', hFg: inc ? 'var(--neg, #FF7A6B)' : 'var(--t2, #A3ACA5)', hDot: inc ? 'var(--neg, #FF7A6B)' : 'var(--sig, #B6F36B)' };
+  }
+}
+</script>
+</body>
+</html>

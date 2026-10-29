@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — новое объявление</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="p2p" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <div class="split">
+        <form class="card" style="flex: 2 1 620px; min-width: 0; padding: 28px; display: flex; flex-direction: column; gap: 24px">
+          <section style="display: flex; flex-direction: column; gap: 12px"><span class="lbl">{{ L.k2 }}</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px">
+              <div role="radiogroup" aria-label="{{ L.k3 }}" style="display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 999px; background: var(--raised); flex: 0 0 240px"><button type="button" role="radio" aria-checked="false" class="btn" style="height: 40px; background: transparent; color: var(--t2)">{{ L.k4 }}</button><button type="button" role="radio" aria-checked="true" class="btn btn-p" style="height: 40px">{{ L.k5 }}</button></div>
+              <button type="button" class="inp" style="flex: 1 1 200px; color: var(--t1); font: 500 15px Inter, sans-serif; justify-content: space-between; cursor: pointer">USDT · Ethereum Sepolia<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+              <button type="button" class="inp" style="flex: 0 1 140px; color: var(--t1); font: 500 15px Inter, sans-serif; justify-content: space-between; cursor: pointer">{{ L.k6 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+            </div>
+          </section>
+          <section style="display: flex; flex-direction: column; gap: 12px"><span class="lbl">{{ L.k7 }}</span>
+            <div style="display: flex; gap: 8px"><button type="button" class="btn btn-s btn-o" aria-pressed="false">{{ L.k8 }}</button><button type="button" class="btn btn-s btn-p" aria-pressed="true">{{ L.k9 }}</button></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end">
+              <label class="field" style="flex: 0 1 200px"><span>{{ L.k10 }}</span><span class="inp focus"><input value="+0,3"><span class="muted">%</span></span></label>
+              <div class="tile" style="flex: 1 1 260px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center"><span class="muted" style="font-size: 13px">{{ L.k11 }}</span><span class="disp" style="font-size: 22px">{{ L.k12 }}</span></div>
+            </div>
+          </section>
+          <section style="display: flex; flex-direction: column; gap: 12px"><span class="lbl">{{ L.k13 }}</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 12px">
+              <label class="field"><span>{{ L.k14 }}</span><span class="{{ volCls }}"><input defaultValue="{{ volVal }}" aria-invalid="{{ pubDis }}"><span class="muted">USDT</span></span><sc-if value="{{ notBal }}" hint-placeholder-val="{{ true }}"><span class="hint">{{ L.k15 }}</span></sc-if><sc-if value="{{ isBal }}" hint-placeholder-val="{{ false }}"><span class="hint err" role="alert">{{ L.k46 }}</span></sc-if></label>
+              <label class="field"><span>{{ L.k16 }}</span><span class="inp"><input value="1 000"><span class="muted">₽</span></span></label>
+              <label class="field"><span>{{ L.k17 }}</span><span class="inp"><input value="50 000"><span class="muted">₽</span></span></label>
+            </div>
+          </section>
+          <section style="display: flex; flex-direction: column; gap: 12px"><span class="lbl">{{ L.k18 }}</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{ pms }}" as="p" hint-placeholder-count="4"><label style="height: 48px; padding: 0 16px; border-radius: 14px; border: {{ p.b }}; display: flex; align-items: center; gap: 10px; cursor: pointer"><span class="cb {{ p.cls }}" aria-hidden="true"><sc-if value="{{ p.on }}" hint-placeholder-val="{{ true }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></sc-if></span><input type="checkbox" checked="{{ p.on }}" class="sr"><span style="display: flex; flex-direction: column"><span style="font-size: 14px; font-weight: 500">{{ p.name }}</span><span class="faint" style="font-size: 11px">{{ p.detail }}</span></span></label></sc-for><button type="button" class="btn btn-s btn-o" style="height: 48px; border-style: dashed">{{ L.k19 }}</button></div>
+          </section>
+          <section style="display: flex; flex-direction: column; gap: 12px"><span class="lbl">{{ L.k20 }}</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px">
+              <div class="field" style="flex: 0 1 220px"><span>{{ L.k21 }}</span><div role="radiogroup" aria-label="{{ L.k21 }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--raised)"><button type="button" role="radio" aria-checked="true" class="btn btn-s btn-p" style="height: 36px">{{ L.k22 }}</button><button type="button" role="radio" aria-checked="false" class="btn btn-s" style="height: 36px; background: transparent">30</button><button type="button" role="radio" aria-checked="false" class="btn btn-s" style="height: 36px; background: transparent">60</button></div></div>
+              <label class="field" style="flex: 1 1 320px"><span>{{ L.k23 }}</span><textarea rows="2" style="border-radius: 12px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); padding: 12px; font: 400 14px Inter, sans-serif; resize: none; outline: none" defaultValue="{{ L.k24 }}"></textarea><span class="hint">{{ L.k25 }}</span></label>
+            </div>
+          </section>
+          <div style="display: flex; justify-content: flex-end; gap: 10px; padding-top: 6px; border-top: 1px solid var(--bs)"><a href="web-p2p-my-deals.dc.html" class="btn">{{ L.k26 }}</a><button type="button" class="btn btn-p" aria-disabled="{{ pubDis }}" style="opacity: {{ pubOp }}">{{ L.k27 }}</button></div>
+        </form>
+
+        <aside style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+          <span class="lbl">{{ L.k28 }}</span>
+          <article class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 12px Inter, sans-serif">{{ L.k29 }}</span><span style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 600">alex_tk</span><span class="faint" style="font-size: 12px">{{ L.k30 }}</span></span></div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end"><span style="display: flex; flex-direction: column; gap: 2px"><span class="disp" style="font-size: 26px">{{ L.k12 }}</span><span class="faint" style="font-size: 12px">{{ L.k31 }}</span></span><span class="btn btn-s btn-p">{{ L.k32 }}</span></div>
+            <div style="display: flex; gap: 6px"><span class="chip c-off">{{ L.k33 }}</span><span class="chip c-off">{{ L.k34 }}</span><span class="tag">{{ L.k35 }}</span></div>
+          </article>
+          <div class="card" style="padding: 16px 18px; display: flex; flex-direction: column"><div class="rowline"><span>{{ L.k36 }}</span><span>{{ L.k37 }}</span></div><div class="rowline"><span>{{ L.k38 }}</span><span>{{ L.k39 }}</span></div><div class="rowline"><span>{{ L.k40 }}</span><span style="color: var(--sigt)">{{ L.k41 }}</span></div></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "error": {"editor": "enum", "options": ["none", "balance"], "default": "none"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Комиссия AEON": "AEON fee", "АТ": "AT", "15 мин": "15 min", "Время на оплату": "Time to pay", "Направление": "Direction", "Купить": "Buy", "СБП": "SBP", "92,40 ₽": "92.40 ₽", "Новое объявление": "New offer", "Покупаю": "I'm buying", "Продаю": "I'm selling", "Банковский перевод": "Bank transfer", "Опубликовать": "Publish", "1 · ЧТО ДЕЛАЕТЕ": "1 · WHAT YOU'RE DOING", "за ₽ RUB": "for ₽ RUB", "2 · КУРС": "2 · RATE", "Фиксированный": "Fixed", "Плавающий · от рынка": "Floating · market-based", "Надбавка к рынку": "Markup over market", "Рынок 92,12 ₽ → ваш курс": "Market 92.12 ₽ → your rate", "3 · ОБЪЁМ И ЛИМИТЫ": "3 · VOLUME AND LIMITS", "Продаю всего": "Selling in total", "Доступно 1 250 · заблокируется в эскроу по сделкам": "Available 1,250 · locked in escrow per deal", "Минимум за сделку": "Minimum per deal", "Максимум за сделку": "Maximum per deal", "4 · СПОСОБЫ ОПЛАТЫ · ДО 3": "4 · PAYMENT METHODS · UP TO 3", "+ Добавить реквизиты": "+ Add payment details", "5 · УСЛОВИЯ": "5 · TERMS", "Правила для покупателя · 280 символов": "Rules for the buyer · 280 characters", "Перевод только с карты на ваше имя. Без комментария к платежу.": "Transfers only from a card in your name. No payment comment.", "Контакты вне AEON запрещены — объявление скроет модерация": "Contacts outside AEON are forbidden — moderation will hide the offer", "Сохранить черновик": "Save draft", "ТАК УВИДЯТ ПОКУПАТЕЛИ": "HOW BUYERS WILL SEE IT", "14 сделок · 100% · ★ 5,0": "14 deals · 100% · ★ 5.0", "1 000 USDT · 1 000 – 50 000 ₽": "1,000 USDT · 1,000 – 50,000 ₽", "15 МИН": "15 MIN", "0,5% с продавца": "0.5% from seller", "Лимит KYC 1 на объявление": "KYC 1 limit per offer", "до 5 000 USDT": "up to 5,000 USDT", "Позиция в ленте сейчас": "Current position in the feed", "3 из 42": "3 of 42", "Людмила К. · +7 900 •• 00": "Lyudmila K. · +7 900 •• 00", "счёт •• 4821": "account •• 4821", "Карта": "Card", "нет реквизитов": "no details", "Недостаточно баланса для объявления: доступно 1 250 USDT. Уменьшите объём или пополните кошелёк.": "Not enough balance for the offer: 1,250 USDT available. Reduce the volume or top up your wallet."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Новое объявление"), k2: this.tr("1 · ЧТО ДЕЛАЕТЕ"), k3: this.tr("Направление"), k4: this.tr("Покупаю"), k5: this.tr("Продаю"), k6: this.tr("за ₽ RUB"), k7: this.tr("2 · КУРС"), k8: this.tr("Фиксированный"), k9: this.tr("Плавающий · от рынка"), k10: this.tr("Надбавка к рынку"), k11: this.tr("Рынок 92,12 ₽ → ваш курс"), k12: this.tr("92,40 ₽"), k13: this.tr("3 · ОБЪЁМ И ЛИМИТЫ"), k14: this.tr("Продаю всего"), k15: this.tr("Доступно 1 250 · заблокируется в эскроу по сделкам"), k16: this.tr("Минимум за сделку"), k17: this.tr("Максимум за сделку"), k18: this.tr("4 · СПОСОБЫ ОПЛАТЫ · ДО 3"), k19: this.tr("+ Добавить реквизиты"), k20: this.tr("5 · УСЛОВИЯ"), k21: this.tr("Время на оплату"), k22: this.tr("15 мин"), k23: this.tr("Правила для покупателя · 280 символов"), k24: this.tr("Перевод только с карты на ваше имя. Без комментария к платежу."), k25: this.tr("Контакты вне AEON запрещены — объявление скроет модерация"), k26: this.tr("Сохранить черновик"), k27: this.tr("Опубликовать"), k28: this.tr("ТАК УВИДЯТ ПОКУПАТЕЛИ"), k29: this.tr("АТ"), k30: this.tr("14 сделок · 100% · ★ 5,0"), k31: this.tr("1 000 USDT · 1 000 – 50 000 ₽"), k32: this.tr("Купить"), k33: this.tr("СБП"), k34: this.tr("Банковский перевод"), k35: this.tr("15 МИН"), k36: this.tr("Комиссия AEON"), k37: this.tr("0,5% с продавца"), k38: this.tr("Лимит KYC 1 на объявление"), k39: this.tr("до 5 000 USDT"), k40: this.tr("Позиция в ленте сейчас"), k41: this.tr("3 из 42"), k42: this.tr("Людмила К. · +7 900 •• 00"), k43: this.tr("счёт •• 4821"), k44: this.tr("Карта"), k45: this.tr("нет реквизитов"), k46: this.tr("Недостаточно баланса для объявления: доступно 1 250 USDT. Уменьшите объём или пополните кошелёк.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const bal = (this.props.error ?? 'none') === 'balance';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isBal: bal, notBal: !bal, volVal: bal ? '2 000' : '1 000', volCls: bal ? 'inp err' : 'inp', pubOp: bal ? '0.4' : '1', pubDis: bal ? 'true' : 'false',
+      pms: [[this.tr('СБП'), this.tr('Людмила К. · +7 900 •• 00'), true], [this.tr('Банковский перевод'), this.tr('счёт •• 4821'), true], [this.tr('Карта'), this.tr('нет реквизитов'), false]].map(([name, detail, on]) => ({ name, detail, on, cls: on ? 'on' : '', b: on ? '1.5px solid var(--t1)' : '1px solid var(--bd)' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

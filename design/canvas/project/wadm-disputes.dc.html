@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Admin для Windows — споры</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="position: relative; width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" account="admin" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinAdminNav" active="disputes" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1><button class="wbtn">{{ L.k3 }}</button><button class="wbtn">{{ L.k4 }}</button></div>
+      <div style="flex: 1; min-height: 0; display: flex; border-top: 1px solid var(--bs)">
+        <nav aria-label="{{ L.k5 }}" style="width: 240px; flex: none; border-right: 1px solid var(--bs); padding: 12px; display: flex; flex-direction: column; gap: 6px"><span class="lbl" style="font-size: 10px">{{ L.k6 }}</span><sc-for list="{{ q }}" as="d" hint-placeholder-count="4"><div style="padding: 10px 12px; border-radius: 4px; background: {{ d.bg }}; display: flex; flex-direction: column; gap: 3px; border-left: 3px solid {{ d.bc }}"><span style="display: flex; justify-content: space-between"><span class="mono" style="font-weight: 600; font-size: 12px">{{ d.id }}</span><span class="mono" style="font-size: 11px; color: {{ d.tc }}">{{ d.t }}</span></span><span style="font-size: 12px">{{ d.s }}</span><span class="faint" style="font-size: 11px">{{ d.a }}</span></div></sc-for></nav>
+        <section style="flex: 1; min-width: 0; padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+          <span style="display: flex; flex-direction: column; gap: 3px"><span class="lbl" style="font-size: 10px">{{ L.k7 }}</span><span style="font: 600 18px Inter, sans-serif">{{ L.k8 }}</span><span class="muted">{{ L.k9 }}</span></span>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"><div class="wcard" style="padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl" style="font-size: 10px">{{ L.k10 }}</span><span style="font-weight: 600">lena_s</span><span class="faint" style="font-size: 11px">{{ L.k11 }}</span></div><div class="wcard" style="padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl" style="font-size: 10px">{{ L.k12 }}</span><span style="font-weight: 600">p2p_ivan</span><span class="faint" style="font-size: 11px">{{ L.k13 }}</span></div></div>
+          <span class="lbl" style="font-size: 10px">{{ L.k14 }}</span>
+          <div style="display: flex; gap: 8px"><sc-for list="{{ ev }}" as="e" hint-placeholder-count="3"><div class="wcard" style="flex: 1; padding: 10px; display: flex; flex-direction: column; gap: 6px"><span aria-hidden="true" class="dots" style="height: 70px; border-radius: 4px; background-color: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h6M9 16h4"></path></svg></span><span style="font-size: 12px; font-weight: 500">{{ e.n }}</span><span class="faint" style="font-size: 11px">{{ e.m }}</span></div></sc-for></div>
+          <span class="lbl" style="font-size: 10px">{{ L.k15 }}</span>
+          <div style="flex: 1; min-height: 0; padding: 10px; border-radius: 4px; background: var(--sunken); display: flex; flex-direction: column; gap: 8px; overflow: hidden"><sc-for list="{{ chat }}" as="m" hint-placeholder-count="5"><div style="align-self: {{ m.al }}; max-width: 80%; display: flex; flex-direction: column; gap: 2px"><span class="faint" style="font-size: 10px; align-self: {{ m.al }}">{{ m.who }}</span><span style="padding: 7px 10px; border-radius: 6px; background: {{ m.bg }}; color: {{ m.fg }}; font-size: 12px; line-height: 17px">{{ m.t }}</span></div></sc-for></div>
+          <div style="display: flex; gap: 6px"><span class="winp" style="flex: 1"><input placeholder="{{ L.k16 }}"></span><button class="wbtn">{{ L.k17 }}</button></div>
+        </section>
+        <aside aria-label="{{ L.k18 }}" style="width: 340px; flex: none; border-left: 1px solid var(--bs); background: var(--card); padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+          <span style="font: 600 15px Inter, sans-serif">{{ L.k19 }}</span>
+          <div style="display: flex; flex-direction: column"><div class="rowline"><span>{{ L.k20 }}</span><span>760,00 USDT</span></div><div class="rowline"><span>{{ L.k21 }}</span><span style="color: var(--sigt)">{{ L.k22 }}</span></div><div class="rowline"><span>{{ L.k23 }}</span><span style="color: var(--warn)">{{ L.k24 }}</span></div></div>
+          <span class="lbl" style="font-size: 10px">{{ L.k25 }}</span>
+          <label class="wcard" style="padding: 10px 12px; display: flex; gap: 10px; border: 2px solid var(--sigt)"><span class="rb on" aria-hidden="true"></span><input type="radio" name="out" checked class="sr"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k26 }}</span><span class="faint" style="font-size: 11px">{{ L.k27 }}</span></span></label>
+          <label class="wcard" style="padding: 10px 12px; display: flex; gap: 10px"><span class="rb" aria-hidden="true"></span><input type="radio" name="out" class="sr"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k28 }}</span><span class="faint" style="font-size: 11px">{{ L.k29 }}</span></span></label>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k30 }}</span><textarea rows="4" style="border-radius: 4px; border: 1px solid var(--bs); border-bottom: 2px solid var(--sigt); background: var(--ctrl); color: var(--t1); padding: 8px 10px; font: 400 12px Inter, sans-serif; resize: none; outline: none" defaultValue="{{ L.k31 }}"></textarea></label>
+          <div style="flex: 1"></div>
+          <button class="wbtn wbtn-p" style="height: 36px">{{ L.k32 }}</button>
+        </aside>
+      </div>
+      <footer class="wstatus"><span>{{ L.k33 }}</span><span style="flex: 1"></span><span>{{ L.k34 }}</span></footer>
+    </main>
+  </div>
+  <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; inset: 48px 0 0 0; background: var(--scrim)"></div>
+    <section role="dialog" aria-modal="true" aria-labelledby="dec" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 500px; border-radius: 8px; border: 1px solid var(--bd); background: var(--flyout); box-shadow: 0 32px 64px rgba(0,0,0,.37); overflow: hidden">
+      <div style="padding: 22px 24px; display: flex; flex-direction: column; gap: 12px">
+        <span class="lbl" style="font-size: 10px">{{ L.k57 }}</span>
+        <h2 id="dec" style="margin: -6px 0 0; font: 600 20px Inter, sans-serif">{{ L.k58 }}</h2>
+        <span class="muted" style="line-height: 19px">{{ L.k59 }}</span>
+        <div style="display: flex; flex-direction: column; padding: 2px 12px; border-radius: 4px; background: var(--raised)"><div class="rowline"><span>{{ L.k60 }}</span><span style="font-weight: 600">{{ L.k26 }}</span></div><div class="rowline"><span>{{ L.k61 }}</span><span>lena_s</span></div><div class="rowline"><span>{{ L.k62 }}</span><span class="num" style="font-weight: 600">760,00 USDT</span></div><div class="rowline"><span>{{ L.k63 }}</span><span style="color: var(--warn)">{{ L.k64 }}</span></div></div>
+        <span class="muted" style="font-size: 12px; line-height: 17px">{{ L.k65 }}</span>
+        <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k66 }}</span><span class="winp" style="height: 34px; border-bottom: 2px solid var(--sigt)"><input aria-label="{{ L.k67 }}" defaultValue="481 9" style="font: 600 15px 'JetBrains Mono', monospace"></span></label>
+      </div>
+      <div style="padding: 16px 24px; background: var(--dfoot); border-top: 1px solid var(--bs); display: flex; gap: 8px"><button class="wbtn" style="flex: 1">{{ L.k68 }}</button><button class="wbtn wbtn-p" style="flex: 1">{{ L.k69 }}</button></div>
+    </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "dialog": {"editor": "enum", "options": ["none", "confirm"], "default": "none"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON Admin · Споры": "AEON Admin · Disputes", "Споры": "Disputes", "Мои · 2": "Mine · 2", "Назначить арбитра": "Assign arbiter", "Очередь споров": "Dispute queue", "ОЧЕРЕДЬ · 4": "QUEUE · 4", "СПОР D-0201 · СДЕЛКА P2P-48201": "DISPUTE D-0201 · DEAL P2P-48201", "Покупатель оплатил, продавец не выпускает": "Buyer paid, seller doesn't release", "760 USDT · 70 338 ₽ · СБП · открыт lena_s в 10:40": "760 USDT · 70,338 ₽ · SBP · opened by lena_s at 10:40", "ПОКУПАТЕЛЬ · ИНИЦИАТОР": "BUYER · INITIATOR", "98 сделок · 100% · споров 0 · KYC 2": "98 deals · 100% · 0 disputes · KYC 2", "ПРОДАВЕЦ": "SELLER", "312 сделок · 97,1% · споров 3 за 30 дней": "312 deals · 97.1% · 3 disputes in 30 days", "ДОКАЗАТЕЛЬСТВА · 3": "EVIDENCE · 3", "ЧАТ СДЕЛКИ И СПОРА": "DEAL AND DISPUTE CHAT", "Написать сторонам от имени арбитра": "Write to both parties as the arbiter", "Запросить доказательства": "Request evidence", "Решение по спору": "Dispute decision", "Решение": "Decision", "В эскроу": "In escrow", "Поступление по выписке": "Receipt per statement", "найдено 10:31": "found 10:31", "Ответ продавца": "Seller's reply", "нет 2 ч 08 мин": "none for 2 h 08 min", "ИСХОД": "OUTCOME", "Выпустить покупателю": "Release to buyer", "760 USDT → lena_s · сделка завершится": "760 USDT → lena_s · deal completes", "Вернуть продавцу": "Return to seller", "762 USDT → p2p_ivan · сделка отменится": "762 USDT → p2p_ivan · deal is cancelled", "Обоснование · увидят обе стороны": "Reasoning · both parties will see it", "Выписка подтверждает поступление 70 338 ₽ в 10:31 на реквизиты продавца. Продавец не ответил на запрос в течение 2 часов.": "The statement confirms 70,338 ₽ arrived at 10:31 to the seller's details. The seller didn't respond within 2 hours.", "Вынести решение с 2FA · Ctrl+Enter": "Decide with 2FA · Ctrl+Enter", "4 СПОРА · 1 С ОТВЕТОМ < 3 Ч": "4 DISPUTES · 1 WITH REPLY DUE < 3 H", "ALT+↑↓ — ОЧЕРЕДЬ · CTRL+ENTER — РЕШЕНИЕ": "ALT+↑↓ — QUEUE · CTRL+ENTER — DECISION", "Не выпускает": "Doesn't release", "у arb_olga": "with arb_olga", "Неверная сумма": "Wrong amount", "ждёт доказательств": "awaiting evidence", "Нет оплаты": "No payment", "не назначен": "unassigned", "Чужая карта": "Someone else's card", "новый": "new", "Чек СБП.pdf": "SBP receipt.pdf", "от lena_s · 10:41": "from lena_s · 10:41", "Выписка банка.png": "Bank statement.png", "от lena_s · 11:05": "from lena_s · 11:05", "Скриншот чата.png": "Chat screenshot.png", "от lena_s · 11:06": "from lena_s · 11:06", "lena_s · покупатель": "lena_s · buyer", "Перевела 70 338 ₽ в 10:31, продавец молчит.": "I sent 70,338 ₽ at 10:31, the seller is silent.", "система": "system", "Спор открыт. Арбитр arb_olga назначен.": "Dispute opened. Arbiter arb_olga assigned.", "arb_olga · арбитр": "arb_olga · arbiter", "Пришлите, пожалуйста, выписку из банка.": "Please send your bank statement.", "Отправила выписку.": "Sent the statement.", "Продавец, подтвердите поступление в течение 2 часов.": "Seller, please confirm the receipt within 2 hours.", "ПОДТВЕРЖДЕНИЕ РЕШЕНИЯ · D-0201": "CONFIRM DECISION · D-0201", "Выпустить 760 USDT покупателю?": "Release 760 USDT to the buyer?", "lena_s получит 760,00 USDT из эскроу, сделка P2P-48201 завершится. Решение необратимо: отменить его нельзя.": "lena_s will receive 760.00 USDT from escrow and deal P2P-48201 will complete. The decision is final and cannot be undone.", "Исход": "Outcome", "Получатель": "Recipient", "Сумма": "Amount", "Продавцу": "To seller", "предупреждение и +1 спор в рейтинг": "warning and +1 dispute on record", "Обоснование и решение увидят обе стороны, запись попадёт в журнал событий.": "Both parties will see the reasoning and decision; it is recorded in the event log.", "Код из приложения-аутентификатора": "Authenticator app code", "Код 2FA, 6 цифр": "2FA code, 6 digits", "Отмена": "Cancel", "Подтвердить решение": "Confirm decision"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON Admin · Споры"), k2: this.tr("Споры"), k3: this.tr("Мои · 2"), k4: this.tr("Назначить арбитра"), k5: this.tr("Очередь споров"), k6: this.tr("ОЧЕРЕДЬ · 4"), k7: this.tr("СПОР D-0201 · СДЕЛКА P2P-48201"), k8: this.tr("Покупатель оплатил, продавец не выпускает"), k9: this.tr("760 USDT · 70 338 ₽ · СБП · открыт lena_s в 10:40"), k10: this.tr("ПОКУПАТЕЛЬ · ИНИЦИАТОР"), k11: this.tr("98 сделок · 100% · споров 0 · KYC 2"), k12: this.tr("ПРОДАВЕЦ"), k13: this.tr("312 сделок · 97,1% · споров 3 за 30 дней"), k14: this.tr("ДОКАЗАТЕЛЬСТВА · 3"), k15: this.tr("ЧАТ СДЕЛКИ И СПОРА"), k16: this.tr("Написать сторонам от имени арбитра"), k17: this.tr("Запросить доказательства"), k18: this.tr("Решение по спору"), k19: this.tr("Решение"), k20: this.tr("В эскроу"), k21: this.tr("Поступление по выписке"), k22: this.tr("найдено 10:31"), k23: this.tr("Ответ продавца"), k24: this.tr("нет 2 ч 08 мин"), k25: this.tr("ИСХОД"), k26: this.tr("Выпустить покупателю"), k27: this.tr("760 USDT → lena_s · сделка завершится"), k28: this.tr("Вернуть продавцу"), k29: this.tr("762 USDT → p2p_ivan · сделка отменится"), k30: this.tr("Обоснование · увидят обе стороны"), k31: this.tr("Выписка подтверждает поступление 70 338 ₽ в 10:31 на реквизиты продавца. Продавец не ответил на запрос в течение 2 часов."), k32: this.tr("Вынести решение с 2FA · Ctrl+Enter"), k33: this.tr("4 СПОРА · 1 С ОТВЕТОМ < 3 Ч"), k34: this.tr("ALT+↑↓ — ОЧЕРЕДЬ · CTRL+ENTER — РЕШЕНИЕ"), k35: this.tr("Не выпускает"), k36: this.tr("у arb_olga"), k37: this.tr("Неверная сумма"), k38: this.tr("ждёт доказательств"), k39: this.tr("Нет оплаты"), k40: this.tr("не назначен"), k41: this.tr("Чужая карта"), k42: this.tr("новый"), k43: this.tr("Чек СБП.pdf"), k44: this.tr("от lena_s · 10:41"), k45: this.tr("Выписка банка.png"), k46: this.tr("от lena_s · 11:05"), k47: this.tr("Скриншот чата.png"), k48: this.tr("от lena_s · 11:06"), k49: this.tr("lena_s · покупатель"), k50: this.tr("Перевела 70 338 ₽ в 10:31, продавец молчит."), k51: this.tr("система"), k52: this.tr("Спор открыт. Арбитр arb_olga назначен."), k53: this.tr("arb_olga · арбитр"), k54: this.tr("Пришлите, пожалуйста, выписку из банка."), k55: this.tr("Отправила выписку."), k56: this.tr("Продавец, подтвердите поступление в течение 2 часов."), k57: this.tr("ПОДТВЕРЖДЕНИЕ РЕШЕНИЯ · D-0201"), k58: this.tr("Выпустить 760 USDT покупателю?"), k59: this.tr("lena_s получит 760,00 USDT из эскроу, сделка P2P-48201 завершится. Решение необратимо: отменить его нельзя."), k60: this.tr("Исход"), k61: this.tr("Получатель"), k62: this.tr("Сумма"), k63: this.tr("Продавцу"), k64: this.tr("предупреждение и +1 спор в рейтинг"), k65: this.tr("Обоснование и решение увидят обе стороны, запись попадёт в журнал событий."), k66: this.tr("Код из приложения-аутентификатора"), k67: this.tr("Код 2FA, 6 цифр"), k68: this.tr("Отмена"), k69: this.tr("Подтвердить решение") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.dialog ?? 'none';
+    const qd = (id, s, a, t, tc, on) => ({ id, s, a, t, tc, bg: on ? 'var(--wsel)' : 'transparent', bc: on ? 'var(--sig)' : 'transparent' });
+    const m = (who, t, kind) => ({ who, t, al: kind === 'me' ? 'flex-end' : kind === 'sys' ? 'center' : 'flex-start', bg: kind === 'me' ? 'var(--pbg)' : kind === 'sys' ? 'var(--warns)' : 'var(--raised)', fg: kind === 'me' ? 'var(--pfg)' : kind === 'sys' ? 'var(--warn)' : 'var(--t1)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isNone: st === 'none', isConfirm: st === 'confirm',
+      q: [qd('D-0201', this.tr("Не выпускает"), this.tr("у arb_olga"), '2:08', 'var(--warn)', true), qd('D-0199', this.tr("Неверная сумма"), this.tr("ждёт доказательств"), '5:40', 'var(--t2)'), qd('D-0198', this.tr("Нет оплаты"), this.tr("не назначен"), '0:20', 'var(--t2)'), qd('D-0196', this.tr("Чужая карта"), this.tr("новый"), '0:05', 'var(--t2)')],
+      ev: [{ n: this.tr("Чек СБП.pdf"), m: this.tr("от lena_s · 10:41") }, { n: this.tr("Выписка банка.png"), m: this.tr("от lena_s · 11:05") }, { n: this.tr("Скриншот чата.png"), m: this.tr("от lena_s · 11:06") }],
+      chat: [m(this.tr("lena_s · покупатель"), this.tr("Перевела 70 338 ₽ в 10:31, продавец молчит.")), m(this.tr("система"), this.tr("Спор открыт. Арбитр arb_olga назначен."), 'sys'), m(this.tr("arb_olga · арбитр"), this.tr("Пришлите, пожалуйста, выписку из банка."), 'me'), m(this.tr("lena_s · покупатель"), this.tr("Отправила выписку.")), m(this.tr("arb_olga · арбитр"), this.tr("Продавец, подтвердите поступление в течение 2 часов."), 'me')]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — адресная книга</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-profile.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button aria-label="{{ L.k3 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button><button onClick="{{ toggleLang }}" aria-label="{{ L.k4 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v5l3 2"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k5 }}</span></span></div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 10px">
+    <span class="lbl" style="padding: 4px 4px 0">SEPOLIA · 2</span>
+    <div class="icard" style="overflow: hidden"><div class="irow" style="min-height: 64px"><span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 12px; background: var(--raised); display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 3px; background: #8A9BFF"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k6 }}</span><span class="mono faint" style="font-size: 12px">0x1b9C…0a91</span></span><span class="chip c-ok" style="height: 24px">{{ L.k7 }}</span></div><div style="position: relative; overflow: hidden"><div style="position: absolute; top: 0; right: 0; bottom: 0; display: flex"><button style="width: 76px; border: 0; background: #5C635D; color: #FFFFFF; font: 600 13px Inter, sans-serif">{{ L.k8 }}</button><button style="width: 76px; border: 0; background: #C8372A; color: #FFFFFF; font: 600 13px Inter, sans-serif">{{ L.k9 }}</button></div><div style="position: relative; transform: translateX(-152px); background: var(--surface)"><div class="irow" style="min-height: 64px; border-bottom: 0"><span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 12px; background: var(--raised); display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 3px; background: #8A9BFF"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k10 }}</span><span class="mono faint" style="font-size: 12px">0x4c2E…a1F2</span></span><span class="chip c-ok" style="height: 24px">{{ L.k7 }}</span></div></div></div></div>
+    <span class="lbl" style="padding: 4px 4px 0">BITCOIN TESTNET · 1</span>
+    <div class="icard"><div class="irow" style="min-height: 64px"><span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 12px; background: var(--raised); display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 3px; background: #F7931A"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k11 }}</span><span class="mono faint" style="font-size: 12px">tb1qw5…jzsx</span></span><span class="chip c-warn" style="height: 24px">{{ L.k12 }}</span></div></div>
+    <span class="lbl" style="padding: 4px 4px 0">SOLANA DEVNET · 1</span>
+    <div class="icard"><div class="irow" style="min-height: 64px"><span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 12px; background: var(--raised); display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 3px; background: #14F195"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ L.k13 }}</span><span class="mono faint" style="font-size: 12px">7EcDhS…FLtV</span></span><span class="chip c-ok" style="height: 24px">{{ L.k7 }}</span></div></div>
+    <span class="hint" style="padding: 0 4px">{{ L.k14 }}</span>
+</div></sc-if>
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 36px 20px 30px; border-radius: 22px; background: var(--surface); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11M9 8h6"></path></svg></span><span style="font-weight: 600; font-size: 17px">{{ L.k15 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k16 }}</span></div></sc-if>
+
+  </div>
+  <div class="ios-fade"></div><div class="ios-bar"><button type="button" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k3 }}</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Адресная книга": "Address book", "Добавить адрес": "Add address", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "«Холодный BTC» станет доступен для вывода через 19 ч. Задержка 24 часа защищает от кражи аккаунта.": "“Cold BTC” will be available for withdrawals in 19 h. The 24-hour delay protects against account takeover.", "Ledger тест": "Ledger test", "Доверенный": "Trusted", "Изменить": "Edit", "Удалить": "Delete", "Кошелёк Маши": "Masha's wallet", "Холодный BTC": "Cold BTC", "Через 19 ч": "In 19 h", "Тестовый SOL": "Test SOL", "Смахните строку влево, чтобы изменить или удалить. Вывод на адрес не из книги проверяется дольше.": "Swipe a row left to edit or delete it. Withdrawals to addresses outside the book take longer to review.", "Сохранённых адресов нет": "No saved addresses", "Добавьте адрес, на который отправляете чаще всего: при отправке он подставится с подписью. Первые 24 часа вывод на новый адрес проверяется вручную.": "Add the address you send to most often: it will be filled in with a label when sending. For the first 24 hours, withdrawals to a new address are reviewed manually."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Адресная книга"), k3: this.tr("Добавить адрес"), k4: this.tr("Язык интерфейса: русский. Переключить на английский"), k5: this.tr("«Холодный BTC» станет доступен для вывода через 19 ч. Задержка 24 часа защищает от кражи аккаунта."), k6: this.tr("Ledger тест"), k7: this.tr("Доверенный"), k8: this.tr("Изменить"), k9: this.tr("Удалить"), k10: this.tr("Кошелёк Маши"), k11: this.tr("Холодный BTC"), k12: this.tr("Через 19 ч"), k13: this.tr("Тестовый SOL"), k14: this.tr("Смахните строку влево, чтобы изменить или удалить. Вывод на адрес не из книги проверяется дольше."), k15: this.tr("Сохранённых адресов нет"), k16: this.tr("Добавьте адрес, на который отправляете чаще всего: при отправке он подставится с подписью. Первые 24 часа вывод на новый адрес проверяется вручную.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isDefault: st === 'default', isEmpty: st === 'empty'
+    };
+  }
+}
+</script>
+</body>
+</html>

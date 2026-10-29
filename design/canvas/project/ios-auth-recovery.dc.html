@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — восстановление пароля</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-auth-login.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title"></span><span class="testnet">{{ L.k2 }}</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 130px; gap: 16px">
+    <sc-if value="{{ isEmail }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <span class="lbl" style="padding: 0 4px">{{ L.k4 }}</span>
+        <h1 class="disp" style="margin: 0 4px; font-size: 34px">{{ L.k5 }}</h1>
+        <span class="muted" style="padding: 0 4px; font-size: 15px; line-height: 21px">{{ L.k6 }}</span>
+        <div class="icard"><label class="irow" style="min-height: 60px"><span style="width: 74px; color: var(--t2); font-size: 15px">{{ L.k7 }}</span><input type="email" value="alex.t@mail.test" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"></label></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isCode }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <span class="lbl" style="padding: 0 4px">{{ L.k8 }}</span>
+        <h1 class="disp" style="margin: 0 4px; font-size: 34px">{{ L.k9 }}</h1>
+        <span class="muted" style="padding: 0 4px; font-size: 15px; line-height: 21px">{{ L.k10 }}</span>
+        <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px"><sc-for list="{{ otp }}" as="o" hint-placeholder-count="6"><input aria-label="{{ o.aria }}" defaultValue="{{ o.v }}" maxlength="1" inputmode="numeric" style="height: 60px; min-width: 0; border-radius: 14px; border: 1px solid {{ o.b }}; background: var(--surface); color: var(--t1); text-align: center; font: 600 26px 'Inter Tight', sans-serif; outline: none"></sc-for></div>
+        <span class="faint" style="padding: 0 4px; font-size: 14px">{{ L.k11 }} <span class="mono" style="color: var(--t1)">0:42</span></span>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isPassword }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <span class="lbl" style="padding: 0 4px">{{ L.k12 }}</span>
+        <h1 class="disp" style="margin: 0 4px; font-size: 34px">{{ L.k13 }}</h1>
+        <div class="icard" style="display: flex; flex-direction: column">
+          <label class="irow" style="min-height: 60px"><span style="width: 92px; color: var(--t2); font-size: 15px">{{ L.k14 }}</span><input type="password" value="aeon-new-2026" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"></label>
+          <label class="irow" style="min-height: 60px"><span style="width: 92px; color: var(--t2); font-size: 15px">{{ L.k15 }}</span><input type="password" value="aeon-new-2026" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"></label>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 4px">
+          <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; height: 4px"><span style="border-radius: 2px; background: var(--sig)"></span><span style="border-radius: 2px; background: var(--sig)"></span><span style="border-radius: 2px; background: var(--sig)"></span><span style="border-radius: 2px; background: var(--bd)"></span></div>
+          <span style="font-size: 13px"><span class="faint">{{ L.k16 }}</span> <span style="color: var(--sigt); font-weight: 600">{{ L.k17 }}</span></span>
+        </div>
+        <div class="icard" style="padding: 6px 16px">
+          <sc-for list="{{ rules }}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>{{ r }}</span></div></sc-for>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 60px; text-align: center">
+        <span aria-hidden="true" style="width: 80px; height: 80px; border-radius: 999px; background: var(--sigs); color: var(--sigt); display: flex; align-items: center; justify-content: center"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+        <h1 class="disp" style="margin: 0; font-size: 30px">{{ L.k18 }}</h1>
+        <span class="muted" style="font-size: 15px; line-height: 21px; max-width: 320px">{{ L.k19 }}</span>
+        <div class="icard" style="align-self: stretch; padding: 4px 16px; text-align: left">
+          <div class="rowline"><span>{{ L.k20 }}</span><span>{{ L.k21 }}</span></div>
+          <div class="rowline"><span>{{ L.k22 }}</span><span style="color: var(--sigt)">{{ L.k23 }}</span></div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+  <div class="ios-bar"><a href="{{ ctaHref }}" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ cta }}</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "step": {"editor": "enum", "options": ["email", "code", "password", "done"], "default": "email"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "ТЕСТОВАЯ СЕТЬ": "TESTNET", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "ШАГ 1 ИЗ 3": "STEP 1 OF 3", "Восстановление пароля": "Password recovery", "Пришлём код на почту. После смены пароля вывод средств будет недоступен 24 часа — это защита от взлома.": "We'll email you a code. After the password change, withdrawals are unavailable for 24 hours — this protects against account takeover.", "Почта": "Email", "ШАГ 2 ИЗ 3": "STEP 2 OF 3", "Код из письма": "Code from the email", "Отправили 6 цифр на a•••@mail.test. Код действует 10 минут.": "We sent 6 digits to a•••@mail.test. The code is valid for 10 minutes.", "Отправить код ещё раз через": "Resend the code in", "ШАГ 3 ИЗ 3": "STEP 3 OF 3", "Новый пароль": "New password", "Пароль": "Password", "Повторите": "Repeat", "Надёжность:": "Strength:", "хорошая": "good", "Пароль изменён": "Password changed", "Мы завершили сеансы на других устройствах. Всё, кроме вывода средств, доступно сразу.": "We've ended sessions on other devices. Everything except withdrawals is available right away.", "Вывод средств": "Withdrawals", "с 24.10, 14:20": "from 24.10, 14:20", "P2P-сделки": "P2P deals", "доступны": "available", "Получить код": "Get code", "Продолжить": "Continue", "Сохранить пароль": "Save password", "Войти": "Sign in", "Цифра ": "Digit ", "Не меньше 8 символов": "At least 8 characters", "Есть буквы и цифры": "Contains letters and digits", "Пароли совпадают": "Passwords match"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("ШАГ 1 ИЗ 3"), k5: this.tr("Восстановление пароля"), k6: this.tr("Пришлём код на почту. После смены пароля вывод средств будет недоступен 24 часа — это защита от взлома."), k7: this.tr("Почта"), k8: this.tr("ШАГ 2 ИЗ 3"), k9: this.tr("Код из письма"), k10: this.tr("Отправили 6 цифр на a•••@mail.test. Код действует 10 минут."), k11: this.tr("Отправить код ещё раз через"), k12: this.tr("ШАГ 3 ИЗ 3"), k13: this.tr("Новый пароль"), k14: this.tr("Пароль"), k15: this.tr("Повторите"), k16: this.tr("Надёжность:"), k17: this.tr("хорошая"), k18: this.tr("Пароль изменён"), k19: this.tr("Мы завершили сеансы на других устройствах. Всё, кроме вывода средств, доступно сразу."), k20: this.tr("Вывод средств"), k21: this.tr("с 24.10, 14:20"), k22: this.tr("P2P-сделки"), k23: this.tr("доступны"), k24: this.tr("Получить код"), k25: this.tr("Продолжить"), k26: this.tr("Сохранить пароль"), k27: this.tr("Войти"), k28: this.tr("Цифра "), k29: this.tr("Не меньше 8 символов"), k30: this.tr("Есть буквы и цифры"), k31: this.tr("Пароли совпадают") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const step = this.props.step ?? 'email';
+    const cta = { email: this.tr("Получить код"), code: this.tr("Продолжить"), password: this.tr("Сохранить пароль"), done: this.tr("Войти") }[step];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isEmail: step === 'email', isCode: step === 'code', isPassword: step === 'password', isDone: step === 'done',
+      cta, ctaHref: step === 'done' ? 'ios-auth-login.dc.html' : '#',
+      otp: ['4', '8', '1', '9', '0', ''].map((v, i) => ({ v, aria: this.tr("Цифра ") + (i + 1), b: i === 5 ? 'var(--sig)' : 'var(--bd)' })),
+      rules: [this.tr("Не меньше 8 символов"), this.tr("Есть буквы и цифры"), this.tr("Пароли совпадают")]
+    };
+  }
+}
+</script>
+</body>
+</html>

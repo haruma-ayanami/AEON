@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — мои объявления</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-body" style="top: 116px; gap: 10px">
+    <div role="tablist" aria-label="{{ L.k1 }}" class="glass" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 4px; border-radius: 999px"><button role="tab" aria-selected="true" class="btn btn-p" style="height: 36px; font-size: 14px">{{ L.k2 }}</button><button role="tab" aria-selected="false" class="btn" style="height: 36px; font-size: 14px; background: transparent">{{ L.k3 }}</button><button role="tab" aria-selected="false" class="btn" style="height: 36px; font-size: 14px; background: transparent">{{ L.k4 }}</button></div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{ offers }}" as="o" hint-placeholder-count="4">
+      <article class="icard" aria-label="{{ o.title }}" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; border: 1px solid {{ o.bc }}">
+        <span style="display: flex; align-items: center; gap: 10px"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 16px Inter, sans-serif">{{ o.title }}</span><span class="faint" style="font-size: 12px">{{ o.meta }}</span></span><button class="sw {{ o.sw }}" role="switch" aria-checked="{{ o.on }}" aria-label="{{ o.swAria }}" style="border: 0; padding: 0; cursor: pointer"></button></span>
+        <span style="display: flex; justify-content: space-between; font-size: 13px"><span class="muted">{{ o.left }}</span><span class="num" style="font-weight: 600">{{ o.price }}</span></span>
+        <span aria-hidden="true" style="height: 5px; border-radius: 3px; background: var(--bd); overflow: hidden"><span style="display: block; height: 100%; width: {{ o.w }}; background: {{ o.wc }}"></span></span>
+        <sc-if value="{{ o.warn }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 16px; color: var(--warn)">{{ o.warnText }}</span></sc-if>
+      </article>
+    </sc-for>
+</div></sc-if>
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 36px 20px 30px; border-radius: 22px; background: var(--surface); display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8zM7.5 8.5h.01"></path></svg></span><span style="font-weight: 600; font-size: 17px">{{ L.k9 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k10 }}</span><a href="ios-p2p-create-offer.dc.html" style="height: 48px; padding: 0 20px; border-radius: 999px; font: 600 15px Inter, sans-serif; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; margin-top: 6px; background: var(--pbg); color: var(--pfg)">{{ L.k11 }}</a></div></sc-if>
+
+  </div>
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 110px; background: linear-gradient(180deg, var(--fade) 70%, transparent)"></div>
+  <div class="ios-nav"><a href="ios-p2p-market.dc.html" aria-label="{{ L.k5 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k6 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k7 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button><a href="ios-p2p-create-offer.dc.html" aria-label="{{ L.k8 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></a></div>
+  <div style="position: absolute; left: 0; right: 0; bottom: 0"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="IosTabBar" active="p2p" hint-size="390px,110px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Фильтр объявлений": "Offer filter", "Все 4": "All 4", "Активные": "Active", "На паузе": "Paused", "Назад": "Back", "Мои объявления": "My offers", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Новое объявление": "New offer", "Объявление активно: ": "Offer active: ", "Продажа USDT": "Selling USDT", "O-3301 · СБП, перевод · 14 сделок": "O-3301 · SBP, transfer · 14 deals", "92,40 ₽": "92.40 ₽", "Осталось 900 из 1 000 USDT": "900 of 1,000 USDT left", "Покупка ETH": "Buying ETH", "O-3302 · СБП · 6 сделок": "O-3302 · SBP · 6 deals", "312 900 ₽": "312,900 ₽", "Осталось 0,6 из 2 ETH": "0.6 of 2 ETH left", "Продажа SOL": "Selling SOL", "O-3305 · СБП · на паузе": "O-3305 · SBP · paused", "1 520 ₽": "1,520 ₽", "Осталось 14,2 из 14,2 SOL": "14.2 of 14.2 SOL left", "Продажа BTC": "Selling BTC", "O-3290 · перевод · на паузе": "O-3290 · transfer · paused", "6 290 000 ₽": "6,290,000 ₽", "Осталось 0 из 0,01 BTC": "0 of 0.01 BTC left", "Недостаточно BTC — объявление приостановлено автоматически": "Not enough BTC — the offer was paused automatically", "У вас нет объявлений": "You have no offers", "Разместите объявление о покупке или продаже USDT: курс, лимиты и способы оплаты. Монеты для продажи блокируются в эскроу только когда покупатель открывает сделку.": "Post an offer to buy or sell USDT: rate, limits and payment methods. Coins for sale are locked in escrow only when a buyer opens a deal.", "Разместить объявление": "Post an offer"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Фильтр объявлений"), k2: this.tr("Все 4"), k3: this.tr("Активные"), k4: this.tr("На паузе"), k5: this.tr("Назад"), k6: this.tr("Мои объявления"), k7: this.tr("Язык интерфейса: русский. Переключить на английский"), k8: this.tr("Новое объявление"), k9: this.tr("У вас нет объявлений"), k10: this.tr("Разместите объявление о покупке или продаже USDT: курс, лимиты и способы оплаты. Монеты для продажи блокируются в эскроу только когда покупатель открывает сделку."), k11: this.tr("Разместить объявление") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    const o = (title, meta, price, left, w, on, warnText) => ({ title, meta, price, left, w, on: on ? 'true' : 'false', sw: on ? 'on' : '', swAria: this.tr('Объявление активно: ') + title, wc: w === '0%' ? 'var(--neg)' : 'var(--sig)', bc: warnText ? 'var(--warn)' : 'transparent', warn: !!warnText, warnText: warnText || '' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isDefault: st === 'default', isEmpty: st === 'empty',
+      offers: [
+        o(this.tr('Продажа USDT'), this.tr('O-3301 · СБП, перевод · 14 сделок'), this.tr('92,40 ₽'), this.tr('Осталось 900 из 1 000 USDT'), '90%', true),
+        o(this.tr('Покупка ETH'), this.tr('O-3302 · СБП · 6 сделок'), this.tr('312 900 ₽'), this.tr('Осталось 0,6 из 2 ETH'), '30%', true),
+        o(this.tr('Продажа SOL'), this.tr('O-3305 · СБП · на паузе'), this.tr('1 520 ₽'), this.tr('Осталось 14,2 из 14,2 SOL'), '100%', false),
+        o(this.tr('Продажа BTC'), this.tr('O-3290 · перевод · на паузе'), this.tr('6 290 000 ₽'), this.tr('Осталось 0 из 0,01 BTC'), '0%', false, this.tr('Недостаточно BTC — объявление приостановлено автоматически'))
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

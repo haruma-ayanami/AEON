@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — спор по сделке P2P-48213</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1120px; height: 760px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ heading }}" with-nav="{{ false }}" hint-size="1120px,48px"></dc-import>
+  <div style="flex: 1; min-height: 0; display: flex; background: var(--layer); border-top: 1px solid var(--bs)">
+    <section style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+      <div style="flex: 1; min-height: 0; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+        <div style="display: flex; align-items: flex-start; gap: 16px">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 4px"><span style="display: flex; align-items: center; gap: 8px"><span class="lbl" style="font-size: 10px">{{ L.k1 }}</span><span class="chip {{ chipCls }}" style="height: 20px; border-radius: 4px; font-size: 11px">{{ chip }}</span></span><span class="disp" style="font-size: 28px">{{ L.k2 }}</span><span class="muted">{{ L.k3 }}</span></span>
+        </div>
+
+        <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 2px"><legend class="muted" style="margin-bottom: 6px">{{ L.k4 }}</legend>
+              <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="4"><label style="height: 32px; padding: 0 10px; border-radius: 4px; display: flex; align-items: center; gap: 10px; background: {{ r.bg }}"><span class="rb {{ r.cls }}" aria-hidden="true" style="width: 18px; height: 18px"></span><input type="radio" name="why" checked="{{ r.on }}" class="sr">{{ r.t }}</label></sc-for>
+            </fieldset>
+            <label style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k5 }}</span><textarea rows="3" defaultValue="{{ L.k6 }}" style="padding: 8px 10px; border-radius: 4px; border: 1px solid var(--bs); border-bottom: 2px solid var(--sigt); background: var(--ctrl); color: var(--t1); font: 400 13px Inter, sans-serif; line-height: 19px; resize: none; outline: none"></textarea></label>
+            <div style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k7 }}</span>
+              <div class="wcard" style="display: flex; align-items: center; gap: 10px; padding: 8px 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v4h4"></path></svg><span style="flex: 1">{{ L.k8 }}</span><span class="faint" style="font-size: 12px">{{ L.k9 }}</span><button aria-label="{{ L.k10 }}" class="wbtn" style="width: 28px; height: 28px; padding: 0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+              <button class="wbtn" style="align-self: flex-start; border-style: dashed">{{ L.k11 }}</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <ol aria-label="{{ L.k12 }}" style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+              <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4"><li style="display: flex; flex-direction: column; gap: 6px"><span style="height: 3px; border-radius: 2px; background: {{ t.c }}"></span><span style="font-weight: {{ t.w }}; color: {{ t.fg }}">{{ t.t }}</span><span class="mono faint" style="font-size: 11px">{{ t.m }}</span></li></sc-for>
+            </ol>
+            <div style="padding: 12px 14px; border-radius: 4px; border: 1px solid var(--warn); background: var(--warns); display: flex; flex-direction: column; gap: 4px"><span class="lbl" style="font-size: 10px; color: var(--warn)">{{ L.k13 }}</span><span style="line-height: 19px">{{ L.k14 }}</span></div>
+            <div class="wcard" style="overflow: hidden">
+              <table class="tbl"><thead><tr><th>{{ L.k15 }}</th><th>{{ L.k16 }}</th><th>{{ L.k17 }}</th><th style="text-align: right">{{ L.k18 }}</th></tr></thead>
+                <tbody><sc-for list="{{ files }}" as="f" hint-placeholder-count="3"><tr><td style="height: 40px; font-size: 13px">{{ f.t }}</td><td class="muted" style="height: 40px; font-size: 12px">{{ f.who }}</td><td class="mono faint" style="height: 40px; font-size: 12px">{{ f.time }}</td><td class="mono" style="height: 40px; font-size: 12px; text-align: right">{{ f.size }}</td></tr></sc-for></tbody>
+              </table>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+      <div role="toolbar" aria-label="{{ L.k19 }}" style="padding: 12px 24px; border-top: 1px solid var(--bs); background: var(--raised); display: flex; gap: 8px; justify-content: flex-end">
+        <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}"><button class="wbtn">{{ L.k20 }}</button><button class="wbtn" style="background: var(--neg); color: var(--onacc, #0A0C0B); border: 0; font-weight: 600">{{ L.k21 }}</button></sc-if>
+        <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}"><button class="wbtn">{{ L.k22 }}</button><button class="wbtn wbtn-p">{{ L.k23 }}</button></sc-if>
+      </div>
+    </section>
+
+    <aside aria-label="{{ asideLabel }}" style="width: 360px; flex: none; border-left: 1px solid var(--bs); background: var(--card); display: flex; flex-direction: column">
+      <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}">
+        <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 14px">
+          <span class="lbl" style="font-size: 10px">{{ L.k24 }}</span>
+          <sc-for list="{{ next }}" as="n" hint-placeholder-count="3"><div style="display: flex; gap: 12px"><span class="mono" style="width: 22px; flex: none; color: var(--sigt)">{{ n.i }}</span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ n.t }}</span><span class="muted" style="line-height: 18px">{{ n.s }}</span></span></div></sc-for>
+          <div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 4px; background: var(--infos); border: 1px solid var(--info); line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg><span>{{ L.k25 }}</span></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 14px 16px; border-bottom: 1px solid var(--bs); display: flex; align-items: center; gap: 10px"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--warns); color: var(--warn); display: flex; align-items: center; justify-content: center; font: 600 11px Inter, sans-serif">OA</span><span style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 600">arb_olga</span><span class="faint" style="font-size: 11px">{{ L.k26 }}</span></span></div>
+        <div role="log" aria-label="{{ L.k27 }}" style="flex: 1; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; background: var(--sunken)">
+          <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="4"><div style="align-self: {{ m.align }}; max-width: 86%; display: flex; flex-direction: column; gap: 3px"><span style="padding: 8px 10px; border-radius: 6px; background: {{ m.bg }}; color: {{ m.fg }}; border: {{ m.b }}; line-height: 18px">{{ m.t }}</span><span class="faint" style="font-size: 11px; align-self: {{ m.align }}">{{ m.who }}</span></div></sc-for>
+        </div>
+        <div style="padding: 10px 12px; border-top: 1px solid var(--bs); display: flex; gap: 6px"><span class="winp" style="flex: 1"><input aria-label="{{ L.k28 }}" placeholder="{{ L.k29 }}"></span><button class="wbtn wbtn-p">{{ L.k30 }}</button></div>
+      </sc-if>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["open", "progress"], "default": "open"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1120, "height": 760}}'>
+class Component extends DCLogic {
+  static EN = {"СДЕЛКА P2P-48213 · ВЫ ПОКУПАЕТЕ": "DEAL P2P-48213 · YOU ARE BUYING", "250,00 USDT": "250.00 USDT", "за 23 100,00 ₽ · продавец crypto_mila · СБП": "for 23,100.00 ₽ · seller crypto_mila · SBP", "Что случилось?": "What happened?", "Подробности · увидят арбитр и продавец": "Details · seen by the arbitrator and the seller", "Перевёл 23 100 ₽ в 10:31, чек приложил. Продавец не отвечает уже 40 минут.": "Sent 23,100 ₽ at 10:31, receipt attached. The seller hasn't replied for 40 minutes.", "Доказательства": "Evidence", "Чек СБП.pdf": "SBP receipt.pdf", "182 КБ": "182 KB", "Убрать файл": "Remove file", "Добавить файлы… · перетащите сюда": "Add files… · drop here", "Ход спора": "Dispute progress", "ЗАПРОС АРБИТРА · ОТВЕТЬТЕ ДО 12:52": "ARBITRATOR REQUEST · REPLY BY 12:52", "Приложите выписку из банка со временем перевода — чек без выписки не подтверждает поступление.": "Attach a bank statement showing the transfer time — a receipt alone doesn't confirm the payment.", "ДОКАЗАТЕЛЬСТВО": "EVIDENCE", "КТО": "BY", "ВРЕМЯ": "TIME", "РАЗМЕР": "SIZE", "Действия по спору": "Dispute actions", "Отмена": "Cancel", "Открыть спор": "Open dispute", "Открыть окно сделки": "Open deal window", "Приложить выписку…": "Attach statement…", "ЧТО БУДЕТ ДАЛЬШЕ": "WHAT HAPPENS NEXT", "250 USDT остаются в эскроу до решения арбитра.": "250 USDT stay in escrow until the arbitrator decides.", "арбитр · сообщения видят обе стороны": "arbitrator · both parties see messages", "Чат спора": "Dispute chat", "Сообщение в спор": "Message to the dispute", "Сообщение арбитру и продавцу": "Message to the arbitrator and seller", "Отправить": "Send", "Спор открыт": "Dispute opened", "Арбитр назначен": "Arbitrator assigned", "Запрошены доказательства": "Evidence requested", "Решение": "Decision", "до 16:40": "by 16:40", "Открыть спор · P2P-48213": "Open dispute · P2P-48213", "Спор D-0203 · P2P-48213": "Dispute D-0203 · P2P-48213", "Что будет дальше": "What happens next", "Оплата отправлена": "Payment sent", "Спор · на рассмотрении": "Dispute · under review", "Оплатил, продавец не выпускает": "Paid, the seller doesn’t release", "Продавец просит доплату": "The seller asks for extra payment", "Продавец прислал другие реквизиты": "The seller sent different details", "Другое": "Other", "Арбитр подключится": "An arbitrator joins", "в течение часа; продавец получит уведомление": "within an hour; the seller gets notified", "Запрос доказательств": "Evidence request", "ответить нужно в течение 2 часов": "you need to reply within 2 hours", "выпустить USDT вам или вернуть продавцу — с обоснованием": "release the USDT to you or return them to the seller — with reasoning", "вы": "you", "Скриншот чата.png": "Chat screenshot.png", "640 КБ": "640 KB", "Выписка без поступления.pdf": "Statement without the payment.pdf", "96 КБ": "96 KB", "Спор открыт покупателем: «Оплатил, продавец не выпускает».": "Dispute opened by the buyer: \"Paid, the seller doesn’t release\".", "система · 10:40": "system · 10:40", "Приложите выписку со временем перевода.": "Attach a statement showing the transfer time.", "arb_olga · 10:52": "arb_olga · 10:52", "Поступления не вижу, прикладываю выписку.": "I don’t see the payment, attaching my statement.", "crypto_mila · 10:58": "crypto_mila · 10:58", "Выгружаю выписку из банка, пришлю в течение 10 минут.": "Downloading the bank statement, will send within 10 minutes.", "вы · 11:03": "you · 11:03"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("СДЕЛКА P2P-48213 · ВЫ ПОКУПАЕТЕ"), k2: this.tr("250,00 USDT"), k3: this.tr("за 23 100,00 ₽ · продавец crypto_mila · СБП"), k4: this.tr("Что случилось?"), k5: this.tr("Подробности · увидят арбитр и продавец"), k6: this.tr("Перевёл 23 100 ₽ в 10:31, чек приложил. Продавец не отвечает уже 40 минут."), k7: this.tr("Доказательства"), k8: this.tr("Чек СБП.pdf"), k9: this.tr("182 КБ"), k10: this.tr("Убрать файл"), k11: this.tr("Добавить файлы… · перетащите сюда"), k12: this.tr("Ход спора"), k13: this.tr("ЗАПРОС АРБИТРА · ОТВЕТЬТЕ ДО 12:52"), k14: this.tr("Приложите выписку из банка со временем перевода — чек без выписки не подтверждает поступление."), k15: this.tr("ДОКАЗАТЕЛЬСТВО"), k16: this.tr("КТО"), k17: this.tr("ВРЕМЯ"), k18: this.tr("РАЗМЕР"), k19: this.tr("Действия по спору"), k20: this.tr("Отмена"), k21: this.tr("Открыть спор"), k22: this.tr("Открыть окно сделки"), k23: this.tr("Приложить выписку…"), k24: this.tr("ЧТО БУДЕТ ДАЛЬШЕ"), k25: this.tr("250 USDT остаются в эскроу до решения арбитра."), k26: this.tr("арбитр · сообщения видят обе стороны"), k27: this.tr("Чат спора"), k28: this.tr("Сообщение в спор"), k29: this.tr("Сообщение арбитру и продавцу"), k30: this.tr("Отправить") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const state = this.props.state ?? 'open';
+    const open = state !== 'progress';
+    const tl = [[this.tr('Спор открыт'), '10:40', 'done'], [this.tr('Арбитр назначен'), '10:42 · arb_olga', 'done'], [this.tr('Запрошены доказательства'), '10:52', 'now'], [this.tr('Решение'), this.tr('до 16:40'), 'next']];
+    const m = (t, who, mine, arb) => ({ t, who, align: mine ? 'flex-end' : 'flex-start', bg: mine ? 'var(--pbg)' : arb ? 'var(--warns)' : 'var(--raised)', fg: mine ? 'var(--pfg)' : 'var(--t1)', b: arb ? '1px solid var(--warn)' : '0' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isOpen: open, isProgress: !open,
+      heading: open ? this.tr('Открыть спор · P2P-48213') : this.tr('Спор D-0203 · P2P-48213'),
+      asideLabel: open ? this.tr('Что будет дальше') : this.tr('Чат спора'),
+      chip: open ? this.tr('Оплата отправлена') : this.tr('Спор · на рассмотрении'), chipCls: open ? 'c-warn' : 'c-neg',
+      reasons: [[this.tr('Оплатил, продавец не выпускает'), true], [this.tr('Продавец просит доплату')], [this.tr('Продавец прислал другие реквизиты')], [this.tr('Другое')]].map(([t, on]) => ({ t, on: !!on, cls: on ? 'on' : '', bg: on ? 'var(--wsel)' : 'transparent' })),
+      next: [
+        { i: '01', t: this.tr('Арбитр подключится'), s: this.tr('в течение часа; продавец получит уведомление') },
+        { i: '02', t: this.tr('Запрос доказательств'), s: this.tr('ответить нужно в течение 2 часов') },
+        { i: '03', t: this.tr('Решение'), s: this.tr('выпустить USDT вам или вернуть продавцу — с обоснованием') }
+      ],
+      timeline: tl.map(([t, mm, s]) => ({ t, m: mm, c: s === 'done' ? 'var(--sig)' : s === 'now' ? 'var(--warn)' : 'var(--bd)', w: s === 'now' ? 600 : 500, fg: s === 'next' ? 'var(--t3)' : 'var(--t1)' })),
+      files: [
+        { t: this.tr('Чек СБП.pdf'), who: this.tr('вы'), time: '10:40', size: this.tr('182 КБ') },
+        { t: this.tr('Скриншот чата.png'), who: this.tr('вы'), time: '10:41', size: this.tr('640 КБ') },
+        { t: this.tr('Выписка без поступления.pdf'), who: 'crypto_mila', time: '10:58', size: this.tr('96 КБ') }
+      ],
+      msgs: [
+        m(this.tr('Спор открыт покупателем: «Оплатил, продавец не выпускает».'), this.tr('система · 10:40')),
+        m(this.tr('Приложите выписку со временем перевода.'), this.tr('arb_olga · 10:52'), false, true),
+        m(this.tr('Поступления не вижу, прикладываю выписку.'), this.tr('crypto_mila · 10:58')),
+        m(this.tr('Выгружаю выписку из банка, пришлю в течение 10 минут.'), this.tr('вы · 11:03'), true)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

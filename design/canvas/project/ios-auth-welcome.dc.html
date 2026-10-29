@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — приветствие</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone dots">
+  <div style="position: absolute; right: 16px; top: 52px; z-index: 2"><button onClick="{{ toggleLang }}" aria-label="{{ L.k1 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div style="position: absolute; left: 0; right: 0; top: 60px; display: flex; justify-content: center"><span class="testnet">{{ L.k2 }}</span></div>
+  <div aria-hidden="true" style="position: absolute; left: 50%; top: 112px; margin-left: -143px; display: grid; grid-template-columns: repeat(26, 9px); grid-auto-rows: 9px; gap: 2px">
+    <sc-for list="{{ sphere }}" as="c" hint-placeholder-count="676"><span style="background: {{ c }}; border-radius: 2px"></span></sc-for>
+  </div>
+  <div style="position: absolute; left: 24px; right: 24px; top: 436px; display: flex; flex-direction: column; gap: 14px">
+    <span class="lbl" style="color: var(--sigt)">{{ L.k3 }}</span>
+    <h1 class="disp" style="margin: 0; font-size: 36px; line-height: 1.05">{{ L.k4 }}</h1>
+    <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+      <li style="display: flex; gap: 10px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 7px; border-radius: 2px; background: var(--sig)"></span>{{ L.k5 }}</li>
+      <li style="display: flex; gap: 10px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 7px; border-radius: 2px; background: var(--sig)"></span>{{ L.k6 }}</li>
+      <li style="display: flex; gap: 10px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 7px; border-radius: 2px; background: var(--sig)"></span>{{ L.k7 }}</li>
+    </ul>
+  </div>
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 34px; display: flex; flex-direction: column; gap: 10px">
+    <a href="ios-auth-setup.dc.html" class="btn btn-p" style="height: 56px; font-size: 17px">{{ L.k8 }}</a>
+    <a href="ios-auth-login.dc.html" class="btn glass" style="height: 56px; font-size: 17px">{{ L.k9 }}</a>
+    <span class="hint" style="text-align: center; font-size: 12px">{{ L.k10 }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"ТЕСТОВАЯ СЕТЬ": "TESTNET", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "КОШЕЛЁК · P2P · АНАЛИТИКА": "WALLET · P2P · ANALYTICS", "Ваши активы под контролем": "Your assets under control", "EVM, Bitcoin и Solana в одном кошельке": "EVM, Bitcoin and Solana in one wallet", "Покупка и продажа с эскроу между людьми": "Peer-to-peer buying and selling with escrow", "Проверка адресов и риска перед отправкой": "Address and risk checks before sending", "Создать аккаунт": "Create account", "У меня есть аккаунт": "I have an account", "Реальные деньги не используются": "No real money is used"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Язык интерфейса: русский. Переключить на английский"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("КОШЕЛЁК · P2P · АНАЛИТИКА"), k4: this.tr("Ваши активы под контролем"), k5: this.tr("EVM, Bitcoin и Solana в одном кошельке"), k6: this.tr("Покупка и продажа с эскроу между людьми"), k7: this.tr("Проверка адресов и риска перед отправкой"), k8: this.tr("Создать аккаунт"), k9: this.tr("У меня есть аккаунт"), k10: this.tr("Реальные деньги не используются") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const bayer = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
+    const n = 26, L = [-0.55, -0.6, 0.58], sphere = [];
+    const on = theme === 'light' ? 'rgba(14,17,15,0.55)' : 'rgba(242,245,241,0.55)';
+    const off = theme === 'light' ? 'rgba(14,17,15,0.06)' : 'rgba(242,245,241,0.06)';
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const nx = ((x + 0.5) / n) * 2 - 1, ny = ((y + 0.5) / n) * 2 - 1, r2 = nx * nx + ny * ny;
+      if (r2 > 1) { sphere.push('transparent'); continue; }
+      const nz = Math.sqrt(1 - r2), lit = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
+      const grid = Math.abs(Math.sin(Math.atan2(nx, nz) * 4)) < 0.12 || Math.abs(Math.sin(Math.asin(ny) * 5)) < 0.12;
+      sphere.push(grid && lit > 0.08 ? 'var(--sig)' : lit * 0.95 + 0.05 > (bayer[y % 4][x % 4] + 0.5) / 16 ? on : off);
+    }
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark', sphere };
+  }
+}
+</script>
+</body>
+</html>

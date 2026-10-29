@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — комбобокс, период, крошки</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 1600px; min-height: 1690px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">КОМПОНЕНТЫ · ВЫБОР И НАВИГАЦИЯ</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Комбобокс, период, хлебные крошки</h2>
+    </div>
+    <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 22px; color: #A3ACA5">Выбор из длинного списка с поиском, диапазон дат для истории и журнала, путь по разделам админ-панели. Все варианты работают с клавиатуры: стрелки, Enter, Esc.</p>
+  </div>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">КОМБОБОКС С ПОИСКОМ · input/combobox</span>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="cp-pay" style="font-size: 14px; font-weight: 500; color: #A3ACA5">Способ оплаты · открыт, ввод «сб»</label>
+        <span style="height: 48px; padding: 0 14px; border-radius: 12px; background: #1B1F1C; border: 1px solid #B6F36B; box-shadow: 0 0 0 3px rgba(182,243,107,.12); display: flex; align-items: center; gap: 10px; box-sizing: border-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A938C" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg><input id="cp-pay" role="combobox" aria-expanded="true" aria-controls="cp-list" aria-activedescendant="cp-o1" value="сб" style="flex: 1; min-width: 0; border: 0; background: transparent; color: #F2F5F1; font: 400 15px Inter, sans-serif; outline: none"><button aria-label="Очистить" style="width: 28px; height: 28px; border-radius: 999px; border: 0; background: #2E342F; color: #F2F5F1; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span>
+        <div id="cp-list" role="listbox" aria-label="Способы оплаты" style="border-radius: 16px; background: #202521; border: 1px solid #2E342F; box-shadow: 0 8px 24px rgba(0,0,0,.45); padding: 6px; display: flex; flex-direction: column">
+          <span style="padding: 8px 12px 4px; font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #8A938C">СОХРАНЁННЫЕ</span>
+          <sc-for list="{{ payOpts }}" as="o" hint-placeholder-count="4"><div id="{{ o.id }}" role="option" aria-selected="{{ o.sel }}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; gap: 12px; background: {{ o.bg }}"><span style="flex: 1; font-size: 15px"><b style="font-weight: 600; color: #B6F36B">{{ o.hit }}</b>{{ o.rest }}</span><span style="font-size: 12px; color: #A3ACA5">{{ o.note }}</span><sc-if value="{{ o.isSel }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B6F36B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></sc-if></div></sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="cp-asset" style="font-size: 14px; font-weight: 500; color: #A3ACA5">Актив и сеть · несколько значений</label>
+        <span style="min-height: 48px; padding: 6px 10px; border-radius: 12px; background: #1B1F1C; border: 1px solid #2E342F; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; box-sizing: border-box">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="2"><span style="height: 32px; padding: 0 6px 0 12px; border-radius: 999px; background: #2E342F; display: inline-flex; align-items: center; gap: 6px; font-size: 13px">{{ c.t }}<button aria-label="Убрать {{ c.t }}" style="width: 22px; height: 22px; border-radius: 999px; border: 0; background: transparent; color: #A3ACA5; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span></sc-for>
+          <input id="cp-asset" role="combobox" aria-expanded="false" placeholder="Добавить" style="flex: 1; min-width: 80px; height: 32px; border: 0; background: transparent; color: #F2F5F1; font: 400 15px Inter, sans-serif; outline: none">
+        </span>
+        <span style="font-size: 13px; line-height: 18px; color: #8A938C">Выбранное — чипами в поле. Backspace в пустом поле убирает последний чип.</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <label for="cp-none" style="font-size: 14px; font-weight: 500; color: #A3ACA5">Пользователь · ничего не найдено</label>
+        <span style="height: 48px; padding: 0 14px; border-radius: 12px; background: #1B1F1C; border: 1px solid #B6F36B; display: flex; align-items: center; box-sizing: border-box"><input id="cp-none" role="combobox" aria-expanded="true" value="crypto_mlia" style="flex: 1; min-width: 0; border: 0; background: transparent; color: #F2F5F1; font: 400 15px 'JetBrains Mono', monospace; outline: none"></span>
+        <div role="status" style="border-radius: 16px; background: #202521; border: 1px solid #2E342F; box-shadow: 0 8px 24px rgba(0,0,0,.45); padding: 20px; display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 15px; font-weight: 600">Нет пользователя «crypto_mlia»</span>
+          <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">Проверьте ник или ищите по email и ID. Похоже: <b style="font-weight: 600; color: #F2F5F1">crypto_mila</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ДАТА И ПЕРИОД · input/date-range</span>
+    <div style="display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; align-items: start">
+      <div style="border-radius: 20px; background: #202521; border: 1px solid #2E342F; box-shadow: 0 8px 24px rgba(0,0,0,.45); display: flex; overflow: hidden">
+        <div role="group" aria-label="Быстрый выбор" style="width: 200px; flex: none; padding: 12px; border-right: 1px solid #2E342F; display: flex; flex-direction: column; gap: 2px">
+          <sc-for list="{{ presets }}" as="p" hint-placeholder-count="6"><button aria-pressed="{{ p.on }}" style="height: 40px; padding: 0 12px; border-radius: 10px; border: 0; background: {{ p.bg }}; color: {{ p.fg }}; font: 500 14px Inter, sans-serif; text-align: left; cursor: pointer">{{ p.t }}</button></sc-for>
+        </div>
+        <div style="flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; gap: 10px">
+            <label style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #8A938C">С</span><span style="height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #B6F36B; display: flex; align-items: center; box-sizing: border-box"><input value="12.10.2026" style="width: 100%; border: 0; background: transparent; color: #F2F5F1; font: 400 14px 'JetBrains Mono', monospace; outline: none"></span></label>
+            <label style="flex: 1; display: flex; flex-direction: column; gap: 6px"><span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #8A938C">ПО</span><span style="height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #2E342F; display: flex; align-items: center; box-sizing: border-box"><input value="25.10.2026" style="width: 100%; border: 0; background: transparent; color: #F2F5F1; font: 400 14px 'JetBrains Mono', monospace; outline: none"></span></label>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between"><button aria-label="Сентябрь 2026" style="width: 36px; height: 36px; border-radius: 999px; border: 0; background: transparent; color: #F2F5F1; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button><span style="font-size: 15px; font-weight: 600">Октябрь 2026</span><button aria-label="Ноябрь 2026" style="width: 36px; height: 36px; border-radius: 999px; border: 0; background: transparent; color: #F2F5F1; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button></div>
+          <div role="grid" aria-label="Октябрь 2026" style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 4px">
+            <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7"><span style="height: 28px; display: flex; align-items: center; justify-content: center; font: 500 11px 'JetBrains Mono', monospace; color: #8A938C">{{ w.t }}</span></sc-for>
+            <sc-for list="{{ days }}" as="d" hint-placeholder-count="35"><span style="height: 40px; background: {{ d.band }}; border-radius: {{ d.bandR }}; display: flex; align-items: center; justify-content: center"><button disabled="{{ d.dis }}" aria-label="{{ d.label }}" aria-selected="{{ d.sel }}" style="width: 40px; height: 40px; border-radius: 999px; border: {{ d.ring }}; background: {{ d.bg }}; color: {{ d.fg }}; font: {{ d.font }}; cursor: pointer; visibility: {{ d.vis }}">{{ d.n }}</button></span></sc-for>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; padding-top: 4px; border-top: 1px solid #2E342F"><span style="flex: 1; padding-top: 12px; font-size: 13px; color: #A3ACA5">14 дней · время UTC, как в журнале событий</span><button style="height: 40px; padding: 0 16px; margin-top: 12px; border-radius: 999px; border: 0; background: transparent; color: #F2F5F1; font: 600 14px Inter, sans-serif; cursor: pointer">Сбросить</button><button style="height: 40px; padding: 0 18px; margin-top: 12px; border-radius: 999px; border: 0; background: #F2F5F1; color: #0A0C0B; font: 600 14px Inter, sans-serif; cursor: pointer">Применить</button></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+          <span style="font-size: 15px; font-weight: 600">Поле в закрытом виде</span>
+          <span style="height: 44px; padding: 0 14px; border-radius: 12px; border: 1px solid #2E342F; background: #131614; display: flex; align-items: center; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A3ACA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM4 10h16M8 3v4M16 3v4"></path></svg><span style="flex: 1; font-family: 'JetBrains Mono', monospace; font-size: 13px">12.10.2026 — 25.10.2026</span><span style="font-size: 12px; color: #A3ACA5">14 дн.</span></span>
+          <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">Формат дат по языку: 12.10.2026 в русском, Oct 12, 2026 в английском. Ввод с клавиатуры принимается.</span>
+        </div>
+        <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+          <span style="font-size: 15px; font-weight: 600">На телефоне — список пресетов в шите</span>
+          <fieldset style="margin: 0; padding: 0; border: 0; border-radius: 16px; background: #131614; overflow: hidden"><legend style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Период</legend>
+            <sc-for list="{{ mobilePresets }}" as="p" hint-placeholder-count="5"><label style="min-height: 48px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #232824; font-size: 15px; cursor: pointer">{{ p.t }}<input type="radio" name="cp-period" checked="{{ p.checked }}" style="width: 20px; height: 20px; margin: 0; accent-color: #F2F5F1"></label></sc-for>
+          </fieldset>
+          <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">«Свой период» открывает системный выбор даты iOS или Material DatePicker на Android.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ХЛЕБНЫЕ КРОШКИ · nav/breadcrumbs</span>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 15px; font-weight: 600">Веб и админ-панель</span>
+        <nav aria-label="Путь"><ol style="margin: 0; padding: 0; list-style: none; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 14px"><li><a href="admin-overview.dc.html" style="color: #A3ACA5; text-decoration: none">Админ-панель</a></li><li aria-hidden="true" style="color: #48504A">/</li><li><a href="admin-users.dc.html" style="color: #F2F5F1; text-decoration: underline; text-underline-offset: 3px">Пользователи</a></li><li aria-hidden="true" style="color: #48504A">/</li><li><span aria-current="page" style="font-weight: 600">alex_tk</span></li></ol></nav>
+        <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">Родители — ссылки серым, при наведении светлеют и подчёркиваются. Текущая страница — без ссылки, aria-current.</span>
+      </div>
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 15px; font-weight: 600">Длинный путь · сворачивание</span>
+        <nav aria-label="Путь"><ol style="margin: 0; padding: 0; list-style: none; display: flex; align-items: center; gap: 6px; font-size: 14px"><li><a href="admin-overview.dc.html" style="color: #A3ACA5; text-decoration: none">Админ-панель</a></li><li aria-hidden="true" style="color: #48504A">/</li><li><button aria-label="Показать скрытые разделы: Сделки, Споры" style="height: 28px; padding: 0 8px; border-radius: 8px; border: 0; background: #2E342F; color: #F2F5F1; font: 600 14px Inter, sans-serif; cursor: pointer">…</button></li><li aria-hidden="true" style="color: #48504A">/</li><li><a href="admin-disputes.dc.html" style="color: #A3ACA5; text-decoration: none">D-0201</a></li><li aria-hidden="true" style="color: #48504A">/</li><li style="min-width: 0"><span aria-current="page" style="font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; max-width: 160px">Доказательства покупателя</span></li></ol></nav>
+        <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">Больше четырёх уровней — средние сворачиваются в «…» с меню. Последний обрезается многоточием, полный текст — в title страницы.</span>
+      </div>
+      <div style="background: #1B1F1C; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 15px; font-weight: 600">Телефон · только родитель</span>
+        <a href="admin-users.dc.html" style="align-self: flex-start; height: 44px; padding: 0 14px 0 8px; border-radius: 999px; background: #131614; display: flex; align-items: center; gap: 6px; color: #F2F5F1; text-decoration: none; font-size: 15px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>Пользователи</a>
+        <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">На ширине меньше 768 px крошки заменяет кнопка «Назад» с названием родителя. На iOS и Android — системная навигация назад.</span>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1690}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const start = 12, end = 25, today = 29, lead = 3;
+    const days = [];
+    for (let i = 0; i < lead; i++) days.push({ n: '', dis: true, vis: 'hidden', label: '', sel: 'false', band: 'transparent', bandR: '0', ring: '0', bg: 'transparent', fg: '#F2F5F1', font: '400 14px Inter, sans-serif' });
+    for (let d = 1; d <= 31; d++) {
+      const edge = d === start || d === end, inRange = d > start && d < end, future = d > today;
+      const col = (lead + d - 1) % 7;
+      days.push({
+        n: String(d), dis: future, vis: 'visible', label: d + ' октября 2026' + (d === start ? ', начало периода' : d === end ? ', конец периода' : ''),
+        sel: edge || inRange ? 'true' : 'false',
+        band: inRange || (d === start && end > start) || d === end ? 'rgba(182,243,107,.1)' : 'transparent',
+        bandR: d === start ? '999px 0 0 999px' : d === end ? '0 999px 999px 0' : col === 0 ? '8px 0 0 8px' : col === 6 ? '0 8px 8px 0' : '0',
+        ring: d === today ? '1px solid #48504A' : '0',
+        bg: edge ? '#B6F36B' : 'transparent', fg: edge ? '#0A0C0B' : future ? '#8A938C' : '#F2F5F1',
+        font: edge ? '600 14px Inter, sans-serif' : '400 14px Inter, sans-serif'
+      });
+    }
+    while (days.length % 7) days.push({ n: '', dis: true, vis: 'hidden', label: '', sel: 'false', band: 'transparent', bandR: '0', ring: '0', bg: 'transparent', fg: '#F2F5F1', font: '400 14px Inter, sans-serif' });
+    const preset = (t, on) => ({ t, on: on ? 'true' : 'false', bg: on ? 'rgba(182,243,107,.12)' : 'transparent', fg: on ? '#B6F36B' : '#F2F5F1' });
+    return {
+      payOpts: [
+        { id: 'cp-o1', hit: 'СБ', rest: 'П', note: 'по номеру +7 900 ···-··-00', sel: 'true', isSel: true, bg: '#2E342F' },
+        { id: 'cp-o2', hit: 'Сб', rest: 'ербанк · карта', note: '··· 4412', sel: 'false', isSel: false, bg: 'transparent' },
+        { id: 'cp-o3', hit: 'Сб', rest: 'ербанк · счёт', note: '40817 ··· 0021', sel: 'false', isSel: false, bg: 'transparent' }
+      ],
+      chips: [{ t: 'USDT · Sepolia' }, { t: 'ETH · Sepolia' }],
+      presets: [preset('Сегодня'), preset('Вчера'), preset('7 дней'), preset('30 дней'), preset('Этот месяц'), preset('Свой период', true)],
+      weekdays: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'].map((t) => ({ t })),
+      days,
+      mobilePresets: ['Сегодня', '7 дней', '30 дней', 'Этот месяц', 'Свой период'].map((t) => ({ t, checked: t === '30 дней' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

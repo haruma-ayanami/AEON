@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — сессия завершена</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <dc-import name="ios-wallet-home" theme="{{ theme }}" lang="{{ lang }}" hint-size="390px,844px"></dc-import>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: var(--scrim)"></div>
+  <section role="dialog" aria-modal="true" aria-labelledby="se-t" style="position: absolute; left: 8px; right: 8px; bottom: 8px; padding: 10px 20px 26px; border-radius: 40px; background: var(--surface); display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+    <span aria-hidden="true" style="width: 36px; height: 5px; border-radius: 999px; background: var(--bd)"></span>
+    <span aria-hidden="true" style="width: 60px; height: 60px; margin-top: 8px; border-radius: 20px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v5l3 2"></path></svg></span>
+    <h2 id="se-t" class="disp" style="margin: 0; font-size: 26px">{{ L.k1 }}</h2>
+    <span class="muted" style="font-size: 15px; line-height: 21px">{{ L.k2 }}</span>
+    <div style="align-self: stretch; display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
+      <a href="ios-wallet-home.dc.html" class="btn btn-p" style="height: 56px; font-size: 17px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0"></path></svg>{{ L.k3 }}</a>
+      <a href="ios-auth-login.dc.html" class="btn" style="height: 56px; font-size: 17px">{{ L.k4 }}</a>
+      <a href="ios-auth-welcome.dc.html" class="muted" style="font-size: 15px; padding: 10px; text-decoration: none">{{ L.k5 }}</a>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Сессия завершена": "Session ended", "Вы не пользовались AEON 30 минут. Войдите снова — вернём вас на этот экран, введённые данные сохранятся.": "You haven't used AEON for 30 minutes. Sign in again — we'll bring you back to this screen and keep what you entered.", "Войти по Face ID": "Sign in with Face ID", "Войти с паролем": "Sign in with password", "Выйти из аккаунта": "Sign out"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Сессия завершена"), k2: this.tr("Вы не пользовались AEON 30 минут. Войдите снова — вернём вас на этот экран, введённые данные сохранятся."), k3: this.tr("Войти по Face ID"), k4: this.tr("Войти с паролем"), k5: this.tr("Выйти из аккаунта") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      theme, lang: this.props.lang ?? 'ru'
+    };
+  }
+}
+</script>
+</body>
+</html>

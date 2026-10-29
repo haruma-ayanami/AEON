@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — второй фактор</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1100px; height: 720px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="AEON" with-nav="{{ false }}" hint-size="1100px,48px"></dc-import>
+  <div class="dots" style="flex: 1; display: flex; align-items: center; justify-content: center; border-top: 1px solid var(--bs)">
+    <div class="wcard" style="width: 440px; padding: 26px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 16px 48px rgba(0,0,0,0.35)">
+      <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 8px; background: var(--raised); color: var(--sigt); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg></span>
+      <div style="display: flex; flex-direction: column; gap: 4px"><h1 class="disp" style="margin: 0; font-size: 24px">{{ L.k1 }}</h1><span class="muted" style="line-height: 19px">{{ L.k2 }}</span></div>
+      <div role="group" aria-label="{{ L.k3 }}" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px"><sc-for list="{{ code }}" as="d" hint-placeholder-count="6"><span class="winp" style="justify-content: center; height: 44px; font: 600 20px 'JetBrains Mono', monospace; border-bottom: {{ d.b }}">{{ d.v }}</span></sc-for></div>
+      <label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k4 }}</label>
+      <a href="win-wallet-home.dc.html" class="wbtn wbtn-p" style="height: 34px">{{ L.k5 }}</a>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid var(--bs); padding-top: 10px; gap: 2px">
+        <span class="lbl" style="font-size: 10px; padding-bottom: 4px">{{ L.k6 }}</span>
+        <sc-for list="{{ methods }}" as="m" hint-placeholder-count="3"><button type="button" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; height: 34px; padding: 0 8px; border-radius: 4px; display: flex; align-items: center; gap: 10px; text-decoration: none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ m.d }}"></path></svg><span style="flex: 1">{{ m.t }}</span><span class="faint" style="font-size: 12px">{{ m.s }}</span></button></sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1100, "height": 720}}'>
+class Component extends DCLogic {
+  static EN = {"Второй фактор": "Second factor", "Введите 6 цифр из приложения-аутентификатора для alex.t@mail.test.": "Enter the 6 digits from your authenticator app for alex.t@mail.test.", "Код из приложения": "Code from the app", "Доверять этому компьютеру 30 дней": "Trust this computer for 30 days", "Войти": "Sign in", "ДРУГОЙ СПОСОБ": "ANOTHER METHOD", "Windows Hello": "Windows Hello", "ключ доступа": "passkey", "Код на почту": "Code by email", "Резервный код": "Backup code", "из 10 сохранённых": "one of 10 saved"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Второй фактор"), k2: this.tr("Введите 6 цифр из приложения-аутентификатора для alex.t@mail.test."), k3: this.tr("Код из приложения"), k4: this.tr("Доверять этому компьютеру 30 дней"), k5: this.tr("Войти"), k6: this.tr("ДРУГОЙ СПОСОБ") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      code: ['3', '0', '7', '2', '', ''].map((v, i) => ({ v, b: i === 4 ? '2px solid var(--sigt)' : '1px solid var(--bst)' })),
+      methods: [
+        { t: this.tr('Windows Hello'), s: this.tr('ключ доступа'), d: 'M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0' },
+        { t: this.tr('Код на почту'), s: 'a•••@mail.test', d: 'M3 6h18v12H3zM3 7l9 6 9-6' },
+        { t: this.tr('Резервный код'), s: this.tr('из 10 сохранённых'), d: 'M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h5' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

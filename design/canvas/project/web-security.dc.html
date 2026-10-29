@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — безопасность</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="profile" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <nav class="tabs" aria-label="{{ L.k2 }}"><a href="web-profile.dc.html">{{ L.k1 }}</a><a href="web-security.dc.html" aria-current="page">{{ L.k3 }}</a><a href="web-settings.dc.html">{{ L.k4 }}</a><a href="web-settings.dc.html">{{ L.k5 }}</a><a href="web-settings.dc.html">{{ L.k6 }}</a></nav>
+      <div class="card" style="padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; background: {{ sumBg }}">
+        <div role="img" aria-label="{{ lvlA }}" style="display: grid; grid-template-columns: repeat(4, 28px); gap: 4px"><sc-for list="{{ lvl }}" as="b" hint-placeholder-count="4"><span style="height: 8px; border-radius: 2px; background: {{ b }}"></span></sc-for></div>
+        <span style="flex: 1 1 300px"><b style="font-weight: 600">{{ sumB }}</b> <span class="muted">{{ sumT }}</span></span>
+        <sc-if value="{{ isGood }}" hint-placeholder-val="{{ true }}"><button class="btn btn-s btn-p">{{ L.k10 }}</button></sc-if><sc-if value="{{ isWeak }}" hint-placeholder-val="{{ false }}"><a href="web-auth-2fa.dc.html" class="btn btn-s btn-p">{{ L.k52 }}</a></sc-if>
+      </div>
+      <div class="split">
+        <section class="card" style="flex: 1 1 460px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 6px">
+          <span class="disp" style="font-size: 20px; padding-bottom: 8px">{{ L.k11 }}</span>
+          <sc-for list="{{ factors }}" as="f" hint-placeholder-count="5"><div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--bs)"><span aria-hidden="true" style="width: 38px; height: 38px; flex: none; border-radius: 12px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ f.d }}"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{ f.t }}</span><span class="muted" style="font-size: 13px">{{ f.s }}</span></span><span class="chip {{ f.cls }}">{{ f.st }}</span><button class="btn btn-s btn-o">{{ f.act }}</button></div></sc-for>
+          <div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--bs)"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{ L.k12 }}</span><span class="muted" style="font-size: 13px">{{ L.k13 }}</span></span><span class="sw on" aria-hidden="true"></span></div>
+        </section>
+        <section style="flex: 1.2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px"><span class="disp" style="font-size: 20px">{{ L.k14 }}</span><button class="btn btn-s btn-n">{{ L.k15 }}</button></div>
+            <sc-for list="{{ devices }}" as="d" hint-placeholder-count="4"><div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--bs)"><span aria-hidden="true" style="width: 38px; height: 38px; flex: none; border-radius: 12px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ d.icon }}"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500; display: flex; gap: 8px; align-items: center">{{ d.t }}<sc-if value="{{ d.cur }}" hint-placeholder-val="{{ false }}"><span class="chip c-ok" style="height: 22px">{{ L.k16 }}</span></sc-if><sc-if value="{{ d.warn }}" hint-placeholder-val="{{ false }}"><span class="chip c-warn" style="height: 22px">{{ L.k17 }}</span></sc-if></span><span class="muted" style="font-size: 13px">{{ d.s }}</span></span><sc-if value="{{ d.notCur }}" hint-placeholder-val="{{ true }}"><button class="btn btn-s btn-o">{{ L.k18 }}</button></sc-if></div></sc-for>
+          </div>
+          <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 4px">
+            <span class="disp" style="font-size: 20px; padding-bottom: 8px">{{ L.k19 }}</span>
+            <sc-for list="{{ log }}" as="l" hint-placeholder-count="4"><div style="display: grid; grid-template-columns: 110px minmax(0, 1fr) 120px; gap: 12px; padding: 10px 0; border-top: 1px solid var(--bs); font-size: 13px"><span class="mono faint">{{ l.time }}</span><span>{{ l.t }}</span><span style="text-align: right; color: {{ l.c }}">{{ l.r }}</span></div></sc-for>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "weak"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Профиль": "Profile", "Пароль": "Password", "Безопасность": "Security", "Изменить": "Edit", "Добавить": "Add", "Москва · сейчас": "Moscow · now", "Новое": "New", "Завершить": "End", "Ключ доступа (passkey)": "Passkey", "Включено": "On", "Разделы профиля": "Profile sections", "Настройки": "Settings", "Реквизиты и адреса": "Payment details and addresses", "Документы": "Documents", "Уровень защиты: 3 из 4": "Protection level: 3 of 4", "Защита хорошая.": "Protection is good.", "Добавьте ключ доступа (passkey), чтобы входить без пароля и SMS.": "Add a passkey to sign in without a password or SMS.", "Добавить passkey": "Add passkey", "Вход и подтверждения": "Sign-in and confirmations", "Задержка для новых адресов вывода": "Delay for new withdrawal addresses", "24 часа до первого вывода на новый адрес": "24 hours before the first withdrawal to a new address", "Устройства и сессии": "Devices and sessions", "Завершить все, кроме этой": "End all except this one", "Это устройство": "This device", "Журнал входов": "Sign-in log", "Изменён 02.09.2026": "Changed 02.09.2026", "Задан": "Set", "Сменить": "Change", "Приложение-аутентификатор": "Authenticator app", "Код для входа, вывода и выпуска из эскроу": "Code for sign-in, withdrawals and escrow release", "Настроить": "Set up", "Вход по отпечатку или лицу без пароля": "Fingerprint or face sign-in without a password", "Не добавлен": "Not added", "Коды по почте": "Email codes", "Резервный способ · a•••@mail.test": "Backup method · a•••@mail.test", "Резервные коды": "Backup codes", "Осталось 8 из 8": "8 of 8 left", "Сохранены": "Saved", "Показать": "Show", "Москва · 2 часа назад · целостность проверена": "Moscow · 2 hours ago · integrity verified", "Москва · 12:02 · вход с нового устройства": "Moscow · 12:02 · sign-in from a new device", "Казань · 14 дней назад": "Kazan · 14 days ago", "Вход · Chrome · пароль + 2FA": "Sign-in · Chrome · password + 2FA", "Успешно": "Success", "Вход · Windows 11 · новое устройство": "Sign-in · Windows 11 · new device", "Вход · неизвестное устройство · 185.12.x.x": "Sign-in · unknown device · 185.12.x.x", "Неверный пароль": "Wrong password", "Вход · iPhone · Face ID": "Sign-in · iPhone · Face ID", "Двухфакторная защита выключена: выводы ограничены 100 USDT в сутки, продажа через P2P недоступна.": "Two-factor protection is off: withdrawals are limited to 100 USDT a day and selling via P2P is unavailable.", "Включить аутентификатор": "Turn on authenticator", "Выключен": "Off", "Выключено": "Off", "Включить": "Turn on", "Не созданы": "Not created", "Создать": "Create", "Уровень защиты: 1 из 4": "Protection level: 1 of 4", "Защита слабая.": "Protection is weak.", "Включите приложение-аутентификатор: без него выводы ограничены 100 USDT в сутки, а продажа через P2P недоступна.": "Turn on an authenticator app: without it withdrawals are limited to 100 USDT a day and selling via P2P is unavailable.", "Включить 2FA": "Turn on 2FA", "Код для входа, вывода и выпуска из эскроу · не настроено": "Code for sign-in, withdrawals and escrow release · not set up"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Профиль"), k2: this.tr("Разделы профиля"), k3: this.tr("Безопасность"), k4: this.tr("Настройки"), k5: this.tr("Реквизиты и адреса"), k6: this.tr("Документы"), k7: this.tr("Уровень защиты: 3 из 4"), k8: this.tr("Защита хорошая."), k9: this.tr("Добавьте ключ доступа (passkey), чтобы входить без пароля и SMS."), k10: this.tr("Добавить passkey"), k11: this.tr("Вход и подтверждения"), k12: this.tr("Задержка для новых адресов вывода"), k13: this.tr("24 часа до первого вывода на новый адрес"), k14: this.tr("Устройства и сессии"), k15: this.tr("Завершить все, кроме этой"), k16: this.tr("Это устройство"), k17: this.tr("Новое"), k18: this.tr("Завершить"), k19: this.tr("Журнал входов"), k20: this.tr("Пароль"), k21: this.tr("Изменён 02.09.2026"), k22: this.tr("Задан"), k23: this.tr("Сменить"), k24: this.tr("Приложение-аутентификатор"), k25: this.tr("Код для входа, вывода и выпуска из эскроу"), k26: this.tr("Включено"), k27: this.tr("Настроить"), k28: this.tr("Ключ доступа (passkey)"), k29: this.tr("Вход по отпечатку или лицу без пароля"), k30: this.tr("Не добавлен"), k31: this.tr("Добавить"), k32: this.tr("Коды по почте"), k33: this.tr("Резервный способ · a•••@mail.test"), k34: this.tr("Изменить"), k35: this.tr("Резервные коды"), k36: this.tr("Осталось 8 из 8"), k37: this.tr("Сохранены"), k38: this.tr("Показать"), k39: this.tr("Москва · сейчас"), k40: this.tr("Москва · 2 часа назад · целостность проверена"), k41: this.tr("Москва · 12:02 · вход с нового устройства"), k42: this.tr("Казань · 14 дней назад"), k43: this.tr("Вход · Chrome · пароль + 2FA"), k44: this.tr("Успешно"), k45: this.tr("Вход · Windows 11 · новое устройство"), k46: this.tr("Вход · неизвестное устройство · 185.12.x.x"), k47: this.tr("Неверный пароль"), k48: this.tr("Вход · iPhone · Face ID"), k49: this.tr("Уровень защиты: 1 из 4"), k50: this.tr("Защита слабая."), k51: this.tr("Включите приложение-аутентификатор: без него выводы ограничены 100 USDT в сутки, а продажа через P2P недоступна."), k52: this.tr("Включить 2FA"), k53: this.tr("Выключено"), k54: this.tr("Включить"), k55: this.tr("Не созданы"), k56: this.tr("Создать"), k57: this.tr("Код для входа, вывода и выпуска из эскроу · не настроено") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const weak = (this.props.state ?? 'default') === 'weak';
+    const PH = 'M7 3h10v18H7zM11 18h2', PC = 'M3 5h18v11H3zM8 20h8M12 16v4';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isWeak: weak, isGood: !weak, lvl: Array.from({ length: 4 }, (_, i) => (weak ? (i < 1 ? 'var(--warn)' : 'var(--bd)') : (i < 3 ? 'var(--sig)' : 'var(--bd)'))),
+      lvlA: weak ? this.tr("Уровень защиты: 1 из 4") : this.tr("Уровень защиты: 3 из 4"), sumB: weak ? this.tr("Защита слабая.") : this.tr("Защита хорошая."),
+      sumT: weak ? this.tr("Включите приложение-аутентификатор: без него выводы ограничены 100 USDT в сутки, а продажа через P2P недоступна.") : this.tr("Добавьте ключ доступа (passkey), чтобы входить без пароля и SMS."),
+      sumBg: weak ? 'var(--warns)' : 'var(--surface)',
+      factors: [
+        { t: this.tr('Пароль'), s: this.tr('Изменён 02.09.2026'), st: this.tr('Задан'), cls: 'c-ok', act: this.tr('Сменить'), d: 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3' },
+        { t: this.tr('Приложение-аутентификатор'), s: weak ? this.tr('Код для входа, вывода и выпуска из эскроу · не настроено') : this.tr('Код для входа, вывода и выпуска из эскроу'), st: weak ? this.tr('Выключено') : this.tr('Включено'), cls: weak ? 'c-neg' : 'c-ok', act: weak ? this.tr('Включить') : this.tr('Настроить'), d: 'M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4' },
+        { t: this.tr('Ключ доступа (passkey)'), s: this.tr('Вход по отпечатку или лицу без пароля'), st: this.tr('Не добавлен'), cls: 'c-off', act: this.tr('Добавить'), d: 'M4 15a4 4 0 1 0 8 0a4 4 0 1 0-8 0M11 12l8-8M16 7l3 3' },
+        { t: this.tr('Коды по почте'), s: this.tr('Резервный способ · a•••@mail.test'), st: this.tr('Включено'), cls: 'c-ok', act: this.tr('Изменить'), d: 'M3 6h18v12H3zM3 7l9 6 9-6' },
+        { t: this.tr('Резервные коды'), s: weak ? '—' : this.tr('Осталось 8 из 8'), st: weak ? this.tr('Не созданы') : this.tr('Сохранены'), cls: weak ? 'c-off' : 'c-ok', act: weak ? this.tr('Создать') : this.tr('Показать'), d: 'M6 3h9l4 4v14H6zM15 3v4h4' }
+      ],
+      devices: [
+        { t: 'Chrome · macOS', s: this.tr('Москва · сейчас'), icon: PC, cur: true, notCur: false, warn: false },
+        { t: 'AEON · iPhone 16 Pro', s: this.tr('Москва · 2 часа назад · целостность проверена'), icon: PH, cur: false, notCur: true, warn: false },
+        { t: 'AEON · Windows 11', s: this.tr('Москва · 12:02 · вход с нового устройства'), icon: PC, cur: false, notCur: true, warn: true },
+        { t: 'AEON · Pixel 8', s: this.tr('Казань · 14 дней назад'), icon: PH, cur: false, notCur: true, warn: false }
+      ],
+      log: [
+        { time: '23.10 12:44', t: this.tr('Вход · Chrome · пароль + 2FA'), r: this.tr('Успешно'), c: 'var(--sigt)' },
+        { time: '23.10 12:02', t: this.tr('Вход · Windows 11 · новое устройство'), r: this.tr('Успешно'), c: 'var(--warn)' },
+        { time: '22.10 23:14', t: this.tr('Вход · неизвестное устройство · 185.12.x.x'), r: this.tr('Неверный пароль'), c: 'var(--neg)' },
+        { time: '22.10 09:10', t: this.tr('Вход · iPhone · Face ID'), r: this.tr('Успешно'), c: 'var(--sigt)' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

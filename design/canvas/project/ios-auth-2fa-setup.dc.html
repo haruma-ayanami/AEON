@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — настройка 2FA</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-security.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px; gap: 14px">
+    <div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px"><h1 class="disp" style="margin: 0; font-size: 28px">{{ L.k4 }}</h1><span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k5 }}</span></div>
+    <div class="icard" style="padding: 14px; display: flex; gap: 14px; align-items: center">
+      <div style="padding: 10px; border-radius: 16px; background: #FFFFFF; flex: none"><div role="img" aria-label="{{ L.k6 }}" style="display: grid; grid-template-columns: repeat(25, 5px)"><sc-for list="{{ qr }}" as="q" hint-placeholder-count="625"><span style="width: 5px; height: 5px; background: {{ q }}"></span></sc-for></div></div>
+      <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px"><span class="lbl">{{ L.k7 }}</span><span class="mono" style="font-size: 14px; line-height: 21px; word-break: break-all">JBSW Y3DP EHPK 3PXP 7Q4M</span><button class="btn btn-s" style="align-self: flex-start">{{ L.k8 }}</button></div>
+    </div>
+    <label class="field"><span style="padding: 0 4px">{{ L.k9 }}</span><span class="inp focus" style="height: 52px; background: var(--surface)"><input defaultValue="481 9" inputmode="numeric" style="font: 600 20px 'JetBrains Mono', monospace; letter-spacing: 0.1em"></span></label>
+    <div class="icard" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">{{ L.k10 }}</span><button class="btn btn-s btn-o">{{ L.k11 }}</button></span>
+      <div class="mono" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 12px; font-size: 13px"><span>7K2D-9QWE</span><span>M4PX-11ZA</span><span>Q8RT-0V3C</span><span>H2NB-6YUL</span><span>T7EE-4JKF</span><span>A9WQ-8MPS</span></div>
+      <span class="hint">{{ L.k12 }}</span>
+    </div>
+  </div>
+  <div class="ios-bar"><a href="ios-security.dc.html" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k13 }}</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Аутентификатор": "Authenticator", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Подключите аутентификатор": "Set up an authenticator", "Отсканируйте код в Google Authenticator, Aegis или другом приложении.": "Scan the code in Google Authenticator, Aegis or another app.", "QR-код для приложения-аутентификатора": "QR code for the authenticator app", "КЛЮЧ ВРУЧНУЮ": "MANUAL KEY", "Копировать": "Copy", "Код из приложения": "Code from the app", "РЕЗЕРВНЫЕ КОДЫ": "BACKUP CODES", "Сохранить в «Файлы»": "Save to Files", "Каждый код работает один раз. Храните их отдельно от телефона.": "Each code works once. Keep them separately from your phone.", "Включить 2FA": "Turn on 2FA"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Аутентификатор"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Подключите аутентификатор"), k5: this.tr("Отсканируйте код в Google Authenticator, Aegis или другом приложении."), k6: this.tr("QR-код для приложения-аутентификатора"), k7: this.tr("КЛЮЧ ВРУЧНУЮ"), k8: this.tr("Копировать"), k9: this.tr("Код из приложения"), k10: this.tr("РЕЗЕРВНЫЕ КОДЫ"), k11: this.tr("Сохранить в «Файлы»"), k12: this.tr("Каждый код работает один раз. Храните их отдельно от телефона."), k13: this.tr("Включить 2FA") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    let s = 17;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const qr = [];
+    const fin = (r, c) => { for (const [r0, c0] of [[0, 0], [0, 18], [18, 0]]) { if (r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7) { const a = r - r0, b = c - c0; return (a === 0 || a === 6 || b === 0 || b === 6 || (a >= 2 && a <= 4 && b >= 2 && b <= 4)) ? 1 : 0; } if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) return 0; } return -1; };
+    for (let r = 0; r < 25; r++) for (let c = 0; c < 25; c++) { const f = fin(r, c); qr.push((f === -1 ? rnd() > 0.52 : f === 1) ? '#0A0C0B' : '#FFFFFF'); }
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      qr
+    };
+  }
+}
+</script>
+</body>
+</html>

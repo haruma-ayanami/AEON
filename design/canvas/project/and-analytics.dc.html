@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — аналитика</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }}" style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; gap: 4px; padding: 0 4px 0 16px">
+    <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 22px Inter, sans-serif">{{ L.k1 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span>
+    <button aria-label="{{ L.k2 }}" style="width: 48px; height: 48px; border-radius: 999px; border: 0; background: transparent; color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5"></path></svg></button>
+    <button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button>
+  </header>
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 10px">
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 10px">
+    <section style="border-radius: 28px; background: var(--surface); padding: 20px 20px 14px; display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+        <span class="lbl">{{ L.k4 }}</span>
+        <div role="group" aria-label="{{ L.k5 }}" style="display: flex; gap: 4px">
+          <sc-for list="{{ periods }}" as="p" hint-placeholder-count="3"><button aria-pressed="{{ p.on }}" style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid {{ p.b }}; background: {{ p.bg }}; color: {{ p.fg }}; font: 500 13px Inter, sans-serif; cursor: pointer">{{ p.t }}</button></sc-for>
+        </div>
+      </div>
+      <span class="disp" style="font-size: 44px; line-height: 1"><span class="faint">$</span>{{ L.k6 }}<span class="faint">{{ L.k7 }}</span></span>
+      <span style="color: var(--sigt); font-weight: 600; font-size: 14px">{{ L.k8 }}</span>
+      <svg viewBox="0 0 340 90" preserveAspectRatio="none" style="width: 100%; height: 60px" role="img" aria-label="{{ L.k9 }}"><defs><linearGradient id="ag" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#B6F36B" stop-opacity="0.16"></stop><stop offset="1" stop-color="#B6F36B" stop-opacity="0"></stop></linearGradient></defs><path d="M0 74 C30 72 50 64 80 68 S130 56 160 60 S210 46 240 42 S290 30 340 18 L340 90 L0 90 Z" fill="url(#ag)"></path><path d="M0 74 C30 72 50 64 80 68 S130 56 160 60 S210 46 240 42 S290 30 340 18" fill="none" stroke="var(--sigt)" stroke-width="2" vector-effect="non-scaling-stroke"></path></svg>
+    </section>
+    <section style="border-radius: 24px; background: var(--surface); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+      <span class="lbl">{{ L.k10 }}</span>
+      <div role="img" aria-label="{{ L.k11 }}" style="display: flex; height: 12px; gap: 3px"><span style="flex: 48; border-radius: 3px; background: var(--sig)"></span><span style="flex: 37; border-radius: 3px; background: var(--t1)"></span><span style="flex: 7; border-radius: 3px; background: var(--t2)"></span><span style="flex: 5; border-radius: 3px; background: var(--t3)"></span><span style="flex: 3; border-radius: 3px; background: var(--bst)"></span></div>
+      <sc-for list="{{ alloc }}" as="a" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px; font-size: 14px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: {{ a.c }}"></span><span style="flex: 1">{{ a.n }}</span><span class="muted">{{ a.p }}</span><span class="num" style="width: 70px; text-align: right; font-weight: 500">{{ a.v }}</span></div></sc-for>
+    </section>
+    <section style="border-radius: 24px; background: var(--surface); padding: 18px 20px 12px; display: flex; flex-direction: column; gap: 6px">
+      <span style="display: flex; align-items: center; justify-content: space-between"><span class="lbl">{{ L.k12 }}</span><span class="chip c-warn">{{ L.k13 }}</span></span>
+      <span style="font-weight: 600; font-size: 16px; padding-top: 4px">{{ L.k14 }}</span>
+      <span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k15 }}</span>
+      <span style="display: flex; gap: 4px; margin-left: -12px"><a href="and-p2p-market.dc.html" style="height: 40px; padding: 0 12px; border-radius: 999px; display: inline-flex; align-items: center; text-decoration: none; color: var(--sigt); font: 600 14px Inter, sans-serif">{{ L.k16 }}</a><button style="height: 40px; padding: 0 12px; border-radius: 999px; border: 0; background: transparent; color: var(--t2); font: 600 14px Inter, sans-serif; cursor: pointer">{{ L.k17 }}</button></span>
+    </section>
+    <section style="border-radius: 24px; background: var(--surface); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+      <label for="and-chk" class="lbl">{{ L.k18 }}</label>
+      <span style="display: flex; gap: 8px"><span style="flex: 1; min-width: 0; height: 48px; padding: 0 14px; box-sizing: border-box; border-radius: 4px; border: 1px solid var(--bst); display: flex; align-items: center"><input id="and-chk" placeholder="{{ L.k19 }}" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 14px 'JetBrains Mono', monospace; outline: none"></span><button class="btn btn-p" style="height: 48px; padding: 0 18px; font-size: 14px">{{ L.k20 }}</button></span>
+    </section>
+</div></sc-if>
+    <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}"><div role="status" aria-label="{{ L.kl }}" style="display: flex; flex-direction: column; gap: 12px"><div style="border-radius: 24px; background: var(--surface); padding: 18px; display: flex; flex-direction: column; gap: 12px"><span class="sk" style="display: block; width: 120px; height: 10px; border-radius: 4px; flex: none"></span><span class="sk" style="display: block; width: 62%; height: 34px; border-radius: 8px; flex: none"></span><span class="sk" style="display: block; width: 44%; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 100%; height: 76px; border-radius: 12px; flex: none"></span></div><div style="border-radius: 24px; background: var(--surface); padding: 16px; display: flex; flex-direction: column; gap: 12px"><span class="sk" style="display: block; width: 110px; height: 10px; border-radius: 4px; flex: none"></span><span class="sk" style="display: block; width: 100%; height: 12px; border-radius: 3px; flex: none"></span><span style="display: flex; align-items: center; gap: 10px"><span class="sk" style="display: block; width: 10px; height: 10px; border-radius: 2px; flex: none"></span><span class="sk" style="display: block; width: 40%; height: 12px; border-radius: 6px; flex: none"></span><span style="flex: 1"></span><span class="sk" style="display: block; width: 60px; height: 12px; border-radius: 6px; flex: none"></span></span><span style="display: flex; align-items: center; gap: 10px"><span class="sk" style="display: block; width: 10px; height: 10px; border-radius: 2px; flex: none"></span><span class="sk" style="display: block; width: 40%; height: 12px; border-radius: 6px; flex: none"></span><span style="flex: 1"></span><span class="sk" style="display: block; width: 60px; height: 12px; border-radius: 6px; flex: none"></span></span><span style="display: flex; align-items: center; gap: 10px"><span class="sk" style="display: block; width: 10px; height: 10px; border-radius: 2px; flex: none"></span><span class="sk" style="display: block; width: 40%; height: 12px; border-radius: 6px; flex: none"></span><span style="flex: 1"></span><span class="sk" style="display: block; width: 60px; height: 12px; border-radius: 6px; flex: none"></span></span></div><div style="border-radius: 24px; background: var(--surface); padding: 16px; display: flex; flex-direction: column; gap: 10px"><span class="sk" style="display: block; width: 90px; height: 22px; border-radius: 999px; flex: none"></span><span class="sk" style="display: block; width: 70%; height: 14px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 92%; height: 10px; border-radius: 6px; flex: none"></span></div></div></sc-if>
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 32px 20px 24px; border-radius: 24px; background: var(--surface); display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16M6 16l4-5 3 3 5-7"></path></svg></span><span style="font-weight: 600; font-size: 18px">{{ L.k21 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2)">{{ L.k22 }}</span><div style="display: flex; flex-direction: column; text-align: left; width: 100%; padding-top: 4px"><span class="lbl" style="padding-bottom: 6px">{{ L.k23 }}</span><sc-for list="{{ steps }}" as="s" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 12px; min-height: 48px; border-bottom: 1px solid var(--bs)"><span aria-hidden="true" style="width: 26px; height: 26px; flex: none; box-sizing: border-box; border-radius: 999px; border: {{ s.b }}; background: {{ s.bg }}; color: var(--sigt); display: flex; align-items: center; justify-content: center"><sc-if value="{{ s.done }}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></sc-if></span><span style="flex: 1; font-size: 14px">{{ s.t }}</span><span class="mono" style="font-size: 12px; color: {{ s.c }}">{{ s.v }}</span></div></sc-for></div><span style="display: flex; gap: 8px; margin-top: 6px"><a href="and-receive.dc.html" class="btn btn-p" style="height: 48px; padding: 0 22px; font-size: 14px">{{ L.k24 }}</a><a href="and-p2p-market.dc.html" class="btn" style="height: 48px; padding: 0 22px; font-size: 14px">{{ L.k25 }}</a></span></div></sc-if>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; bottom: 0"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AndNav" active="analytics" hint-size="412px,80px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty", "loading"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Загружаем данные": "Loading data", "Аналитика": "Analytics", "Подсказка по разделу": "Section help", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "ПОРТФЕЛЬ": "PORTFOLIO", "Период": "Period", "3 412": "3,412", ",18": ".18", "+$472,10 · +16,1% за 30 дней": "+$472.10 · +16.1% over 30 days", "Рост портфеля за 30 дней": "Portfolio growth over 30 days", "РАСПРЕДЕЛЕНИЕ": "ALLOCATION", "ETH 48%, USDT 37%, другие 15%": "ETH 48%, USDT 37%, other 15%", "РЕКОМЕНДАЦИЯ": "INSIGHT", "Концентрация": "Concentration", "Почти половина — в ETH": "Almost half is in ETH", "При падении ETH на 10% портфель потеряет около $165.": "If ETH drops 10%, the portfolio will lose about $165.", "Продать часть в P2P": "Sell some via P2P", "Скрыть": "Dismiss", "ПРОВЕРКА АДРЕСА": "ADDRESS CHECK", "Проверить": "Check", "Аналитике нужно немного истории": "Analytics needs a bit of history", "Доходность, распределение и рекомендации появятся после первого зачисления. Точный график — через 7 дней истории.": "Returns, allocation and insights appear after your first deposit. An accurate chart needs 7 days of history.", "КАК ПОЯВИТСЯ АНАЛИТИКА": "HOW ANALYTICS UNLOCKS", "Получить": "Receive", "Купить в P2P": "Buy via P2P", "7Д": "7D", "30Д": "30D", "1Г": "1Y", "Другие 3": "Other 3", "$1 645": "$1,645", "$1 250": "$1,250", "Первое зачисление": "First deposit", "ждём · 0 из 1": "waiting · 0 of 1", "7 дней истории": "7 days of history", "0 из 7": "0 of 7", "Проверка адреса": "Address check", "доступна уже сейчас": "available right now"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Аналитика"), k2: this.tr("Подсказка по разделу"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("ПОРТФЕЛЬ"), k5: this.tr("Период"), k6: this.tr("3 412"), k7: this.tr(",18"), k8: this.tr("+$472,10 · +16,1% за 30 дней"), k9: this.tr("Рост портфеля за 30 дней"), k10: this.tr("РАСПРЕДЕЛЕНИЕ"), k11: this.tr("ETH 48%, USDT 37%, другие 15%"), k12: this.tr("РЕКОМЕНДАЦИЯ"), k13: this.tr("Концентрация"), k14: this.tr("Почти половина — в ETH"), k15: this.tr("При падении ETH на 10% портфель потеряет около $165."), k16: this.tr("Продать часть в P2P"), k17: this.tr("Скрыть"), k18: this.tr("ПРОВЕРКА АДРЕСА"), k19: "0x…, tb1…, Solana", k20: this.tr("Проверить"), k21: this.tr("Аналитике нужно немного истории"), k22: this.tr("Доходность, распределение и рекомендации появятся после первого зачисления. Точный график — через 7 дней истории."), k23: this.tr("КАК ПОЯВИТСЯ АНАЛИТИКА"), k24: this.tr("Получить"), k25: this.tr("Купить в P2P"), kl: this.tr("Загружаем данные") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    return { isLoading: st === 'loading',
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isDefault: st === 'default',
+      isEmpty: st === 'empty',
+      periods: ['7Д', '30Д', '1Г'].map((t) => { const on = t === '30Д'; return { t: this.tr(t), on: on ? 'true' : 'false', b: on ? 'transparent' : 'var(--bd)', bg: on ? 'var(--sigs)' : 'transparent', fg: on ? 'var(--sigt)' : 'var(--t2)' }; }),
+      alloc: [['Ether', '48%', this.tr('$1 645'), 'var(--sig)'], ['Tether USD', '37%', this.tr('$1 250'), 'var(--t1)'], [this.tr('Другие 3'), '15%', '$517', 'var(--t3)']].map(([n, p, v, c]) => ({ n, p, v, c })),
+      steps: [
+        { t: this.tr('Первое зачисление'), v: this.tr('ждём · 0 из 1'), c: 'var(--t2)', b: '1.5px dashed var(--bst)', bg: 'transparent', done: false },
+        { t: this.tr('7 дней истории'), v: this.tr('0 из 7'), c: 'var(--t2)', b: '1.5px dashed var(--bst)', bg: 'transparent', done: false },
+        { t: this.tr('Проверка адреса'), v: this.tr('доступна уже сейчас'), c: 'var(--sigt)', b: '0', bg: 'var(--sigs)', done: true }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

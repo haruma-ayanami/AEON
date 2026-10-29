@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — длинные значения и большие числа</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="wallet" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ heading }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody" style="max-width: 1240px">
+      <section class="card" style="padding: 22px 26px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px">
+        <span style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k1 }}</span><span class="disp" style="font-size: 56px; line-height: 1; white-space: nowrap"><span class="faint">$</span>{{ L.k2 }}<span class="faint">{{ L.k3 }}</span></span><span class="muted">{{ L.k4 }}</span></span>
+        <span class="hint" style="flex: 0 1 320px">{{ L.k5 }}</span>
+      </section>
+      <div class="split">
+        <section class="card" aria-label="{{ L.k6 }}" style="flex: 1 1 600px; min-width: 0; border-radius: 20px; overflow: visible">
+          <table class="tbl">
+            <thead><tr><th>{{ L.k7 }}</th><th style="text-align: right">{{ L.k8 }}</th><th style="text-align: right">{{ L.k9 }}</th><th>{{ L.k10 }}</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ assets }}" as="a" hint-placeholder-count="5">
+                <tr><td style="white-space: nowrap"><span style="display: flex; align-items: center; gap: 10px"><span style="width: 32px; height: 32px; border-radius: 999px; background: var(--raised); border: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; font: 500 9px 'JetBrains Mono', monospace">{{ a.t }}</span><span style="display: flex; flex-direction: column"><span style="font-weight: 600">{{ a.name }}</span><span class="faint" style="font-size: 12px">{{ a.net }}</span></span></span></td>
+                  <td class="num" style="text-align: right; white-space: nowrap; padding-top: 8px; padding-bottom: 8px"><span style="display: inline-flex; flex-direction: column; align-items: flex-end; gap: 4px"><span style="font-weight: 600; border-bottom: {{ a.ul }}">{{ a.q }}</span><sc-if value="{{ a.tip }}" hint-placeholder-val="{{ false }}"><span role="tooltip" style="padding: 4px 8px; border-radius: 8px; background: var(--pbg); color: var(--pfg); font: 500 11px 'JetBrains Mono', monospace">{{ a.full }}</span></sc-if></span></td>
+                  <td class="num" style="text-align: right; white-space: nowrap">{{ a.v }}</td>
+                  <td class="faint" style="font-size: 12px">{{ a.rule }}</td></tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </section>
+
+        <aside class="card" aria-label="{{ L.k11 }}" style="flex: 1 1 380px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <span class="lbl">{{ L.k12 }}</span>
+          <span class="disp" style="font-size: 28px; color: var(--sigt)">{{ L.k13 }}</span>
+          <sc-for list="{{ longs }}" as="l" hint-placeholder-count="4">
+            <div class="tile" style="padding: 10px 12px; display: flex; flex-direction: column; gap: 6px">
+              <span style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span class="lbl" style="font-size: 10px">{{ l.k }}</span><span class="faint mono" style="font-size: 10px">{{ l.len }}</span></span>
+              <span style="display: flex; align-items: center; gap: 8px"><span class="mono" style="flex: 1; min-width: 0; font-size: 13px">{{ l.short }}</span><button aria-label="{{ l.copy }}" class="ibtn" style="width: 30px; height: 30px; background: var(--surface)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8h11v11H8zM5 15V5h10"></path></svg></button></span>
+              <span class="mono faint" style="font-size: 11px; line-height: 16px; word-break: break-all">{{ l.full }}</span>
+            </div>
+          </sc-for>
+          <div class="tile" style="padding: 10px 12px; display: flex; align-items: center; gap: 10px"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 11px Inter, sans-serif">CT</span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="max-width: 180px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" title="crypto_trader_saint_petersburg_7">crypto_trader_saint_petersburg_7</span><span class="faint" style="font-size: 12px">{{ L.k14 }}</span></span></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"ОБЩИЙ БАЛАНС · 6 АКТИВОВ": "TOTAL BALANCE · 6 ASSETS", "1 234 567": "1,234,567", ",89": ".89", "≈ 114 074 061,04 ₽ · +$12 840,22 за 24 ч": "≈ 114,074,061.04 ₽ · +$12,840.22 in 24 h", "Разряды делятся пробелом, целая часть не переносится. Если не помещается — уменьшаем кегль, а не обрезаем.": "Digits are grouped with spaces, the whole part never wraps. If it doesn't fit, we reduce the font size instead of truncating.", "Активы с крайними значениями": "Assets with extreme values", "АКТИВ": "ASSET", "КОЛИЧЕСТВО": "QUANTITY", "СТОИМОСТЬ": "VALUE", "ПРАВИЛО": "RULE", "Детали транзакции с длинными значениями": "Transaction details with long values", "ВХОДЯЩИЙ ПЕРЕВОД · BITCOIN TESTNET": "INCOMING TRANSFER · BITCOIN TESTNET", "+0,00000312 BTC": "+0.00000312 BTC", "ник 32 символа · обрезается многоточием, полный — по наведению": "32-character nickname · truncated with an ellipsis, full on hover", " симв.": " chars", "Копировать: ": "Copy: ", "Кошелёк · крайние значения": "Wallet · extreme values", "1 234 567,89": "1,234,567.89", "$1 234 567,89": "$1,234,567.89", "большое число — пробелы по разрядам": "large number — digit grouping", "0,000000012345…": "0.000000012345…", "$0,00004": "$0.00004", "18 знаков — показываем 8 значащих, полное по наведению": "18 decimals — show 8 significant, full on hover", "0,000000012345678912 ETH": "0.000000012345678912 ETH", "0,00000312": "0.00000312", "$0,21": "$0.21", "крошечная сумма — без экспоненты": "tiny amount — no exponent", "12 345 678,9": "12,345,678.9", "$2 024 691 339": "$2,024,691,339", "стоимость без копеек, если больше миллиарда": "value without cents above a billion", "нулевой баланс — серым, в конце списка": "zero balance — grey, at the end", "ОТ · BECH32, 62 СИМВОЛА": "FROM · BECH32, 62 CHARACTERS", "КОМУ · ВАШ АДРЕС": "TO · YOUR ADDRESS", "ХЕШ · 66 СИМВОЛОВ": "HASH · 66 CHARACTERS", "SOLANA · BASE58, 44 СИМВОЛА": "SOLANA · BASE58, 44 CHARACTERS"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("ОБЩИЙ БАЛАНС · 6 АКТИВОВ"), k2: this.tr("1 234 567"), k3: this.tr(",89"), k4: this.tr("≈ 114 074 061,04 ₽ · +$12 840,22 за 24 ч"), k5: this.tr("Разряды делятся пробелом, целая часть не переносится. Если не помещается — уменьшаем кегль, а не обрезаем."), k6: this.tr("Активы с крайними значениями"), k7: this.tr("АКТИВ"), k8: this.tr("КОЛИЧЕСТВО"), k9: this.tr("СТОИМОСТЬ"), k10: this.tr("ПРАВИЛО"), k11: this.tr("Детали транзакции с длинными значениями"), k12: this.tr("ВХОДЯЩИЙ ПЕРЕВОД · BITCOIN TESTNET"), k13: this.tr("+0,00000312 BTC"), k14: this.tr("ник 32 символа · обрезается многоточием, полный — по наведению") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const a = (t, name, net, q, v, rule, full) => ({ t, name, net, q, v, rule, full: full || '', tip: !!full, ul: full ? '1px dashed var(--bst)' : '0' });
+    const mid = (s, n) => s.slice(0, n) + '…' + s.slice(-n);
+    const L = (k, full, n) => ({ k, full, short: mid(full, n), len: full.length + this.tr(' симв.'), copy: this.tr('Копировать: ') + k });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      heading: this.tr('Кошелёк · крайние значения'),
+      assets: [
+        a('USDT', 'Tether USD', 'Ethereum Sepolia', this.tr('1 234 567,89'), this.tr('$1 234 567,89'), this.tr('большое число — пробелы по разрядам')),
+        a('ETH', 'Ether', 'Ethereum Sepolia', this.tr('0,000000012345…'), this.tr('$0,00004'), this.tr('18 знаков — показываем 8 значащих, полное по наведению'), this.tr('0,000000012345678912 ETH')),
+        a('BTC', 'Bitcoin', 'Bitcoin Testnet', this.tr('0,00000312'), this.tr('$0,21'), this.tr('крошечная сумма — без экспоненты')),
+        a('SOL', 'Solana', 'Solana Devnet', this.tr('12 345 678,9'), this.tr('$2 024 691 339'), this.tr('стоимость без копеек, если больше миллиарда')),
+        a('POL', 'Polygon', 'Polygon Amoy', '0', '$0', this.tr('нулевой баланс — серым, в конце списка'))
+      ],
+      longs: [
+        L(this.tr('ОТ · BECH32, 62 СИМВОЛА'), 'tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sl5k7', 8),
+        L(this.tr('КОМУ · ВАШ АДРЕС'), 'tb1q9vza2e8x573nczrlzms0wvx3gsqjx7vavgkx0l', 8),
+        L(this.tr('ХЕШ · 66 СИМВОЛОВ'), '0x3e7a91c4b2d8f0e65a1c9b7d3f2e8a0c6b4d1f9e7a5c3b0d8f6e4a2c1b9d7f5e', 8),
+        L(this.tr('SOLANA · BASE58, 44 СИМВОЛА'), '7Hq2mR4xVb9KcLp3TzWn8YdF5sJgQe1AuXo6NiBk2mR4', 8)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

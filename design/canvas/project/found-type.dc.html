@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Основы — типографика</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 1600px; min-height: 1800px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">ОСНОВЫ · 02 · ТИПОГРАФИКА</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Цифры крупно, подписи — моноширинным</h2>
+    </div>
+    <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 22px; color: #A3ACA5">Inter Tight — заголовки и суммы с моноширинными цифрами (tnum). Inter — текст и контролы. JetBrains Mono — подписи капсом, адреса, хеши, таймеры. Одинаково на вебе, Windows, iOS и Android.</p>
+  </div>
+
+  <section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ЗАГОЛОВКИ И СУММЫ</span>
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 96px; line-height: 1; letter-spacing: -0.04em">Аа 0–9</span>
+      <span style="font-family: 'Inter Tight', sans-serif; font-size: 16px; color: #A3ACA5">Inter Tight · 400 500 600 700</span>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ТЕКСТ И КОНТРОЛЫ</span>
+      <span style="font-family: Inter, sans-serif; font-weight: 500; font-size: 96px; line-height: 1; letter-spacing: -0.03em">Аа Яя</span>
+      <span style="font-size: 16px; color: #A3ACA5">Inter · 400 500 600</span>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ПОДПИСИ, АДРЕСА, ХЕШИ</span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 80px; line-height: 1.1; color: #B6F36B">0x7a</span>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #A3ACA5">JetBrains Mono · 400 500</span>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 8px 32px">
+    <sc-for list="{{ scale }}" as="s" hint-placeholder-count="12">
+      <div style="display: grid; grid-template-columns: 200px 220px minmax(0, 1fr); gap: 24px; align-items: center; padding: 18px 0; border-bottom: 1px solid #232824">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #F2F5F1">{{ s.name }}</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #8A938C">{{ s.spec }}</span>
+        <span style="{{ s.style }}">{{ s.sample }}</span>
+      </div>
+    </sc-for>
+  </section>
+
+  <section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ПРАВИЛО СУММ</span>
+      <div style="display: flex; align-items: baseline; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 64px; letter-spacing: -0.03em; font-feature-settings: 'tnum'"><span style="color: #8A938C">$</span><span>12 573</span><span style="color: #8A938C">,08</span></div>
+      <div style="display: flex; align-items: baseline; gap: 10px; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 32px; font-feature-settings: 'tnum'"><span>0,01845</span><span style="font-size: 20px; color: #8A938C">BTC</span></div>
+      <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 20px; color: #A3ACA5">
+        <li>Знак валюты и дробная часть — tertiary, целая часть — primary</li>
+        <li>Тикер актива всегда рядом с числом, меньшим кеглем</li>
+        <li>Крипта — до 8 значащих знаков, полное значение по наведению</li>
+        <li>RU: 1 234,56 · EN: 1,234.56 — формат по языку интерфейса</li>
+      </ul>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ПРАВИЛО АДРЕСОВ И ХЕШЕЙ</span>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 20px; line-height: 32px; word-break: break-all"><span style="color: #F2F5F1; font-weight: 500">0x7a3F5c</span><span style="color: #8A938C">1E8b2D4a6F9e0C3b7A1d5E8f2C4b</span><span style="color: #F2F5F1; font-weight: 500">6A9c2E</span></div>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 16px; padding: 8px 12px; background: #1B1F1C; border-radius: 10px">0x7a3F…9c2E</span>
+        <span style="font-size: 14px; color: #A3ACA5">сокращение по центру в списках</span>
+      </div>
+      <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 20px; color: #A3ACA5">
+        <li>Первые и последние 6 символов выделены для сверки</li>
+        <li>На экране подтверждения адрес показывается целиком</li>
+        <li>Рядом — копирование с подтверждением «Скопировано»</li>
+      </ul>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tight = "font-family: 'Inter Tight', sans-serif; font-weight: 600; font-feature-settings: 'tnum';";
+    const body = 'font-family: Inter, sans-serif;';
+    const mono = "font-family: 'JetBrains Mono', monospace;";
+    return {
+      scale: [
+        { name: 'Numeric XL', spec: '48/52 · 600 · −3%', style: tight + ' font-size: 48px; line-height: 52px; letter-spacing: -0.03em', sample: '1 182,12 USDT' },
+        { name: 'Display', spec: '40/44 · 600 · −2%', style: tight + ' font-size: 40px; line-height: 44px; letter-spacing: -0.02em', sample: 'Кошелёк' },
+        { name: 'H1', spec: '32/38 · 600 · −2%', style: tight + ' font-size: 32px; line-height: 38px; letter-spacing: -0.02em', sample: 'Сделка P2P-48213' },
+        { name: 'H2', spec: '24/30 · 600', style: tight + ' font-size: 24px; line-height: 30px', sample: 'Мои активы' },
+        { name: 'H3', spec: '20/26 · 600', style: tight + ' font-size: 20px; line-height: 26px', sample: 'Реквизиты продавца' },
+        { name: 'Body L', spec: '17/24 · 400', style: body + ' font-size: 17px; line-height: 24px', sample: 'Средства продавца заблокированы в эскроу до подтверждения оплаты.' },
+        { name: 'Body M', spec: '15/22 · 400', style: body + ' font-size: 15px; line-height: 22px', sample: 'Отправляйте только USDT в сети Sepolia.' },
+        { name: 'Body S', spec: '14/20 · 400 · мин. веб', style: body + ' font-size: 14px; line-height: 20px; color: #A3ACA5', sample: 'Комиссия сети ≈ 0,00021 ETH · около 30 секунд' },
+        { name: 'Label', spec: '12/16 · 500 · +6% · КАПС', style: mono + ' font-size: 12px; line-height: 16px; letter-spacing: 0.06em; color: #8A938C', sample: 'ДОСТУПНО · В ЭСКРОУ · КОМИССИЯ СЕТИ' },
+        { name: 'Mono M', spec: '14/20 · 400', style: mono + ' font-size: 14px; line-height: 20px', sample: 'tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx' },
+        { name: 'Mono S · таймер', spec: '12/16 · 500', style: mono + ' font-size: 12px; line-height: 16px; color: #F5B941', sample: '14:32 · БЛОК 6 812 004' },
+        { name: 'Caption', spec: '12/16 · 400', style: body + ' font-size: 12px; line-height: 16px; color: #A3ACA5', sample: 'Обновлено только что' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

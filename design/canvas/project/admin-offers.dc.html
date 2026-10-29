@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — модерация объявлений</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="offers" hint-size="240px,1100px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <nav class="tabs" aria-label="{{ L.k2 }}">
+        <a href="admin-offers.dc.html">{{ L.k3 }}<span class="faint">42</span></a>
+        <a href="admin-offers.dc.html" aria-current="page">{{ L.k4 }}<span class="badge" style="background: var(--warn); color: var(--onacc, #0A0C0B)">5</span></a>
+        <a href="admin-offers.dc.html">{{ L.k5 }}<span class="faint">2</span></a>
+        <a href="admin-offers.dc.html">{{ L.k6 }}<span class="faint">3</span></a>
+      </nav>
+      <div class="split">
+        <section class="card" aria-label="{{ L.k7 }}" style="flex: 1 1 640px; min-width: 0; border-radius: 16px; overflow-x: auto">
+          <table class="tbl" style="min-width: 680px">
+            <thead><tr><th>{{ L.k8 }}</th><th>{{ L.k9 }}</th><th style="text-align: right">{{ L.k10 }}</th><th>{{ L.k11 }}</th><th>{{ L.k12 }}</th><th>{{ L.k13 }}</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="5">
+                <tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}">
+                  <td><span style="display: flex; align-items: center; gap: 10px"><span style="width: 30px; height: 30px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 11px Inter, sans-serif">{{ r.ini }}</span><span style="display: flex; flex-direction: column"><span style="font-weight: 600">{{ r.nick }}</span><span class="faint" style="font-size: 12px">{{ r.meta }}</span></span></span></td>
+                  <td style="white-space: nowrap">{{ r.dir }}</td>
+                  <td class="num" style="text-align: right; font-weight: 600; white-space: nowrap">{{ r.price }}</td>
+                  <td><span class="chip {{ r.devClass }}">{{ r.dev }}</span></td>
+                  <td class="muted" style="font-size: 13px">{{ r.reason }}</td>
+                  <td class="mono faint" style="font-size: 12px">{{ r.time }}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </section>
+
+        <aside class="card" aria-label="{{ L.k14 }}" style="flex: 0 1 360px; min-width: 0; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; align-items: center; gap: 10px"><span style="width: 40px; height: 40px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 13px Inter, sans-serif">FC</span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span class="disp" style="font-size: 18px">fast_cash_99</span><span class="faint" style="font-size: 12px">{{ L.k15 }}</span></span><span class="chip c-warn">{{ L.k4 }}</span></div>
+          <div class="tile" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ L.k16 }}</span><span class="disp" style="font-size: 26px">{{ L.k17 }} <span class="muted" style="font-size: 14px; font-weight: 500">{{ L.k18 }}</span></span><span class="muted" style="font-size: 13px">{{ L.k19 }}</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">{{ L.k20 }}</span>
+            <sc-for list="{{ flags }}" as="f" hint-placeholder-count="3"><div style="display: flex; gap: 10px; font-size: 13px; line-height: 18px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex: none; border-radius: 2px; background: {{ f.c }}"></span><span>{{ f.t }}</span></div></sc-for>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k21 }}</span><p style="margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--raised); font-size: 13px; line-height: 19px">{{ L.k22 }} <mark style="background: var(--negs); color: var(--neg); border-radius: 4px; padding: 0 3px">{{ L.k23 }}</mark>{{ L.k24 }}</p><span class="hint err">{{ L.k25 }}</span></div>
+          <div style="flex: 1"></div>
+          <div class="field"><span>{{ L.k26 }}</span><button class="inp" style="color: var(--t1); font: 400 14px Inter, sans-serif; justify-content: space-between; cursor: pointer">{{ L.k27 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button></div>
+          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span class="cb on" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k28 }}</label>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px"><button class="btn" style="flex: 1 1 auto">{{ L.k29 }}</button><button class="btn btn-n" style="flex: 1 1 auto">{{ L.k30 }}</button></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Все": "All", "ПРОДАВЕЦ": "SELLER", "Модерация объявлений": "Offer moderation", "Очереди": "Queues", "На проверке": "Under review", "Жалобы": "Complaints", "Скрытые": "Hidden", "Объявления на проверке": "Offers under review", "НАПРАВЛЕНИЕ": "DIRECTION", "КУРС": "RATE", "ОТКЛОНЕНИЕ": "DEVIATION", "ПРИЧИНА ПРОВЕРКИ": "REVIEW REASON", "СОЗДАНО": "CREATED", "Объявление fast_cash_99": "fast_cash_99's offer", "41 сделка · 82% завершено · риск 91": "41 deals · 82% completed · risk 91", "ПРОДАЖА USDT ЗА ₽": "SELLING USDT FOR ₽", "81,20 ₽": "81.20 ₽", "за 1 USDT": "per 1 USDT", "Доступно 25 000 USDT · лимиты 50 000 – 2 000 000 ₽ · СБП": "Available 25,000 USDT · limits 50,000 – 2,000,000 ₽ · SBP", "СИГНАЛЫ": "SIGNALS", "УСЛОВИЯ ПРОДАВЦА": "SELLER TERMS", "Быстрый обмен без верификации. Для крупных сумм пишите в": "Quick exchange without verification. For large amounts message", "телеграм @fastcash": "telegram @fastcash", ", сделаем дешевле.": ", we'll make it cheaper.", "Контакт вне платформы нарушает правила P2P (п. 4.2)": "A contact outside the platform breaks the P2P rules (sec. 4.2)", "Причина скрытия": "Reason for hiding", "Увод сделок за пределы платформы": "Moving deals off the platform", "Уведомить продавца и приостановить его остальные объявления": "Notify the seller and pause their other offers", "Вернуть в ленту": "Return to feed", "Скрыть объявление": "Hide offer", "риск 91": "risk 91", "Продажа USDT": "Selling USDT", "−12,1%": "−12.1%", "Курс сильно ниже рынка, контакт в условиях": "Rate far below market, contact in terms", "риск 31": "risk 31", "91,90 ₽": "91.90 ₽", "−0,5%": "−0.5%", "Первое объявление нового продавца": "New seller's first offer", "риск 44": "risk 44", "Покупка BTC": "Buying BTC", "7 120 000 ₽": "7,120,000 ₽", "+9,4%": "+9.4%", "Жалоба покупателя: «не отвечает»": "Buyer complaint: “not responding”", "риск 12": "risk 12", "Продажа ETH": "Selling ETH", "318 400 ₽": "318,400 ₽", "+0,2%": "+0.2%", "Лимит выше 1 000 000 ₽": "Limit above 1,000,000 ₽", "риск 58": "risk 58", "92,10 ₽": "92.10 ₽", "−0,3%": "−0.3%", "Совпадение реквизитов с заблокированным": "Payment details match a blocked account", "вчера": "yesterday", "Курс на 12,1% ниже рынка — типичная приманка мошенников": "Rate 12.1% below market — a typical scam lure", "В условиях указан контакт вне платформы": "The terms include a contact outside the platform", "Реквизиты СБП совпадают с аккаунтом, заблокированным 14.10": "SBP details match an account blocked on 14.10"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Модерация объявлений"), k2: this.tr("Очереди"), k3: this.tr("Все"), k4: this.tr("На проверке"), k5: this.tr("Жалобы"), k6: this.tr("Скрытые"), k7: this.tr("Объявления на проверке"), k8: this.tr("ПРОДАВЕЦ"), k9: this.tr("НАПРАВЛЕНИЕ"), k10: this.tr("КУРС"), k11: this.tr("ОТКЛОНЕНИЕ"), k12: this.tr("ПРИЧИНА ПРОВЕРКИ"), k13: this.tr("СОЗДАНО"), k14: this.tr("Объявление fast_cash_99"), k15: this.tr("41 сделка · 82% завершено · риск 91"), k16: this.tr("ПРОДАЖА USDT ЗА ₽"), k17: this.tr("81,20 ₽"), k18: this.tr("за 1 USDT"), k19: this.tr("Доступно 25 000 USDT · лимиты 50 000 – 2 000 000 ₽ · СБП"), k20: this.tr("СИГНАЛЫ"), k21: this.tr("УСЛОВИЯ ПРОДАВЦА"), k22: this.tr("Быстрый обмен без верификации. Для крупных сумм пишите в"), k23: this.tr("телеграм @fastcash"), k24: this.tr(", сделаем дешевле."), k25: this.tr("Контакт вне платформы нарушает правила P2P (п. 4.2)"), k26: this.tr("Причина скрытия"), k27: this.tr("Увод сделок за пределы платформы"), k28: this.tr("Уведомить продавца и приостановить его остальные объявления"), k29: this.tr("Вернуть в ленту"), k30: this.tr("Скрыть объявление"), k31: this.tr("риск 91"), k32: this.tr("Продажа USDT"), k33: this.tr("−12,1%"), k34: this.tr("Курс сильно ниже рынка, контакт в условиях"), k35: this.tr("риск 31"), k36: this.tr("91,90 ₽"), k37: this.tr("−0,5%"), k38: this.tr("Первое объявление нового продавца"), k39: this.tr("риск 44"), k40: this.tr("Покупка BTC"), k41: this.tr("7 120 000 ₽"), k42: this.tr("+9,4%"), k43: this.tr("Жалоба покупателя: «не отвечает»"), k44: this.tr("риск 12"), k45: this.tr("Продажа ETH"), k46: this.tr("318 400 ₽"), k47: this.tr("+0,2%"), k48: this.tr("Лимит выше 1 000 000 ₽"), k49: this.tr("риск 58"), k50: this.tr("92,10 ₽"), k51: this.tr("−0,3%"), k52: this.tr("Совпадение реквизитов с заблокированным"), k53: this.tr("вчера"), k54: this.tr("Курс на 12,1% ниже рынка — типичная приманка мошенников"), k55: this.tr("В условиях указан контакт вне платформы"), k56: this.tr("Реквизиты СБП совпадают с аккаунтом, заблокированным 14.10") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const rows = [
+      ['FC', 'fast_cash_99', this.tr('риск 91'), this.tr('Продажа USDT'), this.tr('81,20 ₽'), this.tr('−12,1%'), 'c-neg', this.tr('Курс сильно ниже рынка, контакт в условиях'), '12:31', true],
+      ['N7', 'newtrader_07', this.tr('риск 31'), this.tr('Продажа USDT'), this.tr('91,90 ₽'), this.tr('−0,5%'), 'c-off', this.tr('Первое объявление нового продавца'), '11:52'],
+      ['GX', 'gold_x', this.tr('риск 44'), this.tr('Покупка BTC'), this.tr('7 120 000 ₽'), this.tr('+9,4%'), 'c-warn', this.tr('Жалоба покупателя: «не отвечает»'), '10:08'],
+      ['LS', 'lena_s', this.tr('риск 12'), this.tr('Продажа ETH'), this.tr('318 400 ₽'), this.tr('+0,2%'), 'c-off', this.tr('Лимит выше 1 000 000 ₽'), '09:44'],
+      ['QW', 'qwerty_p2p', this.tr('риск 58'), this.tr('Продажа USDT'), this.tr('92,10 ₽'), this.tr('−0,3%'), 'c-off', this.tr('Совпадение реквизитов с заблокированным'), this.tr('вчера')]
+    ];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      rows: rows.map((r) => ({ ini: r[0], nick: r[1], meta: r[2], dir: r[3], price: r[4], dev: r[5], devClass: r[6], reason: r[7], time: r[8], sel: r[9] ? 'true' : 'false', bg: r[9] ? 'var(--sel)' : 'transparent' })),
+      flags: [
+        { c: 'var(--neg)', t: this.tr('Курс на 12,1% ниже рынка — типичная приманка мошенников') },
+        { c: 'var(--neg)', t: this.tr('В условиях указан контакт вне платформы') },
+        { c: 'var(--warn)', t: this.tr('Реквизиты СБП совпадают с аккаунтом, заблокированным 14.10') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

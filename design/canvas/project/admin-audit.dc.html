@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — журнал событий</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1160px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="audit" hint-size="240px,1100px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 16px; border-radius: 14px; background: var(--raised); font-size: 13px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg>
+        <span style="flex: 1">{{ L.k2 }}</span>
+        <button class="btn btn-s btn-o">{{ L.k3 }}</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end">
+        <div class="field" style="flex: 0 1 260px"><span>{{ L.k4 }}</span><button class="inp" style="color: var(--t1); font: 400 14px Inter, sans-serif; justify-content: space-between; cursor: pointer">23.10.2026 00:00 — 12:59<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"></path></svg></button></div>
+        <div class="field" style="flex: 0 1 220px"><span>{{ L.k5 }}</span><button class="inp" style="color: var(--t1); font: 400 14px Inter, sans-serif; justify-content: space-between; cursor: pointer">{{ L.k6 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button></div>
+        <label class="field" style="flex: 1 1 220px"><span>{{ L.k7 }}</span><span class="inp"><input placeholder="{{ L.k8 }}"></span></label>
+        <div class="field" style="flex: 0 1 180px"><span>{{ L.k9 }}</span><button class="inp" style="color: var(--t1); font: 400 14px Inter, sans-serif; justify-content: space-between; cursor: pointer">{{ L.k10 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button></div>
+        <button class="btn btn-p" style="height: 48px">{{ L.k11 }}</button>
+      </div>
+
+      <section class="card" aria-label="{{ L.k12 }}" style="border-radius: 16px; overflow-x: auto">
+        <table class="tbl" style="min-width: 1000px">
+          <thead><tr><th>{{ L.k13 }}</th><th>{{ L.k14 }}</th><th>{{ L.k15 }}</th><th>{{ L.k16 }}</th><th>{{ L.k17 }}</th><th>{{ L.k18 }}</th></tr></thead>
+          <tbody>
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="12">
+              <tr style="background: {{ r.bg }}">
+                <td class="mono" style="font-size: 12px">{{ r.time }}</td>
+                <td><span style="display: flex; flex-direction: column"><span style="font-weight: 500">{{ r.who }}</span><span class="faint" style="font-size: 11px">{{ r.role }}</span></span></td>
+                <td style="font-size: 13px">{{ r.ev }}</td>
+                <td class="mono muted" style="font-size: 12px">{{ r.obj }}</td>
+                <td class="mono faint" style="font-size: 12px">{{ r.ip }}</td>
+                <td><span class="chip {{ r.cls }}">{{ r.res }}</span></td>
+              </tr>
+              <sc-if value="{{ r.open }}" hint-placeholder-val="{{ false }}">
+                <tr style="background: var(--sel)"><td colspan="6" style="height: auto; padding: 0 16px 16px">
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 10px">
+                    <div class="tile" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k19 }}</span><pre class="mono" style="margin: 0; font-size: 12px; line-height: 18px; color: var(--t2); white-space: pre-wrap">status: "ACTIVE"
+roles: ["USER", "SELLER"]</pre></div>
+                    <div class="tile" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k20 }}</span><pre class="mono" style="margin: 0; font-size: 12px; line-height: 18px; white-space: pre-wrap">status: <span style="color: var(--neg)">"BLOCKED"</span>
+reason: "FRAUD_SUSPECTED"</pre></div>
+                    <div class="tile" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k21 }}</span><span style="font-size: 12px; line-height: 18px" class="muted">{{ L.k22 }}</span></div>
+                  </div>
+                </td></tr>
+              </sc-if>
+            </sc-for>
+          </tbody>
+        </table>
+        <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; font-size: 13px" class="muted"><span style="flex: 1">{{ L.k23 }}</span><button class="btn btn-s btn-o">{{ L.k24 }}</button></div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1160}}'>
+class Component extends DCLogic {
+  static EN = {"Журнал событий": "Event log", "Только чтение: записи нельзя изменить или удалить. Время — UTC. Хранение 12 месяцев.": "Read only: entries cannot be edited or deleted. Time is UTC. Retained for 12 months.", "Экспорт CSV": "Export CSV", "Период": "Period", "Тип события": "Event type", "Все · 9 типов": "All · 9 types", "Пользователь или IP": "User or IP", "например, p2p_ivan или 185.12.": "e.g. p2p_ivan or 185.12.", "Результат": "Result", "Все": "All", "Применить": "Apply", "События": "Events", "ВРЕМЯ UTC": "TIME UTC", "СУБЪЕКТ": "ACTOR", "СОБЫТИЕ": "EVENT", "ОБЪЕКТ": "OBJECT", "IP · УСТРОЙСТВО": "IP · DEVICE", "РЕЗУЛЬТАТ": "RESULT", "ДО": "BEFORE", "ПОСЛЕ": "AFTER", "КОНТЕКСТ": "CONTEXT", "Комментарий: «Увод сделок в Telegram, 3 жалобы». Подтверждено 2FA. Запрос req_8f1c…a20d.": "Comment: “Moving deals to Telegram, 3 complaints”. Confirmed with 2FA. Request req_8f1c…a20d.", "Показано 12 из 3 418 событий": "Showing 12 of 3,418 events", "Загрузить ещё": "Load more", "Успех": "Success", "Отказ": "Denied", "Предупреждение": "Warning", "Администратор": "Administrator", "Блокировка учётной записи": "Account blocked", "Арбитр": "Arbitrator", "Решение по спору: выпуск покупателю": "Dispute decision: release to buyer", "Пользователь": "User", "Отправка транзакции": "Transaction sent", "Смена статуса сделки → оплата отправлена": "Deal status change → payment sent", "Неизвестный": "Unknown", "Вход: неверный пароль (5 из 5), блокировка 15 мин": "Sign-in: wrong password (5 of 5), locked for 15 min", "Вход с нового устройства": "Sign-in from a new device", "Создание P2P-объявления": "P2P offer created", "Поддержка": "Support", "Просмотр карточки пользователя": "User card viewed", "система": "system", "Сервис скоринга": "Scoring service", "Вывод отправлен на ручную проверку": "Withdrawal sent to manual review", "Эскроу": "Escrow", "Блокировка средств ESCROW_LOCK": "Funds locked ESCROW_LOCK", "Изменение P2P-объявления: курс 92,55": "P2P offer changed: rate 92.55", "Отключение P2P-объявления": "P2P offer disabled"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Журнал событий"), k2: this.tr("Только чтение: записи нельзя изменить или удалить. Время — UTC. Хранение 12 месяцев."), k3: this.tr("Экспорт CSV"), k4: this.tr("Период"), k5: this.tr("Тип события"), k6: this.tr("Все · 9 типов"), k7: this.tr("Пользователь или IP"), k8: this.tr("например, p2p_ivan или 185.12."), k9: this.tr("Результат"), k10: this.tr("Все"), k11: this.tr("Применить"), k12: this.tr("События"), k13: this.tr("ВРЕМЯ UTC"), k14: this.tr("СУБЪЕКТ"), k15: this.tr("СОБЫТИЕ"), k16: this.tr("ОБЪЕКТ"), k17: this.tr("IP · УСТРОЙСТВО"), k18: this.tr("РЕЗУЛЬТАТ"), k19: this.tr("ДО"), k20: this.tr("ПОСЛЕ"), k21: this.tr("КОНТЕКСТ"), k22: this.tr("Комментарий: «Увод сделок в Telegram, 3 жалобы». Подтверждено 2FA. Запрос req_8f1c…a20d."), k23: this.tr("Показано 12 из 3 418 событий"), k24: this.tr("Загрузить ещё"), k25: this.tr("Успех"), k26: this.tr("Отказ"), k27: this.tr("Предупреждение"), k28: this.tr("Администратор"), k29: this.tr("Блокировка учётной записи"), k30: this.tr("Арбитр"), k31: this.tr("Решение по спору: выпуск покупателю"), k32: this.tr("Пользователь"), k33: this.tr("Отправка транзакции"), k34: this.tr("Смена статуса сделки → оплата отправлена"), k35: this.tr("Неизвестный"), k36: this.tr("Вход: неверный пароль (5 из 5), блокировка 15 мин"), k37: this.tr("Вход с нового устройства"), k38: this.tr("Создание P2P-объявления"), k39: this.tr("Поддержка"), k40: this.tr("Просмотр карточки пользователя"), k41: this.tr("система"), k42: this.tr("Сервис скоринга"), k43: this.tr("Вывод отправлен на ручную проверку"), k44: this.tr("Эскроу"), k45: this.tr("Блокировка средств ESCROW_LOCK"), k46: this.tr("Изменение P2P-объявления: курс 92,55"), k47: this.tr("Отключение P2P-объявления") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const R = { ok: [this.tr('Успех'), 'c-ok'], fail: [this.tr('Отказ'), 'c-neg'], warn: [this.tr('Предупреждение'), 'c-warn'] };
+    const rows = [
+      ['12:58:41', 'arb_olga', this.tr('Администратор'), this.tr('Блокировка учётной записи'), 'user fast_cash_99', '10.0.4.12 · Chrome', 'ok', true],
+      ['12:52:10', 'arb_olga', this.tr('Арбитр'), this.tr('Решение по спору: выпуск покупателю'), 'dispute D-0197', '10.0.4.12 · Chrome', 'ok'],
+      ['12:44:05', 'alex_tk', this.tr('Пользователь'), this.tr('Отправка транзакции'), 'withdrawal W-90420', '95.24.x.x · iOS', 'ok'],
+      ['12:31:20', 'eva_s', this.tr('Пользователь'), this.tr('Смена статуса сделки → оплата отправлена'), 'deal P2P-47950', '31.173.x.x · Android', 'ok'],
+      ['12:20:02', '—', this.tr('Неизвестный'), this.tr('Вход: неверный пароль (5 из 5), блокировка 15 мин'), 'login p2p_ivan', '185.12.x.x · Windows', 'fail'],
+      ['12:02:44', 'p2p_ivan', this.tr('Пользователь'), this.tr('Вход с нового устройства'), 'session s_77…e1', '185.12.x.x · Windows', 'warn'],
+      ['11:52:31', 'newtrader_07', this.tr('Пользователь'), this.tr('Создание P2P-объявления'), 'offer O-3318', '46.39.x.x · Web', 'ok'],
+      ['11:40:12', 'support_den', this.tr('Поддержка'), this.tr('Просмотр карточки пользователя'), 'user lena_s', '10.0.4.20 · Chrome', 'ok'],
+      ['11:31:00', this.tr('система'), this.tr('Сервис скоринга'), this.tr('Вывод отправлен на ручную проверку'), 'withdrawal W-90412', '—', 'warn'],
+      ['11:12:05', this.tr('система'), this.tr('Эскроу'), this.tr('Блокировка средств ESCROW_LOCK'), 'deal P2P-47950', '—', 'ok'],
+      ['10:30:14', 'p2p_ivan', this.tr('Пользователь'), this.tr('Изменение P2P-объявления: курс 92,55'), 'offer O-3290', '185.12.x.x · Windows', 'ok'],
+      ['10:08:51', 'trade_room', this.tr('Пользователь'), this.tr('Отключение P2P-объявления'), 'offer O-3104', '78.85.x.x · Web', 'ok']
+    ];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      rows: rows.map((r) => ({ time: r[0], who: r[1], role: r[2], ev: r[3], obj: r[4], ip: r[5], res: R[r[6]][0], cls: R[r[6]][1], open: !!r[7], bg: r[7] ? 'var(--sel)' : 'transparent' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

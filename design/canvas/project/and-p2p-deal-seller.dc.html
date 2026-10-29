@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — сделка продавца</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }} " style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; gap: 4px; padding: 0 4px"><a href="and-p2p-my-deals.dc.html" aria-label="{{ L.k1 }}" style="width: 48px; height: 48px; border-radius: 999px; color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"></path></svg></a><span style="flex: 1; font: 500 20px Inter, sans-serif">P2P-48216</span><span class="mono" style="color: var(--t1); margin-right: 6px">12:05</span><span class="testnet">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></header>
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 12px">
+    <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px"><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--sig)"></span><span style="height: 4px; border-radius: 2px; background: var(--t1)"></span><span style="height: 4px; border-radius: 2px; background: var(--bd)"></span></div>
+    <span class="lbl">{{ L.k3 }}</span>
+    <span class="disp" style="font-size: 32px">100,00 USDT <span class="muted" style="font-size: 18px">{{ L.k4 }}</span></span>
+    <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 11v5M12 7.5v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k5 }}</span></span></div>
+    <div style="border-radius: 24px; background: var(--surface); padding: 4px 16px">
+      <div class="rowline"><span>{{ L.k6 }}</span><span>{{ L.k7 }}</span></div>
+      <div class="rowline"><span>{{ L.k8 }}</span><span>{{ L.k9 }}</span></div>
+      <div class="rowline"><span>{{ L.k10 }}</span><span>100,00 USDT</span></div>
+    </div>
+    <button type="button" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; border-radius: 24px; background: var(--surface); padding: 14px 16px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--t1)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"></path></svg><span style="flex: 1">{{ L.k11 }}</span><span class="badge">2</span></button>
+  </div>
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 32px; display: flex; flex-direction: column; gap: 10px"><button class="btn btn-p" style="height: 52px">{{ L.k12 }}</button><span class="faint" style="font-size: 12px; text-align: center">{{ L.k13 }}</span><button type="button" class="btn" style="height: 48px; background: transparent; color: var(--neg)">{{ L.k14 }}</button></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "ПРОДАЖА · ПОКУПАТЕЛЬ EVA_S": "SALE · BUYER EVA_S", "за 9 240 ₽": "for 9,240 ₽", "Покупатель отметил оплату. Проверьте поступление 9 240 ₽ в банке — не по скриншоту, а в выписке.": "The buyer marked the payment. Check that 9,240 ₽ arrived in your bank statement — not by a screenshot.", "Способ": "Method", "СБП · Алексей Т.": "SBP · Alexey T.", "От кого": "From", "Ева С.": "Eva S.", "В эскроу": "In escrow", "Чат с покупателем": "Chat with buyer", "Подтвердить получение и выпустить": "Confirm receipt and release", "Выпуск необратим. Попросим отпечаток пальца.": "Release is irreversible. We'll ask for your fingerprint.", "Открыть спор": "Open dispute"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("ПРОДАЖА · ПОКУПАТЕЛЬ EVA_S"), k4: this.tr("за 9 240 ₽"), k5: this.tr("Покупатель отметил оплату. Проверьте поступление 9 240 ₽ в банке — не по скриншоту, а в выписке."), k6: this.tr("Способ"), k7: this.tr("СБП · Алексей Т."), k8: this.tr("От кого"), k9: this.tr("Ева С."), k10: this.tr("В эскроу"), k11: this.tr("Чат с покупателем"), k12: this.tr("Подтвердить получение и выпустить"), k13: this.tr("Выпуск необратим. Попросим отпечаток пальца."), k14: this.tr("Открыть спор") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark'
+    };
+  }
+}
+</script>
+</body>
+</html>

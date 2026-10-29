@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Иллюстрация экрана входа</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="position: relative; width: 100%; min-height: 900px; height: 100%; overflow: hidden; background: var(--sunken, #070807); color: var(--t1, #F2F5F1); font-family: Inter, system-ui, sans-serif; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; justify-content: space-between">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(242,245,241,0.07) 1px, transparent 1.5px); background-size: 16px 16px"></div>
+  <div style="position: relative; display: flex; align-items: center; gap: 12px">
+    <span aria-hidden="true" style="width: 28px; height: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px"><span style="background: var(--sig, #B6F36B); border-radius: 2px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 2px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 2px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 2px"></span><span></span><span style="background: var(--t1, #F2F5F1); border-radius: 2px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 2px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 2px"></span><span style="background: var(--t1, #F2F5F1); border-radius: 2px"></span></span>
+    <span style="font: 600 22px 'Inter Tight', sans-serif; letter-spacing: 0.02em">AEON</span><span style="flex: 1"></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k1 }}" style="height: 36px; padding: 3px; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bd, #2E342F); background: var(--raised, #1B1F1C); display: inline-flex; gap: 2px; cursor: pointer; font: 500 11px 'JetBrains Mono', monospace; flex: none"><span style="min-width: 34px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button>
+  </div>
+  <div aria-hidden="true" style="position: relative; align-self: center; display: grid; grid-template-columns: repeat(36, 10px); grid-auto-rows: 10px; gap: 2px">
+    <sc-for list="{{ sphere }}" as="c" hint-placeholder-count="1296"><span style="background: {{ c }}; border-radius: 2px"></span></sc-for>
+  </div>
+  <div style="position: relative; display: flex; flex-direction: column; gap: 14px; max-width: 460px">
+    <span style="font: 500 12px 'JetBrains Mono', monospace; letter-spacing: 0.08em; color: var(--sigt, #B6F36B)">{{ L.k2 }}</span>
+    <span style="font: 600 40px 'Inter Tight', sans-serif; line-height: 1.05; letter-spacing: -0.03em">{{ L.k3 }}</span>
+    <span style="font-size: 15px; line-height: 22px; color: var(--t2, #A3ACA5)">{{ L.k4 }}</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "onLang": {"editor": null}, "$preview": {"width": 640, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "КОШЕЛЁК · P2P · АНАЛИТИКА": "WALLET · P2P · ANALYTICS", "Ваши активы под контролем — в одной системе": "Your assets under control — in one system", "Работает в тестовых сетях Sepolia, Amoy, BSC Testnet, Bitcoin Testnet и Solana Devnet. Реальные деньги не используются.": "Runs on the Sepolia, Amoy, BSC Testnet, Bitcoin Testnet and Solana Devnet test networks. No real money is used."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Язык интерфейса: русский. Переключить на английский"), k2: this.tr("КОШЕЛЁК · P2P · АНАЛИТИКА"), k3: this.tr("Ваши активы под контролем — в одной системе"), k4: this.tr("Работает в тестовых сетях Sepolia, Amoy, BSC Testnet, Bitcoin Testnet и Solana Devnet. Реальные деньги не используются.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const bayer = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
+    const n = 36;
+    const L = [-0.55, -0.6, 0.58];
+    const sphere = [];
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const nx = ((x + 0.5) / n) * 2 - 1, ny = ((y + 0.5) / n) * 2 - 1, r2 = nx * nx + ny * ny;
+      if (r2 > 1) { sphere.push('transparent'); continue; }
+      const nz = Math.sqrt(1 - r2);
+      const lit = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
+      const lon = Math.atan2(nx, nz);
+      const grid = Math.abs(Math.sin(lon * 5)) < 0.11 || Math.abs(Math.sin(Math.asin(ny) * 6)) < 0.11;
+      const v = lit * 0.95 + 0.05;
+      sphere.push(grid && lit > 0.08 ? 'var(--sig, #B6F36B)' : v > (bayer[y % 4][x % 4] + 0.5) / 16 ? 'rgba(242,245,241,0.5)' : 'rgba(242,245,241,0.05)');
+    }
+    return { sphere };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — нужно обновление</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }} " style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; justify-content: flex-end; padding: 0 4px 0 16px"><span class="testnet" style="margin-right: 8px">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k1 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></header>
+  <div style="position: absolute; left: 24px; right: 24px; top: 120px; display: flex; flex-direction: column; gap: 14px">
+    <span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 20px; background: var(--sigs); color: var(--sigt); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v10M8 10l4 4 4-4M5 19h14"></path></svg></span>
+    <h1 style="margin: 0; font: 400 32px Inter, sans-serif; line-height: 40px">{{ L.k2 }}</h1>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--t2)">{{ L.k3 }}</p>
+    <div style="border-radius: 24px; background: var(--surface); padding: 4px 16px; margin-top: 8px"><div class="rowline" style="min-height: 44px; align-items: center"><span>{{ L.k4 }}</span><span style="color: var(--neg); font-weight: 500">1.4.2</span></div><div class="rowline" style="min-height: 44px; align-items: center"><span>{{ L.k5 }}</span><span style="color: var(--sigt); font-weight: 500">1.5.0</span></div><div class="rowline" style="min-height: 44px; align-items: center"><span>{{ L.k6 }}</span><span style="color: var(--t1); font-weight: 500">{{ L.k7 }}</span></div></div>
+    <div style="display: flex; flex-direction: column; gap: 6px; padding: 4px 4px 0"><span class="lbl">{{ L.k8 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2)">· {{ L.k9 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2)">· {{ L.k10 }}</span></div>
+  </div>
+  <div style="position: absolute; left: 24px; right: 24px; bottom: 48px; display: flex; flex-direction: column; gap: 12px"><button type="button" class="btn btn-p" style="height: 52px">{{ L.k11 }}</button><span class="hint" style="text-align: center">{{ L.k12 }}</span></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Нужно обновить приложение": "Update required", "Версия 1.4.2 больше не поддерживается: в 1.5.0 закрыта уязвимость в подписи переводов. Средства в безопасности.": "Version 1.4.2 is no longer supported: 1.5.0 fixes a vulnerability in transfer signing. Your funds are safe.", "Текущая версия": "Current version", "Нужна": "Required", "Размер": "Size", "38 МБ": "38 MB", "ЧТО НОВОГО": "WHAT'S NEW", "Исправлена проверка подписи при отправке": "Fixed signature check when sending", "Уведомления о споре на экране блокировки": "Dispute alerts on the lock screen", "Обновить в Google Play": "Update on Google Play", "Без обновления доступен только просмотр баланса.": "Without updating, only viewing your balance is available."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Язык интерфейса: русский. Переключить на английский"), k2: this.tr("Нужно обновить приложение"), k3: this.tr("Версия 1.4.2 больше не поддерживается: в 1.5.0 закрыта уязвимость в подписи переводов. Средства в безопасности."), k4: this.tr("Текущая версия"), k5: this.tr("Нужна"), k6: this.tr("Размер"), k7: this.tr("38 МБ"), k8: this.tr("ЧТО НОВОГО"), k9: this.tr("Исправлена проверка подписи при отправке"), k10: this.tr("Уведомления о споре на экране блокировки"), k11: this.tr("Обновить в Google Play"), k12: this.tr("Без обновления доступен только просмотр баланса.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark'
+    };
+  }
+}
+</script>
+</body>
+</html>

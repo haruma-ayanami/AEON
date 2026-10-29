@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — депозиты на удержании</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="deposits" hint-size="240px,1100px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <div class="grid-a">
+        <div class="kpi"><span class="lbl">{{ L.k2 }}</span><span class="disp" style="font-size: 28px">2</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k3 }}</span><span class="disp" style="font-size: 28px">{{ L.k4 }}</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k5 }}</span><span class="disp" style="font-size: 28px; color: var(--warn)">{{ L.k6 }}</span></div>
+        <div class="kpi"><span class="lbl">{{ L.k7 }}</span><span class="disp" style="font-size: 28px">{{ L.k8 }}</span></div>
+      </div>
+      <div class="split">
+        <section class="card" aria-label="{{ L.k9 }}" style="flex: 1 1 640px; min-width: 0; border-radius: 16px; overflow-x: auto">
+          <table class="tbl" style="min-width: 680px">
+            <thead><tr><th>{{ L.k10 }}</th><th style="text-align: right">{{ L.k11 }}</th><th>{{ L.k12 }}</th><th>{{ L.k13 }}</th><th>{{ L.k14 }}</th><th>{{ L.k15 }}</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+                <tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}; opacity: {{ r.op }}">
+                  <td style="font-weight: 600">{{ r.user }}</td>
+                  <td class="num" style="text-align: right; white-space: nowrap"><span style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-weight: 600">{{ r.amt }}</span><span class="faint" style="font-size: 12px">{{ r.net }}</span></span></td>
+                  <td class="mono muted" style="font-size: 12px; white-space: nowrap">{{ r.src }}</td>
+                  <td><span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 50px; height: 6px; border-radius: 3px; background: var(--bd); overflow: hidden"><span style="display: block; height: 100%; width: {{ r.rw }}; background: {{ r.rc }}"></span></span><span class="mono" style="font-size: 12px; color: {{ r.rc }}">{{ r.risk }}</span></span></td>
+                  <td class="muted" style="font-size: 13px">{{ r.reason }}</td>
+                  <td><span class="chip {{ r.cls }}">{{ r.status }}</span></td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </section>
+
+        <aside class="card" aria-label="{{ L.k16 }}" style="flex: 0 1 360px; min-width: 0; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px"><span style="display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ L.k17 }}</span><span class="disp" style="font-size: 26px">{{ L.k18 }}</span><span class="muted" style="font-size: 13px">{{ L.k19 }}</span></span><span class="chip c-warn">{{ L.k20 }}</span></div>
+          <div class="tile" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k21 }}</span><span class="mono" style="font-size: 13px; line-height: 20px; word-break: break-all">0x8c1D4e2A9b7F0c3E5d6A8b1C2f4E7a9D0b3c77aE</span><span style="display: flex; gap: 6px; flex-wrap: wrap"><span class="chip c-neg">{{ L.k22 }}</span><span class="chip c-off">{{ L.k23 }}</span></span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k24 }}</span>
+            <div aria-hidden="true" style="position: relative; display: grid; grid-template-columns: 24fr 35fr 25fr 16fr; gap: 3px; height: 8px"><span style="border-radius: 2px; background: #B6F36B"></span><span style="border-radius: 2px; background: #F5B941"></span><span style="border-radius: 2px; background: #FF9A5B"></span><span style="border-radius: 2px; background: #FF5A4A"></span><span style="position: absolute; left: 71%; top: -4px; width: 3px; height: 16px; border-radius: 2px; background: var(--t1)"></span></div>
+            <sc-for list="{{ reasons }}" as="x" hint-placeholder-count="3"><div style="display: flex; gap: 10px; font-size: 13px; line-height: 18px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex: none; border-radius: 2px; background: {{ x.c }}"></span><span>{{ x.t }}</span></div></sc-for>
+          </div>
+          <div class="tile" style="padding: 4px 14px"><div class="rowline"><span>{{ L.k25 }}</span><span class="mono">0x3e7a…91c4</span></div><div class="rowline"><span>{{ L.k26 }}</span><span>{{ L.k27 }}</span></div><div class="rowline"><span>{{ L.k28 }}</span><span>{{ L.k29 }}</span></div></div>
+          <div class="field"><label for="dcmt">{{ L.k30 }}</label><textarea id="dcmt" rows="3" placeholder="{{ L.k31 }}" style="border-radius: 12px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); padding: 12px; font: 400 14px Inter, sans-serif; resize: none; outline: none"></textarea></div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px"><button class="btn btn-n" style="flex: 1 1 auto">{{ L.k32 }}</button><button class="btn btn-p" style="flex: 1 1 auto">{{ L.k33 }}</button></div>
+          <span class="hint">{{ L.k34 }}</span>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Депозиты на удержании": "Deposits on hold", "НА УДЕРЖАНИИ": "ON HOLD", "НА СУММУ": "TOTAL AMOUNT", "$6 140": "$6,140", "СТАРШЕМУ ДЕПОЗИТУ": "OLDEST DEPOSIT", "3 ч 10 мин": "3 h 10 min", "АВТОЗАЧИСЛЕНИЕ": "AUTO-CREDIT", "риск < 25": "risk < 25", "Депозиты на проверке и решённые сегодня": "Deposits under review and resolved today", "ПОЛЬЗОВАТЕЛЬ": "USER", "СУММА": "AMOUNT", "ИСТОЧНИК": "SOURCE", "РИСК": "RISK", "ПРИЧИНА": "REASON", "СТАТУС": "STATUS", "Депозит D-3108": "Deposit D-3108", "ДЕПОЗИТ D-3108 · NEWTRADER_07": "DEPOSIT D-3108 · NEWTRADER_07", "5 000,00 USDT": "5,000.00 USDT", "Ethereum Sepolia · 12 из 12 подтверждений": "Ethereum Sepolia · 12 of 12 confirmations", "Удержан": "On hold", "АДРЕС ОТПРАВИТЕЛЯ": "SENDER ADDRESS", "Миксер · 1 переход": "Mixer · 1 hop", "Первый депозит": "First deposit", "СКОРИНГ · 71 ИЗ 100": "SCORING · 71 OF 100", "Хеш": "Hash", "Аккаунт": "Account", "с 21.10.2026 · KYC 1": "since 21.10.2026 · KYC 1", "Депозитов раньше": "Earlier deposits", "нет": "none", "Комментарий сотрудника": "Staff comment", "Обязателен при отклонении — уйдёт в журнал событий": "Required when rejecting — goes to the event log", "Отклонить": "Reject", "Зачислить с 2FA": "Credit with 2FA", "При отклонении средства остаются заблокированными до решения комплаенса, пользователь получит уведомление с причиной.": "If rejected, the funds stay blocked until a compliance decision; the user is notified with the reason.", "5 000 USDT": "5,000 USDT", "Источник рядом с миксером": "Source near a mixer", "0,35 ETH": "0.35 ETH", "Новый источник + крупная сумма": "New source + large amount", "48 мин": "48 min", "1 200 USDT": "1,200 USDT", "Сумма выше порога": "Amount above threshold", "Зачислен": "Credited", "0,02 BTC": "0.02 BTC", "Новый источник": "New source", "900 USDT": "900 USDT", "Адрес в санкционном списке": "Address on a sanctions list", "Отклонён": "Rejected", "40 SOL": "40 SOL", "Ошибка скоринга, повтор": "Scoring error, retried", "Ждёт ": "Waiting ", "Отправитель получал средства от сервиса-миксера (метка от 12.10)": "The sender received funds from a mixing service (flagged 12.10)", "Первый депозит нового аккаунта, сумма у лимита KYC 1": "First deposit of a new account, amount near the KYC 1 limit", "Санкционные списки — совпадений нет": "Sanctions lists — no matches"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Депозиты на удержании"), k2: this.tr("НА УДЕРЖАНИИ"), k3: this.tr("НА СУММУ"), k4: this.tr("$6 140"), k5: this.tr("СТАРШЕМУ ДЕПОЗИТУ"), k6: this.tr("3 ч 10 мин"), k7: this.tr("АВТОЗАЧИСЛЕНИЕ"), k8: this.tr("риск < 25"), k9: this.tr("Депозиты на проверке и решённые сегодня"), k10: this.tr("ПОЛЬЗОВАТЕЛЬ"), k11: this.tr("СУММА"), k12: this.tr("ИСТОЧНИК"), k13: this.tr("РИСК"), k14: this.tr("ПРИЧИНА"), k15: this.tr("СТАТУС"), k16: this.tr("Депозит D-3108"), k17: this.tr("ДЕПОЗИТ D-3108 · NEWTRADER_07"), k18: this.tr("5 000,00 USDT"), k19: this.tr("Ethereum Sepolia · 12 из 12 подтверждений"), k20: this.tr("Удержан"), k21: this.tr("АДРЕС ОТПРАВИТЕЛЯ"), k22: this.tr("Миксер · 1 переход"), k23: this.tr("Первый депозит"), k24: this.tr("СКОРИНГ · 71 ИЗ 100"), k25: this.tr("Хеш"), k26: this.tr("Аккаунт"), k27: this.tr("с 21.10.2026 · KYC 1"), k28: this.tr("Депозитов раньше"), k29: this.tr("нет"), k30: this.tr("Комментарий сотрудника"), k31: this.tr("Обязателен при отклонении — уйдёт в журнал событий"), k32: this.tr("Отклонить"), k33: this.tr("Зачислить с 2FA"), k34: this.tr("При отклонении средства остаются заблокированными до решения комплаенса, пользователь получит уведомление с причиной.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const rc = (r) => (r >= 85 ? 'var(--neg)' : r >= 60 ? 'var(--orange, #FF9A5B)' : r >= 25 ? 'var(--warn)' : 'var(--sigt)');
+    const rows = [
+      ['newtrader_07', this.tr('5 000 USDT'), 'Sepolia', '0x8c1D…77aE', 71, this.tr('Источник рядом с миксером'), this.tr('3 ч 10 мин'), 'c-warn', true, true],
+      ['gold_x', this.tr('0,35 ETH'), 'Sepolia', '0x2f9a…c013', 46, this.tr('Новый источник + крупная сумма'), this.tr('48 мин'), 'c-warn', false, true],
+      ['trade_room', this.tr('1 200 USDT'), 'Amoy', '0x6d02…ab19', 31, this.tr('Сумма выше порога'), this.tr('Зачислен'), 'c-ok'],
+      ['crypto_mila', this.tr('0,02 BTC'), 'Testnet', 'tb1q…7kd2', 28, this.tr('Новый источник'), this.tr('Зачислен'), 'c-ok'],
+      ['qwerty_p2p', this.tr('900 USDT'), 'Sepolia', '0x9b77…02Ee', 92, this.tr('Адрес в санкционном списке'), this.tr('Отклонён'), 'c-neg'],
+      ['mbtc', this.tr('40 SOL'), 'Devnet', '7Hq2…mR4x', 27, this.tr('Ошибка скоринга, повтор'), this.tr('Зачислен'), 'c-ok']
+    ];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      rows: rows.map((r) => ({ user: r[0], amt: r[1], net: r[2], src: r[3], risk: String(r[4]), rw: r[4] + '%', rc: rc(r[4]), reason: r[5], status: r[9] ? this.tr('Ждёт ') + r[6] : r[6], cls: r[7], sel: r[8] ? 'true' : 'false', bg: r[8] ? 'var(--sel)' : 'transparent', op: '1' })),
+      reasons: [
+        { c: 'var(--neg)', t: this.tr('Отправитель получал средства от сервиса-миксера (метка от 12.10)') },
+        { c: 'var(--warn)', t: this.tr('Первый депозит нового аккаунта, сумма у лимита KYC 1') },
+        { c: 'var(--t3)', t: this.tr('Санкционные списки — совпадений нет') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

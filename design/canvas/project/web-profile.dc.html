@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — профиль</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="profile" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <nav class="tabs" aria-label="{{ L.k2 }}"><a href="web-profile.dc.html" aria-current="page">{{ L.k1 }}</a><a href="web-security.dc.html">{{ L.k3 }}</a><a href="web-settings.dc.html">{{ L.k4 }}</a><a href="web-settings.dc.html">{{ L.k5 }}</a><a href="web-settings.dc.html">{{ L.k6 }}</a></nav>
+      <div class="split">
+        <section class="card" style="flex: 1 1 440px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; align-items: center; gap: 16px"><span style="position: relative; width: 72px; height: 72px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 22px Inter, sans-serif">{{ L.k7 }}<button aria-label="{{ L.k8 }}" class="ibtn" style="position: absolute; right: -4px; bottom: -4px; width: 28px; height: 28px; background: var(--pbg); color: var(--pfg)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16zM14 6l4 4"></path></svg></button></span><span style="display: flex; flex-direction: column; gap: 4px"><span class="disp" style="font-size: 24px">alex_tk</span><span class="muted" style="font-size: 13px">{{ L.k9 }}</span><span class="chip c-ok" style="align-self: flex-start">{{ L.k10 }}</span></span></div>
+          <label class="field"><span>{{ L.k11 }}</span><span class="inp"><input value="alex_tk"></span><span class="hint">{{ L.k12 }}</span></label>
+          <label class="field"><span>{{ L.k13 }}</span><span class="inp"><input value="{{ L.k14 }}"></span></label>
+          <label class="field"><span>{{ L.k15 }}</span><span class="inp"><input value="alex.t@mail.test" disabled="" style="color: var(--t2)"><span class="chip c-ok" style="height: 24px">{{ L.k16 }}</span></span></label>
+          <label class="field"><span>{{ L.k17 }}</span><span class="inp focus"><input value="+7 900 000-00-00"></span><span class="hint ok">{{ L.k18 }}</span></label>
+          <div style="display: flex; gap: 8px; justify-content: flex-end"><button class="btn">{{ L.k19 }}</button><button class="btn btn-p">{{ L.k20 }}</button></div>
+        </section>
+        <section style="flex: 1.2 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+            <div style="display: flex; justify-content: space-between; align-items: center"><span class="disp" style="font-size: 20px">{{ L.k21 }}</span><span class="chip c-ok">{{ L.k22 }}</span></div>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+              <sc-for list="{{ levels }}" as="l" hint-placeholder-count="3"><div style="padding: 14px; border-radius: 16px; border: {{ l.b }}; background: {{ l.bg }}; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ l.n }}</span><span style="font-weight: 600">{{ l.t }}</span><span class="muted" style="font-size: 12px; line-height: 17px">{{ l.d }}</span><span class="chip {{ l.cls }}" style="align-self: flex-start; margin-top: 4px">{{ l.s }}</span></div></sc-for>
+            </div>
+            <a href="web-kyc.dc.html" class="btn btn-p" style="align-self: flex-start">{{ L.k23 }}</a>
+          </div>
+          <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+            <span class="disp" style="font-size: 20px">{{ L.k24 }}</span>
+            <sc-for list="{{ limits }}" as="m" hint-placeholder-count="4"><div style="display: flex; flex-direction: column; gap: 6px"><span style="display: flex; justify-content: space-between; font-size: 14px"><span>{{ m.n }}</span><span class="num"><b style="font-weight: 600">{{ m.used }}</b> <span class="faint">{{ L.k25 }} {{ m.max }}</span></span></span><span aria-hidden="true" style="height: 6px; border-radius: 3px; background: var(--bd)"><span style="display: block; height: 6px; border-radius: 3px; width: {{ m.w }}; background: {{ m.c }}"></span></span></div></sc-for>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Профиль": "Profile", "АТ": "AT", "Уровень 1": "Level 1", "Электронная почта": "Email", "Отменить": "Cancel", "Телефон": "Phone", "Верификация": "Verification", "Безопасность": "Security", "Почта": "Email", "Пройден": "Passed", "Текущий": "Current", "Разделы профиля": "Profile sections", "Настройки": "Settings", "Реквизиты и адреса": "Payment details and addresses", "Документы": "Documents", "Сменить фото": "Change photo", "С 02.09.2026 · ID 7c1e…22af": "Since 02.09.2026 · ID 7c1e…22af", "KYC · уровень 1": "KYC · level 1", "Ник в P2P": "P2P nickname", "Виден контрагентам. Менять можно раз в 30 дней.": "Visible to counterparties. Can be changed once every 30 days.", "Имя": "Name", "Алексей Т.": "Alexey T.", "Подтверждена": "Verified", "Код подтверждения отправлен по SMS": "A verification code was sent by SMS", "Сохранить": "Save", "Пройти уровень 2 · ~5 минут": "Complete level 2 · ~5 minutes", "Лимиты · KYC 1": "Limits · KYC 1", "из": "of", "УРОВЕНЬ 0": "LEVEL 0", "Кошелёк, получение, вывод до 500 USDT в сутки": "Wallet, receiving, withdrawals up to 500 USDT a day", "УРОВЕНЬ 1": "LEVEL 1", "Телефон и имя": "Phone and name", "P2P до 5 000 USDT в сутки, вывод до 5 000": "P2P and withdrawals: 5,000 USDT/day", "УРОВЕНЬ 2": "LEVEL 2", "Документ и селфи": "Document and selfie", "P2P и вывод до 50 000 USDT, свои объявления без ограничений": "P2P and withdrawals up to 50,000 USDT, unlimited own offers", "Не пройден": "Not passed", "Вывод за сутки": "Withdrawals per day", "5 000 USDT": "5,000 USDT", "Вывод за месяц": "Withdrawals per month", "4 600": "4,600", "50 000 USDT": "50,000 USDT", "P2P за сутки": "P2P per day", "4 100": "4,100", "Объём своих объявлений": "Own offers volume", "1 000": "1,000"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Профиль"), k2: this.tr("Разделы профиля"), k3: this.tr("Безопасность"), k4: this.tr("Настройки"), k5: this.tr("Реквизиты и адреса"), k6: this.tr("Документы"), k7: this.tr("АТ"), k8: this.tr("Сменить фото"), k9: this.tr("С 02.09.2026 · ID 7c1e…22af"), k10: this.tr("KYC · уровень 1"), k11: this.tr("Ник в P2P"), k12: this.tr("Виден контрагентам. Менять можно раз в 30 дней."), k13: this.tr("Имя"), k14: this.tr("Алексей Т."), k15: this.tr("Электронная почта"), k16: this.tr("Подтверждена"), k17: this.tr("Телефон"), k18: this.tr("Код подтверждения отправлен по SMS"), k19: this.tr("Отменить"), k20: this.tr("Сохранить"), k21: this.tr("Верификация"), k22: this.tr("Уровень 1"), k23: this.tr("Пройти уровень 2 · ~5 минут"), k24: this.tr("Лимиты · KYC 1"), k25: this.tr("из"), k26: this.tr("УРОВЕНЬ 0"), k27: this.tr("Почта"), k28: this.tr("Кошелёк, получение, вывод до 500 USDT в сутки"), k29: this.tr("Пройден"), k30: this.tr("УРОВЕНЬ 1"), k31: this.tr("Телефон и имя"), k32: this.tr("P2P до 5 000 USDT в сутки, вывод до 5 000"), k33: this.tr("Текущий"), k34: this.tr("УРОВЕНЬ 2"), k35: this.tr("Документ и селфи"), k36: this.tr("P2P и вывод до 50 000 USDT, свои объявления без ограничений"), k37: this.tr("Не пройден"), k38: this.tr("Вывод за сутки"), k39: this.tr("5 000 USDT"), k40: this.tr("Вывод за месяц"), k41: this.tr("4 600"), k42: this.tr("50 000 USDT"), k43: this.tr("P2P за сутки"), k44: this.tr("4 100"), k45: this.tr("Объём своих объявлений"), k46: this.tr("1 000") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      levels: [
+        { n: this.tr('УРОВЕНЬ 0'), t: this.tr('Почта'), d: this.tr('Кошелёк, получение, вывод до 500 USDT в сутки'), s: this.tr('Пройден'), cls: 'c-ok', b: '1px solid var(--bd)', bg: 'transparent' },
+        { n: this.tr('УРОВЕНЬ 1'), t: this.tr('Телефон и имя'), d: this.tr('P2P до 5 000 USDT в сутки, вывод до 5 000'), s: this.tr('Текущий'), cls: 'c-ok', b: '1.5px solid var(--t1)', bg: 'var(--raised)' },
+        { n: this.tr('УРОВЕНЬ 2'), t: this.tr('Документ и селфи'), d: this.tr('P2P и вывод до 50 000 USDT, свои объявления без ограничений'), s: this.tr('Не пройден'), cls: 'c-off', b: '1px solid var(--bd)', bg: 'transparent' }
+      ],
+      limits: [
+        { n: this.tr('Вывод за сутки'), used: '250', max: this.tr('5 000 USDT'), w: '5%', c: 'var(--sig)' },
+        { n: this.tr('Вывод за месяц'), used: this.tr('4 600'), max: this.tr('50 000 USDT'), w: '9%', c: 'var(--sig)' },
+        { n: this.tr('P2P за сутки'), used: this.tr('4 100'), max: this.tr('5 000 USDT'), w: '82%', c: 'var(--warn)' },
+        { n: this.tr('Объём своих объявлений'), used: this.tr('1 000'), max: this.tr('5 000 USDT'), w: '20%', c: 'var(--sig)' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

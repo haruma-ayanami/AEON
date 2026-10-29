@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — детали транзакции</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }} " style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; gap: 4px; padding: 0 4px"><a href="and-history.dc.html" aria-label="{{ L.k1 }}" style="width: 48px; height: 48px; border-radius: 999px; color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"></path></svg></a><span style="flex: 1; font: 500 20px Inter, sans-serif">{{ L.k2 }}</span><span class="testnet">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></header>
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 12px">
+    <section style="border-radius: 24px; background: var(--surface); padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+      <span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 999px; background: {{ icBg }}; color: {{ icFg }}; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ icD }}"></path></svg></span>
+      <span class="disp" style="font-size: 34px; color: {{ amtC }}">{{ amt }}</span><span class="muted">≈ {{ fiat }} · {{ kind }}</span>
+      <span class="chip {{ chipC }}">{{ chipT }}</span>
+      <sc-if value="{{ isOk }}" hint-placeholder-val="{{ true }}"><div aria-hidden="true" style="align-self: stretch; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; margin-top: 6px"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="12"><span style="height: 6px; border-radius: 2px; background: {{ b }}"></span></sc-for></div></sc-if>
+      <sc-if value="{{ isOk }}" hint-placeholder-val="{{ true }}"><span class="faint" style="font-size: 12px">{{ hint }}</span></sc-if>
+      <sc-if value="{{ isFail }}" hint-placeholder-val="{{ false }}"><div style="align-self: stretch; text-align: left; margin-top: 6px"><div role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 16px; background: var(--negs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span>{{ L.k24 }}</span></span></div></div></sc-if>
+    </section>
+    <div style="border-radius: 24px; background: var(--surface); padding: 4px 16px">
+      <div class="rowline"><span>{{ L.k9 }}</span><span>Ethereum Sepolia</span></div>
+      <div class="rowline"><span>{{ dirK }}</span><span class="mono">{{ dirV }}</span></div>
+      <div class="rowline"><span>{{ L.k11 }}</span><span class="mono">0x9f2c…e41b</span></div>
+      <div class="rowline"><span>{{ L.k12 }}</span><span class="mono">{{ blockV }}</span></div>
+      <div class="rowline"><span>{{ L.k13 }}</span><span>23.10.2026, 12:41</span></div>
+      <div class="rowline"><span>{{ L.k14 }}</span><span class="chip c-ok" style="height: 24px">{{ L.k15 }}</span></div>
+    </div>
+  </div>
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 32px; display: flex; flex-direction: column; gap: 10px"><sc-if value="{{ isFail }}" hint-placeholder-val="{{ false }}"><a href="and-send.dc.html" class="btn btn-p" style="height: 52px">{{ L.k25 }}</a></sc-if><a href="https://sepolia.etherscan.io/" target="_blank" rel="noopener" class="btn" style="height: 52px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"></path></svg>{{ L.k16 }}</a></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "status": {"editor": "enum", "options": ["confirming", "done", "failed"], "default": "confirming"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Транзакция": "Transaction", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "+0,05 ETH": "+0.05 ETH", "15 760 ₽": "15,760 ₽", "Получено": "Received", "Подтверждается · 3 из 12": "Confirming · 3 of 12", "Зачислим примерно через 2 минуты": "Will be credited in about 2 minutes", "Сеть": "Network", "Откуда": "From", "Хеш": "Hash", "Блок": "Block", "Время": "Time", "Оценка риска": "Risk score", "Низкий · 4": "Low · 4", "Открыть в обозревателе": "Open in explorer", "−250,00 USDT": "−250.00 USDT", "Отправка": "Sent", "Зачислено · 12 из 12": "Credited · 12 of 12", "Отклонена сетью": "Rejected by network", "Зачислено в 12:43 · средства доступны": "Credited at 12:43 · funds available", "Куда": "To", "6 948 120 · отказ": "6,948,120 · reverted", "Сеть отклонила перевод: комиссии не хватило на выполнение. 250 USDT вернулись на баланс, сетевая комиссия 0,00009 ETH не возвращается.": "The network rejected the transfer: the fee wasn't enough to execute it. 250 USDT returned to your balance; the 0.00009 ETH network fee is not refunded.", "Повторить с новой комиссией": "Retry with a new fee"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Транзакция"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("+0,05 ETH"), k5: this.tr("15 760 ₽"), k6: this.tr("Получено"), k7: this.tr("Подтверждается · 3 из 12"), k8: this.tr("Зачислим примерно через 2 минуты"), k9: this.tr("Сеть"), k10: this.tr("Откуда"), k11: this.tr("Хеш"), k12: this.tr("Блок"), k13: this.tr("Время"), k14: this.tr("Оценка риска"), k15: this.tr("Низкий · 4"), k16: this.tr("Открыть в обозревателе"), k17: this.tr("−250,00 USDT"), k18: this.tr("Отправка"), k19: this.tr("Зачислено · 12 из 12"), k20: this.tr("Отклонена сетью"), k21: this.tr("Зачислено в 12:43 · средства доступны"), k22: this.tr("Куда"), k23: this.tr("6 948 120 · отказ"), k24: this.tr("Сеть отклонила перевод: комиссии не хватило на выполнение. 250 USDT вернулись на баланс, сетевая комиссия 0,00009 ETH не возвращается."), k25: this.tr("Повторить с новой комиссией") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const s = this.props.status ?? 'confirming';
+    const fail = s === 'failed';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isFail: fail, isOk: !fail,
+      icBg: { confirming: 'var(--infos)', done: 'var(--sigs)', failed: 'var(--negs)' }[s], icFg: { confirming: 'var(--info)', done: 'var(--sigt)', failed: 'var(--neg)' }[s],
+      icD: fail ? 'M7 17L17 7M9 7h8v8' : 'M17 7L7 17M7 9v8h8',
+      amt: fail ? this.tr("−250,00 USDT") : this.tr("+0,05 ETH"), amtC: fail ? 'var(--t1)' : 'var(--sigt)',
+      fiat: fail ? '$250,00' : this.tr("15 760 ₽"), kind: fail ? this.tr("Отправка") : this.tr("Получено"),
+      chipC: { confirming: 'c-info', done: 'c-ok', failed: 'c-neg' }[s], chipT: { confirming: this.tr("Подтверждается · 3 из 12"), done: this.tr("Зачислено · 12 из 12"), failed: this.tr("Отклонена сетью") }[s],
+      bars: Array.from({ length: 12 }, (_, i) => (s === 'done' || i < 3 ? (s === 'done' ? 'var(--sigt)' : 'var(--info)') : 'var(--bd)')),
+      hint: s === 'done' ? this.tr("Зачислено в 12:43 · средства доступны") : this.tr("Зачислим примерно через 2 минуты"),
+      dirK: fail ? this.tr("Куда") : this.tr("Откуда"), dirV: fail ? '0x1b9C…0a91' : '0x4c2E…a1F2', blockV: fail ? this.tr("6 948 120 · отказ") : '6 948 112'
+    };
+  }
+}
+</script>
+</body>
+</html>

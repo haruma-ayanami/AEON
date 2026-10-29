@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — мои сделки</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="position: relative; min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="p2p" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="P2P" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <nav class="tabs" aria-label="{{ L.k1 }}"><a href="web-p2p-market.dc.html">{{ L.k2 }}</a><a href="web-p2p-my-deals.dc.html" aria-current="page">{{ L.k3 }}<span class="badge">2</span></a><a href="web-p2p-my-offers.dc.html">{{ L.k4 }}</a><a href="web-settings.dc.html">{{ L.k5 }}</a></nav>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap"><button class="btn btn-s btn-p">{{ L.k6 }}</button><button class="btn btn-s btn-o">{{ L.k7 }}</button><button class="btn btn-s btn-o">{{ L.k8 }}</button><span style="flex: 1"></span><button class="btn btn-s btn-o">{{ L.k9 }}</button></div>
+      <span class="lbl">{{ L.k10 }}</span>
+      <div class="grid-a" style="grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr))">
+        <sc-for list="{{ active }}" as="a" hint-placeholder-count="2">
+          <a href="{{ a.href }}" class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; color: var(--t1); border-color: {{ a.bc }}">
+            <span style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">{{ a.id }} · {{ a.role }}</span><span class="mono" style="font-size: 18px; color: {{ a.tc }}">{{ a.timer }}</span></span>
+            <span class="disp" style="font-size: 24px">{{ a.amt }}</span>
+            <span class="muted" style="font-size: 14px">{{ a.meta }}</span>
+            <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(30, minmax(0, 1fr)); gap: 2px; height: 6px"><sc-for list="{{ a.bars }}" as="b" hint-placeholder-count="30"><span style="border-radius: 2px; background: {{ b }}"></span></sc-for></span>
+            <span style="display: flex; justify-content: space-between; align-items: center"><span class="chip {{ a.cls }}">{{ a.status }}</span><span style="font: 600 14px Inter, sans-serif">{{ a.next }} →</span></span>
+          </a>
+        </sc-for>
+      </div>
+      <span class="lbl" style="padding-top: 8px">{{ L.k11 }}</span>
+      <section class="card" style="border-radius: 18px; overflow-x: auto">
+        <table class="tbl" style="min-width: 820px"><thead><tr><th>{{ L.k12 }}</th><th>{{ L.k13 }}</th><th>{{ L.k14 }}</th><th style="text-align: right">{{ L.k15 }}</th><th>{{ L.k16 }}</th><th>{{ L.k17 }}</th><th>{{ L.k18 }}</th></tr></thead>
+          <tbody><sc-for list="{{ hist }}" as="h" hint-placeholder-count="6"><tr><td class="mono" style="font-size: 13px">{{ h.id }}</td><td class="muted">{{ h.role }}</td><td style="font-weight: 500">{{ h.who }}</td><td class="num" style="text-align: right"><span style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-weight: 600">{{ h.amt }}</span><span class="faint" style="font-size: 12px">{{ h.fiat }}</span></span></td><td><span class="chip {{ h.cls }}">{{ h.status }}</span></td><td class="mono faint" style="font-size: 12px">{{ h.date }}</td><td style="font-size: 13px; color: {{ h.fc }}">{{ h.fb }}</td></tr></sc-for></tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <sc-if value="{{ dispute }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: var(--scrim)"></div>
+    <div role="dialog" aria-modal="true" aria-labelledby="od-h" style="position: absolute; left: 50%; top: 120px; width: 560px; margin-left: -280px; border-radius: 28px; background: var(--surface); border: 1px solid var(--bd); box-shadow: 0 32px 80px rgba(0,0,0,0.5); padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; justify-content: space-between"><span style="display: flex; flex-direction: column; gap: 4px"><span class="lbl">{{ L.k19 }}</span><h2 id="od-h" class="disp" style="margin: 0; font-size: 24px">{{ L.k20 }}</h2></span><button aria-label="{{ L.k21 }}" class="ibtn" style="width: 36px; height: 36px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+      <fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px"><legend class="muted" style="font-size: 14px; margin-bottom: 8px">{{ L.k22 }}</legend>
+        <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="4"><label style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; border: {{ r.b }}; cursor: pointer"><span class="rb {{ r.cls }}" aria-hidden="true"></span><input type="radio" name="rsn" checked="{{ r.on }}" class="sr"><span style="font-size: 14px">{{ r.t }}</span></label></sc-for>
+      </fieldset>
+      <label class="field"><span>{{ L.k23 }}</span><textarea rows="3" style="border-radius: 12px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); padding: 12px; font: 400 14px Inter, sans-serif; resize: none; outline: none" defaultValue="{{ L.k24 }}"></textarea></label>
+      <button class="btn btn-o" style="border-style: dashed"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5l-8.5 8.5a5 5 0 0 1-7-7L13 4.5a3.3 3.3 0 0 1 4.7 4.7L9.2 17.7a1.7 1.7 0 0 1-2.4-2.4L14.5 7.6"></path></svg>{{ L.k25 }}</button>
+      <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--infos); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg><span>{{ L.k26 }}</span></div>
+      <div style="display: flex; gap: 10px"><button class="btn" style="flex: 1">{{ L.k27 }}</button><button class="btn btn-n" style="flex: 1">{{ L.k20 }}</button></div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "dispute": {"editor": "boolean", "default": false}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"СДЕЛКА": "DEAL", "СУММА": "AMOUNT", "СТАТУС": "STATUS", "Оплата отправлена": "Payment sent", "Средства в эскроу": "Funds in escrow", "Завершена": "Completed", "Отменена": "Cancelled", "1 000 USDT": "1,000 USDT", "0,2 ETH": "0.2 ETH", "Пришла неполная сумма": "Partial amount received", "ВЫ ПОКУПАЕТЕ": "YOU ARE BUYING", "250,00 USDT": "250.00 USDT", "Мои сделки": "My deals", "Закрыть": "Close", "100,00 USDT": "100.00 USDT", "Разделы P2P": "P2P sections", "Маркетплейс": "Marketplace", "Мои объявления": "My offers", "Реквизиты": "Payment details", "Активные · 2": "Active · 2", "История · 41": "History · 41", "Споры · 1": "Disputes · 1", "Я покупатель и продавец": "I'm buyer and seller", "АКТИВНЫЕ": "ACTIVE", "ИСТОРИЯ": "HISTORY", "РОЛЬ": "ROLE", "КОНТРАГЕНТ": "COUNTERPARTY", "ДАТА": "DATE", "ОТЗЫВ": "REVIEW", "P2P-48216 · ВЫ ПРОДАЁТЕ": "P2P-48216 · YOU ARE SELLING", "Открыть спор": "Open dispute", "Что случилось?": "What happened?", "Подробности": "Details", "Покупатель отметил оплату, но на счёт пришло 9 000 ₽ вместо 9 240 ₽.": "The buyer marked the payment, but 9,000 ₽ arrived instead of 9,240 ₽.", "Приложить выписку или скриншот": "Attach a statement or screenshot", "Монеты останутся в эскроу. Арбитр подключится в течение 1 часа и изучит чат и доказательства.": "The coins will stay in escrow. An arbitrator will join within 1 hour and review the chat and evidence.", "Отмена": "Cancel", "у crypto_mila · 23 100 ₽ · СБП": "from crypto_mila · 23,100 ₽ · SBP", "Оплатить": "Pay", "ВЫ ПРОДАЁТЕ": "YOU ARE SELLING", "покупатель eva_s · 9 240 ₽ · СБП": "buyer eva_s · 9,240 ₽ · SBP", "Проверить поступление": "Check payment", "Продажа": "Sale", "9 240 ₽": "9,240 ₽", "★ Положительный": "★ Positive", "Покупка": "Purchase", "46 150 ₽": "46,150 ₽", "4 595 ₽": "4,595 ₽", "Истекло время": "Time expired", "0,01 BTC": "0.01 BTC", "67 100 ₽": "67,100 ₽", "Завершена · спор": "Completed · dispute", "Отрицательный": "Negative", "92 300 ₽": "92,300 ₽", "Оставить отзыв": "Leave a review", "63 400 ₽": "63,400 ₽", "Оплата не поступила": "Payment not received", "Оплата от третьего лица": "Payment from a third party", "Другое": "Other"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Разделы P2P"), k2: this.tr("Маркетплейс"), k3: this.tr("Мои сделки"), k4: this.tr("Мои объявления"), k5: this.tr("Реквизиты"), k6: this.tr("Активные · 2"), k7: this.tr("История · 41"), k8: this.tr("Споры · 1"), k9: this.tr("Я покупатель и продавец"), k10: this.tr("АКТИВНЫЕ"), k11: this.tr("ИСТОРИЯ"), k12: this.tr("СДЕЛКА"), k13: this.tr("РОЛЬ"), k14: this.tr("КОНТРАГЕНТ"), k15: this.tr("СУММА"), k16: this.tr("СТАТУС"), k17: this.tr("ДАТА"), k18: this.tr("ОТЗЫВ"), k19: this.tr("P2P-48216 · ВЫ ПРОДАЁТЕ"), k20: this.tr("Открыть спор"), k21: this.tr("Закрыть"), k22: this.tr("Что случилось?"), k23: this.tr("Подробности"), k24: this.tr("Покупатель отметил оплату, но на счёт пришло 9 000 ₽ вместо 9 240 ₽."), k25: this.tr("Приложить выписку или скриншот"), k26: this.tr("Монеты останутся в эскроу. Арбитр подключится в течение 1 часа и изучит чат и доказательства."), k27: this.tr("Отмена"), k28: this.tr("ВЫ ПОКУПАЕТЕ"), k29: this.tr("250,00 USDT"), k30: this.tr("у crypto_mila · 23 100 ₽ · СБП"), k31: this.tr("Средства в эскроу"), k32: this.tr("Оплатить"), k33: this.tr("ВЫ ПРОДАЁТЕ"), k34: this.tr("100,00 USDT"), k35: this.tr("покупатель eva_s · 9 240 ₽ · СБП"), k36: this.tr("Оплата отправлена"), k37: this.tr("Проверить поступление"), k38: this.tr("Продажа"), k39: this.tr("9 240 ₽"), k40: this.tr("Завершена"), k41: this.tr("★ Положительный"), k42: this.tr("Покупка"), k43: this.tr("46 150 ₽"), k44: this.tr("4 595 ₽"), k45: this.tr("Отменена"), k46: this.tr("Истекло время"), k47: this.tr("0,01 BTC"), k48: this.tr("67 100 ₽"), k49: this.tr("Завершена · спор"), k50: this.tr("Отрицательный"), k51: this.tr("1 000 USDT"), k52: this.tr("92 300 ₽"), k53: this.tr("Оставить отзыв"), k54: this.tr("0,2 ETH"), k55: this.tr("63 400 ₽"), k56: this.tr("Пришла неполная сумма"), k57: this.tr("Оплата не поступила"), k58: this.tr("Оплата от третьего лица"), k59: this.tr("Другое") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const bars = (n, c) => Array.from({ length: 30 }, (_, i) => (i < n ? c : 'var(--bd)'));
+    const H = (id, role, who, amt, fiat, status, cls, date, fb, fc) => ({ id, role, who, amt, fiat, status, cls, date, fb, fc });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      dispute: !!this.props.dispute,
+      active: [
+        { id: 'P2P-48213', href: 'web-p2p-deal.dc.html', role: this.tr('ВЫ ПОКУПАЕТЕ'), timer: '04:12', tc: 'var(--warn)', amt: this.tr('250,00 USDT'), meta: this.tr('у crypto_mila · 23 100 ₽ · СБП'), bars: bars(9, 'var(--warn)'), status: this.tr('Средства в эскроу'), cls: 'c-info', next: this.tr('Оплатить'), bc: 'var(--warn)' },
+        { id: 'P2P-48216', href: 'web-p2p-deal-seller.dc.html', role: this.tr('ВЫ ПРОДАЁТЕ'), timer: '12:05', tc: 'var(--t1)', amt: this.tr('100,00 USDT'), meta: this.tr('покупатель eva_s · 9 240 ₽ · СБП'), bars: bars(24, 'var(--sig)'), status: this.tr('Оплата отправлена'), cls: 'c-warn', next: this.tr('Проверить поступление'), bc: 'var(--bs)' }
+      ],
+      hist: [
+        H('P2P-47812', this.tr('Продажа'), 'eva_s', '100 USDT', this.tr('9 240 ₽'), this.tr('Завершена'), 'c-ok', '22.10', this.tr('★ Положительный'), 'var(--sigt)'),
+        H('P2P-47790', this.tr('Покупка'), 'crypto_mila', '500 USDT', this.tr('46 150 ₽'), this.tr('Завершена'), 'c-ok', '20.10', this.tr('★ Положительный'), 'var(--sigt)'),
+        H('P2P-47702', this.tr('Покупка'), 'newtrader_07', '50 USDT', this.tr('4 595 ₽'), this.tr('Отменена'), 'c-off', '18.10', this.tr('Истекло время'), 'var(--t3)'),
+        H('P2P-47655', this.tr('Продажа'), 'gold_x', this.tr('0,01 BTC'), this.tr('67 100 ₽'), this.tr('Завершена · спор'), 'c-ok', '15.10', this.tr('Отрицательный'), 'var(--neg)'),
+        H('P2P-47601', this.tr('Покупка'), 'trade_room', this.tr('1 000 USDT'), this.tr('92 300 ₽'), this.tr('Завершена'), 'c-ok', '12.10', this.tr('Оставить отзыв'), 'var(--t1)'),
+        H('P2P-47540', this.tr('Продажа'), 'mbtc', this.tr('0,2 ETH'), this.tr('63 400 ₽'), this.tr('Завершена'), 'c-ok', '09.10', this.tr('★ Положительный'), 'var(--sigt)')
+      ],
+      reasons: [[this.tr('Пришла неполная сумма'), true], [this.tr('Оплата не поступила'), false], [this.tr('Оплата от третьего лица'), false], [this.tr('Другое'), false]].map(([t, on]) => ({ t, on, cls: on ? 'on' : '', b: on ? '1.5px solid var(--t1)' : '1px solid var(--bd)' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

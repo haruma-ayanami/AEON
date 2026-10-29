@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — детали транзакции</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-history.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button aria-label="{{ L.k3 }}" class="gbtn glass"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 14v6h14v-6"></path></svg></button><button onClick="{{ toggleLang }}" aria-label="{{ L.k4 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 120px">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 0 6px">
+      <span class="chip {{ st.cls }}">{{ st.chip }}</span>
+      <span class="disp" style="font-size: 44px; color: {{ st.ac }}">{{ st.amt }}</span>
+      <span class="muted">{{ st.fiat }}</span>
+    </div>
+    <sc-if value="{{ st.confirming }}" hint-placeholder-val="{{ true }}">
+      <div class="icard" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px"><span style="display: flex; justify-content: space-between; font-size: 14px"><span class="muted">{{ L.k5 }}</span><span class="mono">3 / 12</span></span><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; height: 8px"><sc-for list="{{ conf }}" as="c" hint-placeholder-count="12"><span style="border-radius: 2px; background: {{ c }}"></span></sc-for></span><span class="hint">{{ L.k6 }}</span></div>
+    </sc-if>
+    <div class="icard" style="padding: 2px 16px; display: flex; flex-direction: column">
+      <div class="rowline"><span>{{ L.k7 }}</span><span class="mono" style="font-size: 13px">{{ L.k8 }}</span></div>
+      <div class="rowline"><span>{{ L.k9 }}</span><span>Ethereum Sepolia</span></div>
+      <div class="rowline"><span>{{ L.k10 }}</span><span>{{ L.k11 }}</span></div>
+      <div class="rowline"><span>{{ L.k12 }}</span><span>{{ L.k13 }}</span></div>
+      <div class="rowline"><span>{{ L.k14 }}</span><span class="mono" style="font-size: 13px">0x9f2c…e41b</span></div>
+      <div class="rowline"><span>{{ L.k15 }}</span><span>23.10, 12:44:05</span></div>
+    </div>
+    <sc-if value="{{ st.stuck }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v5l3 2"></path></svg><span>{{ L.k16 }}</span></div>
+    </sc-if>
+  </div>
+  <div class="ios-bar">
+    <sc-if value="{{ st.stuck }}" hint-placeholder-val="{{ false }}"><button class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k17 }}</button></sc-if>
+    <sc-if value="{{ st.notStuck }}" hint-placeholder-val="{{ true }}"><a href="https://sepolia.etherscan.io/" target="_blank" rel="noopener" class="btn glass" style="flex: 1; height: 56px; font-size: 16px">{{ L.k18 }}</a></sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["confirming", "completed", "stuck"], "default": "confirming"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Комиссия AEON": "AEON fee", "Назад": "Back", "Комиссия сети": "Network fee", "0,00021 ETH": "0.00021 ETH", "1,00 USDT": "1.00 USDT", "Выполнен": "Completed", "Поделиться": "Share", "Перевод": "Transfer", "Подтверждения": "Confirmations", "Получатель увидит перевод после 12 подтверждений, ≈ 2 мин": "The recipient will see the transfer after 12 confirmations, ≈ 2 min", "Кому": "To", "Ledger тест · 0x1b9C…0a91": "Ledger test · 0x1b9C…0a91", "Сеть": "Network", "Хеш": "Hash", "Время": "Time", "Транзакция ждёт в очереди сети 18 минут: комиссия оказалась низкой. Можно ускорить — заменим её на такую же с комиссией выше.": "The transaction has been waiting in the network queue for 18 minutes: the fee was too low. You can speed it up — we'll replace it with the same one at a higher fee.", "Ускорить за 0,00018 ETH": "Speed up for 0.00018 ETH", "Открыть в обозревателе": "Open in explorer", "Подтверждается": "Confirming", "−250,00 USDT": "−250.00 USDT", "≈ $250,00": "≈ $250.00", "≈ $250,00 · 12 подтверждений": "≈ $250.00 · 12 confirmations", "В ожидании": "Pending"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Перевод"), k3: this.tr("Поделиться"), k4: this.tr("Язык интерфейса: русский. Переключить на английский"), k5: this.tr("Подтверждения"), k6: this.tr("Получатель увидит перевод после 12 подтверждений, ≈ 2 мин"), k7: this.tr("Кому"), k8: this.tr("Ledger тест · 0x1b9C…0a91"), k9: this.tr("Сеть"), k10: this.tr("Комиссия сети"), k11: this.tr("0,00021 ETH"), k12: this.tr("Комиссия AEON"), k13: this.tr("1,00 USDT"), k14: this.tr("Хеш"), k15: this.tr("Время"), k16: this.tr("Транзакция ждёт в очереди сети 18 минут: комиссия оказалась низкой. Можно ускорить — заменим её на такую же с комиссией выше."), k17: this.tr("Ускорить за 0,00018 ETH"), k18: this.tr("Открыть в обозревателе"), k19: this.tr("Подтверждается"), k20: this.tr("−250,00 USDT"), k21: this.tr("≈ $250,00"), k22: this.tr("Выполнен"), k23: this.tr("≈ $250,00 · 12 подтверждений"), k24: this.tr("В ожидании") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const state = this.props.state ?? 'confirming';
+    const S = {
+      confirming: { chip: this.tr('Подтверждается'), cls: 'c-info', amt: this.tr('−250,00 USDT'), ac: 'var(--t1)', fiat: this.tr('≈ $250,00'), confirming: true, stuck: false },
+      completed: { chip: this.tr('Выполнен'), cls: 'c-ok', amt: this.tr('−250,00 USDT'), ac: 'var(--t1)', fiat: this.tr('≈ $250,00 · 12 подтверждений'), confirming: false, stuck: false },
+      stuck: { chip: this.tr('В ожидании'), cls: 'c-warn', amt: this.tr('−250,00 USDT'), ac: 'var(--t1)', fiat: this.tr('≈ $250,00'), confirming: false, stuck: true }
+    };
+    const st = S[state] || S.confirming;
+    st.notStuck = !st.stuck;
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark', st, conf: Array.from({ length: 12 }, (_, i) => (i < 3 ? 'var(--info)' : 'var(--bd)')) };
+  }
+}
+</script>
+</body>
+</html>

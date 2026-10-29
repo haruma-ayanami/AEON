@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — справочники</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="refs" hint-size="240px,1100px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <nav class="tabs" aria-label="{{ L.k1 }}"><a href="admin-refs.dc.html">{{ L.k2 }} <span class="faint">5</span></a><a href="admin-refs.dc.html">{{ L.k3 }} <span class="faint">9</span></a><a href="admin-refs.dc.html" aria-current="page">{{ L.k4 }} <span class="faint">8</span></a><a href="admin-refs.dc.html">{{ L.k5 }} <span class="faint">6</span></a><a href="admin-refs.dc.html">{{ L.k6 }} <span class="faint">4</span></a></nav>
+      <div class="split">
+        <div style="flex: 1 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <section class="card" aria-label="{{ L.k4 }}" style="border-radius: 16px; overflow-x: auto">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 16px 16px 8px"><h2 class="disp" style="margin: 0; font-size: 18px; flex: 1">{{ L.k7 }}</h2><button class="btn btn-s btn-o">{{ L.k8 }}</button><button class="btn btn-s btn-p">{{ L.k9 }}</button></div>
+            <table class="tbl" style="min-width: 680px">
+              <thead><tr><th>{{ L.k10 }}</th><th>{{ L.k11 }}</th><th>{{ L.k12 }}</th><th style="text-align: right">{{ L.k13 }}</th><th>{{ L.k14 }}</th><th><span class="sr">{{ L.k15 }}</span></th></tr></thead>
+              <tbody>
+                <sc-for list="{{ fees }}" as="f" hint-placeholder-count="8">
+                  <sc-if value="{{ f.view }}" hint-placeholder-val="{{ true }}"><tr><td style="font-weight: 500; white-space: nowrap">{{ f.op }}</td><td class="muted" style="font-size: 13px; white-space: nowrap">{{ f.asset }}</td><td><span class="tag">{{ f.type }}</span></td><td class="num" style="text-align: right; font-weight: 600; white-space: nowrap">{{ f.val }}</td><td class="faint" style="font-size: 12px; white-space: nowrap">{{ f.by }}</td><td style="text-align: right"><button aria-label="{{ f.aria }}" class="ibtn" style="width: 32px; height: 32px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"></path></svg></button></td></tr></sc-if>
+                  <sc-if value="{{ f.edit }}" hint-placeholder-val="{{ false }}"><tr style="background: var(--sel)"><td style="font-weight: 500; white-space: nowrap">{{ f.op }}</td><td class="muted" style="font-size: 13px; white-space: nowrap">{{ f.asset }}</td><td><span class="tag">{{ f.type }}</span></td><td style="text-align: right"><span class="inp focus" style="height: 36px; width: 100px; margin-left: auto"><input aria-label="{{ f.aria }}" value="0,40" style="text-align: right; font-weight: 600"><span class="faint">%</span></span></td><td class="hint" style="font-size: 12px; white-space: nowrap">{{ L.k16 }}</td><td style="text-align: right; white-space: nowrap"><button aria-label="{{ L.k17 }}" class="ibtn" style="width: 32px; height: 32px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button> <button aria-label="{{ L.k18 }}" class="ibtn" style="width: 32px; height: 32px; background: var(--pbg); color: var(--pfg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></button></td></tr></sc-if>
+                </sc-for>
+              </tbody>
+            </table>
+          </section>
+          <section class="card" aria-label="{{ L.k19 }}" style="border-radius: 16px; overflow-x: auto">
+            <div style="display: flex; align-items: center; gap: 10px; padding: 16px 16px 8px"><h2 class="disp" style="margin: 0; font-size: 18px; flex: 1">{{ L.k20 }}</h2><span class="faint" style="font-size: 12px">{{ L.k21 }}</span></div>
+            <table class="tbl" style="min-width: 560px">
+              <thead><tr><th>{{ L.k22 }}</th><th style="text-align: right">{{ L.k23 }}</th><th style="text-align: right">{{ L.k24 }}</th><th style="text-align: right">{{ L.k25 }}</th></tr></thead>
+              <tbody>
+                <sc-for list="{{ limits }}" as="l" hint-placeholder-count="3"><tr><td style="font-weight: 500">{{ l.lvl }}</td><td class="num" style="text-align: right">{{ l.w }}</td><td class="num" style="text-align: right">{{ l.p }}</td><td class="num" style="text-align: right">{{ l.o }}</td></tr></sc-for>
+              </tbody>
+            </table>
+          </section>
+        </div>
+
+        <aside class="card" aria-label="{{ L.k26 }}" style="flex: 0 1 360px; min-width: 0; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <span class="disp" style="font-size: 18px">{{ L.k27 }}</span>
+          <sc-for list="{{ history }}" as="h" hint-placeholder-count="5">
+            <div style="display: flex; gap: 12px"><span style="display: flex; flex-direction: column; align-items: center"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: {{ h.c }}; margin-top: 4px"></span><span style="flex: 1; width: 2px; background: var(--bs); min-height: 22px"></span></span><span style="display: flex; flex-direction: column; gap: 2px; padding-bottom: 12px"><span style="font-size: 14px; font-weight: 500">{{ h.t }}</span><span class="faint" style="font-size: 12px">{{ h.meta }}</span></span></div>
+          </sc-for>
+          <a href="admin-audit.dc.html" style="font-size: 14px">{{ L.k28 }}</a>
+          <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--infos); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 11v6M12 7.5v.5"></path></svg><span>{{ L.k29 }}</span></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Справочники": "Reference data", "Сети": "Networks", "Активы": "Assets", "Комиссии": "Fees", "Лимиты": "Limits", "Способы оплаты": "Payment methods", "Комиссии платформы": "Platform fees", "Экспорт CSV": "Export CSV", "Добавить": "Add", "ОПЕРАЦИЯ": "OPERATION", "АКТИВ · СЕТЬ": "ASSET · NETWORK", "ТИП": "TYPE", "ЗНАЧЕНИЕ": "VALUE", "ИЗМЕНЕНО": "CHANGED", "Действия": "Actions", "было 0,50%": "was 0.50%", "Отменить изменение": "Cancel the change", "Сохранить с 2FA": "Save with 2FA", "Лимиты по уровням верификации": "Limits by verification level", "Лимиты по уровням KYC · в сутки": "Limits by KYC level · per day", "в эквиваленте USDT": "in USDT equivalent", "УРОВЕНЬ": "LEVEL", "ВЫВОД": "WITHDRAWAL", "P2P-СДЕЛКИ": "P2P DEALS", "СВОИ ОБЪЯВЛЕНИЯ": "OWN OFFERS", "История изменений справочников": "Reference data change history", "История изменений": "Change history", "Все записи в журнале событий": "All entries in the event log", "Изменения применяются только к новым операциям и требуют роли «Администратор» и 2FA.": "Changes apply only to new operations and require the Administrator role and 2FA.", "фикс.": "fixed", "Изменить: ": "Edit: ", "Вывод": "Withdrawal", "1,00 USDT": "1.00 USDT", "arb_olga · 02.10": "arb_olga · 02.10", "0,50 USDT": "0.50 USDT", "0,0005 ETH": "0.0005 ETH", "система · 14.05": "system · 14.05", "0,0001 BTC": "0.0001 BTC", "0,01 SOL": "0.01 SOL", "P2P · продавец": "P2P · seller", "все активы": "all assets", "arb_olga · 23.10": "arb_olga · 23.10", "P2P · покупатель": "P2P · buyer", "Внутренний перевод": "Internal transfer", "KYC 0 · без верификации": "KYC 0 · unverified", "500": "500", "—": "—", "KYC 1 · документ": "KYC 1 · document", "5 000": "5,000", "10 000": "10,000", "KYC 2 · документ и селфи": "KYC 2 · document and selfie", "50 000": "50,000", "без ограничений": "unlimited", "P2P · продавец: 0,50% → 0,40% (черновик)": "P2P · seller: 0.50% → 0.40% (draft)", "arb_olga · сейчас · не сохранено": "arb_olga · now · not saved", "Способ оплаты «Наличные» скрыт": "Payment method \"Cash\" hidden", "arb_olga · 23.10 · 09:12": "arb_olga · 23.10 · 09:12", "Вывод USDT · Amoy: 1,00 → 0,50 USDT": "USDT · Amoy withdrawal: 1.00 → 0.50 USDT", "arb_olga · 02.10 · 18:40": "arb_olga · 02.10 · 18:40", "Добавлен актив POL · Amoy": "Asset POL · Amoy added", "admin_den · 28.09 · 11:05": "admin_den · 28.09 · 11:05", "Лимит KYC 1 на вывод: 3 000 → 5 000": "KYC 1 withdrawal limit: 3,000 → 5,000", "admin_den · 15.09 · 16:22": "admin_den · 15.09 · 16:22"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Справочники"), k2: this.tr("Сети"), k3: this.tr("Активы"), k4: this.tr("Комиссии"), k5: this.tr("Лимиты"), k6: this.tr("Способы оплаты"), k7: this.tr("Комиссии платформы"), k8: this.tr("Экспорт CSV"), k9: this.tr("Добавить"), k10: this.tr("ОПЕРАЦИЯ"), k11: this.tr("АКТИВ · СЕТЬ"), k12: this.tr("ТИП"), k13: this.tr("ЗНАЧЕНИЕ"), k14: this.tr("ИЗМЕНЕНО"), k15: this.tr("Действия"), k16: this.tr("было 0,50%"), k17: this.tr("Отменить изменение"), k18: this.tr("Сохранить с 2FA"), k19: this.tr("Лимиты по уровням верификации"), k20: this.tr("Лимиты по уровням KYC · в сутки"), k21: this.tr("в эквиваленте USDT"), k22: this.tr("УРОВЕНЬ"), k23: this.tr("ВЫВОД"), k24: this.tr("P2P-СДЕЛКИ"), k25: this.tr("СВОИ ОБЪЯВЛЕНИЯ"), k26: this.tr("История изменений справочников"), k27: this.tr("История изменений"), k28: this.tr("Все записи в журнале событий"), k29: this.tr("Изменения применяются только к новым операциям и требуют роли «Администратор» и 2FA.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const fix = this.tr('фикс.'), pct = '%';
+    const fee = (op, asset, type, val, by, edit) => ({ op, asset, type, val, by, view: !edit, edit: !!edit, aria: this.tr('Изменить: ') + op + ' · ' + asset });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      fees: [
+        fee(this.tr('Вывод'), 'USDT · Sepolia', fix, this.tr('1,00 USDT'), this.tr('arb_olga · 02.10')),
+        fee(this.tr('Вывод'), 'USDT · Amoy', fix, this.tr('0,50 USDT'), this.tr('arb_olga · 02.10')),
+        fee(this.tr('Вывод'), 'ETH · Sepolia', fix, this.tr('0,0005 ETH'), this.tr('система · 14.05')),
+        fee(this.tr('Вывод'), 'BTC · Testnet', fix, this.tr('0,0001 BTC'), this.tr('система · 14.05')),
+        fee(this.tr('Вывод'), 'SOL · Devnet', fix, this.tr('0,01 SOL'), this.tr('система · 14.05')),
+        fee(this.tr('P2P · продавец'), this.tr('все активы'), pct, '0,50%', this.tr('arb_olga · 23.10'), true),
+        fee(this.tr('P2P · покупатель'), this.tr('все активы'), pct, '0%', this.tr('система · 14.05')),
+        fee(this.tr('Внутренний перевод'), this.tr('все активы'), pct, '0%', this.tr('система · 14.05'))
+      ],
+      limits: [
+        { lvl: this.tr('KYC 0 · без верификации'), w: this.tr('500'), p: this.tr('—'), o: this.tr('—') },
+        { lvl: this.tr('KYC 1 · документ'), w: this.tr('5 000'), p: this.tr('5 000'), o: this.tr('10 000') },
+        { lvl: this.tr('KYC 2 · документ и селфи'), w: this.tr('50 000'), p: this.tr('50 000'), o: this.tr('без ограничений') }
+      ],
+      history: [
+        { c: 'var(--warn)', t: this.tr('P2P · продавец: 0,50% → 0,40% (черновик)'), meta: this.tr('arb_olga · сейчас · не сохранено') },
+        { c: 'var(--sig)', t: this.tr('Способ оплаты «Наличные» скрыт'), meta: this.tr('arb_olga · 23.10 · 09:12') },
+        { c: 'var(--sig)', t: this.tr('Вывод USDT · Amoy: 1,00 → 0,50 USDT'), meta: this.tr('arb_olga · 02.10 · 18:40') },
+        { c: 'var(--sig)', t: this.tr('Добавлен актив POL · Amoy'), meta: this.tr('admin_den · 28.09 · 11:05') },
+        { c: 'var(--t3)', t: this.tr('Лимит KYC 1 на вывод: 3 000 → 5 000'), meta: this.tr('admin_den · 15.09 · 16:22') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

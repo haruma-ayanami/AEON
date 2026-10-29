@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Референсы — интерфейсы</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 1600px; min-height: 1440px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 40px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #848D86">РЕФЕРЕНСЫ · ИНТЕРФЕЙСЫ · 9</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Что берём из интерфейсов</h2>
+    </div>
+    <p style="margin: 0; max-width: 520px; font-size: 15px; line-height: 22px; color: #A3ACA5">Подборка от 23.10.2026. Номера совпадают с файлами в design/references и строками INDEX.md.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px">
+    <sc-for list="{{ items }}" as="it" hint-placeholder-count="9">
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px">
+        <div style="height: 420px; background: #131614; border: 1px solid #232824; border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center">
+          <img src="{{ it.src }}" alt="{{ it.alt }}" style="width: 100%; height: 100%; object-fit: contain">
+        </div>
+        <figcaption style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #B6F36B">{{ it.num }} · {{ it.kind }}</span>
+          <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">{{ it.take }}</span>
+        </figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1440}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      items: [
+        { num: '01', kind: 'КАРТОЧКА БАЛАНСА', src: '/_blob/2d7fec3bd423c03d05f6046a60fac17b', alt: 'Тёмная карточка баланса с кнопками пополнения и вывода', take: 'Серый лейбл над крупной суммой, пилюля валюты, чип изменения, две кнопки-пилюли во всю ширину' },
+        { num: '02', kind: 'IOS · ГЛАВНАЯ', src: '/_blob/ea785c0a27766c86e2c3d7f1e40c5b0a', alt: 'Тёмный главный экран кошелька с графиком', take: 'Крупный заголовок, круглые кнопки в шапке, график внутри карточки баланса, 24Ч/7Д/30Д' },
+        { num: '04', kind: 'IOS · СВЕТЛАЯ', src: '/_blob/7e3d9aea0c44088ac39d4b96f8ca4d5e', alt: 'Светлый экран кошелька с плавающим таб-баром', take: 'Таб-бар-капсула и отдельная круглая кнопка поиска — паттерн iOS 26; чипы-фильтры' },
+        { num: '06', kind: 'IOS · СТЕКЛО', src: '/_blob/3beada54bc214e04d0afda11ffb9b987', alt: 'Тёмное стекло карточек с сегментными шкалами', take: 'Сегментные шкалы из штрихов — для подтверждений и таймера; статус-чипы с иконкой' },
+        { num: '07', kind: 'IOS · ФОРМА СУММЫ', src: '/_blob/5e775c488c9c513232c5efeba51b0685', alt: 'Светлая форма обмена с выбором сети', take: 'Сеть сверху, чип актива, MAX, сумма и фиат в одной строке, «Комиссия сети ⓘ»' },
+        { num: '08', kind: 'ВЕБ · БОКОВАЯ ПАНЕЛЬ', src: '/_blob/fc85e9262fa7a98a0b69b75ef6cdb4db', alt: 'Иконочная боковая панель поверх растровой иллюстрации', take: 'Узкая иконочная панель, утилиты внизу, растровый фон рабочей области' },
+        { num: '10', kind: 'ТИПОГРАФИКА', src: '/_blob/047d8c823df401bb656d592cbab18637', alt: 'Монохромная карточка актива с моноширинными подписями', take: 'Главный ориентир: гротеск для цифр, моноширинный капс для подписей, тонкие линии' },
+        { num: '12', kind: 'ВИДЖЕТ', src: '/_blob/76e08d717c6f55bb4c05e22ed68c7438', alt: 'Виджет баланса Ethereum с кнопками отправки и получения', take: 'Знак валюты серым, число белым; кнопки «Отправить» и «Получить» с иконкой справа' },
+        { num: '13', kind: 'IOS · ШАПКА', src: '/_blob/fc52812c347269df1221f78e6e5af43b', alt: 'Тёмная шапка баланса над светлым списком активов', take: 'Стеклянные пилюли действий в шапке, чип «● Синхронизировано», свайп строки актива' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

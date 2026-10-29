@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS Admin — заявка на вывод</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="iadm-withdrawals.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div class="icard" style="padding: 18px; display: flex; flex-direction: column; gap: 6px">
+      <span style="display: flex; justify-content: space-between"><span class="lbl">P2P_IVAN · SEPOLIA</span><span class="chip c-warn" style="height: 24px">{{ L.k4 }}</span></span>
+      <span class="disp" style="font-size: 32px">4 000,00 USDT</span>
+      <span class="muted" style="font-size: 13px">{{ L.k5 }}</span>
+      <span class="mono" style="font-size: 13px; line-height: 20px; word-break: break-all; margin-top: 6px"><b style="font-weight: 600">0x1f9840</b><span class="muted">a85d5aF5bf1D1762F925BDADdC42</span><b style="font-weight: 600">01F984</b></span>
+    </div>
+    <div class="icard" style="padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="display: flex; justify-content: space-between; align-items: baseline"><span class="lbl">{{ L.k6 }}</span><span class="disp" style="font-size: 22px; color: var(--neg)">82</span></span>
+      <div aria-hidden="true" style="position: relative; display: grid; grid-template-columns: 24fr 35fr 25fr 16fr; gap: 3px; height: 8px"><span style="border-radius: 2px; background: #B6F36B"></span><span style="border-radius: 2px; background: #F5B941"></span><span style="border-radius: 2px; background: #FF9A5B"></span><span style="border-radius: 2px; background: #FF5A4A"></span><span style="position: absolute; left: 82%; top: -4px; width: 3px; height: 16px; border-radius: 2px; background: var(--t1)"></span></div>
+      <sc-for list="{{ reasons }}" as="x" hint-placeholder-count="3"><span style="display: flex; gap: 10px; font-size: 13px; line-height: 18px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex: none; border-radius: 2px; background: {{ x.c }}"></span>{{ x.t }}</span></sc-for>
+    </div>
+    <div class="icard" style="padding: 4px 16px"><sc-for list="{{ facts }}" as="f" hint-placeholder-count="3"><div class="rowline"><span>{{ f.k }}</span><span style="color: {{ f.c }}">{{ f.v }}</span></div></sc-for></div>
+  </div>
+  <div class="ios-fade"></div>
+  <div class="ios-bar"><button class="btn btn-n" style="flex: 1; height: 56px; font-size: 17px">{{ L.k7 }}</button><a href="iadm-withdrawals.dc.html" class="btn btn-p" style="flex: 1.4; height: 56px; font-size: 17px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0"></path></svg>{{ L.k8 }}</a></div>
+  <sc-if value="{{ isReject }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: var(--scrim)"></div>
+    <section role="dialog" aria-modal="true" aria-labelledby="rj" style="position: absolute; left: 8px; right: 8px; bottom: 8px; padding: 10px 20px 26px; border-radius: 38px; background: var(--surface); display: flex; flex-direction: column; gap: 14px">
+      <span aria-hidden="true" style="align-self: center; width: 36px; height: 5px; border-radius: 999px; background: var(--bd)"></span>
+      <h2 id="rj" class="disp" style="margin: 0; font-size: 22px">{{ L.k9 }}</h2>
+      <span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k10 }}</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="chip" style="background: var(--pbg); color: var(--pfg)">{{ L.k11 }}</span><span class="chip c-off">{{ L.k12 }}</span><span class="chip c-off">{{ L.k13 }}</span></div>
+      <label class="field"><span>{{ L.k14 }}</span><span class="inp focus" style="height: auto; padding: 12px 14px; background: var(--raised)"><textarea rows="3" style="flex: 1; border: 0; background: transparent; color: var(--t1); font: 400 15px Inter, sans-serif; resize: none; outline: none" defaultValue="{{ L.k15 }}"></textarea></span></label>
+      <button class="btn btn-n" style="height: 56px; font-size: 17px">{{ L.k16 }}</button>
+    </section>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "reject"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Заявка W-90412": "Request W-90412", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Ручная проверка": "Manual review", "комиссия 1,00 USDT · ждёт 1 ч 42 мин": "fee 1.00 USDT · waiting 1 h 42 min", "СКОРИНГ": "SCORING", "Отклонить": "Reject", "Одобрить": "Approve", "Отклонить вывод W-90412?": "Reject withdrawal W-90412?", "4 001 USDT вернутся на баланс p2p_ivan. Комментарий увидит пользователь.": "4,001 USDT will return to the balance of p2p_ivan. The user will see the comment.", "Высокий риск адреса": "High-risk address", "Новый адрес": "New address", "Лимит KYC": "KYC limit", "Комментарий": "Comment", "Адрес связан с сервисом-миксером. Выберите другой адрес или пройдите KYC 2.": "The address is linked to a mixing service. Choose another address or complete KYC 2.", "Отклонить и вернуть средства": "Reject and return funds", "Адрес в двух переходах от сервиса-миксера": "Address is two hops from a mixing service", "Адрес добавлен 3 часа назад, задержка 24 ч не прошла": "Address added 3 hours ago, the 24 h delay hasn't passed", "Санкционные списки — совпадений нет": "Sanctions lists — no matches", "Аккаунт": "Account", "с 14.05.2026 · KYC 1": "since 14.05.2026 · KYC 1", "Лимит KYC 1 · сутки": "KYC 1 limit · 24 h", "4 600 из 5 000": "4,600 of 5,000", "Устройство": "Device", "новое · Windows 11": "new · Windows 11"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Заявка W-90412"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Ручная проверка"), k5: this.tr("комиссия 1,00 USDT · ждёт 1 ч 42 мин"), k6: this.tr("СКОРИНГ"), k7: this.tr("Отклонить"), k8: this.tr("Одобрить"), k9: this.tr("Отклонить вывод W-90412?"), k10: this.tr("4 001 USDT вернутся на баланс p2p_ivan. Комментарий увидит пользователь."), k11: this.tr("Высокий риск адреса"), k12: this.tr("Новый адрес"), k13: this.tr("Лимит KYC"), k14: this.tr("Комментарий"), k15: this.tr("Адрес связан с сервисом-миксером. Выберите другой адрес или пройдите KYC 2."), k16: this.tr("Отклонить и вернуть средства"), k17: this.tr("Адрес в двух переходах от сервиса-миксера"), k18: this.tr("Адрес добавлен 3 часа назад, задержка 24 ч не прошла"), k19: this.tr("Санкционные списки — совпадений нет"), k20: this.tr("Аккаунт"), k21: this.tr("с 14.05.2026 · KYC 1"), k22: this.tr("Лимит KYC 1 · сутки"), k23: this.tr("4 600 из 5 000"), k24: this.tr("Устройство"), k25: this.tr("новое · Windows 11") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isReject: (this.props.state ?? 'default') === 'reject',
+      reasons: [{ c: 'var(--neg)', t: this.tr("Адрес в двух переходах от сервиса-миксера") }, { c: 'var(--warn)', t: this.tr("Адрес добавлен 3 часа назад, задержка 24 ч не прошла") }, { c: 'var(--t3)', t: this.tr("Санкционные списки — совпадений нет") }],
+      facts: [{ k: this.tr("Аккаунт"), v: this.tr("с 14.05.2026 · KYC 1"), c: 'var(--t1)' }, { k: this.tr("Лимит KYC 1 · сутки"), v: this.tr("4 600 из 5 000"), c: 'var(--neg)' }, { k: this.tr("Устройство"), v: this.tr("новое · Windows 11"), c: 'var(--warn)' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

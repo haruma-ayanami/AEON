@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — профиль трейдера</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-body" style="top: 116px">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+      <span style="width: 72px; height: 72px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 22px Inter, sans-serif">{{ ini }}</span>
+      <span style="display: flex; align-items: center; gap: 6px"><span class="disp" style="font-size: 24px">{{ nick }}</span><sc-if value="{{ isOld }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="{{ L.k1 }}"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg></sc-if></span>
+      <span class="muted" style="font-size: 13px">{{ sub }}</span>
+    </div>
+    <div class="icard" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--bs); overflow: hidden">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4"><span style="background: var(--surface); padding: 14px; display: flex; flex-direction: column; gap: 3px"><span class="lbl">{{ s.l }}</span><span class="disp" style="font-size: 20px; color: {{ s.c }}">{{ s.v }}</span></span></sc-for>
+    </div>
+    <sc-if value="{{ isOld }}" hint-placeholder-val="{{ true }}"><div class="icard" style="padding: 16px; display: flex; align-items: center; gap: 16px"><div role="img" aria-label="{{ L.k3 }}" style="display: grid; grid-template-columns: repeat(10, 9px); gap: 3px; flex: none"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="100"><span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d }}"></span></sc-for></div><span style="display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">{{ L.k4 }}</span><span class="muted" style="font-size: 13px">{{ L.k5 }}</span></span></div></sc-if>
+    <sc-if value="{{ isNew }}" hint-placeholder-val="{{ false }}"><div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--infos); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span>{{ L.k26 }}</span></span></div></sc-if>
+    <span class="lbl" style="padding: 4px 4px 0">{{ revL }}</span>
+    <sc-if value="{{ isOld }}" hint-placeholder-val="{{ true }}"><div class="icard"><sc-for list="{{ reviews }}" as="r" hint-placeholder-count="2"><div class="irow" style="align-items: flex-start; padding-top: 12px; padding-bottom: 12px"><span aria-hidden="true" style="width: 24px; height: 24px; flex: none; border-radius: 999px; background: {{ r.bg }}; color: {{ r.fg }}; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.d }}"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 14px">{{ r.who }}</span><span class="muted" style="font-size: 13px; line-height: 18px">{{ r.text }}</span></span></div></sc-for></div></sc-if>
+    <sc-if value="{{ isNew }}" hint-placeholder-val="{{ false }}"><div class="icard"><div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 22px 16px; text-align: center"><span style="font-weight: 600">{{ L.k27 }}</span><span class="muted" style="font-size: 13px; line-height: 18px">{{ L.k28 }}</span></div></div></sc-if>
+  </div>
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 110px; background: linear-gradient(180deg, var(--fade) 70%, transparent)"></div>
+  <div class="ios-nav"><a href="ios-p2p-market.dc.html" aria-label="{{ L.k7 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title"></span><span class="testnet">TESTNET</span><button aria-label="{{ L.k8 }}" class="gbtn glass"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.7"></circle><circle cx="12" cy="12" r="1.7"></circle><circle cx="19" cy="12" r="1.7"></circle></svg></button><button onClick="{{ toggleLang }}" aria-label="{{ L.k9 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-fade"></div>
+  <div class="ios-bar"><a href="ios-p2p-market.dc.html" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ buyL }}</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "seller": {"editor": "enum", "options": ["verified", "new"], "default": "verified"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "СДЕЛОК": "DEALS", "ЗАВЕРШЕНО": "COMPLETED", "1 284": "1,284", "Назад": "Back", "Верифицирован": "Verified", "в сети · KYC 2 · с марта 2026": "online · KYC 2 · since March 2026", "99 из 100 сделок завершены": "99 of 100 deals completed", "99 из 100": "99 of 100", "последних сделок завершены успешно": "recent deals completed successfully", "ОТЗЫВЫ · 612": "REVIEWS · 612", "Ещё": "More", "Купить USDT · 92,40 ₽": "Buy USDT · 92.40 ₽", "99,2%": "99.2%", "ВЫПУСК": "RELEASE", "~4 мин": "~4 min", "ОТЗЫВЫ": "REVIEWS", "★ 4,9": "★ 4.9", "Быстро выпустила, всё по инструкции.": "Released fast, everything as described.", "Ждал выпуска 25 минут.": "Waited 25 minutes for the release.", "Новый продавец: 3 сделки за неделю, отзывов пока нет. Начните с небольшой суммы — монеты продавца в любом случае заблокированы в эскроу, пока вы не подтвердите оплату.": "New seller: 3 deals this week, no reviews yet. Start with a small amount — the seller's coins stay locked in escrow until you confirm payment anyway.", "Отзывов пока нет": "No reviews yet", "Первый отзыв появится после завершённой сделки с оценкой.": "The first review appears after a completed, rated deal.", "в сети · KYC 1 · с 21.10.2026": "online · KYC 1 · since 21.10.2026", "ОТЗЫВЫ · 0": "REVIEWS · 0", "нет": "none", "3": "3", "100%": "100%", "~9 мин": "~9 min", "Купить USDT · 92,10 ₽": "Buy USDT · 92.10 ₽", "На AEON с 21.10.2026 · KYC уровень 1 · в сети · обычно отвечает за 6 мин": "On AEON since 21.10.2026 · KYC level 1 · online · usually replies in 6 min", "НОВЫЙ ПРОДАВЕЦ": "NEW SELLER", "KYC 1": "KYC 1", "Отзывы · 0": "Reviews · 0", "за неделю": "this week", "3 из 3": "3 of 3", "медиана": "median", "не было": "none so far", "ЗАВЕРШЕНО СДЕЛОК": "DEALS COMPLETED", "3 из 3 сделок завершены": "3 of 3 deals completed", "91,80 ₽": "91.80 ₽", "600 USDT · 1 000 – 20 000 ₽": "600 USDT · 1,000 – 20,000 ₽"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Верифицирован"), k2: this.tr("в сети · KYC 2 · с марта 2026"), k3: this.tr("99 из 100 сделок завершены"), k4: this.tr("99 из 100"), k5: this.tr("последних сделок завершены успешно"), k6: this.tr("ОТЗЫВЫ · 612"), k7: this.tr("Назад"), k8: this.tr("Ещё"), k9: this.tr("Язык интерфейса: русский. Переключить на английский"), k10: this.tr("Купить USDT · 92,40 ₽"), k11: this.tr("СДЕЛОК"), k12: this.tr("1 284"), k13: this.tr("ЗАВЕРШЕНО"), k14: this.tr("99,2%"), k15: this.tr("ВЫПУСК"), k16: this.tr("~4 мин"), k17: this.tr("ОТЗЫВЫ"), k18: this.tr("★ 4,9"), k19: this.tr("Быстро выпустила, всё по инструкции."), k20: this.tr("Ждал выпуска 25 минут."), k21: this.tr("в сети · KYC 1 · с 21.10.2026"), k22: this.tr("ОТЗЫВЫ · 0"), k23: this.tr("Купить USDT · 92,10 ₽"), k24: this.tr("нет"), k25: this.tr("~9 мин"), k26: this.tr("Новый продавец: 3 сделки за неделю, отзывов пока нет. Начните с небольшой суммы — монеты продавца в любом случае заблокированы в эскроу, пока вы не подтвердите оплату."), k27: this.tr("Отзывов пока нет"), k28: this.tr("Первый отзыв появится после завершённой сделки с оценкой.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const nw = (this.props.seller ?? 'verified') === 'new';
+    const ok = 'M5 12l5 5 9-10', bad = 'M6 6l12 12M18 6L6 18';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isOld: !nw, isNew: nw, ini: nw ? 'KP' : 'CM', nick: nw ? 'kirill_p2p' : 'crypto_mila',
+      sub: nw ? this.tr("в сети · KYC 1 · с 21.10.2026") : this.tr("в сети · KYC 2 · с марта 2026"), revL: nw ? this.tr("ОТЗЫВЫ · 0") : this.tr("ОТЗЫВЫ · 612"), buyL: nw ? this.tr("Купить USDT · 92,10 ₽") : this.tr("Купить USDT · 92,40 ₽"),
+      stats: nw ? [{ l: this.tr('СДЕЛОК'), v: '3', c: 'var(--t1)' }, { l: this.tr('ЗАВЕРШЕНО'), v: '100%', c: 'var(--t1)' }, { l: this.tr('ВЫПУСК'), v: this.tr('~9 мин'), c: 'var(--t1)' }, { l: this.tr('ОТЗЫВЫ'), v: this.tr('нет'), c: 'var(--t2)' }] : [{ l: this.tr('СДЕЛОК'), v: this.tr('1 284'), c: 'var(--t1)' }, { l: this.tr('ЗАВЕРШЕНО'), v: this.tr('99,2%'), c: 'var(--sigt)' }, { l: this.tr('ВЫПУСК'), v: this.tr('~4 мин'), c: 'var(--t1)' }, { l: this.tr('ОТЗЫВЫ'), v: this.tr('★ 4,9'), c: 'var(--t1)' }],
+      dots: Array.from({ length: 100 }, (_, i) => (i === 63 ? 'var(--neg)' : 'var(--sig)')),
+      reviews: [{ who: 'alex_tk', text: this.tr('Быстро выпустила, всё по инструкции.'), d: ok, bg: 'var(--sigs)', fg: 'var(--sigt)' }, { who: 'n7', text: this.tr('Ждал выпуска 25 минут.'), d: bad, bg: 'var(--negs)', fg: 'var(--neg)' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

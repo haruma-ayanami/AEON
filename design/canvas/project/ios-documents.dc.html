@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — документы и согласия</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="ios-profile.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ L.k2 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--raised); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 11v5M12 7.5v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k4 }}</span><span style="display: flex; gap: 8px"><button class="btn btn-s btn-p">{{ L.k5 }}</button><button class="btn btn-s btn-o">{{ L.k6 }}</button></span></span></div>
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k7 }}</span>
+    <div class="icard"><sc-for list="{{ docs }}" as="d" hint-placeholder-count="3"><button type="button" class="irow" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; min-height: 64px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h6M9 16h4"></path></svg><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span>{{ d.t }}</span><span class="faint" style="font-size: 12px">{{ d.v }}</span></span><sc-if value="{{ d.upd }}" hint-placeholder-val="{{ false }}"><span class="chip c-warn" style="height: 24px">{{ d.u }}</span></sc-if><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button></sc-for></div>
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k8 }}</span>
+    <div class="icard">
+      <label class="irow" style="min-height: 64px"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k9 }}</span><span class="faint" style="font-size: 12px">{{ L.k10 }}</span></span><span class="sw" aria-hidden="true"></span><input type="checkbox" class="sr"></label>
+      <label class="irow" style="min-height: 64px"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ L.k11 }}</span><span class="faint" style="font-size: 12px">{{ L.k12 }}</span></span><span class="sw on" aria-hidden="true"></span><input type="checkbox" checked class="sr"></label>
+    </div>
+    <span class="lbl" style="padding: 4px 4px 0">{{ L.k13 }}</span>
+    <div class="icard"><button type="button" class="irow"><span style="flex: 1">{{ L.k14 }}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="irow"><span style="flex: 1">{{ L.k15 }}</span><span class="muted" style="font-size: 13px">{{ L.k16 }}</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Документы": "Documents", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Вышли правила P2P-торговли v1.3. Примите их до 15.11.2026, чтобы и дальше создавать объявления.": "P2P trading rules v1.3 are out. Accept them by 15.11.2026 to keep creating offers.", "Принять": "Accept", "Что изменилось": "What's changed", "ПРИНЯТЫЕ ДОКУМЕНТЫ": "ACCEPTED DOCUMENTS", "НЕОБЯЗАТЕЛЬНЫЕ СОГЛАСИЯ": "OPTIONAL CONSENTS", "Новости AEON на почту": "AEON news by email", "Не чаще раза в месяц": "No more than once a month", "Обезличенная статистика": "Anonymous usage statistics", "Помогает находить ошибки": "Helps us find bugs", "ПОМОЩЬ": "HELP", "Частые вопросы": "FAQ", "Написать в поддержку": "Contact support", "ответ ~15 мин": "reply ~15 min", "Условия использования": "Terms of use", "v2.1 · принято 02.09.2026": "v2.1 · accepted 02.09.2026", "Политика обработки персональных данных": "Personal data policy", "v1.4 · принято 02.09.2026": "v1.4 · accepted 02.09.2026", "Правила P2P-торговли": "P2P trading rules", "v1.2 · принято 05.09.2026": "v1.2 · accepted 05.09.2026", "Есть v1.3": "v1.3 out"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Документы"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Вышли правила P2P-торговли v1.3. Примите их до 15.11.2026, чтобы и дальше создавать объявления."), k5: this.tr("Принять"), k6: this.tr("Что изменилось"), k7: this.tr("ПРИНЯТЫЕ ДОКУМЕНТЫ"), k8: this.tr("НЕОБЯЗАТЕЛЬНЫЕ СОГЛАСИЯ"), k9: this.tr("Новости AEON на почту"), k10: this.tr("Не чаще раза в месяц"), k11: this.tr("Обезличенная статистика"), k12: this.tr("Помогает находить ошибки"), k13: this.tr("ПОМОЩЬ"), k14: this.tr("Частые вопросы"), k15: this.tr("Написать в поддержку"), k16: this.tr("ответ ~15 мин"), k17: this.tr("Условия использования"), k18: this.tr("v2.1 · принято 02.09.2026"), k19: this.tr("Политика обработки персональных данных"), k20: this.tr("v1.4 · принято 02.09.2026"), k21: this.tr("Правила P2P-торговли"), k22: this.tr("v1.2 · принято 05.09.2026"), k23: this.tr("Есть v1.3") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      docs: [
+        { t: this.tr("Условия использования"), v: this.tr("v2.1 · принято 02.09.2026"), upd: false, u: '' },
+        { t: this.tr("Политика обработки персональных данных"), v: this.tr("v1.4 · принято 02.09.2026"), upd: false, u: '' },
+        { t: this.tr("Правила P2P-торговли"), v: this.tr("v1.2 · принято 05.09.2026"), upd: true, u: this.tr("Есть v1.3") }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

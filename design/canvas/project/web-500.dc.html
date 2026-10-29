@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — 500 · сбой сервера</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} dots" style="position: relative; width: 100%; min-height: 900px; display: flex; flex-direction: column">
+  <header style="height: 72px; padding: 0 40px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--bs); background: var(--canvas)">
+    <a href="web-wallet-home.dc.html" aria-label="{{ L.k1 }}" style="display: flex; align-items: center; gap: 10px; text-decoration: none"><span aria-hidden="true" style="width: 22px; height: 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px"><sc-for list="{{ logo }}" as="c" hint-placeholder-count="9"><span style="background: {{ c }}; border-radius: 1px"></span></sc-for></span><span style="font: 600 18px 'Inter Tight', sans-serif; letter-spacing: 0.02em">AEON</span></a>
+    <span style="flex: 1"></span>
+    <span class="testnet">{{ L.k2 }}</span>
+    <button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 36px; padding: 3px; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bd, #2E342F); background: var(--raised, #1B1F1C); display: inline-flex; gap: 2px; cursor: pointer; font: 500 11px 'JetBrains Mono', monospace; flex: none"><span style="min-width: 34px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button>
+    <button type="button" class="btn btn-s btn-o" aria-label="{{ L.k4 }}" style="width: 36px; padding: 0">?</button>
+  </header>
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 56px 24px">
+    <div style="width: min(620px, 100%); display: flex; flex-direction: column; gap: 20px">
+      <div aria-hidden="true" style="display: grid; grid-template-columns: repeat({{ g.cols }}, 14px); grid-auto-rows: 14px; gap: 4px; padding-bottom: 12px">
+        <sc-for list="{{ g.cells }}" as="c" hint-placeholder-count="119"><span style="background: {{ c }}; border-radius: 2px"></span></sc-for>
+      </div>
+      <span class="lbl" style="color: {{ s.lc }}">{{ s.lbl }}</span>
+      <h1 class="disp" style="margin: 0; font-size: 44px; line-height: 1.05">{{ s.title }}</h1>
+      <p class="muted" style="margin: 0; font-size: 16px; line-height: 24px">{{ s.text }}</p>
+      <sc-if value="{{ hasProgress }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 8px"><div role="progressbar" aria-label="{{ L.k5 }}" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="height: 6px; border-radius: 3px; background: var(--bd)"><span style="display: block; width: 40%; height: 6px; border-radius: 3px; background: var(--sig)"></span></div><span class="mono faint" style="font-size: 12px">{{ L.k6 }}</span></div>
+      </sc-if>
+      <sc-if value="{{ hasRows }}" hint-placeholder-val="{{ true }}">
+        <div class="tile" style="padding: 4px 18px">
+          <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 12px; min-height: 48px; border-bottom: 1px solid var(--bs); font-size: 14px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; flex: none; background: {{ r.c }}"></span><span style="flex: 1">{{ r.k }}</span><span class="muted" style="text-align: right">{{ r.v }}</span></div></sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ hasForm }}" hint-placeholder-val="{{ false }}">
+        <form class="tile" style="padding: 18px; display: flex; flex-direction: column; gap: 14px" onsubmit="return false">
+          <label class="field"><span class="lbl">{{ L.k7 }}</span><input class="inp" value="alex.t@mail.test" readonly="" aria-readonly="true"></label>
+          <label class="field"><span class="lbl">{{ L.k8 }}</span><input class="inp" type="password" placeholder="{{ L.k9 }}" autocomplete="current-password"></label>
+          <span class="faint" style="font-size: 12px">{{ L.k10 }}</span>
+        </form>
+      </sc-if>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap"><a href="{{ s.href }}" class="btn btn-p btn-l">{{ s.primary }}</a><button type="button" class="btn btn-o btn-l">{{ s.secondary }}</button></div>
+      <div style="display: flex; align-items: center; gap: 8px; padding-top: 8px; border-top: 1px solid var(--bs)"><span class="mono faint" style="flex: 1; font-size: 12px; line-height: 18px">{{ s.meta }}</span><button class="btn btn-s btn-o" aria-label="{{ L.k11 }}">{{ L.k12 }}</button></div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["not_found", "server_error", "maintenance", "offline", "session_expired"], "default": "server_error"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"ТЕСТОВАЯ СЕТЬ": "TESTNET", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Кошелёк": "Wallet", "Войти": "Sign in", "Справка": "Help", "Копировать": "Copy", "AEON, на главную": "AEON, home", "Ход плановых работ": "Maintenance progress", "02:00 ─────────── 02:48 ─────────────────── 04:00 МСК": "02:00 ─────────── 02:48 ─────────────────── 04:00 MSK", "ПОЧТА": "EMAIL", "ПАРОЛЬ": "PASSWORD", "Введите пароль": "Enter password", "После пароля попросим код из приложения-аутентификатора.": "After the password we'll ask for a code from your authenticator app.", "Скопировать технические данные": "Copy technical details", "Ошибка 404 · страница не найдена": "Error 404 · page not found", "Такой страницы нет": "This page doesn't exist", "Ссылка устарела или в адресе опечатка. Если ссылка пришла в письме, проверьте отправителя: письма AEON приходят только с адресов @aeon.test.": "The link is outdated or the address has a typo. If the link came in an email, check the sender: AEON emails only come from @aeon.test addresses.", "балансы и переводы": "balances and transfers", "объявления и сделки": "offers and deals", "Центр помощи": "Help center", "ответы и поддержка": "answers and support", "На главную": "Go home", "Сообщить о битой ссылке": "Report a broken link", "Запрошено: /wallet/send/usdt-old · 23.10.2026 14:32 МСК": "Requested: /wallet/send/usdt-old · 23.10.2026 14:32 MSK", "Ошибка 500 · сбой на сервере": "Error 500 · server failure", "Не удалось загрузить страницу": "Couldn't load the page", "Сбой на нашей стороне. Ваши средства в безопасности: балансы и эскроу хранятся отдельно и не затронуты. Обновите страницу через минуту. Если ошибка повторится, напишите в поддержку и укажите ID запроса.": "Something failed on our side. Your funds are safe: balances and escrow are stored separately and weren't affected. Refresh the page in a minute. If the error repeats, contact support and include the request ID.", "частичный сбой": "partial outage", "Кошельки и балансы": "Wallets and balances", "работают": "working", "Таймеры P2P-сделок": "P2P deal timers", "на паузе до восстановления": "paused until recovery", "Обновить страницу": "Refresh page", "Статус сервисов": "Service status", "ID запроса 7f3c-91ad-e2b0 · 23.10.2026 14:32:08 МСК": "Request ID 7f3c-91ad-e2b0 · 23.10.2026 14:32:08 MSK", "Плановые работы": "Scheduled maintenance", "AEON обновляется до 04:00 МСК": "AEON is updating until 04:00 MSK", "Вход, переводы и новые объявления временно недоступны. Таймеры активных сделок остановлены и продолжатся после работ, поэтому время на оплату никто не потеряет.": "Sign-in, transfers and new offers are temporarily unavailable. Active deal timers are stopped and will resume after maintenance, so nobody loses payment time.", "Начало": "Start", "02:00 МСК": "02:00 MSK", "Окончание": "End", "04:00 МСК · осталось 1 ч 12 мин": "04:00 MSK · 1 h 12 min left", "Входящие депозиты": "Incoming deposits", "зачислятся после работ": "will be credited after maintenance", "Сообщить, когда закончится": "Notify me when it's over", "Работы: обновление узлов Ethereum Sepolia и Polygon Amoy": "Maintenance: updating Ethereum Sepolia and Polygon Amoy nodes", "Нет подключения": "No connection", "Нет соединения с интернетом": "No internet connection", "Проверьте Wi-Fi или кабель. Если включён VPN, попробуйте его отключить. Мы повторим попытку сами через 12 секунд. Неотправленный перевод сохранён как черновик.": "Check your Wi-Fi or cable. If a VPN is on, try turning it off. We'll retry automatically in 12 seconds. The unsent transfer is saved as a draft.", "Балансы": "Balances", "последнее обновление 14:20": "last updated 14:20", "Черновик перевода": "Transfer draft", "Автоповтор": "Auto-retry", "через 12 с": "in 12 s", "Повторить сейчас": "Retry now", "Открыть черновик": "Open draft", "Последняя попытка 14:32:08 · net::ERR_INTERNET_DISCONNECTED": "Last attempt 14:32:08 · net::ERR_INTERNET_DISCONNECTED", "Сессия завершена": "Session ended", "Войдите снова": "Sign in again", "Вы не пользовались AEON 15 минут, и мы завершили сессию, чтобы никто не открыл ваш кошелёк с этого компьютера. Черновик перевода сохранён.": "You haven't used AEON for 15 minutes, so we ended the session to keep anyone from opening your wallet on this computer. The transfer draft is saved.", "Выйти из аккаунта": "Sign out of account", "Срок сессии меняется в Профиль → Безопасность": "Session length can be changed in Profile → Security"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON, на главную"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Справка"), k5: this.tr("Ход плановых работ"), k6: this.tr("02:00 ─────────── 02:48 ─────────────────── 04:00 МСК"), k7: this.tr("ПОЧТА"), k8: this.tr("ПАРОЛЬ"), k9: this.tr("Введите пароль"), k10: this.tr("После пароля попросим код из приложения-аутентификатора."), k11: this.tr("Скопировать технические данные"), k12: this.tr("Копировать"), k13: this.tr("Ошибка 404 · страница не найдена"), k14: this.tr("Такой страницы нет"), k15: this.tr("Ссылка устарела или в адресе опечатка. Если ссылка пришла в письме, проверьте отправителя: письма AEON приходят только с адресов @aeon.test."), k16: this.tr("Кошелёк"), k17: this.tr("балансы и переводы"), k18: this.tr("объявления и сделки"), k19: this.tr("Центр помощи"), k20: this.tr("ответы и поддержка"), k21: this.tr("На главную"), k22: this.tr("Сообщить о битой ссылке"), k23: this.tr("Запрошено: /wallet/send/usdt-old · 23.10.2026 14:32 МСК"), k24: this.tr("Ошибка 500 · сбой на сервере"), k25: this.tr("Не удалось загрузить страницу"), k26: this.tr("Сбой на нашей стороне. Ваши средства в безопасности: балансы и эскроу хранятся отдельно и не затронуты. Обновите страницу через минуту. Если ошибка повторится, напишите в поддержку и укажите ID запроса."), k27: this.tr("частичный сбой"), k28: this.tr("Кошельки и балансы"), k29: this.tr("работают"), k30: this.tr("Таймеры P2P-сделок"), k31: this.tr("на паузе до восстановления"), k32: this.tr("Обновить страницу"), k33: this.tr("Статус сервисов"), k34: this.tr("ID запроса 7f3c-91ad-e2b0 · 23.10.2026 14:32:08 МСК"), k35: this.tr("Плановые работы"), k36: this.tr("AEON обновляется до 04:00 МСК"), k37: this.tr("Вход, переводы и новые объявления временно недоступны. Таймеры активных сделок остановлены и продолжатся после работ, поэтому время на оплату никто не потеряет."), k38: this.tr("Начало"), k39: this.tr("02:00 МСК"), k40: this.tr("Окончание"), k41: this.tr("04:00 МСК · осталось 1 ч 12 мин"), k42: this.tr("Входящие депозиты"), k43: this.tr("зачислятся после работ"), k44: this.tr("Сообщить, когда закончится"), k45: this.tr("Работы: обновление узлов Ethereum Sepolia и Polygon Amoy"), k46: this.tr("Нет подключения"), k47: this.tr("Нет соединения с интернетом"), k48: this.tr("Проверьте Wi-Fi или кабель. Если включён VPN, попробуйте его отключить. Мы повторим попытку сами через 12 секунд. Неотправленный перевод сохранён как черновик."), k49: this.tr("Балансы"), k50: this.tr("последнее обновление 14:20"), k51: this.tr("Черновик перевода"), k52: this.tr("Автоповтор"), k53: this.tr("через 12 с"), k54: this.tr("Повторить сейчас"), k55: this.tr("Открыть черновик"), k56: this.tr("Последняя попытка 14:32:08 · net::ERR_INTERNET_DISCONNECTED"), k57: this.tr("Сессия завершена"), k58: this.tr("Войдите снова"), k59: this.tr("Вы не пользовались AEON 15 минут, и мы завершили сессию, чтобы никто не открыл ваш кошелёк с этого компьютера. Черновик перевода сохранён."), k60: this.tr("Войти"), k61: this.tr("Выйти из аккаунта"), k62: this.tr("Срок сессии меняется в Профиль → Безопасность") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const state = this.props.state ?? 'server_error';
+    const F = {
+      '0': ['01110', '10001', '10011', '10101', '11001', '10001', '01110'],
+      '1': ['00100', '01100', '00100', '00100', '00100', '00100', '01110'],
+      '3': ['11110', '00001', '00001', '01110', '00001', '00001', '11110'],
+      '4': ['00010', '00110', '01010', '10010', '11111', '00010', '00010'],
+      '5': ['11111', '10000', '11110', '00001', '00001', '10001', '01110'],
+      'O': ['01110', '10001', '10001', '10001', '10001', '10001', '01110'],
+      'F': ['11111', '10000', '10000', '11110', '10000', '10000', '10000']
+    };
+    const glyph = (txt, accent) => {
+      const chars = txt.split(''), cols = chars.length * 6 - 1, cells = [];
+      for (let y = 0; y < 7; y++) for (let x = 0; x < cols; x++) {
+        const ci = Math.floor(x / 6), cx = x % 6;
+        const on = cx < 5 && F[chars[ci]][y][cx] === '1';
+        const n = (x * 7 + y * 13) % 17;
+        cells.push(on ? (n === 3 ? accent : 'var(--t1)') : n === 5 ? 'var(--bd)' : 'transparent');
+      }
+      return { cols, cells };
+    };
+    const r = (k, v, c) => ({ k, v, c });
+    const S = {
+      not_found: { code: '404', lbl: this.tr('Ошибка 404 · страница не найдена'), lc: 'var(--t3)', title: this.tr('Такой страницы нет'), text: this.tr('Ссылка устарела или в адресе опечатка. Если ссылка пришла в письме, проверьте отправителя: письма AEON приходят только с адресов @aeon.test.'), rows: [r(this.tr('Кошелёк'), this.tr('балансы и переводы'), 'var(--sig)'), r('P2P', this.tr('объявления и сделки'), 'var(--sig)'), r(this.tr('Центр помощи'), this.tr('ответы и поддержка'), 'var(--sig)')], primary: this.tr('На главную'), href: 'web-wallet-home.dc.html', secondary: this.tr('Сообщить о битой ссылке'), meta: this.tr('Запрошено: /wallet/send/usdt-old · 23.10.2026 14:32 МСК') },
+      server_error: { code: '500', lbl: this.tr('Ошибка 500 · сбой на сервере'), lc: 'var(--neg)', title: this.tr('Не удалось загрузить страницу'), text: this.tr('Сбой на нашей стороне. Ваши средства в безопасности: балансы и эскроу хранятся отдельно и не затронуты. Обновите страницу через минуту. Если ошибка повторится, напишите в поддержку и укажите ID запроса.'), rows: [r('API', this.tr('частичный сбой'), 'var(--warn)'), r(this.tr('Кошельки и балансы'), this.tr('работают'), 'var(--sig)'), r(this.tr('Таймеры P2P-сделок'), this.tr('на паузе до восстановления'), 'var(--info)')], primary: this.tr('Обновить страницу'), href: '#', secondary: this.tr('Статус сервисов'), meta: this.tr('ID запроса 7f3c-91ad-e2b0 · 23.10.2026 14:32:08 МСК') },
+      maintenance: { code: '503', lbl: this.tr('Плановые работы'), lc: 'var(--warn)', title: this.tr('AEON обновляется до 04:00 МСК'), text: this.tr('Вход, переводы и новые объявления временно недоступны. Таймеры активных сделок остановлены и продолжатся после работ, поэтому время на оплату никто не потеряет.'), rows: [r(this.tr('Начало'), this.tr('02:00 МСК'), 'var(--t3)'), r(this.tr('Окончание'), this.tr('04:00 МСК · осталось 1 ч 12 мин'), 'var(--warn)'), r(this.tr('Входящие депозиты'), this.tr('зачислятся после работ'), 'var(--info)')], primary: this.tr('Сообщить, когда закончится'), href: '#', secondary: this.tr('Статус сервисов'), meta: this.tr('Работы: обновление узлов Ethereum Sepolia и Polygon Amoy') },
+      offline: { code: 'OFF', lbl: this.tr('Нет подключения'), lc: 'var(--warn)', title: this.tr('Нет соединения с интернетом'), text: this.tr('Проверьте Wi-Fi или кабель. Если включён VPN, попробуйте его отключить. Мы повторим попытку сами через 12 секунд. Неотправленный перевод сохранён как черновик.'), rows: [r(this.tr('Балансы'), this.tr('последнее обновление 14:20'), 'var(--t3)'), r(this.tr('Черновик перевода'), '120 USDT · 0x8f3A…81b9D', 'var(--info)'), r(this.tr('Автоповтор'), this.tr('через 12 с'), 'var(--warn)')], primary: this.tr('Повторить сейчас'), href: '#', secondary: this.tr('Открыть черновик'), meta: this.tr('Последняя попытка 14:32:08 · net::ERR_INTERNET_DISCONNECTED') },
+      session_expired: { code: '401', lbl: this.tr('Сессия завершена'), lc: 'var(--info)', title: this.tr('Войдите снова'), text: this.tr('Вы не пользовались AEON 15 минут, и мы завершили сессию, чтобы никто не открыл ваш кошелёк с этого компьютера. Черновик перевода сохранён.'), rows: [], primary: this.tr('Войти'), href: 'web-auth-2fa.dc.html', secondary: this.tr('Выйти из аккаунта'), meta: this.tr('Срок сессии меняется в Профиль → Безопасность') }
+    };
+    const s = S[state] || S.not_found;
+    const accent = { not_found: 'var(--sig)', server_error: 'var(--neg)', maintenance: 'var(--warn)', offline: 'var(--warn)', session_expired: 'var(--info)' }[state] || 'var(--sig)';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      logo: ['var(--sig)', 'var(--t1)', 'var(--t1)', 'var(--t1)', 'transparent', 'var(--t1)', 'var(--t1)', 'var(--t1)', 'var(--t1)'],
+      s, g: glyph(s.code, accent),
+      hasRows: s.rows.length > 0, hasForm: state === 'session_expired', hasProgress: state === 'maintenance'
+    };
+  }
+}
+</script>
+</body>
+</html>

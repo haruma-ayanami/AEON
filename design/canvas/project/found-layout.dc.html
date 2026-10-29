@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Основы — отступы, радиусы, сетки</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 1600px; min-height: 1840px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">ОСНОВЫ · 03 · ОТСТУПЫ, РАДИУСЫ, СЕТКИ</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Шаг 4 px, форма по платформе</h2>
+    </div>
+    <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 22px; color: #A3ACA5">Один набор отступов на все клиенты. Форма меняется по платформе: пилюли и крупные радиусы на iOS, мягче в вебе, по правилам Fluent на Windows (8 px окно, 4 px контролы).</p>
+  </div>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ОТСТУПЫ · space/*</span>
+    <div style="display: flex; align-items: flex-end; gap: 28px; flex-wrap: wrap">
+      <sc-for list="{{ space }}" as="s" hint-placeholder-count="11">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+          <div style="width: {{ s.px }}px; height: {{ s.px }}px; min-width: 2px; min-height: 2px; background: #B6F36B; border-radius: 2px"></div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #F2F5F1">{{ s.px }}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A938C">{{ s.name }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">IOS · ANDROID</span>
+      <div style="height: 120px; border-radius: 28px; background: #1B1F1C; border: 1px solid #2E342F; display: flex; align-items: flex-end; padding: 16px; box-sizing: border-box"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A3ACA5">карточка · 28</span></div>
+      <div style="display: flex; gap: 10px"><span style="flex: 1; height: 52px; border-radius: 999px; background: #F2F5F1; color: #0A0C0B; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px">Кнопка · пилюля</span><span style="width: 52px; height: 52px; border-radius: 999px; background: #1B1F1C; border: 1px solid #2E342F"></span></div>
+      <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Касание ≥ 44 px · поля экрана 16 · кнопки 52 · чипы 32</span>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ВЕБ</span>
+      <div style="height: 120px; border-radius: 20px; background: #1B1F1C; border: 1px solid #2E342F; display: flex; align-items: flex-end; padding: 16px; box-sizing: border-box"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A3ACA5">карточка · 20</span></div>
+      <div style="display: flex; gap: 10px"><span style="flex: 1; height: 44px; border-radius: 999px; background: #F2F5F1; color: #0A0C0B; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px">Кнопка · 44</span><span style="flex: 1; height: 44px; border-radius: 12px; background: #1B1F1C; border: 1px solid #2E342F; display: flex; align-items: center; padding: 0 14px; font-size: 14px; color: #8A938C">Поле · 12</span></div>
+      <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Текст ≥ 14 px · модули через 16–24 · кнопки 36 / 44 / 52</span>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">WINDOWS · FLUENT</span>
+      <div style="height: 120px; border-radius: 8px; background: #1B1F1C; border: 1px solid #2E342F; display: flex; align-items: flex-end; padding: 16px; box-sizing: border-box"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A3ACA5">окно, диалог · 8</span></div>
+      <div style="display: flex; gap: 10px"><span style="flex: 1; height: 32px; border-radius: 4px; background: #F2F5F1; color: #0A0C0B; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px">Кнопка · 4</span><span style="flex: 1; height: 32px; border-radius: 4px; background: #1B1F1C; border: 1px solid #2E342F; border-bottom: 2px solid #B6F36B; display: flex; align-items: center; padding: 0 10px; font-size: 14px; color: #8A938C">Поле · фокус</span></div>
+      <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">Контролы 32 · строки таблиц 40 · 2 px у элементов &lt; 32 · 0 у развёрнутого окна</span>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">РАДИУСЫ · radius/*</span>
+    <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 20px">
+      <sc-for list="{{ radii }}" as="r" hint-placeholder-count="7">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div style="height: 96px; background: #1B1F1C; border: 1px solid #48504A; border-radius: {{ r.px }}px"></div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px">{{ r.name }} · {{ r.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 20px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">СЕТКИ И ТОЧКИ ПЕРЕЛОМА</span>
+    <div style="display: grid; grid-template-columns: 2fr 1.4fr 1fr; gap: 24px; align-items: start">
+      <div style="background: #131614; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 15px; font-weight: 500">Веб 1440 · 12 колонок · поля 32 · промежуток 24</span>
+        <div style="display: flex; gap: 10px; height: 160px">
+          <div style="width: 72px; background: #1B1F1C; border-radius: 12px"></div>
+          <div style="flex: 1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 8px">
+            <sc-for list="{{ twelve }}" as="c" hint-placeholder-count="12"><div style="background: rgba(182,243,107,0.14); border-radius: 4px"></div></sc-for>
+          </div>
+        </div>
+        <span style="font-size: 13px; line-height: 20px; color: #A3ACA5">≥ 1280 — панель с подписями 240 · 768–1279 — иконочная панель 72 · &lt; 768 — нижний таб-бар · до 3840 без горизонтальной прокрутки</span>
+      </div>
+      <div style="background: #131614; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 15px; font-weight: 500">Windows 1440×900 · NavigationView 240</span>
+        <div style="height: 160px; border-radius: 8px; border: 1px solid #2E342F; overflow: hidden; display: flex; flex-direction: column">
+          <div style="height: 28px; background: #151917; border-bottom: 1px solid #232824"></div>
+          <div style="flex: 1; display: flex"><div style="width: 64px; background: #151917"></div><div style="flex: 1; background: #131614; border-top-left-radius: 8px; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; padding: 10px"><sc-for list="{{ eight }}" as="c" hint-placeholder-count="8"><div style="background: rgba(182,243,107,0.14); border-radius: 2px"></div></sc-for></div></div>
+        </div>
+        <span style="font-size: 13px; line-height: 20px; color: #A3ACA5">Минимум окна 1024×700 · база Mica, контент — слой поверх</span>
+      </div>
+      <div style="background: #131614; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px; align-items: center">
+        <span style="font-size: 15px; font-weight: 500; align-self: flex-start">iOS 390 · 4 колонки</span>
+        <div style="width: 96px; height: 200px; border-radius: 20px; border: 1px solid #2E342F; padding: 8px 6px; box-sizing: border-box; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px">
+          <div style="background: rgba(182,243,107,0.14); border-radius: 3px"></div><div style="background: rgba(182,243,107,0.14); border-radius: 3px"></div><div style="background: rgba(182,243,107,0.14); border-radius: 3px"></div><div style="background: rgba(182,243,107,0.14); border-radius: 3px"></div>
+        </div>
+        <span style="font-size: 13px; line-height: 20px; color: #A3ACA5; align-self: flex-start">Поля 16 · промежуток 12 · Android 412</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #131614; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ГЛУБИНА · СВЕТОМ, А НЕ ТЕНЬЮ</span>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-radius: 16px; overflow: hidden">
+      <div style="height: 140px; background: #070807; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8A938C">0 · SUNKEN</span><span style="font-size: 14px; color: #A3ACA5">Фон таблиц</span></div>
+      <div style="height: 140px; background: #0A0C0B; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8A938C">1 · CANVAS</span><span style="font-size: 14px; color: #A3ACA5">Фон приложения</span></div>
+      <div style="height: 140px; background: #131614; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8A938C">2 · SURFACE</span><span style="font-size: 14px; color: #A3ACA5">Карточки</span></div>
+      <div style="height: 140px; background: #1B1F1C; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 32px rgba(0,0,0,0.35)"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8A938C">3 · RAISED + ТЕНЬ</span><span style="font-size: 14px; color: #A3ACA5">Меню, поповеры</span></div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1840}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      space: [2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64].map((px, i) => ({ px, name: 'space/' + (i + 1) })),
+      radii: [
+        { name: 'xs', px: 4, label: '4' }, { name: 's', px: 8, label: '8' }, { name: 'm', px: 12, label: '12' },
+        { name: 'l', px: 16, label: '16' }, { name: 'xl', px: 20, label: '20' }, { name: '2xl', px: 28, label: '28' },
+        { name: 'full', px: 999, label: 'пилюля' }
+      ],
+      twelve: Array.from({ length: 12 }, (_, i) => ({ i })),
+      eight: Array.from({ length: 8 }, (_, i) => ({ i }))
+    };
+  }
+}
+</script>
+</body>
+</html>

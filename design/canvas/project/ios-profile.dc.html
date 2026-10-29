@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — профиль</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-body" style="top: 116px">
+    <div class="icard" style="padding: 16px; display: flex; align-items: center; gap: 14px"><span style="width: 56px; height: 56px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 18px Inter, sans-serif">{{ L.k1 }}</span><span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span class="disp" style="font-size: 20px">alex_tk</span><span class="muted" style="font-size: 13px">alex.t@mail.test</span></span><span class="chip c-ok">KYC 1</span></div>
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+      <div class="icard">
+        <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3">
+          <a href="{{ i.href }}" class="irow" style="min-height: 52px"><span aria-hidden="true" style="width: 30px; height: 30px; flex: none; border-radius: 9px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ i.d }}"></path></svg></span><span style="flex: 1; font-size: 15px">{{ i.t }}</span><span class="muted" style="font-size: 14px">{{ i.v }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+        </sc-for>
+      </div>
+    </sc-for>
+    <a href="ios-auth-welcome.dc.html" class="icard" style="height: 52px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--neg); font-weight: 500">{{ L.k2 }}</a>
+  </div>
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 110px; background: linear-gradient(180deg, var(--fade) 70%, transparent)"></div>
+  <div class="ios-nav" style="align-items: flex-start"><span style="flex: 1; min-width: 0; padding-top: 2px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px"><span class="disp" style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 30px; line-height: 36px">{{ L.k3 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k4 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button><button aria-label="{{ L.kh }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5"></path></svg></button></div>
+  <div style="position: absolute; left: 0; right: 0; bottom: 0"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="IosTabBar" active="profile" hint-size="390px,110px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Подсказка по разделу": "Section help", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Профиль": "Profile", "АТ": "AT", "Уровень 1": "Level 1", "Верификация": "Verification", "Безопасность": "Security", "Лимиты": "Limits", "Язык": "Language", "Русский": "English", "Уведомления": "Notifications", "Выйти": "Sign out", "Личные данные": "Personal details", "Адресная книга": "Address book", "Реквизиты P2P": "P2P payment details", "Тема": "Theme", "Тёмная": "Dark", "Помощь и документы": "Help and documents"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("АТ"), k2: this.tr("Выйти"), k3: this.tr("Профиль"), k4: this.tr("Язык интерфейса: русский. Переключить на английский"), k5: this.tr("Личные данные"), k6: this.tr("Верификация"), k7: this.tr("Уровень 1"), k8: this.tr("Лимиты"), k9: this.tr("Безопасность"), k10: this.tr("Адресная книга"), k11: this.tr("Реквизиты P2P"), k12: this.tr("Язык"), k13: this.tr("Русский"), k14: this.tr("Тема"), k15: this.tr("Тёмная"), k16: this.tr("Уведомления"), k17: this.tr("Помощь и документы"), kh: this.tr("Подсказка по разделу") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const i = (t, v, d, href) => ({ t, v, d, href: href || '#' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      groups: [
+        { items: [i(this.tr('Личные данные'), '', 'M8.5 8.5a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0M5 19.5c1.2-3.2 3.8-5 7-5s5.8 1.8 7 5'), i(this.tr('Верификация'), this.tr('Уровень 1'), 'M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4', 'ios-kyc.dc.html'), i(this.tr('Лимиты'), '82% P2P', 'M4 19h16M6 15l4-5 3 3 5-7', 'ios-limits.dc.html')] },
+        { items: [i(this.tr('Безопасность'), 'Face ID · 2FA', 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3', 'ios-security.dc.html'), i(this.tr('Адресная книга'), '3', 'M3 9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z', 'ios-address-book.dc.html'), i(this.tr('Реквизиты P2P'), '2', 'M4 5h16v14H4zM8 9h8M8 13h5', 'ios-payment-methods.dc.html')] },
+        { items: [i(this.tr('Язык'), this.tr('Русский'), 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18', 'ios-settings.dc.html'), i(this.tr('Тема'), this.tr('Тёмная'), 'M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10z', 'ios-settings.dc.html'), i(this.tr('Уведомления'), '', 'M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0'), i(this.tr('Помощь и документы'), '', 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5', 'ios-documents.dc.html')] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

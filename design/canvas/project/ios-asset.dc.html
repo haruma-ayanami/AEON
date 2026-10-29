@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — актив USDT</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-wallet-home.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Tether USD</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button><button aria-label="{{ L.k3 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5"></path></svg></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px">
+      <span class="lbl">{{ L.k4 }}</span>
+      <span class="disp" style="font-size: 40px; line-height: 1">{{ L.k5 }} <span class="faint" style="font-size: 22px">USDT</span></span>
+      <span class="muted" style="font-size: 14px">{{ L.k6 }}</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+      <span class="icard" style="padding: 10px 12px; border-radius: 16px; display: flex; flex-direction: column; gap: 3px"><span class="lbl" style="font-size: 10px">{{ L.k7 }}</span><span class="num" style="font-size: 15px; font-weight: 600">{{ L.k8 }}</span></span>
+      <a href="ios-p2p-deal-seller.dc.html" class="icard" style="padding: 10px 12px; border-radius: 16px; display: flex; flex-direction: column; gap: 3px; text-decoration: none; color: var(--t1)"><span class="lbl" style="font-size: 10px">{{ L.k9 }}</span><span class="num" style="font-size: 15px; font-weight: 600">{{ L.k10 }}</span></a>
+      <span class="icard" style="padding: 10px 12px; border-radius: 16px; display: flex; flex-direction: column; gap: 3px"><span class="lbl" style="font-size: 10px">{{ L.k11 }}</span><span class="num" style="font-size: 15px; font-weight: 600; color: var(--warn)">{{ L.k12 }}</span></span>
+    </div>
+    <section class="icard" aria-label="{{ L.k13 }}" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+        <span style="display: flex; align-items: baseline; gap: 8px"><span class="disp" style="font-size: 22px">{{ L.k14 }}</span><span style="font-size: 13px; font-weight: 500; color: var(--sigt)">{{ chg }}</span></span>
+        <div role="radiogroup" aria-label="{{ L.k15 }}" style="display: flex; gap: 2px; padding: 2px; border-radius: 999px; background: var(--raised)">
+          <sc-for list="{{ ranges }}" as="r" hint-placeholder-count="4"><button role="radio" aria-checked="{{ r.sel }}" style="height: 28px; min-width: 34px; padding: 0 8px; border-radius: 999px; border: 0; background: {{ r.bg }}; color: {{ r.fg }}; font: 600 12px Inter, sans-serif">{{ r.t }}</button></sc-for>
+        </div>
+      </div>
+      <svg role="img" aria-label="{{ chartAria }}" viewBox="0 0 600 200" preserveAspectRatio="none" style="width: 100%; height: 110px; display: block">
+        <path d="{{ area }}" fill="var(--sigs)" stroke="none"></path>
+        <path d="{{ line }}" fill="none" stroke="var(--sigt)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"></path>
+      </svg>
+      <span aria-hidden="true" class="mono faint" style="display: flex; justify-content: space-between; font-size: 10px"><sc-for list="{{ xs }}" as="x" hint-placeholder-count="4"><span>{{ x }}</span></sc-for></span>
+    </section>
+    <button type="button" class="icard irow" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; border-radius: 18px; border-bottom: 0"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; border-radius: 2px; background: #8A9BFF"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 500 15px Inter, sans-serif">Ethereum Sepolia</span><span class="faint" style="font-size: 12px">{{ L.k16 }}</span></span><span class="num" style="font: 600 15px 'Inter Tight', sans-serif">{{ L.k17 }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+    <section class="icard" aria-label="{{ L.k18 }}">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="2"><a href="ios-tx-detail.dc.html" class="irow" style="min-height: 60px"><span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 999px; background: var(--raised); display: flex; align-items: center; justify-content: center; color: var(--t1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.d }}"></path></svg></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font: 500 15px Inter, sans-serif">{{ r.title }}</span><span class="faint" style="font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ r.sub }}</span></span><span class="num" style="font: 600 15px 'Inter Tight', sans-serif; color: {{ r.ac }}; white-space: nowrap">{{ r.amt }}</span></a></sc-for>
+    </section>
+  </div>
+  <div class="ios-fade" aria-hidden="true"></div>
+  <div class="ios-bar"><a href="ios-receive.dc.html" class="btn glass" style="flex: 1; height: 56px; font-size: 17px">{{ L.k19 }}</a><a href="ios-send.dc.html" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k20 }}</a><a href="ios-p2p-market.dc.html" aria-label="{{ L.k21 }}" class="gbtn glass" style="width: 56px; height: 56px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg></a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "range": {"editor": "enum", "options": ["1d", "1w", "1m", "1y"], "default": "1m"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Подсказка": "Hint", "БАЛАНС · ВСЕ СЕТИ": "BALANCE · ALL NETWORKS", "1 250,00": "1,250.00", "≈ 115 500,00 ₽ · $1 250,00": "≈ 115,500.00 ₽ · $1,250.00", "ДОСТУПНО": "AVAILABLE", "1 100,00": "1,100.00", "В ЭСКРОУ": "IN ESCROW", "100,00": "100.00", "В ВЫВОДЕ": "WITHDRAWING", "50,00": "50.00", "График курса USDT": "USDT rate chart", "92,40 ₽": "92.40 ₽", "Период графика": "Chart period", "ещё 2 сети · Amoy 250,00": "2 more networks · Amoy 250.00", "1 000,00": "1,000.00", "История по активу": "Asset history", "Получить": "Receive", "Отправить": "Send", "Купить или продать через P2P": "Buy or sell via P2P", "ноя": "Nov", "мар": "Mar", "июл": "Jul", "окт": "Oct", "Курс USDT к рублю: от ": "USDT to ruble rate: from ", " до ": " to ", "1Д": "1D", "1Н": "1W", "1М": "1M", "1Г": "1Y", "Продажа P2P · в эскроу": "P2P sale · in escrow", "P2P-48216 · eva_s · 11:58": "P2P-48216 · eva_s · 11:58", "−100,00": "−100.00", "Вывод · на проверке": "Withdrawal · under review", "на 0x1b9C…0a91 · 10:40": "to 0x1b9C…0a91 · 10:40", "−50,00": "−50.00"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("Подсказка"), k4: this.tr("БАЛАНС · ВСЕ СЕТИ"), k5: this.tr("1 250,00"), k6: this.tr("≈ 115 500,00 ₽ · $1 250,00"), k7: this.tr("ДОСТУПНО"), k8: this.tr("1 100,00"), k9: this.tr("В ЭСКРОУ"), k10: this.tr("100,00"), k11: this.tr("В ВЫВОДЕ"), k12: this.tr("50,00"), k13: this.tr("График курса USDT"), k14: this.tr("92,40 ₽"), k15: this.tr("Период графика"), k16: this.tr("ещё 2 сети · Amoy 250,00"), k17: this.tr("1 000,00"), k18: this.tr("История по активу"), k19: this.tr("Получить"), k20: this.tr("Отправить"), k21: this.tr("Купить или продать через P2P") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const range = this.props.range ?? '1m';
+    const series = {
+      '1d': [92.31, 92.28, 92.35, 92.33, 92.4, 92.38, 92.44, 92.41, 92.37, 92.42, 92.46, 92.4],
+      '1w': [91.9, 92.05, 91.98, 92.12, 92.2, 92.15, 92.3, 92.26, 92.38, 92.33, 92.45, 92.4],
+      '1m': [91.85, 91.6, 91.72, 91.95, 91.8, 91.62, 91.9, 92.1, 92.0, 91.88, 92.15, 92.3, 92.22, 92.05, 92.18, 92.36, 92.5, 92.41, 92.28, 92.35, 92.55, 92.62, 92.48, 92.4],
+      '1y': [88.2, 89.4, 90.8, 92.6, 94.1, 93.2, 91.5, 90.2, 91.1, 92.9, 93.4, 92.4]
+    };
+    const xs = { '1d': ['00:00', '08:00', '16:00', '24:00'], '1w': ['21.10', '23.10', '25.10', '27.10'], '1m': ['27.09', '07.10', '17.10', '27.10'], '1y': [this.tr('ноя'), this.tr('мар'), this.tr('июл'), this.tr('окт')] };
+    const chg = { '1d': '+0,1%', '1w': '+0,5%', '1m': '+0,6%', '1y': '+4,8%' };
+    const pts = series[range] || series['1m'];
+    const lo = Math.min(...pts), hi = Math.max(...pts), pad = (hi - lo) * 0.15 || 0.1;
+    const min = lo - pad, max = hi + pad;
+    const y = (p) => (200 - ((p - min) / (max - min)) * 200).toFixed(1);
+    const step = 600 / (pts.length - 1);
+    const line = pts.map((p, i) => (i ? 'L' : 'M') + (i * step).toFixed(1) + ' ' + y(p)).join(' ');
+    const fmt = (n) => (this._lang === 'en' ? n.toFixed(2) : n.toFixed(2).replace('.', ','));
+    const c = chg[range] || chg['1m'];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      chg: this._lang === 'en' ? c.replace(',', '.') : c,
+      line, area: line + ' L600 200 L0 200 Z',
+      xs: xs[range] || xs['1m'],
+      chartAria: this.tr('Курс USDT к рублю: от ') + fmt(lo) + this.tr(' до ') + fmt(hi) + ' ₽',
+      ranges: [['1d', this.tr('1Д')], ['1w', this.tr('1Н')], ['1m', this.tr('1М')], ['1y', this.tr('1Г')]].map(([k, t]) => ({ t, sel: k === range ? 'true' : 'false', bg: k === range ? 'var(--pbg)' : 'transparent', fg: k === range ? 'var(--pfg)' : 'var(--t2)' })),
+      rows: [
+        { title: this.tr('Продажа P2P · в эскроу'), sub: this.tr('P2P-48216 · eva_s · 11:58'), amt: this.tr('−100,00'), ac: 'var(--t1)', d: 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3' },
+        { title: this.tr('Вывод · на проверке'), sub: this.tr('на 0x1b9C…0a91 · 10:40'), amt: this.tr('−50,00'), ac: 'var(--t1)', d: 'M7 17L17 7M9 7h8v8' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

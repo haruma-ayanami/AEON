@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — сделка P2P-48216, продавец</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-p2p-my-deals.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">P2P-48216</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button><button aria-label="{{ L.k3 }}" class="gbtn glass" style="position: relative"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg><span aria-hidden="true" class="badge" style="position: absolute; top: 2px; right: 0">2</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px">
+      <span style="display: flex; align-items: center; gap: 8px"><span class="lbl">{{ L.k4 }}</span><span class="chip c-warn" style="height: 24px">{{ L.k5 }}</span></span>
+      <span class="disp" style="font-size: 36px; line-height: 1.05">{{ L.k6 }}</span>
+      <span class="muted" style="font-size: 14px">{{ L.k7 }}</span>
+    </div>
+    <div class="icard" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+      <div role="timer" aria-label="{{ L.k8 }}" style="display: flex; justify-content: space-between; align-items: baseline"><span class="lbl">{{ L.k9 }}</span><span class="mono" style="font-size: 22px; font-weight: 500">12:05</span></div>
+      <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(30, minmax(0, 1fr)); gap: 2px; height: 6px"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="30"><span style="border-radius: 1px; background: {{ b }}"></span></sc-for></span>
+      <ol aria-label="{{ L.k10 }}" style="margin: 0; padding: 4px 0 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4"><li aria-current="{{ s.current }}" style="display: flex; flex-direction: column; gap: 6px"><span style="height: 3px; border-radius: 2px; background: {{ s.bar }}"></span><span style="font-size: 11px; line-height: 14px; font-weight: {{ s.w }}; color: {{ s.fg }}">{{ s.label }}</span></li></sc-for>
+      </ol>
+    </div>
+    <div style="display: flex; gap: 12px; padding: 14px; border-radius: 22px; background: var(--warns)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M4 7h16v12H4zM4 11h16M8 15h3"></path></svg><span style="display: flex; flex-direction: column; gap: 4px"><span style="font: 600 15px Inter, sans-serif">{{ L.k11 }}</span><span style="font-size: 13px; line-height: 18px; color: var(--t2)">{{ L.k12 }}</span></span></div>
+    <section class="icard" aria-label="{{ L.k13 }}">
+      <sc-for list="{{ checks }}" as="c" hint-placeholder-count="3"><div class="irow" style="min-height: 54px"><span class="cb on" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 500 14px Inter, sans-serif">{{ c.t }}</span><span class="faint" style="font-size: 12px">{{ c.s }}</span></span></div></sc-for>
+    </section>
+    <span class="hint" style="padding: 0 4px">{{ L.k14 }}</span>
+  </div>
+  <div class="ios-fade" aria-hidden="true"></div>
+  <div class="ios-bar"><a href="ios-p2p-my-deals.dc.html" class="btn glass" style="flex: 0 0 auto; height: 56px; padding: 0 20px; font-size: 16px">{{ L.k15 }}</a><button class="btn btn-p" style="flex: 1; height: 56px; font-size: 16px">{{ L.k16 }}</button></div>
+
+  <sc-if value="{{ isRelease }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: var(--scrim)"></div>
+    <div role="dialog" aria-modal="true" aria-labelledby="rel-t" style="position: absolute; left: 8px; right: 8px; bottom: 8px; border-radius: 40px; padding: 10px 22px 26px; background: var(--surface); display: flex; flex-direction: column; gap: 14px; box-shadow: 0 -12px 40px rgba(0,0,0,0.35)">
+      <span aria-hidden="true" style="align-self: center; width: 36px; height: 5px; border-radius: 3px; background: var(--bst)"></span>
+      <span style="display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center">
+        <span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 20px; background: var(--raised); color: var(--sigt); display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16M9 9v1.5M15 9v1.5M12 9v4h-1M9.5 16a3.5 3.5 0 0 0 5 0"></path></svg></span>
+        <span id="rel-t" class="disp" style="font-size: 22px">{{ L.k17 }}</span>
+        <span class="muted" style="font-size: 14px; line-height: 20px">{{ L.k18 }}</span>
+      </span>
+      <label style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 18px; background: var(--raised); font-size: 14px; line-height: 20px"><span class="cb on" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k19 }}</label>
+      <button class="btn btn-p" style="height: 56px; font-size: 17px">{{ L.k20 }}</button>
+      <button class="btn" style="height: 48px; background: transparent">{{ L.k21 }}</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "status": {"editor": "enum", "options": ["paid", "release"], "default": "paid"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Чат с покупателем, 2 новых": "Chat with the buyer, 2 new", "ВЫ ПРОДАЁТЕ · EVA_S": "YOU ARE SELLING · EVA_S", "Оплата отправлена": "Payment sent", "100,00 USDT": "100.00 USDT", "за 9 240,00 ₽ · курс 92,40 ₽ · СБП": "for 9,240.00 ₽ · rate 92.40 ₽ · SBP", "На проверку оплаты осталось 12 минут 5 секунд": "12 minutes 5 seconds left to verify the payment", "НА ПРОВЕРКУ ОПЛАТЫ": "TO VERIFY PAYMENT", "Этапы сделки": "Deal stages", "Покупатель отметил оплату в 11:58": "The buyer marked the payment at 11:58", "Проверьте поступление в банке. Чек в чате можно подделать.": "Check your bank for the transfer. A receipt in the chat can be forged.", "Что проверить в банке": "What to check in your bank", "Выпуск необратим и подтверждается Face ID.": "Release is irreversible and confirmed with Face ID.", "Спор": "Dispute", "Выпустить 100 USDT": "Release 100 USDT", "Выпустить 100 USDT покупателю eva_s?": "Release 100 USDT to buyer eva_s?", "Убедитесь, что 9 240,00 ₽ уже на вашем счёте. Отменить выпуск нельзя.": "Make sure 9,240.00 ₽ is already in your account. The release can't be undone.", "Я проверил поступление 9 240,00 ₽ в банке": "I checked that 9,240.00 ₽ arrived in my bank", "Выпустить с Face ID": "Release with Face ID", "Отмена": "Cancel", "Создана": "Created", "В эскроу": "In escrow", "Оплачено": "Paid", "Завершена": "Completed", "Ровно 9 240,00 ₽": "Exactly 9,240.00 ₽", "другая сумма — повод для спора": "a different amount is grounds for a dispute", "Отправитель — Ева С.": "Sender — Eva S.", "совпадает с верифицированным именем": "matches the verified name", "Деньги уже на счёте": "Money is already in the account", "СБП · Т-Банк · +7 900 000-00-00": "SBP · T-Bank · +7 900 000-00-00"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("Чат с покупателем, 2 новых"), k4: this.tr("ВЫ ПРОДАЁТЕ · EVA_S"), k5: this.tr("Оплата отправлена"), k6: this.tr("100,00 USDT"), k7: this.tr("за 9 240,00 ₽ · курс 92,40 ₽ · СБП"), k8: this.tr("На проверку оплаты осталось 12 минут 5 секунд"), k9: this.tr("НА ПРОВЕРКУ ОПЛАТЫ"), k10: this.tr("Этапы сделки"), k11: this.tr("Покупатель отметил оплату в 11:58"), k12: this.tr("Проверьте поступление в банке. Чек в чате можно подделать."), k13: this.tr("Что проверить в банке"), k14: this.tr("Выпуск необратим и подтверждается Face ID."), k15: this.tr("Спор"), k16: this.tr("Выпустить 100 USDT"), k17: this.tr("Выпустить 100 USDT покупателю eva_s?"), k18: this.tr("Убедитесь, что 9 240,00 ₽ уже на вашем счёте. Отменить выпуск нельзя."), k19: this.tr("Я проверил поступление 9 240,00 ₽ в банке"), k20: this.tr("Выпустить с Face ID"), k21: this.tr("Отмена") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const status = this.props.status ?? 'paid';
+    const labels = [this.tr('Создана'), this.tr('В эскроу'), this.tr('Оплачено'), this.tr('Завершена')];
+    const steps = labels.map((label, i) => ({ label, current: i === 2 ? 'step' : 'false', bar: i < 2 ? 'var(--sig)' : i === 2 ? 'var(--t1)' : 'var(--bd)', w: i === 2 ? 600 : 500, fg: i <= 2 ? 'var(--t1)' : 'var(--t3)' }));
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isRelease: status === 'release',
+      bars: Array.from({ length: 30 }, (_, i) => (i < 24 ? 'var(--warn)' : 'var(--bd)')),
+      steps,
+      checks: [
+        { t: this.tr('Ровно 9 240,00 ₽'), s: this.tr('другая сумма — повод для спора') },
+        { t: this.tr('Отправитель — Ева С.'), s: this.tr('совпадает с верифицированным именем') },
+        { t: this.tr('Деньги уже на счёте'), s: this.tr('СБП · Т-Банк · +7 900 000-00-00') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

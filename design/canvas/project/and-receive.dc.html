@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — получить</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }} " style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; gap: 4px; padding: 0 4px"><a href="and-wallet-home.dc.html" aria-label="{{ L.k1 }}" style="width: 48px; height: 48px; border-radius: 999px; color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"></path></svg></a><span style="flex: 1; font: 500 20px Inter, sans-serif">{{ L.k2 }}</span><span class="testnet">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></header>
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; gap: 8px"><div style="flex: 1; height: 56px; padding: 0 14px; border-radius: 4px; border: 1px solid var(--bst); display: flex; flex-direction: column; justify-content: center; gap: 2px; box-sizing: border-box"><span style="font-size: 12px; color: var(--t2)">{{ L.k4 }}</span><span style="display: flex; justify-content: space-between">USDT<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span></div><div style="flex: 1; height: 56px; padding: 0 14px; border-radius: 4px; border: 1px solid var(--bst); display: flex; flex-direction: column; justify-content: center; gap: 2px; box-sizing: border-box"><span style="font-size: 12px; color: var(--t2)">{{ L.k5 }}</span><span style="display: flex; justify-content: space-between">Ethereum Sepolia<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></span></div></div>
+    <div style="border-radius: 24px; background: var(--surface); padding: 22px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+      <div style="padding: 14px; border-radius: 20px; background: #FFFFFF"><div role="img" aria-label="{{ L.k6 }}" style="display: grid; grid-template-columns: repeat(25, 8px)"><sc-for list="{{ qr }}" as="q" hint-placeholder-count="625"><span style="width: 8px; height: 8px; background: {{ q }}"></span></sc-for></div></div>
+      <span class="mono" style="font-size: 15px; line-height: 23px; text-align: center; word-break: break-all"><b style="font-weight: 600">0x7a3F5c</b><span class="muted">1E8b2D4a6F9e0C3b7A1d5E8f2C4b</span><b style="font-weight: 600">6A9c2E</b></span>
+    </div>
+    <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span>{{ L.k7 }}</span></span></div>
+  </div>
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 32px; display: flex; flex-direction: column; gap: 10px"><div style="display: flex; gap: 10px"><button class="btn" style="flex: 1; height: 52px">{{ L.k8 }}</button><button class="btn btn-p" style="flex: 1; height: 52px">{{ L.k9 }}</button></div></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Получить": "Receive", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Актив": "Asset", "Сеть": "Network", "QR-код адреса": "Address QR code", "Только USDT в сети Sepolia. Минимум 1 USDT, зачисление после 12 подтверждений.": "Only USDT on the Sepolia network. Minimum 1 USDT, credited after 12 confirmations.", "Поделиться": "Share", "Копировать адрес": "Copy address"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Получить"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Актив"), k5: this.tr("Сеть"), k6: this.tr("QR-код адреса"), k7: this.tr("Только USDT в сети Sepolia. Минимум 1 USDT, зачисление после 12 подтверждений."), k8: this.tr("Поделиться"), k9: this.tr("Копировать адрес") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    let s = 23;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const qr = [];
+    const fin = (r, c) => { for (const [r0, c0] of [[0, 0], [0, 18], [18, 0]]) { if (r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7) { const a = r - r0, b = c - c0; return (a === 0 || a === 6 || b === 0 || b === 6 || (a >= 2 && a <= 4 && b >= 2 && b <= 4)) ? 1 : 0; } if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) return 0; } return -1; };
+    for (let r = 0; r < 25; r++) for (let c = 0; c < 25; c++) { const f = fin(r, c); qr.push((f === -1 ? rnd() > 0.52 : f === 1) ? '#0A0C0B' : '#FFFFFF'); }
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      qr
+    };
+  }
+}
+</script>
+</body>
+</html>

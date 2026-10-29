@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android · светлая · Кошелёк</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 412px; height: 915px; overflow: hidden">
+  <dc-import name="and-wallet-home" theme="{{ theme }}" lang="{{ lang }}" hint-size="412px,915px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "light"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+// Окно в исходный артборд and-wallet-home.dc.html в состоянии «светлая тема»: правьте оригинал, здесь он подключён как есть.
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    return { theme: p.theme ?? "light", lang: p.lang ?? "ru" };
+  }
+}
+</script>
+</body>
+</html>

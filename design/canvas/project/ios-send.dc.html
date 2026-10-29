@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — отправка</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+.th-dark{--canvas:#0A0C0B;--surface:#131614;--raised:#1B1F1C;--bs:#232824;--bd:#2E342F;--bst:#48504A;--t1:#F2F5F1;--t2:#A3ACA5;--t3:#8A938C;--pbg:#F2F5F1;--pfg:#0A0C0B;--sig:#B6F36B;--sigt:#B6F36B;--sigs:rgba(182,243,107,.14);--neg:#FF7A6B;--warn:#F5B941;--warns:rgba(245,185,65,.12);--info:#6EA2FF;--glass:rgba(28,32,29,.42);--glb:rgba(255,255,255,.18);--glh:rgba(255,255,255,.28);--fade:rgba(10,12,11,.9);--scrim:rgba(0,0,0,.55);--orange:#FF9A5B;--onacc:#0A0C0B}
+.th-light{--canvas:#EEF0EC;--surface:#FFFFFF;--raised:#F7F8F5;--bs:#E2E5DF;--bd:#D3D7D0;--bst:#A9AFA6;--t1:#0E110F;--t2:#4D554F;--t3:#606862;--pbg:#0E110F;--pfg:#FFFFFF;--sig:#B6F36B;--sigt:#286913;--sigs:rgba(47,122,22,.12);--neg:#A62E23;--warn:#7E5200;--warns:rgba(154,100,0,.12);--info:#2755BA;--glass:rgba(255,255,255,.58);--glb:rgba(255,255,255,.7);--glh:rgba(255,255,255,.9);--fade:rgba(238,240,236,.92);--scrim:rgba(14,17,15,.35);--orange:#8F4416;--onacc:#FFFFFF}
+a{color:var(--t1)}
+@keyframes pulse{0%{opacity:.4}50%{opacity:1}100%{opacity:.4}}
+</style>
+</helmet>
+<div class="mob {{ themeClass }}" style="position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--canvas); color: var(--t1); font-family: Inter, system-ui, sans-serif">
+
+  <div style="position: absolute; left: 16px; right: 16px; top: 58px; display: flex; align-items: center; gap: 8px">
+    <button onClick="{{ back }}" aria-label="{{ L.k1 }}" style="width: 44px; height: 44px; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); color: var(--t1); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+    <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 17px Inter, sans-serif">{{ navTitle }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span>
+    <button onClick="{{ toggleLang }}" aria-label="{{ L.k3 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 36px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 36px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button>
+    <a href="ios-wallet-home.dc.html" aria-label="{{ L.k4 }}" style="width: 44px; height: 44px; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+  </div>
+  <div style="position: absolute; left: 20px; right: 20px; top: 114px; display: flex; flex-direction: column; gap: 8px">
+    <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px"><sc-for list="{{ prog }}" as="p" hint-placeholder-count="4"><span style="height: 4px; border-radius: 2px; background: {{ p }}"></span></sc-for></div>
+    <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ counter }}</span>
+  </div>
+
+  <sc-if value="{{ isRecipient }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; left: 16px; right: 16px; top: 160px; display: flex; flex-direction: column; gap: 14px">
+      <button style="height: 68px; padding: 0 14px; border-radius: 22px; border: 0; background: var(--surface); color: var(--t1); display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer">
+        <span style="position: relative; width: 40px; height: 40px; flex: none"><span style="width: 40px; height: 40px; border-radius: 999px; background: var(--raised); border: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; font: 500 10px 'JetBrains Mono', monospace">USDT</span><span aria-hidden="true" style="position: absolute; right: -2px; bottom: -2px; width: 12px; height: 12px; border-radius: 3px; background: #8A9BFF; border: 2px solid var(--surface)"></span></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px Inter, sans-serif">USDT · Ethereum Sepolia</span><span style="font-size: 13px; color: var(--t2)">{{ L.k5 }}</span></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+      </button>
+      <label for="to" style="font-size: 14px; font-weight: 500; color: var(--t2); padding: 4px 4px 0">{{ L.k6 }}</label>
+      <div style="border-radius: 22px; background: var(--surface); border: {{ toBorder }}; padding: 14px 14px 10px 16px; display: flex; flex-direction: column; gap: 10px">
+        <textarea id="to" rows="2" defaultValue="{{ toVal }}" aria-invalid="{{ toInvalid }}" aria-describedby="to-hint" style="border: 0; background: transparent; color: var(--t1); font: 400 15px 'JetBrains Mono', monospace; line-height: 22px; resize: none; outline: none; padding: 0"></textarea>
+        <div style="display: flex; gap: 6px; justify-content: flex-end"><button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); font: 500 13px Inter, sans-serif">{{ L.k7 }}</button><button aria-label="{{ L.k8 }}" style="width: 36px; height: 36px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"></path></svg></button></div>
+      </div>
+      <span id="to-hint" role="{{ toRole }}" style="display: flex; gap: 8px; padding: 0 4px; font-size: 13px; line-height: 18px; color: {{ toHintC }}"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 5px; flex: none; border-radius: 2px; background: {{ toHintC }}"></span>{{ toHint }}</span>
+      <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3); padding: 10px 4px 0">{{ L.k10 }}</span>
+      <div style="border-radius: 22px; background: var(--surface); display: flex; flex-direction: column">
+        <button style="height: 60px; padding: 0 16px; border: 0; border-bottom: 1px solid var(--bs); background: transparent; color: var(--t1); display: flex; align-items: center; gap: 12px; text-align: left"><span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: var(--raised); display: flex; align-items: center; justify-content: center; font: 600 12px Inter, sans-serif">{{ L.k11 }}</span><span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 15px; font-weight: 500">{{ L.k12 }}</span><span style="font: 400 12px 'JetBrains Mono', monospace; color: var(--t2)">0x1b9C…0a91</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></button>
+        <button style="height: 60px; padding: 0 16px; border: 0; background: transparent; color: var(--t1); display: flex; align-items: center; gap: 12px; text-align: left"><span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: var(--raised); display: flex; align-items: center; justify-content: center; font: 600 12px Inter, sans-serif">{{ L.k13 }}</span><span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 15px; font-weight: 500">{{ L.k14 }}</span><span style="font: 400 12px 'JetBrains Mono', monospace; color: var(--t2)">0x9e41…44Bc</span></span></button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isAmount }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; left: 16px; right: 16px; top: 170px; display: flex; flex-direction: column; align-items: center; gap: 12px">
+      <span style="font-size: 14px; color: var(--t2)">{{ amtTo }}</span>
+      <label for="amt" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{ amtLabel }}</label>
+      <div style="display: flex; align-items: baseline; gap: 8px; padding: 20px 0 0"><input id="amt" defaultValue="{{ amtVal }}" aria-invalid="{{ fundsInvalid }}" inputmode="decimal" style="width: 170px; color: {{ amtC }}; border: 0; background: transparent; font: 600 72px 'Inter Tight', sans-serif; letter-spacing: -0.04em; text-align: right; outline: none"><span style="font: 600 28px 'Inter Tight', sans-serif; color: var(--t3)">{{ amtUnit }}</span></div>
+      <span style="font-size: 15px; color: var(--t2)">{{ fiatEq }}</span>
+      <div style="display: flex; gap: 6px; padding-top: 6px"><button style="height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--surface); color: var(--t1); font: 600 12px 'JetBrains Mono', monospace">25%</button><button style="height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--surface); color: var(--t1); font: 600 12px 'JetBrains Mono', monospace">50%</button><button style="height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--surface); color: var(--t1); font: 600 12px 'JetBrains Mono', monospace">{{ L.k18 }}</button></div>
+      <sc-if value="{{ notFunds }}" hint-placeholder-val="{{ true }}"><span style="font-size: 13px; color: var(--t3)">{{ L.k19 }}</span></sc-if>
+      <sc-if value="{{ isFunds }}" hint-placeholder-val="{{ false }}"><div role="alert" style="align-self: stretch; display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--negs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ fundsText }}</span></div></sc-if>
+      <div style="align-self: stretch; margin-top: 26px; border-radius: 22px; background: var(--surface); padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ L.k20 }}</span>
+        <div role="radiogroup" aria-label="{{ L.k21 }}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 4px; border-radius: 999px; background: var(--raised)">
+          <button role="radio" aria-checked="false" style="height: 36px; border-radius: 999px; border: 0; background: transparent; color: var(--t2); font: 500 13px Inter, sans-serif">{{ L.k22 }}</button>
+          <button role="radio" aria-checked="true" style="height: 36px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 13px Inter, sans-serif">{{ L.k23 }}</button>
+          <button role="radio" aria-checked="false" style="height: 36px; border-radius: 999px; border: 0; background: transparent; color: var(--t2); font: 500 13px Inter, sans-serif">{{ L.k24 }}</button>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 14px"><span style="color: var(--t2)">{{ L.k25 }}</span><span style="font-family: 'JetBrains Mono', monospace">{{ L.k26 }}</span></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; left: 16px; right: 16px; top: 170px; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: 12px 0">
+        <span aria-hidden="true" style="width: 72px; height: 72px; border-radius: 999px; background: var(--sig); color: #0A0C0B; display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+        <h2 style="margin: 0; font: 600 28px 'Inter Tight', sans-serif">{{ L.k27 }}</h2>
+        <span style="font-size: 15px; line-height: 22px; color: var(--t2)">{{ L.k28 }}</span>
+      </div>
+      <ol aria-label="{{ L.k29 }}" style="margin: 0; padding: 6px 18px; list-style: none; border-radius: 22px; background: var(--surface)">
+        <sc-for list="{{ track }}" as="t" hint-placeholder-count="4">
+          <li style="display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid {{ t.line }}"><span aria-hidden="true" style="width: 20px; height: 20px; flex: none; box-sizing: border-box; border-radius: 999px; background: {{ t.bg }}; border: {{ t.border }}"></span><span style="flex: 1; font-size: 15px; color: {{ t.fg }}; font-weight: {{ t.w }}">{{ t.label }}</span><span style="font: 400 12px 'JetBrains Mono', monospace; color: var(--t3)">{{ t.time }}</span></li>
+        </sc-for>
+      </ol>
+      <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; height: 8px; padding: 0 4px"><sc-for list="{{ conf }}" as="c" hint-placeholder-count="12"><span style="border-radius: 2px; background: {{ c }}"></span></sc-for></div>
+      <a href="https://sepolia.etherscan.io/" target="_blank" rel="noopener" style="align-self: center; display: inline-flex; align-items: center; gap: 6px; font: 500 14px Inter, sans-serif; color: var(--t2); text-decoration: none">{{ L.k30 }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></a>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showBar }}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 130px; background: linear-gradient(180deg, transparent, var(--fade) 45%)"></div>
+    <div style="position: absolute; left: 16px; right: 16px; bottom: 34px; display: flex; gap: 8px">
+      <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}"><a href="ios-wallet-home.dc.html" style="flex: 1; height: 56px; border-radius: 999px; background: var(--pbg); color: var(--pfg); font: 600 17px Inter, sans-serif; text-decoration: none; display: flex; align-items: center; justify-content: center">{{ L.k31 }}</a></sc-if>
+      <sc-if value="{{ notResult }}" hint-placeholder-val="{{ true }}"><button onClick="{{ next }}" disabled="{{ blocked }}" style="flex: 1; height: 56px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 17px Inter, sans-serif; cursor: pointer; opacity: {{ nextOp }}">{{ nextLabel }}</button></sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isSheet }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: var(--scrim)"></div>
+    <div role="dialog" aria-modal="true" aria-labelledby="sh-h" style="position: absolute; left: 8px; right: 8px; bottom: 8px; top: 176px; border-radius: 38px; border: 0.5px solid var(--glb); background: var(--surface); box-shadow: inset 0 1px 0 var(--glh), 0 -8px 40px rgba(0,0,0,0.4); padding: 10px 20px 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+      <span aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: var(--bst)"></span>
+
+      <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <h2 id="sh-h" style="margin: 0; font: 600 20px 'Inter Tight', sans-serif; text-align: center">{{ L.k32 }}</h2>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 2px"><span style="font: 600 40px 'Inter Tight', sans-serif; letter-spacing: -0.03em">250<span style="color: var(--t3)">{{ L.k33 }}</span> <span style="font-size: 20px; color: var(--t2)">USDT</span></span><span style="font-size: 14px; color: var(--t2)">{{ L.k34 }}</span></div>
+          <div style="border-radius: 18px; background: var(--raised); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+            <span style="font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ L.k35 }}</span>
+            <span style="font: 400 15px 'JetBrains Mono', monospace; line-height: 22px; word-break: break-all"><span style="font-weight: 500; background: var(--sigs); border-radius: 4px">0x1b9C4e</span><span style="color: var(--t2)">7A2f0D8c3B5a6E9f1D7c2A4b8E3f6D</span><span style="font-weight: 500; background: var(--sigs); border-radius: 4px">0a91</span></span>
+          </div>
+          <div style="border-radius: 18px; background: var(--raised); padding: 2px 16px">
+            <div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--bd); font-size: 14px"><span style="color: var(--t2)">{{ L.k36 }}</span><span>{{ L.k37 }}</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--bd); font-size: 14px"><span style="color: var(--t2)">{{ L.k38 }}</span><span>{{ L.k39 }}</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 11px 0; font-size: 14px; font-weight: 600"><span>{{ L.k40 }}</span><span>{{ L.k41 }}</span></div>
+          </div>
+          <span style="font-size: 12px; line-height: 17px; color: var(--t3); text-align: center">{{ L.k42 }}</span>
+          <button onClick="{{ toFace }}" style="height: 56px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 17px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0"></path></svg>{{ L.k43 }}</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isFace }}" hint-placeholder-val="{{ false }}">
+        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center">
+          <button onClick="{{ toResult }}" aria-label="{{ L.k44 }}" style="width: 120px; height: 120px; border-radius: 36px; border: 0; background: var(--raised); color: var(--sig); display: flex; align-items: center; justify-content: center; cursor: pointer; animation: pulse 1.6s ease-in-out infinite"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0"></path></svg></button>
+          <h2 id="sh-h2" style="margin: 0; font: 600 22px 'Inter Tight', sans-serif">{{ L.k45 }}</h2>
+          <span style="font-size: 15px; line-height: 22px; color: var(--t2); max-width: 260px">{{ L.k46 }}</span>
+          <button style="height: 44px; padding: 0 18px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); font: 500 14px Inter, sans-serif">{{ L.k47 }}</button>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "step": {"editor": "enum", "options": ["recipient", "amount", "confirm", "faceid", "result"], "default": "recipient"}, "error": {"editor": "enum", "options": ["none", "address", "funds"], "default": "none"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {",00": ".00", "Вставить": "Paste", "Ledger тест": "Ledger test", "Кошелёк Маши": "Masha's wallet", "Далее": "Next", "≈ $250,00 · 23 100 ₽": "≈ $250.00 · 23,100 ₽", "МАКС": "MAX", "Назад": "Back", "Проверить": "Review", "Проверьте перевод": "Review the transfer", "Открыть в обозревателе Sepolia": "Open in Sepolia explorer", "ГОТОВО": "DONE", "Медленно": "Slow", "Обычно": "Normal", "≈ 30 секунд": "≈ 30 seconds", "0,00021 ETH · $0,72": "0.00021 ETH · $0.72", "Быстро": "Fast", "Кому": "To", "Комиссия сети": "Network fee", "0,00021 ETH": "0.00021 ETH", "Комиссия AEON": "AEON fee", "1,00 USDT": "1.00 USDT", "Спишется всего": "Total to be debited", "251,00 USDT": "251.00 USDT", "Перевод отправлен": "Transfer sent", "Проверка риска и лимитов": "Risk and limit check", "Подтверждения 3 / 12": "Confirmations 3 / 12", "≈ 2 мин": "≈ 2 min", "Закрыть": "Close", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Сканировать QR": "Scan QR", "Отправить USDT": "Send USDT", "Доступно 1 250,00": "Available 1,250.00", "Формат верный · риск низкий · «Ledger тест» из адресной книги": "Valid format · low risk · “Ledger test” from address book", "НЕДАВНИЕ": "RECENT", "ЛТ": "LT", "КМ": "MW", "на Ledger тест · 0x1b9C…0a91": "to Ledger test · 0x1b9C…0a91", "Сумма в USDT": "Amount in USDT", "Доступно 1 250,00 USDT": "Available 1,250.00 USDT", "СКОРОСТЬ · КОМИССИЯ СЕТИ В ETH": "SPEED · NETWORK FEE IN ETH", "Скорость": "Speed", "250,00 USDT → Ledger тест. Получатель увидит их после 12 подтверждений.": "250.00 USDT → Ledger test. The recipient will see them after 12 confirmations.", "Статус перевода": "Transfer status", "Готово": "Done", "≈ $250,00 · Ethereum Sepolia": "≈ $250.00 · Ethereum Sepolia", "КОМУ · СВЕРЬТЕ НАЧАЛО И КОНЕЦ": "TO · CHECK THE START AND END", "Перевод в блокчейне нельзя отменить": "A blockchain transfer cannot be reversed", "Подтвердить с Face ID": "Confirm with Face ID", "Подтвердить (имитация Face ID)": "Confirm (simulated Face ID)", "Посмотрите на iPhone": "Look at your iPhone", "Face ID подтвердит перевод 251,00 USDT. Если не получится — введите код из приложения-аутентификатора.": "Face ID will confirm the 251.00 USDT transfer. If it fails, enter the code from your authenticator app.", "Ввести код 2FA": "Enter 2FA code", "ШАГ 1 ИЗ 3 · ДЕЙСТВИЯ 2–3 ИЗ 6": "STEP 1 OF 3 · ACTIONS 2–3 OF 6", "ШАГ 2 ИЗ 3 · ДЕЙСТВИЯ 4–5 ИЗ 6": "STEP 2 OF 3 · ACTIONS 4–5 OF 6", "ШАГ 3 ИЗ 3 · ДЕЙСТВИЕ 6 ИЗ 6": "STEP 3 OF 3 · ACTION 6 OF 6", "ПОДТВЕРЖДЕНИЕ": "CONFIRMATION", "Подтверждено Face ID": "Confirmed with Face ID", "Отправлен в сеть": "Broadcast", "Адрес не подходит для сети Sepolia. Проверьте, что адрес начинается с 0x и содержит 42 символа — сейчас 41.": "This address doesn't fit the Sepolia network. Check that it starts with 0x and has 42 characters — it has 41 now.", "ETH · на Ledger тест · 0x1b9C…0a91": "ETH · to Ledger test · 0x1b9C…0a91", "0,05": "0.05", "≈ $170,61 · 15 765 ₽": "≈ $170.61 · 15,765 ₽", "Недостаточно средств. С учётом комиссии сети нужно 0,0521 ETH, доступно 0,0500 ETH. Уменьшите сумму.": "Insufficient funds. Including the network fee you need 0.0521 ETH, 0.0500 ETH is available. Reduce the amount.", "Отправить ETH": "Send ETH", "Сумма в ETH": "Amount in ETH"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Отправить USDT"), k3: this.tr("Язык интерфейса: русский. Переключить на английский"), k4: this.tr("Закрыть"), k5: this.tr("Доступно 1 250,00"), k6: this.tr("Кому"), k7: this.tr("Вставить"), k8: this.tr("Сканировать QR"), k9: this.tr("Формат верный · риск низкий · «Ledger тест» из адресной книги"), k10: this.tr("НЕДАВНИЕ"), k11: this.tr("ЛТ"), k12: this.tr("Ledger тест"), k13: this.tr("КМ"), k14: this.tr("Кошелёк Маши"), k15: this.tr("на Ledger тест · 0x1b9C…0a91"), k16: this.tr("Сумма в USDT"), k17: this.tr("≈ $250,00 · 23 100 ₽"), k18: this.tr("МАКС"), k19: this.tr("Доступно 1 250,00 USDT"), k20: this.tr("СКОРОСТЬ · КОМИССИЯ СЕТИ В ETH"), k21: this.tr("Скорость"), k22: this.tr("Медленно"), k23: this.tr("Обычно"), k24: this.tr("Быстро"), k25: this.tr("≈ 30 секунд"), k26: this.tr("0,00021 ETH · $0,72"), k27: this.tr("Перевод отправлен"), k28: this.tr("250,00 USDT → Ledger тест. Получатель увидит их после 12 подтверждений."), k29: this.tr("Статус перевода"), k30: this.tr("Открыть в обозревателе Sepolia"), k31: this.tr("Готово"), k32: this.tr("Проверьте перевод"), k33: this.tr(",00"), k34: this.tr("≈ $250,00 · Ethereum Sepolia"), k35: this.tr("КОМУ · СВЕРЬТЕ НАЧАЛО И КОНЕЦ"), k36: this.tr("Комиссия сети"), k37: this.tr("0,00021 ETH"), k38: this.tr("Комиссия AEON"), k39: this.tr("1,00 USDT"), k40: this.tr("Спишется всего"), k41: this.tr("251,00 USDT"), k42: this.tr("Перевод в блокчейне нельзя отменить"), k43: this.tr("Подтвердить с Face ID"), k44: this.tr("Подтвердить (имитация Face ID)"), k45: this.tr("Посмотрите на iPhone"), k46: this.tr("Face ID подтвердит перевод 251,00 USDT. Если не получится — введите код из приложения-аутентификатора."), k47: this.tr("Ввести код 2FA"), k48: this.tr("ШАГ 1 ИЗ 3 · ДЕЙСТВИЯ 2–3 ИЗ 6"), k49: this.tr("ШАГ 2 ИЗ 3 · ДЕЙСТВИЯ 4–5 ИЗ 6"), k50: this.tr("ШАГ 3 ИЗ 3 · ДЕЙСТВИЕ 6 ИЗ 6"), k51: this.tr("ПОДТВЕРЖДЕНИЕ"), k52: this.tr("ГОТОВО"), k53: this.tr("Проверить"), k54: this.tr("Далее"), k55: this.tr("Подтверждено Face ID"), k56: this.tr("Проверка риска и лимитов"), k57: this.tr("Отправлен в сеть"), k58: this.tr("Подтверждения 3 / 12"), k59: this.tr("≈ 2 мин") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const step = (this.state && this.state.step) || this.props.step || 'recipient';
+    const error = this.props.error ?? 'none';
+    const badTo = error === 'address' && step === 'recipient', badFunds = error === 'funds' && step === 'amount';
+    const order = ['recipient', 'amount', 'confirm', 'faceid', 'result'];
+    const i = order.indexOf(step);
+    const go = (s) => () => this.setState({ step: s });
+    const prevOf = { recipient: 'recipient', amount: 'recipient', confirm: 'amount', faceid: 'confirm', result: 'result' };
+    const nextOf = { recipient: 'amount', amount: 'confirm' };
+    const counters = { recipient: this.tr('ШАГ 1 ИЗ 3 · ДЕЙСТВИЯ 2–3 ИЗ 6'), amount: this.tr('ШАГ 2 ИЗ 3 · ДЕЙСТВИЯ 4–5 ИЗ 6'), confirm: this.tr('ШАГ 3 ИЗ 3 · ДЕЙСТВИЕ 6 ИЗ 6'), faceid: this.tr('ПОДТВЕРЖДЕНИЕ'), result: this.tr('ГОТОВО') };
+    const done = Math.min(i, 3);
+    const tr = (label, st, time, last) => ({ label, time, line: last ? 'transparent' : 'var(--bd)',
+      bg: st === 'done' ? 'var(--sig)' : 'transparent', border: st === 'cur' ? '2px solid var(--info)' : st === 'todo' ? '1.5px solid var(--bst)' : '0',
+      fg: st === 'todo' ? 'var(--t3)' : 'var(--t1)', w: st === 'cur' ? '600' : '400' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      toVal: badTo ? '0x1b9C4e7A2f0D8c3B5a6E9f1D7c2A4b8E3f6D0a9' : '0x1b9C4e7A2f0D8c3B5a6E9f1D7c2A4b8E3f6D0a91',
+      toBorder: badTo ? '1.5px solid var(--neg)' : '1px solid var(--bd)', toInvalid: badTo ? 'true' : 'false', toRole: badTo ? 'alert' : 'status',
+      toHintC: badTo ? 'var(--neg)' : 'var(--sigt)',
+      toHint: badTo ? this.tr('Адрес не подходит для сети Sepolia. Проверьте, что адрес начинается с 0x и содержит 42 символа — сейчас 41.') : this.tr('Формат верный · риск низкий · «Ledger тест» из адресной книги'),
+      isFunds: badFunds, notFunds: !badFunds, fundsInvalid: badFunds ? 'true' : 'false',
+      amtTo: badFunds ? this.tr('ETH · на Ledger тест · 0x1b9C…0a91') : this.tr('на Ledger тест · 0x1b9C…0a91'),
+      amtVal: badFunds ? this.tr('0,05') : '250', amtUnit: badFunds ? 'ETH' : 'USDT', amtC: badFunds ? 'var(--neg)' : 'var(--t1)',
+      fiatEq: badFunds ? this.tr('≈ $170,61 · 15 765 ₽') : this.tr('≈ $250,00 · 23 100 ₽'),
+      fundsText: this.tr('Недостаточно средств. С учётом комиссии сети нужно 0,0521 ETH, доступно 0,0500 ETH. Уменьшите сумму.'),
+      amtLabel: badFunds ? this.tr('Сумма в ETH') : this.tr('Сумма в USDT'),
+      navTitle: badFunds ? this.tr('Отправить ETH') : this.tr('Отправить USDT'),
+      blocked: badTo || badFunds, nextOp: badTo || badFunds ? '0.4' : '1',
+      isRecipient: step === 'recipient', isAmount: step === 'amount',
+      isConfirm: step === 'confirm', isFace: step === 'faceid', isSheet: step === 'confirm' || step === 'faceid',
+      isResult: step === 'result', notResult: step !== 'result',
+      showBar: step === 'recipient' || step === 'amount' || step === 'result',
+      nextLabel: step === 'amount' ? this.tr('Проверить') : this.tr('Далее'),
+      counter: counters[step],
+      prog: [0, 1, 2, 3].map((k) => (k < done || step === 'result' ? 'var(--sig)' : k === done ? 'var(--t1)' : 'var(--bd)')),
+      track: [tr(this.tr('Подтверждено Face ID'), 'done', '12:44:02'), tr(this.tr('Проверка риска и лимитов'), 'done', '12:44:03'), tr(this.tr('Отправлен в сеть'), 'done', '12:44:05'), tr(this.tr('Подтверждения 3 / 12'), 'cur', this.tr('≈ 2 мин'), true)],
+      conf: Array.from({ length: 12 }, (_, k) => (k < 3 ? 'var(--info)' : 'var(--bd)')),
+      back: go(prevOf[step]), next: go(nextOf[step] || 'confirm'), toFace: go('faceid'), toResult: go('result')
+    };
+  }
+}
+</script>
+</body>
+</html>

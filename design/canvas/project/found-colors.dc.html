@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Основы — цвет</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 1600px; min-height: 2000px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">ОСНОВЫ · 01 · ЦВЕТ</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Монохром и один сигнал</h2>
+    </div>
+    <p style="margin: 0; max-width: 600px; font-size: 15px; line-height: 22px; color: #A3ACA5">Почти чёрный с зелёным оттенком, монохромные поверхности и лаймово-зелёный сигнал для роста и активных состояний. Все пары текст/фон проходят WCAG AA 4,5:1. Тёмная тема — основная, светлая — равноправная.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+    <section style="background: #0A0C0B; border: 1px solid #232824; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 24px; color: #F2F5F1">Тёмная тема</h3>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ПО УМОЛЧАНИЮ</span>
+      </div>
+      <sc-for list="{{ dark }}" as="c" hint-placeholder-count="13">
+        <div style="display: grid; grid-template-columns: 56px 220px 96px minmax(0, 1fr); gap: 16px; align-items: center; padding: 8px 0; border-top: 1px solid #232824">
+          <div style="width: 56px; height: 40px; border-radius: 10px; background: {{ c.hex }}; border: 1px solid #2E342F"></div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #F2F5F1">{{ c.name }}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A3ACA5">{{ c.hex }}</span>
+          <span style="font-size: 14px; color: #A3ACA5">{{ c.use }}</span>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="background: #EEF0EC; border: 1px solid #D3D7D0; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <h3 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 24px; color: #0E110F">Светлая тема</h3>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #606862">РАВНОПРАВНАЯ</span>
+      </div>
+      <sc-for list="{{ light }}" as="c" hint-placeholder-count="13">
+        <div style="display: grid; grid-template-columns: 56px 220px 96px minmax(0, 1fr); gap: 16px; align-items: center; padding: 8px 0; border-top: 1px solid #D3D7D0">
+          <div style="width: 56px; height: 40px; border-radius: 10px; background: {{ c.hex }}; border: 1px solid #D3D7D0"></div>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #0E110F">{{ c.name }}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #4D554F">{{ c.hex }}</span>
+          <span style="font-size: 14px; color: #4D554F">{{ c.use }}</span>
+        </div>
+      </sc-for>
+    </section>
+  </div>
+
+  <section style="display: flex; flex-direction: column; gap: 20px">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">СТАТУСЫ · ЦВЕТ + ИКОНКА + ТЕКСТ</span>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+      <div style="background: #131614; border-radius: 20px; padding: 28px; display: flex; flex-wrap: wrap; gap: 12px">
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(182,243,107,0.12); color: #B6F36B; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Завершена</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(245,185,65,0.12); color: #F5B941; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Ожидает оплаты</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(255,122,107,0.12); color: #FF7A6B; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>Отклонён</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(110,162,255,0.12); color: #6EA2FF; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></svg>Подтверждается 3/12</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #1B1F1C; color: #A3ACA5; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12h8"></path></svg>Отменена</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #2A230F; color: #F5B941; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em"><span aria-hidden="true" style="width: 7px; height: 7px; background: #F5B941; border-radius: 1px"></span>ТЕСТОВАЯ СЕТЬ</span>
+      </div>
+      <div style="background: #FFFFFF; border-radius: 20px; padding: 28px; display: flex; flex-wrap: wrap; gap: 12px">
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(47,122,22,0.12); color: #286913; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Завершена</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(154,100,0,0.12); color: #7E5200; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Ожидает оплаты</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(200,55,42,0.1); color: #A62E23; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>Отклонён</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(45,98,214,0.1); color: #2755BA; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7.5v.5"></path></svg>Подтверждается 3/12</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #EEF0EC; color: #4D554F; font-size: 14px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12h8"></path></svg>Отменена</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #FFF1CC; color: #7A4F00; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em"><span aria-hidden="true" style="width: 7px; height: 7px; background: #7A4F00; border-radius: 1px"></span>ТЕСТОВАЯ СЕТЬ</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+    <div style="background: #131614; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">СЕТИ · МАРКЕР</span>
+      <sc-for list="{{ nets }}" as="n" hint-placeholder-count="5">
+        <div style="display: flex; align-items: center; gap: 12px">
+          <span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 2px; background: {{ n.hex }}"></span>
+          <span style="font-size: 15px; flex: 1">{{ n.name }}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #A3ACA5">{{ n.net }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="background: #131614; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">УРОВНИ РИСКА</span>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+        <div style="height: 40px; border-radius: 8px; background: #2E342F"></div>
+        <div style="height: 40px; border-radius: 8px; background: #B6F36B"></div>
+        <div style="height: 40px; border-radius: 8px; background: #F5B941"></div>
+        <div style="height: 40px; border-radius: 8px; background: #FF9A5B"></div>
+        <div style="height: 40px; border-radius: 8px; background: #FF5A4A"></div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; font-size: 13px; color: #A3ACA5">
+        <span>Не оценено</span><span>Низкий<br>0–24</span><span>Средний<br>25–59</span><span>Высокий<br>60–84</span><span>Критический<br>85–100</span>
+      </div>
+      <p style="margin: 0; font-size: 13px; line-height: 20px; color: #8A938C">Шкала идёт от светлого к тёмному по яркости, а не только по оттенку; рядом всегда балл и текст.</p>
+    </div>
+    <div style="background: #131614; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">АКТИВЫ В ПОРТФЕЛЕ</span>
+      <div style="display: flex; height: 40px; border-radius: 8px; overflow: hidden; gap: 2px">
+        <div style="flex: 41; background: #B6F36B"></div>
+        <div style="flex: 24; background: #F2F5F1"></div>
+        <div style="flex: 14; background: #A3ACA5"></div>
+        <div style="flex: 9; background: #6B746D"></div>
+        <div style="flex: 7; background: #48504A"></div>
+        <div style="flex: 5; background: #2E342F"></div>
+      </div>
+      <p style="margin: 0; font-size: 13px; line-height: 20px; color: #8A938C">Выделенный актив — сигнальным цветом, остальные — ступенями серого. Подписи и проценты — рядом с сегментом.</p>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":2000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      dark: [
+        { name: 'bg/canvas', hex: '#0A0C0B', use: 'Фон приложения' },
+        { name: 'bg/surface', hex: '#131614', use: 'Карточки и панели' },
+        { name: 'bg/surface-raised', hex: '#1B1F1C', use: 'Поля, вложенные блоки, вторичные кнопки' },
+        { name: 'bg/surface-sunken', hex: '#070807', use: 'Углублённые области' },
+        { name: 'border/default', hex: '#2E342F', use: 'Обводки полей и карточек' },
+        { name: 'text/primary', hex: '#F2F5F1', use: 'Основной текст' },
+        { name: 'text/secondary', hex: '#A3ACA5', use: 'Подписи' },
+        { name: 'text/tertiary', hex: '#8A938C', use: 'Знак валюты, копейки, метки' },
+        { name: 'action/primary', hex: '#F2F5F1', use: 'Основная кнопка (текст #0A0C0B)' },
+        { name: 'signal', hex: '#B6F36B', use: 'Рост, активное, «живое», график' },
+        { name: 'negative', hex: '#FF7A6B', use: 'Падение, ошибки' },
+        { name: 'warning', hex: '#F5B941', use: 'Ожидание, таймер, проверка' },
+        { name: 'info', hex: '#6EA2FF', use: 'Информация, обозреватель' },
+        { name: 'risk/high', hex: '#FF9A5B', use: 'Риск 60–84: балл и шкала' },
+        { name: 'on-accent', hex: '#0A0C0B', use: 'Текст на значках warning и negative' }
+      ],
+      light: [
+        { name: 'bg/canvas', hex: '#EEF0EC', use: 'Фон приложения' },
+        { name: 'bg/surface', hex: '#FFFFFF', use: 'Карточки и панели' },
+        { name: 'bg/surface-raised', hex: '#F7F8F5', use: 'Поля, вложенные блоки' },
+        { name: 'bg/surface-sunken', hex: '#E4E7E1', use: 'Углублённые области' },
+        { name: 'border/default', hex: '#D3D7D0', use: 'Обводки полей и карточек' },
+        { name: 'text/primary', hex: '#0E110F', use: 'Основной текст' },
+        { name: 'text/secondary', hex: '#4D554F', use: 'Подписи' },
+        { name: 'text/tertiary', hex: '#606862', use: 'Знак валюты, копейки, метки' },
+        { name: 'action/primary', hex: '#0E110F', use: 'Основная кнопка (текст #FFFFFF)' },
+        { name: 'signal (текст)', hex: '#286913', use: 'Рост и активное на светлом' },
+        { name: 'negative', hex: '#A62E23', use: 'Падение, ошибки' },
+        { name: 'warning', hex: '#7E5200', use: 'Ожидание, таймер, проверка' },
+        { name: 'info', hex: '#2755BA', use: 'Информация, обозреватель' },
+        { name: 'risk/high', hex: '#8F4416', use: 'Риск 60–84: балл и шкала' },
+        { name: 'on-accent', hex: '#FFFFFF', use: 'Текст на значках warning и negative' }
+      ],
+      nets: [
+        { name: 'Ethereum', net: 'Sepolia', hex: '#8A9BFF' },
+        { name: 'Polygon', net: 'Amoy', hex: '#A77BFF' },
+        { name: 'BNB Chain', net: 'BSC Testnet', hex: '#F3C64B' },
+        { name: 'Bitcoin', net: 'Testnet', hex: '#F7A23B' },
+        { name: 'Solana', net: 'Devnet', hex: '#5EE3C1' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

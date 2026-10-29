@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — узлы и сверка</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="system" hint-size="240px,1100px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" health="{{ health }}" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div role="alert" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 16px; background: var(--warns)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1 1 400px; font-size: 14px; line-height: 20px"><b style="font-weight: 600">{{ L.k2 }}</b> {{ L.k3 }}</span><button class="btn btn-s">{{ L.k4 }}</button></div></sc-if>
+      <sc-if value="{{ isIncident }}" hint-placeholder-val="{{ false }}"><div role="alert" style="display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: 16px; background: var(--negs); border: 1px solid var(--neg)">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 4px"><span style="font: 600 16px Inter, sans-serif">{{ L.k27 }}</span><span style="font-size: 14px; line-height: 20px">{{ L.k28 }}</span></span><span class="chip c-neg">{{ L.k29 }}</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center"><button class="btn btn-s btn-p">{{ L.k30 }}</button><button class="btn btn-s btn-o">{{ L.k31 }}</button><a href="admin-audit.dc.html" class="btn btn-s btn-o">{{ L.k32 }}</a><span style="flex: 1"></span><span class="mono" style="font-size: 12px; color: var(--t2)">{{ L.k33 }}</span></div>
+      </div></sc-if>
+
+      <div class="split">
+        <section class="card" aria-label="{{ L.k5 }}" style="flex: 1 1 640px; min-width: 0; border-radius: 16px; overflow-x: auto">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 16px 16px 8px"><h2 class="disp" style="margin: 0; font-size: 18px; flex: 1">{{ L.k6 }}</h2><span class="faint" style="font-size: 12px">{{ L.k7 }}</span></div>
+          <table class="tbl" style="min-width: 640px">
+            <thead><tr><th>{{ L.k8 }}</th><th>{{ L.k9 }}</th><th>{{ L.k10 }}</th><th style="text-align: right">{{ L.k11 }}</th><th style="text-align: right">{{ L.k12 }}</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="7">
+                <tr><td><span style="display: flex; align-items: center; gap: 8px; white-space: nowrap"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 2px; background: {{ n.c }}"></span>{{ n.net }}</span></td><td class="mono muted" style="font-size: 12px">{{ n.host }}</td><td><span class="chip {{ n.cls }}">{{ n.st }}</span></td><td class="mono" style="text-align: right; font-size: 13px; color: {{ n.lc }}">{{ n.lat }}</td><td class="mono" style="text-align: right; font-size: 13px">{{ n.prio }}</td></tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card" aria-label="{{ L.k13 }}" style="flex: 0 1 360px; min-width: 0; border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px">
+          <h2 class="disp" style="margin: 0; font-size: 18px">{{ L.k13 }}</h2>
+          <sc-for list="{{ scanners }}" as="s" hint-placeholder-count="5">
+            <div style="display: flex; flex-direction: column; gap: 6px; padding: 8px 0; border-bottom: 1px solid var(--bs)">
+              <span style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px"><span style="font-weight: 500">{{ s.net }}</span><span class="mono" style="font-size: 12px; color: {{ s.lc }}">{{ s.lag }}</span></span>
+              <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 2px; height: 5px"><sc-for list="{{ s.bars }}" as="b" hint-placeholder-count="20"><span style="border-radius: 1px; background: {{ b }}"></span></sc-for></span>
+              <span class="mono faint" style="font-size: 11px">{{ s.block }}</span>
+            </div>
+          </sc-for>
+        </section>
+      </div>
+
+      <div class="split">
+        <section class="card" aria-label="{{ L.k14 }}" style="flex: 1 1 640px; min-width: 0; border-radius: 16px; overflow-x: auto">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 16px 16px 8px"><h2 class="disp" style="margin: 0; font-size: 18px; flex: 1">{{ L.k14 }}</h2><span class="faint" style="font-size: 12px">{{ L.k15 }}</span><button class="btn btn-s btn-o">{{ L.k16 }}</button></div>
+          <table class="tbl" style="min-width: 640px">
+            <thead><tr><th>{{ L.k17 }}</th><th style="text-align: right">{{ L.k18 }}</th><th style="text-align: right">{{ L.k19 }}</th><th style="text-align: right">{{ L.k20 }}</th><th>{{ L.k21 }}</th></tr></thead>
+            <tbody>
+              <sc-for list="{{ recon }}" as="r" hint-placeholder-count="5">
+                <tr><td style="font-weight: 500; white-space: nowrap">{{ r.asset }}</td><td class="num" style="text-align: right">{{ r.chain }}</td><td class="num" style="text-align: right">{{ r.ledger }}</td><td class="num" style="text-align: right; font-weight: 600; color: {{ r.dc }}">{{ r.diff }}</td><td><span class="chip {{ r.cls }}">{{ r.res }}</span></td></tr>
+              </sc-for>
+            </tbody>
+          </table>
+          <div style="padding: 12px 16px; border-top: 1px solid var(--bs); font-size: 13px; line-height: 18px; color: var(--t2)">{{ L.k22 }}</div>
+        </section>
+
+        <section class="card" aria-label="{{ L.k23 }}" style="flex: 0 1 360px; min-width: 0; border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+          <h2 class="disp" style="margin: 0 0 6px; font-size: 18px">{{ L.k24 }}</h2>
+          <sc-for list="{{ queues }}" as="q" hint-placeholder-count="5"><div class="rowline" style="align-items: center"><span class="mono" style="font-size: 12px; color: var(--t1)">{{ q.name }}</span><span style="display: flex; align-items: center; gap: 8px"><span class="mono" style="font-size: 13px; color: {{ q.c }}">{{ q.n }}</span><span class="faint" style="font-size: 12px; white-space: nowrap">{{ q.age }}</span></span></div></sc-for>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "incident"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Узлы и сверка": "Nodes & recon", "Основной RPC-узел Sepolia недоступен 6 минут.": "The primary Sepolia RPC node has been down for 6 minutes.", "Запросы идут через резервный, сканер отстаёт на 4 блока. Переводы и депозиты не остановлены.": "Requests go through the backup; the scanner is 4 blocks behind. Transfers and deposits are not stopped.", "Открыть инцидент": "Open incident", "RPC-узлы по сетям": "RPC nodes by network", "RPC-узлы": "RPC nodes", "проверка каждые 15 с": "checked every 15 s", "СЕТЬ": "NETWORK", "УЗЕЛ": "NODE", "СТАТУС": "STATUS", "ЗАДЕРЖКА": "LATENCY", "ПРИОРИТЕТ": "PRIORITY", "Сканеры блоков": "Block scanners", "Сверка балансов": "Balance reconciliation", "последняя 14:00 · следующая 15:00": "last 14:00 · next 15:00", "Запустить сейчас": "Run now", "АКТИВ · СЕТЬ": "ASSET · NETWORK", "НА АДРЕСАХ": "ON ADDRESSES", "ПО УЧЁТУ": "LEDGER", "РАЗНИЦА": "DIFFERENCE", "ИТОГ": "RESULT", "Разница по ETH — 0,0021: это комиссия вывода W-90388 в пути, закроется после 12 подтверждений.": "The ETH difference of 0.0021 is the fee for withdrawal W-90388 in transit; it will close after 12 confirmations.", "Очереди сообщений": "Message queues", "Очереди": "Queues", "Работает": "Healthy", "Недоступен": "Down", "Медленно": "Slow", "Резерв": "Standby", "210 мс": "210 ms", "140 мс": "140 ms", "780 мс": "780 ms", "320 мс": "320 ms", "95 мс": "95 ms", "110 мс": "110 ms", "отстаёт на ": "behind by ", " бл.": " blk", "в синхроне": "in sync", "блок 6 812 004 · 14:21:08": "block 6,812,004 · 14:21:08", "блок 13 904 552 · 14:21:10": "block 13,904,552 · 14:21:10", "блок 44 117 390 · 14:21:06": "block 44,117,390 · 14:21:06", "блок 3 461 228 · 14:18:40": "block 3,461,228 · 14:18:40", "слот 331 902 117 · 14:21:11": "slot 331,902,117 · 14:21:11", "412 380,00": "412,380.00", "96 210,50": "96,210.50", "84,3172": "84.3172", "84,3193": "84.3193", "−0,0021": "−0.0021", "3,90215": "3.90215", "2 140,6": "2,140.6", "Сходится": "Matches", "Расхождение": "Mismatch", "—": "—", "старшее 40 с": "oldest 40 s", "старшее 8 с": "oldest 8 s", "старшее 2 мин": "oldest 2 min", "остановлен · 12 мин": "stopped · 12 min", "старшее 12 мин": "oldest 12 min", "Инцидент INC-0417 · Ethereum Sepolia недоступна 12 мин": "Incident INC-0417 · Ethereum Sepolia down for 12 min", "Оба RPC-узла не отвечают. Депозиты и выводы ETH и USDT в сети Sepolia приостановлены автоматически, средства пользователей в безопасности. Остальные сети работают.": "Both RPC nodes are not responding. ETH and USDT deposits and withdrawals on Sepolia were paused automatically; users' funds are safe. Other networks are running.", "Критический": "Critical", "Уведомить пользователей": "Notify users", "Подключить третий узел": "Connect a third node", "Хронология инцидента": "Incident timeline", "ДЕЖУРНЫЙ · arb_olga · С 14:09": "ON CALL · arb_olga · SINCE 14:09"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Узлы и сверка"), k2: this.tr("Основной RPC-узел Sepolia недоступен 6 минут."), k3: this.tr("Запросы идут через резервный, сканер отстаёт на 4 блока. Переводы и депозиты не остановлены."), k4: this.tr("Открыть инцидент"), k5: this.tr("RPC-узлы по сетям"), k6: this.tr("RPC-узлы"), k7: this.tr("проверка каждые 15 с"), k8: this.tr("СЕТЬ"), k9: this.tr("УЗЕЛ"), k10: this.tr("СТАТУС"), k11: this.tr("ЗАДЕРЖКА"), k12: this.tr("ПРИОРИТЕТ"), k13: this.tr("Сканеры блоков"), k14: this.tr("Сверка балансов"), k15: this.tr("последняя 14:00 · следующая 15:00"), k16: this.tr("Запустить сейчас"), k17: this.tr("АКТИВ · СЕТЬ"), k18: this.tr("НА АДРЕСАХ"), k19: this.tr("ПО УЧЁТУ"), k20: this.tr("РАЗНИЦА"), k21: this.tr("ИТОГ"), k22: this.tr("Разница по ETH — 0,0021: это комиссия вывода W-90388 в пути, закроется после 12 подтверждений."), k23: this.tr("Очереди сообщений"), k24: this.tr("Очереди"), k25: this.tr("остановлен · 12 мин"), k26: this.tr("старшее 12 мин"), k27: this.tr("Инцидент INC-0417 · Ethereum Sepolia недоступна 12 мин"), k28: this.tr("Оба RPC-узла не отвечают. Депозиты и выводы ETH и USDT в сети Sepolia приостановлены автоматически, средства пользователей в безопасности. Остальные сети работают."), k29: this.tr("Критический"), k30: this.tr("Уведомить пользователей"), k31: this.tr("Подключить третий узел"), k32: this.tr("Хронология инцидента"), k33: this.tr("ДЕЖУРНЫЙ · arb_olga · С 14:09") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const inc = (this.props.state ?? 'default') === 'incident';
+    const st = { ok: [this.tr('Работает'), 'c-ok'], down: [this.tr('Недоступен'), 'c-neg'], slow: [this.tr('Медленно'), 'c-warn'], idle: [this.tr('Резерв'), 'c-off'] };
+    const nodes = [
+      ['Ethereum Sepolia', '#8A9BFF', 'rpc-1.sepolia.aeon.test', 'down', '—', '1'],
+      ['Ethereum Sepolia', '#8A9BFF', 'rpc-2.sepolia.aeon.test', inc ? 'down' : 'ok', inc ? '—' : this.tr('210 мс'), '2'],
+      ['Polygon Amoy', '#A77BFF', 'rpc-1.amoy.aeon.test', 'ok', this.tr('140 мс'), '1'],
+      ['BSC Testnet', '#F3C64B', 'rpc-1.bsc.aeon.test', 'slow', this.tr('780 мс'), '1'],
+      ['Bitcoin Testnet', '#F7931A', 'btc-1.testnet.aeon.test', 'ok', this.tr('320 мс'), '1'],
+      ['Solana Devnet', '#7DE0B5', 'sol-1.devnet.aeon.test', 'ok', this.tr('95 мс'), '1'],
+      ['Solana Devnet', '#7DE0B5', 'sol-2.devnet.aeon.test', 'idle', this.tr('110 мс'), '2']
+    ];
+    const lag = (n) => Array.from({ length: 20 }, (_, i) => (i < 20 - n ? 'var(--sig)' : 'var(--warn)'));
+    const scan = (net, block, n) => ({ net, block, lag: n >= 20 ? this.tr('остановлен · 12 мин') : n ? this.tr('отстаёт на ') + n + this.tr(' бл.') : this.tr('в синхроне'), lc: n >= 20 ? 'var(--neg)' : n ? 'var(--warn)' : 'var(--sigt)', bars: n >= 20 ? Array.from({ length: 20 }, () => 'var(--neg)') : lag(n) });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', health: inc ? 'incident' : 'ok', isDefault: !inc, isIncident: inc,
+      nodes: nodes.map((n) => ({ net: n[0], c: n[1], host: n[2], st: st[n[3]][0], cls: st[n[3]][1], lat: n[4], lc: n[3] === 'slow' ? 'var(--warn)' : 'var(--t1)', prio: n[5] })),
+      scanners: [
+        scan('Ethereum Sepolia', this.tr('блок 6 812 004 · 14:21:08'), inc ? 20 : 4),
+        scan('Polygon Amoy', this.tr('блок 13 904 552 · 14:21:10'), 0),
+        scan('BSC Testnet', this.tr('блок 44 117 390 · 14:21:06'), 1),
+        scan('Bitcoin Testnet', this.tr('блок 3 461 228 · 14:18:40'), 0),
+        scan('Solana Devnet', this.tr('слот 331 902 117 · 14:21:11'), 0)
+      ],
+      recon: [
+        ['USDT · Sepolia', this.tr('412 380,00'), this.tr('412 380,00'), '0', 'ok'],
+        ['USDT · Amoy', this.tr('96 210,50'), this.tr('96 210,50'), '0', 'ok'],
+        ['ETH · Sepolia', this.tr('84,3172'), this.tr('84,3193'), this.tr('−0,0021'), 'warn'],
+        ['BTC · Testnet', this.tr('3,90215'), this.tr('3,90215'), '0', 'ok'],
+        ['SOL · Devnet', this.tr('2 140,6'), this.tr('2 140,6'), '0', 'ok']
+      ].map((r) => ({ asset: r[0], chain: r[1], ledger: r[2], diff: r[3], dc: r[4] === 'ok' ? 'var(--t3)' : 'var(--warn)', res: r[4] === 'ok' ? this.tr('Сходится') : this.tr('Расхождение'), cls: r[4] === 'ok' ? 'c-ok' : 'c-warn' })),
+      queues: [
+        ['deposits.detected', '0', this.tr('—')],
+        ['withdrawals.sign', inc ? '27' : '3', inc ? this.tr('старшее 12 мин') : this.tr('старшее 40 с'), inc],
+        ['scoring.requests', '12', this.tr('старшее 8 с')],
+        ['notifications.push', '0', this.tr('—')],
+        ['ledger.events', '148', this.tr('старшее 2 мин'), true]
+      ].map((q) => ({ name: q[0], n: q[1], age: q[2], c: q[3] ? 'var(--warn)' : 'var(--t1)' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

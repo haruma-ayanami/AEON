@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — настройки</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="profile" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <nav class="tabs" aria-label="{{ L.k2 }}"><a href="web-profile.dc.html">{{ L.k1 }}</a><a href="web-security.dc.html">{{ L.k3 }}</a><a href="web-settings.dc.html" aria-current="page">{{ L.k4 }}</a><a href="web-settings.dc.html">{{ L.k5 }}</a><a href="web-settings.dc.html">{{ L.k6 }}</a></nav>
+      <div class="split">
+        <section class="card" style="flex: 1 1 420px; min-width: 0; padding: 22px; display: flex; flex-direction: column; gap: 16px">
+          <span class="disp" style="font-size: 20px">{{ L.k7 }}</span>
+          <div class="field"><span>{{ L.k8 }}</span><div role="radiogroup" aria-label="{{ L.k8 }}" style="display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 999px; background: var(--raised)"><button role="radio" aria-checked="true" class="btn btn-p" style="height: 38px">{{ L.k9 }}</button><button role="radio" aria-checked="false" class="btn" style="height: 38px; background: transparent">English</button></div><span class="hint">{{ L.k10 }}</span></div>
+          <div class="field"><span>{{ L.k11 }}</span><div role="radiogroup" aria-label="{{ L.k11 }}" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 4px; border-radius: 999px; background: var(--raised)"><button role="radio" aria-checked="false" class="btn" style="height: 38px; background: transparent">{{ L.k12 }}</button><button role="radio" aria-checked="true" class="btn btn-p" style="height: 38px">{{ L.k13 }}</button><button role="radio" aria-checked="false" class="btn" style="height: 38px; background: transparent">{{ L.k14 }}</button></div></div>
+          <div class="field"><span>{{ L.k15 }}</span><button class="inp" style="color: var(--t1); font: 400 15px Inter, sans-serif; justify-content: space-between; cursor: pointer">{{ L.k16 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button></div>
+          <div class="tile" style="padding: 14px 16px; display: flex; align-items: center; gap: 12px"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{ L.k17 }}</span><span class="muted" style="font-size: 13px">{{ L.k18 }}</span></span><span class="sw" aria-hidden="true"></span></div>
+          <div class="tile" style="padding: 14px 16px; display: flex; align-items: center; gap: 12px"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{ L.k19 }}</span><span class="muted" style="font-size: 13px">{{ L.k20 }}</span></span><span class="sw on" aria-hidden="true"></span></div>
+        </section>
+        <section style="flex: 1.3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px"><span class="disp" style="font-size: 20px">{{ L.k21 }}</span><button class="btn btn-s btn-p">{{ L.k22 }}</button></div>
+            <sc-for list="{{ book }}" as="b" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--bs)"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: {{ b.c }}"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{ b.n }}</span><span class="mono muted" style="font-size: 12px">{{ b.a }}</span></span><span class="chip {{ b.cls }}">{{ b.s }}</span></div></sc-for>
+          </div>
+          <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px"><span class="disp" style="font-size: 20px">{{ L.k23 }}</span><button class="btn btn-s btn-o">{{ L.k24 }}</button></div>
+            <sc-for list="{{ pay }}" as="p" hint-placeholder-count="2"><div style="display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--bs)"><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 500">{{ p.n }}</span><span class="muted" style="font-size: 13px">{{ p.d }}</span></span><button class="btn btn-s btn-o">{{ L.k25 }}</button></div></sc-for>
+            <span class="hint">{{ L.k26 }}</span>
+          </div>
+          <div class="card" style="padding: 22px; display: flex; flex-direction: column; gap: 6px">
+            <span class="disp" style="font-size: 20px; padding-bottom: 8px">{{ L.k27 }}</span>
+            <sc-for list="{{ docs }}" as="d" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 14px; padding: 10px 0; border-top: 1px solid var(--bs); font-size: 14px"><button type="button" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; flex: 1">{{ d.n }}</button><span class="mono faint" style="font-size: 12px">{{ d.v }}</span></div></sc-for>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Профиль": "Profile", "Безопасность": "Security", "Язык": "Language", "Русский": "English", "Как в системе": "System default", "Изменить": "Edit", "СБП · Людмила К.": "SBP · Lyudmila K.", "Банковский перевод": "Bank transfer", "Адресная книга": "Address book", "Тема": "Theme", "Тёмная": "Dark", "Условия использования": "Terms of Use", "Разделы профиля": "Profile sections", "Настройки": "Settings", "Реквизиты и адреса": "Payment details and addresses", "Документы": "Documents", "Интерфейс": "Interface", "Меняется сразу, без перезапуска. Даты и числа — в формате языка.": "Applies instantly, no restart. Dates and numbers follow the language.", "Светлая": "Light", "Валюта отображения": "Display currency", "USD · доллар США": "USD · US dollar", "Скрывать суммы при запуске": "Hide amounts on launch", "Показ — по нажатию на «глаз»": "Tap the “eye” to show them", "Подсказки в разделах": "Hints in sections", "Кнопка «?» и пояснения терминов": "The “?” button and term explanations", "+ Добавить адрес": "+ Add address", "Реквизиты для P2P": "P2P payment details", "+ Добавить": "+ Add", "Тестовый прототип: используйте вымышленные данные.": "Test prototype: use made-up data.", "Документы и согласия": "Documents and consents", "Ledger тест · Sepolia": "Ledger test · Sepolia", "Доверенный": "Trusted", "Кошелёк Маши · Sepolia": "Masha's wallet · Sepolia", "Холодный BTC · Testnet": "Cold BTC · Testnet", "Через 19 ч": "In 19 h", "+7 900 ••• •• 00 · [Банк]": "+7 900 ••• •• 00 · [Bank]", "Счёт •• 4821 · [Банк]": "Account •• 4821 · [Bank]", "v2.1 · принято 02.09.2026": "v2.1 · accepted 02.09.2026", "Политика обработки персональных данных": "Personal Data Processing Policy", "v1.4 · принято 02.09.2026": "v1.4 · accepted 02.09.2026", "Правила P2P-торговли": "P2P Trading Rules", "v1.2 · принято 05.09.2026": "v1.2 · accepted 05.09.2026"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Профиль"), k2: this.tr("Разделы профиля"), k3: this.tr("Безопасность"), k4: this.tr("Настройки"), k5: this.tr("Реквизиты и адреса"), k6: this.tr("Документы"), k7: this.tr("Интерфейс"), k8: this.tr("Язык"), k9: this.tr("Русский"), k10: this.tr("Меняется сразу, без перезапуска. Даты и числа — в формате языка."), k11: this.tr("Тема"), k12: this.tr("Светлая"), k13: this.tr("Тёмная"), k14: this.tr("Как в системе"), k15: this.tr("Валюта отображения"), k16: this.tr("USD · доллар США"), k17: this.tr("Скрывать суммы при запуске"), k18: this.tr("Показ — по нажатию на «глаз»"), k19: this.tr("Подсказки в разделах"), k20: this.tr("Кнопка «?» и пояснения терминов"), k21: this.tr("Адресная книга"), k22: this.tr("+ Добавить адрес"), k23: this.tr("Реквизиты для P2P"), k24: this.tr("+ Добавить"), k25: this.tr("Изменить"), k26: this.tr("Тестовый прототип: используйте вымышленные данные."), k27: this.tr("Документы и согласия"), k28: this.tr("Ledger тест · Sepolia"), k29: this.tr("Доверенный"), k30: this.tr("Кошелёк Маши · Sepolia"), k31: this.tr("Холодный BTC · Testnet"), k32: this.tr("Через 19 ч"), k33: this.tr("СБП · Людмила К."), k34: this.tr("+7 900 ••• •• 00 · [Банк]"), k35: this.tr("Банковский перевод"), k36: this.tr("Счёт •• 4821 · [Банк]"), k37: this.tr("Условия использования"), k38: this.tr("v2.1 · принято 02.09.2026"), k39: this.tr("Политика обработки персональных данных"), k40: this.tr("v1.4 · принято 02.09.2026"), k41: this.tr("Правила P2P-торговли"), k42: this.tr("v1.2 · принято 05.09.2026") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      book: [
+        { n: this.tr('Ledger тест · Sepolia'), a: '0x1b9C4e…3f6D0a91', c: '#8A9BFF', s: this.tr('Доверенный'), cls: 'c-ok' },
+        { n: this.tr('Кошелёк Маши · Sepolia'), a: '0x9e41b2…a1d044Bc', c: '#8A9BFF', s: this.tr('Доверенный'), cls: 'c-ok' },
+        { n: this.tr('Холодный BTC · Testnet'), a: 'tb1qw508…7kxpjzsx', c: '#F7A23B', s: this.tr('Через 19 ч'), cls: 'c-warn' }
+      ],
+      pay: [{ n: this.tr('СБП · Людмила К.'), d: this.tr('+7 900 ••• •• 00 · [Банк]') }, { n: this.tr('Банковский перевод'), d: this.tr('Счёт •• 4821 · [Банк]') }],
+      docs: [{ n: this.tr('Условия использования'), v: this.tr('v2.1 · принято 02.09.2026') }, { n: this.tr('Политика обработки персональных данных'), v: this.tr('v1.4 · принято 02.09.2026') }, { n: this.tr('Правила P2P-торговли'), v: this.tr('v1.2 · принято 05.09.2026') }]
+    };
+  }
+}
+</script>
+</body>
+</html>

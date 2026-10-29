@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Admin для Windows — депозиты на удержании</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" account="admin" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinAdminNav" active="deposits" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1></div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding: 0 28px 12px"><sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4"><div class="wcard" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><span class="lbl" style="font-size: 10px">{{ k.l }}</span><span class="disp" style="font-size: 24px; color: {{ k.c }}">{{ k.v }}</span><span class="faint" style="font-size: 11px">{{ k.n }}</span></div></sc-for></div>
+      <div style="flex: 1; min-height: 0; display: flex; border-top: 1px solid var(--bs)">
+        <div style="flex: 1; min-width: 0; overflow: hidden"><table class="tbl"><thead><tr><th>{{ L.k3 }}</th><th style="text-align: right">{{ L.k4 }}</th><th>{{ L.k5 }}</th><th>{{ L.k6 }}</th><th>{{ L.k7 }}</th><th>{{ L.k8 }}</th></tr></thead><tbody><sc-for list="{{ rows }}" as="r" hint-placeholder-count="6"><tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}"><td style="font-weight: 600">{{ r.user }}</td><td class="num" style="text-align: right"><span style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-weight: 600">{{ r.amt }}</span><span class="faint" style="font-size: 11px">{{ r.net }}</span></span></td><td class="mono muted" style="font-size: 12px">{{ r.addr }}</td><td><span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 44px; height: 5px; border-radius: 3px; background: var(--bd); overflow: hidden"><span style="display: block; height: 100%; width: {{ r.rw }}; background: {{ r.rc }}"></span></span><span class="mono" style="font-size: 12px; color: {{ r.rc }}">{{ r.risk }}</span></span></td><td class="muted" style="font-size: 12px">{{ r.reason }}</td><td class="mono" style="font-size: 12px; color: {{ r.ac }}">{{ r.age }}</td></tr></sc-for></tbody></table></div>
+        <aside style="width: 400px; flex: none; border-left: 1px solid var(--bs); background: var(--card); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; overflow: hidden"><span style="display: flex; justify-content: space-between; align-items: flex-start"><span style="display: flex; flex-direction: column; gap: 3px"><span class="lbl" style="font-size: 10px">{{ L.k9 }}</span><span class="disp" style="font-size: 24px">5 000,00 USDT</span><span class="muted" style="font-size: 12px">{{ L.k10 }}</span></span><span class="chip c-warn" style="height: 22px">{{ L.k11 }}</span></span>
+          <div style="padding: 10px 12px; border-radius: 4px; background: var(--raised); display: flex; flex-direction: column; gap: 6px"><span class="lbl" style="font-size: 10px">{{ L.k12 }}</span><span class="mono" style="font-size: 12px; line-height: 18px; word-break: break-all">0x6b1758a2c90E3fD4a7Bb52e1D0c3F9e8a71C04d2</span><span style="display: flex; gap: 6px"><span class="chip c-neg" style="height: 22px">{{ L.k13 }}</span><span class="chip c-warn" style="height: 22px">{{ L.k14 }}</span></span></div>
+          <span class="lbl" style="font-size: 10px">{{ L.k15 }}</span><div aria-hidden="true" style="position: relative; display: grid; grid-template-columns: 24fr 35fr 25fr 16fr; gap: 3px; height: 6px"><span style="border-radius: 2px; background: #B6F36B"></span><span style="border-radius: 2px; background: #F5B941"></span><span style="border-radius: 2px; background: #FF9A5B"></span><span style="border-radius: 2px; background: #FF5A4A"></span><span style="position: absolute; left: 71%; top: -4px; width: 3px; height: 14px; border-radius: 2px; background: var(--t1)"></span></div>
+          <sc-for list="{{ reasons }}" as="x" hint-placeholder-count="3"><span style="display: flex; gap: 8px; font-size: 12px; line-height: 17px"><span aria-hidden="true" style="width: 7px; height: 7px; margin-top: 5px; flex: none; border-radius: 2px; background: {{ x.c }}"></span>{{ x.t }}</span></sc-for>
+          <div style="display: flex; flex-direction: column"><sc-for list="{{ facts }}" as="f" hint-placeholder-count="3"><div class="rowline" style="font-size: 12px"><span>{{ f.k }}</span><span style="color: {{ f.c }}">{{ f.v }}</span></div></sc-for></div>
+          <label style="display: flex; flex-direction: column; gap: 4px"><span class="muted">{{ L.k16 }}</span><span class="winp" style="height: 34px"><input placeholder="{{ L.k17 }}"></span></label>
+          <div style="flex: 1"></div>
+          <div style="display: flex; gap: 6px"><button class="wbtn" style="flex: 1; color: var(--neg)">{{ L.k18 }}</button><button class="wbtn wbtn-p" style="flex: 1">{{ L.k19 }}</button></div></aside>
+      </div>
+      <footer class="wstatus"><span>{{ L.k20 }}</span><span style="flex: 1"></span><span>{{ L.k21 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON Admin · Депозиты": "AEON Admin · Deposits", "Депозиты на удержании": "Deposits on hold", "ПОЛЬЗОВАТЕЛЬ": "USER", "СУММА": "AMOUNT", "ИСТОЧНИК": "SOURCE", "РИСК": "RISK", "ПРИЧИНА": "REASON", "ЖДЁТ": "WAITING", "ДЕПОЗИТ D-3108 · NEWTRADER_07": "DEPOSIT D-3108 · NEWTRADER_07", "Ethereum Sepolia · 12 из 12 подтверждений": "Ethereum Sepolia · 12 of 12 confirmations", "Удержан": "On hold", "АДРЕС ОТПРАВИТЕЛЯ": "SENDER ADDRESS", "Миксер · 1 переход": "Mixer · 1 hop", "Первый депозит": "First deposit", "СКОРИНГ · 71 ИЗ 100": "SCORING · 71 OF 100", "Комментарий сотрудника": "Staff comment", "Обязателен при отклонении — уйдёт в журнал": "Required when rejecting — goes to the log", "Отклонить": "Reject", "Зачислить с 2FA": "Credit with 2FA", "ОЧЕРЕДЬ ОБНОВЛЯЕТСЯ В РЕАЛЬНОМ ВРЕМЕНИ": "QUEUE UPDATES IN REAL TIME", "CTRL+ENTER — ОДОБРИТЬ · CTRL+DEL — ОТКЛОНИТЬ": "CTRL+ENTER — APPROVE · CTRL+DEL — REJECT", "ч": "h", "НА УДЕРЖАНИИ": "ON HOLD", "сегодня": "today", "НА СУММУ": "TOTAL AMOUNT", "$6 140": "$6,140", "по курсу 14:20": "at the 14:20 rate", "СТАРШЕМУ ДЕПОЗИТУ": "OLDEST DEPOSIT", "3 ч 10 мин": "3 h 10 min", "SLA 4 ч": "SLA 4 h", "АВТОЗАЧИСЛЕНИЕ": "AUTO-CREDIT", "риск < 25": "risk < 25", "остальные — сразу": "others — instantly", "5 000 USDT": "5,000 USDT", "Источник рядом с миксером": "Source close to a mixer", "0,35 ETH": "0.35 ETH", "Новый источник + крупная сумма": "New source + large amount", "48 мин": "48 min", "1 200 USDT": "1,200 USDT", "Сумма выше порога": "Amount above threshold", "20 мин": "20 min", "0,02 BTC": "0.02 BTC", "Новый источник": "New source", "12 мин": "12 min", "900 USDT": "900 USDT", "Адрес в санкционном списке": "Address on a sanctions list", "6 мин": "6 min", "Источник в одном переходе от сервиса-миксера": "Source is one hop from a mixing service", "Первый депозит на новый аккаунт, сумма 5 000 USDT": "First deposit to a new account, amount 5,000 USDT", "Санкционные списки — совпадений нет": "Sanctions lists — no matches", "Аккаунт": "Account", "с 21.10.2026 · KYC 1": "since 21.10.2026 · KYC 1", "Депозитов раньше": "Earlier deposits", "нет": "none", "Хеш": "Hash"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON Admin · Депозиты"), k2: this.tr("Депозиты на удержании"), k3: this.tr("ПОЛЬЗОВАТЕЛЬ"), k4: this.tr("СУММА"), k5: this.tr("ИСТОЧНИК"), k6: this.tr("РИСК"), k7: this.tr("ПРИЧИНА"), k8: this.tr("ЖДЁТ"), k9: this.tr("ДЕПОЗИТ D-3108 · NEWTRADER_07"), k10: this.tr("Ethereum Sepolia · 12 из 12 подтверждений"), k11: this.tr("Удержан"), k12: this.tr("АДРЕС ОТПРАВИТЕЛЯ"), k13: this.tr("Миксер · 1 переход"), k14: this.tr("Первый депозит"), k15: this.tr("СКОРИНГ · 71 ИЗ 100"), k16: this.tr("Комментарий сотрудника"), k17: this.tr("Обязателен при отклонении — уйдёт в журнал"), k18: this.tr("Отклонить"), k19: this.tr("Зачислить с 2FA"), k20: this.tr("ОЧЕРЕДЬ ОБНОВЛЯЕТСЯ В РЕАЛЬНОМ ВРЕМЕНИ"), k21: this.tr("CTRL+ENTER — ОДОБРИТЬ · CTRL+DEL — ОТКЛОНИТЬ"), k22: this.tr("ч"), k23: this.tr("НА УДЕРЖАНИИ"), k24: this.tr("сегодня"), k25: this.tr("НА СУММУ"), k26: this.tr("$6 140"), k27: this.tr("по курсу 14:20"), k28: this.tr("СТАРШЕМУ ДЕПОЗИТУ"), k29: this.tr("3 ч 10 мин"), k30: this.tr("SLA 4 ч"), k31: this.tr("АВТОЗАЧИСЛЕНИЕ"), k32: this.tr("риск < 25"), k33: this.tr("остальные — сразу"), k34: this.tr("5 000 USDT"), k35: this.tr("Источник рядом с миксером"), k36: this.tr("0,35 ETH"), k37: this.tr("Новый источник + крупная сумма"), k38: this.tr("48 мин"), k39: this.tr("1 200 USDT"), k40: this.tr("Сумма выше порога"), k41: this.tr("20 мин"), k42: this.tr("0,02 BTC"), k43: this.tr("Новый источник"), k44: this.tr("12 мин"), k45: this.tr("900 USDT"), k46: this.tr("Адрес в санкционном списке"), k47: this.tr("6 мин"), k48: this.tr("Источник в одном переходе от сервиса-миксера"), k49: this.tr("Первый депозит на новый аккаунт, сумма 5 000 USDT"), k50: this.tr("Санкционные списки — совпадений нет"), k51: this.tr("Аккаунт"), k52: this.tr("с 21.10.2026 · KYC 1"), k53: this.tr("Депозитов раньше"), k54: this.tr("нет"), k55: this.tr("Хеш") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const sel = (i, j) => (i === j ? { sel: 'true', bg: 'var(--wsel)' } : { sel: 'false', bg: 'transparent' });
+    const rc = (r) => (r >= 85 ? 'var(--neg)' : r >= 60 ? 'var(--orange, #FF9A5B)' : r >= 25 ? 'var(--warn)' : 'var(--sigt)');
+    const k = (l, v, n, c) => ({ l, v, n, c: c || 'var(--t1)' });
+    const w = (i, user, amt, net, addr, risk, reason, age) => ({ ...sel(i, 0), user, amt, net, addr, risk: String(risk), rw: risk + '%', rc: rc(risk), reason, age, ac: age.includes(this.tr("ч")) ? 'var(--warn)' : 'var(--t2)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      kpis: [k(this.tr("НА УДЕРЖАНИИ"), '2', this.tr("сегодня")), k(this.tr("НА СУММУ"), this.tr("$6 140"), this.tr("по курсу 14:20")), k(this.tr("СТАРШЕМУ ДЕПОЗИТУ"), this.tr("3 ч 10 мин"), this.tr("SLA 4 ч"), 'var(--warn)'), k(this.tr("АВТОЗАЧИСЛЕНИЕ"), this.tr("риск < 25"), this.tr("остальные — сразу"))],
+      rows: [w(0, 'newtrader_07', this.tr("5 000 USDT"), 'Sepolia', '0x6b17…04d2', 71, this.tr("Источник рядом с миксером"), this.tr("3 ч 10 мин")), w(1, 'gold_x', this.tr("0,35 ETH"), 'Sepolia', '0x2c9a…71B0', 52, this.tr("Новый источник + крупная сумма"), this.tr("48 мин")), w(2, 'olga_m', this.tr("1 200 USDT"), 'Amoy', '0xa13f…9e2C', 28, this.tr("Сумма выше порога"), this.tr("20 мин")), w(3, 'mbtc', this.tr("0,02 BTC"), 'Testnet', 'tb1q…8kq3', 33, this.tr("Новый источник"), this.tr("12 мин")), w(4, 'shadow_t', this.tr("900 USDT"), 'Sepolia', '0x7f2e…c4A1', 96, this.tr("Адрес в санкционном списке"), this.tr("6 мин"))],
+      reasons: [{ c: 'var(--neg)', t: this.tr("Источник в одном переходе от сервиса-миксера") }, { c: 'var(--warn)', t: this.tr("Первый депозит на новый аккаунт, сумма 5 000 USDT") }, { c: 'var(--t3)', t: this.tr("Санкционные списки — совпадений нет") }],
+      facts: [{ k: this.tr("Аккаунт"), v: this.tr("с 21.10.2026 · KYC 1"), c: 'var(--t1)' }, { k: this.tr("Депозитов раньше"), v: this.tr("нет"), c: 'var(--warn)' }, { k: this.tr("Хеш"), v: '0x4e1a…9c07', c: 'var(--t1)' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

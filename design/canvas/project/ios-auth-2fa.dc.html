@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — второй фактор</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-auth-login.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title"></span><span class="testnet">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 130px; gap: 16px">
+    <span aria-hidden="true" style="width: 56px; height: 56px; margin-left: 4px; border-radius: 18px; background: var(--raised); color: var(--sigt); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg></span>
+    <h1 class="disp" style="margin: 0 4px; font-size: 32px">{{ L.k3 }}</h1>
+    <span class="muted" style="padding: 0 4px; font-size: 15px; line-height: 22px">{{ L.k4 }}</span>
+    <div role="group" aria-label="{{ L.k5 }}" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px"><sc-for list="{{ code }}" as="d" hint-placeholder-count="6"><span class="inp {{ d.cls }}" style="justify-content: center; height: 60px; border-radius: 16px; font: 600 24px 'JetBrains Mono', monospace">{{ d.v }}</span></sc-for></div>
+    <span class="hint" style="padding: 0 4px">{{ L.k6 }}</span>
+    <span class="lbl" style="padding: 8px 4px 0">{{ L.k7 }}</span>
+    <div class="icard">
+      <sc-for list="{{ methods }}" as="m" hint-placeholder-count="3"><button type="button" class="irow" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; min-height: 56px"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 10px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ m.d }}"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 500 15px Inter, sans-serif">{{ m.t }}</span><span class="faint" style="font-size: 12px">{{ m.s }}</span></span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button></sc-for>
+    </div>
+  </div>
+  <div class="ios-bar"><a href="ios-wallet-home.dc.html" class="btn btn-p" style="flex: 1; height: 56px; font-size: 17px">{{ L.k8 }}</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Второй фактор": "Second factor", "Введите 6 цифр из приложения-аутентификатора для alex.t@mail.test.": "Enter the 6 digits from your authenticator app for alex.t@mail.test.", "Код из приложения": "Code from the app", "Код обновится через 18 с": "Code refreshes in 18 s", "ДРУГОЙ СПОСОБ": "ANOTHER METHOD", "Войти": "Sign in", "Ключ доступа": "Passkey", "Face ID на этом iPhone": "Face ID on this iPhone", "Код на почту": "Code by email", "Резервный код": "Backup code", "один из 10 кодов, сохранённых при настройке": "one of the 10 codes saved during setup"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("Второй фактор"), k4: this.tr("Введите 6 цифр из приложения-аутентификатора для alex.t@mail.test."), k5: this.tr("Код из приложения"), k6: this.tr("Код обновится через 18 с"), k7: this.tr("ДРУГОЙ СПОСОБ"), k8: this.tr("Войти") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      code: ['3', '0', '7', '2', '', ''].map((v, i) => ({ v, cls: i === 4 ? 'focus' : '' })),
+      methods: [
+        { t: this.tr('Ключ доступа'), s: this.tr('Face ID на этом iPhone'), d: 'M8 11a4 4 0 1 1 4 4H9v3H6v3H3v-3l5-5.5M15.5 7.5h.01' },
+        { t: this.tr('Код на почту'), s: 'a•••@mail.test', d: 'M3 6h18v12H3zM3 7l9 6 9-6' },
+        { t: this.tr('Резервный код'), s: this.tr('один из 10 кодов, сохранённых при настройке'), d: 'M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h5' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

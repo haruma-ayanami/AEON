@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Admin для Windows — узлы и сверка</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>.dense .tbl td{height:36px}.dense .tbl th{height:30px}</style>
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" account="admin" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinAdminNav" active="system" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1><button class="wbtn">{{ L.k3 }}</button><button class="wbtn wbtn-p">{{ L.k4 }}</button></div>
+      <div style="padding: 0 28px 12px"><div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 10px"><span><b style="font-weight: 600">{{ L.k5 }}</b> {{ L.k6 }}</span></span></div></div>
+      <div class="dense" style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 380px; grid-template-rows: auto 1fr; gap: 12px; padding: 0 28px 16px">
+        <section class="wcard" style="overflow: hidden"><div style="padding: 12px 16px 4px; display: flex"><span style="font: 600 15px Inter, sans-serif; flex: 1">{{ L.k7 }}</span><span class="faint" style="font-size: 12px">{{ L.k8 }}</span></div><table class="tbl"><thead><tr><th>{{ L.k9 }}</th><th>{{ L.k10 }}</th><th>{{ L.k11 }}</th><th style="text-align: right">{{ L.k12 }}</th><th style="text-align: right">{{ L.k13 }}</th></tr></thead><tbody><sc-for list="{{ nodes }}" as="r" hint-placeholder-count="7"><tr><td><span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; background: {{ r.c }}"></span>{{ r.net }}</span></td><td class="mono muted" style="font-size: 12px">{{ r.host }}</td><td><span class="chip {{ r.cls }}" style="height: 22px">{{ r.st }}</span></td><td class="mono" style="text-align: right; font-size: 12px; color: {{ r.lc }}">{{ r.lat }}</td><td class="mono" style="text-align: right">{{ r.prio }}</td></tr></sc-for></tbody></table></section>
+        <section class="wcard" style="padding: 12px 16px; display: flex; flex-direction: column; gap: 8px"><span style="font: 600 15px Inter, sans-serif">{{ L.k14 }}</span><sc-for list="{{ scan }}" as="s" hint-placeholder-count="5"><div style="display: flex; flex-direction: column; gap: 5px; padding: 6px 0; border-bottom: 1px solid var(--bs)"><span style="display: flex; justify-content: space-between"><span style="font-weight: 500">{{ s.net }}</span><span class="mono" style="font-size: 12px; color: {{ s.lc }}">{{ s.lag }}</span></span><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: 2px; height: 4px"><sc-for list="{{ s.bars }}" as="b" hint-placeholder-count="20"><span style="border-radius: 1px; background: {{ b }}"></span></sc-for></span><span class="mono faint" style="font-size: 11px">{{ s.block }}</span></div></sc-for></section>
+        <section class="wcard" style="overflow: hidden"><div style="padding: 12px 16px 4px; display: flex"><span style="font: 600 15px Inter, sans-serif; flex: 1">{{ L.k15 }}</span><span class="faint" style="font-size: 12px">{{ L.k16 }}</span></div><table class="tbl"><thead><tr><th>{{ L.k17 }}</th><th style="text-align: right">{{ L.k18 }}</th><th style="text-align: right">{{ L.k19 }}</th><th style="text-align: right">{{ L.k20 }}</th><th>{{ L.k21 }}</th></tr></thead><tbody><sc-for list="{{ recon }}" as="r" hint-placeholder-count="5"><tr><td style="font-weight: 500">{{ r.asset }}</td><td class="num" style="text-align: right">{{ r.chain }}</td><td class="num" style="text-align: right">{{ r.ledger }}</td><td class="num" style="text-align: right; font-weight: 600; color: {{ r.dc }}">{{ r.diff }}</td><td><span class="chip {{ r.cls }}" style="height: 22px">{{ r.res }}</span></td></tr></sc-for></tbody></table><div style="padding: 10px 16px; border-top: 1px solid var(--bs); font-size: 12px; color: var(--t2)">{{ L.k22 }}</div></section>
+        <section class="wcard" style="padding: 12px 16px; display: flex; flex-direction: column"><span style="font: 600 15px Inter, sans-serif; padding-bottom: 6px">{{ L.k23 }}</span><sc-for list="{{ queues }}" as="q" hint-placeholder-count="5"><div class="rowline" style="font-size: 12px"><span class="mono" style="color: var(--t1)">{{ q.name }}</span><span><span class="mono" style="color: {{ q.c }}">{{ q.n }}</span> <span class="faint">{{ q.age }}</span></span></div></sc-for></section>
+      </div>
+      <footer class="wstatus"><span>{{ L.k24 }}</span><span style="flex: 1"></span><span>{{ L.k25 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON Admin · Узлы и сверка": "AEON Admin · Nodes & recon", "Узлы и сверка": "Nodes & recon", "Открыть инцидент": "Open incident", "Запустить сверку": "Run reconciliation", "Основной RPC-узел Sepolia недоступен 6 минут.": "The primary Sepolia RPC node has been down for 6 minutes.", "Запросы идут через резервный, сканер отстаёт на 4 блока. Переводы и депозиты не остановлены.": "Requests go through the backup; the scanner is 4 blocks behind. Transfers and deposits are not stopped.", "RPC-узлы": "RPC nodes", "проверка каждые 15 с": "checked every 15 s", "СЕТЬ": "NETWORK", "УЗЕЛ": "NODE", "СТАТУС": "STATUS", "ЗАДЕРЖКА": "LATENCY", "ПРИОРИТЕТ": "PRIORITY", "Сканеры блоков": "Block scanners", "Сверка балансов": "Balance reconciliation", "последняя 14:00 · следующая 15:00": "last 14:00 · next 15:00", "АКТИВ · СЕТЬ": "ASSET · NETWORK", "НА АДРЕСАХ": "ON ADDRESSES", "ПО УЧЁТУ": "LEDGER", "РАЗНИЦА": "DIFFERENCE", "ИТОГ": "RESULT", "Разница по ETH — 0,0021: это комиссия вывода W-90388 в пути, закроется после 12 подтверждений.": "The ETH difference of 0.0021 is the fee for withdrawal W-90388 in transit; it will close after 12 confirmations.", "Очереди сообщений": "Message queues", "ИНЦИДЕНТ INC-0412 · ОТКРЫТ 14:15": "INCIDENT INC-0412 · OPENED 14:15", "F5 — ОБНОВИТЬ · CTRL+R — СВЕРКА": "F5 — REFRESH · CTRL+R — RECONCILE", "Работает": "Healthy", "Недоступен": "Down", "Медленно": "Slow", "Резерв": "Standby", "отстаёт на ": "behind by ", " бл.": " blk", "в синхроне": "in sync", "Сходится": "Matches", "Расхождение": "Mismatch", "210 мс": "210 ms", "140 мс": "140 ms", "780 мс": "780 ms", "320 мс": "320 ms", "95 мс": "95 ms", "110 мс": "110 ms", "блок 6 812 004 · 14:21:08": "block 6,812,004 · 14:21:08", "блок 13 904 552 · 14:21:10": "block 13,904,552 · 14:21:10", "блок 44 117 390 · 14:21:06": "block 44,117,390 · 14:21:06", "блок 3 461 228 · 14:18:40": "block 3,461,228 · 14:18:40", "слот 331 902 117 · 14:21:11": "slot 331,902,117 · 14:21:11", "412 380,00": "412,380.00", "96 210,50": "96,210.50", "84,3172": "84.3172", "84,3193": "84.3193", "−0,0021": "−0.0021", "3,90215": "3.90215", "2 140,6": "2,140.6", "старшее 40 с": "oldest 40 s", "старшее 8 с": "oldest 8 s", "старшее 2 мин": "oldest 2 min"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON Admin · Узлы и сверка"), k2: this.tr("Узлы и сверка"), k3: this.tr("Открыть инцидент"), k4: this.tr("Запустить сверку"), k5: this.tr("Основной RPC-узел Sepolia недоступен 6 минут."), k6: this.tr("Запросы идут через резервный, сканер отстаёт на 4 блока. Переводы и депозиты не остановлены."), k7: this.tr("RPC-узлы"), k8: this.tr("проверка каждые 15 с"), k9: this.tr("СЕТЬ"), k10: this.tr("УЗЕЛ"), k11: this.tr("СТАТУС"), k12: this.tr("ЗАДЕРЖКА"), k13: this.tr("ПРИОРИТЕТ"), k14: this.tr("Сканеры блоков"), k15: this.tr("Сверка балансов"), k16: this.tr("последняя 14:00 · следующая 15:00"), k17: this.tr("АКТИВ · СЕТЬ"), k18: this.tr("НА АДРЕСАХ"), k19: this.tr("ПО УЧЁТУ"), k20: this.tr("РАЗНИЦА"), k21: this.tr("ИТОГ"), k22: this.tr("Разница по ETH — 0,0021: это комиссия вывода W-90388 в пути, закроется после 12 подтверждений."), k23: this.tr("Очереди сообщений"), k24: this.tr("ИНЦИДЕНТ INC-0412 · ОТКРЫТ 14:15"), k25: this.tr("F5 — ОБНОВИТЬ · CTRL+R — СВЕРКА"), k26: this.tr("Работает"), k27: this.tr("Недоступен"), k28: this.tr("Медленно"), k29: this.tr("Резерв"), k30: this.tr("отстаёт на "), k31: this.tr(" бл."), k32: this.tr("в синхроне"), k33: this.tr("Сходится"), k34: this.tr("Расхождение"), k35: this.tr("210 мс"), k36: this.tr("140 мс"), k37: this.tr("780 мс"), k38: this.tr("320 мс"), k39: this.tr("95 мс"), k40: this.tr("110 мс"), k41: this.tr("блок 6 812 004 · 14:21:08"), k42: this.tr("блок 13 904 552 · 14:21:10"), k43: this.tr("блок 44 117 390 · 14:21:06"), k44: this.tr("блок 3 461 228 · 14:18:40"), k45: this.tr("слот 331 902 117 · 14:21:11"), k46: this.tr("412 380,00"), k47: this.tr("96 210,50"), k48: this.tr("84,3172"), k49: this.tr("84,3193"), k50: this.tr("−0,0021"), k51: this.tr("3,90215"), k52: this.tr("2 140,6"), k53: this.tr("старшее 40 с"), k54: this.tr("старшее 8 с"), k55: this.tr("старшее 2 мин") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = { ok: [this.tr("Работает"), 'c-ok'], down: [this.tr("Недоступен"), 'c-neg'], slow: [this.tr("Медленно"), 'c-warn'], idle: [this.tr("Резерв"), 'c-off'] };
+    const nd = (net, c, host, s, lat, prio) => ({ net, c, host, st: st[s][0], cls: st[s][1], lat, lc: s === 'slow' ? 'var(--warn)' : 'var(--t1)', prio });
+    const lag = (n) => Array.from({ length: 20 }, (_, i) => (i < 20 - n ? 'var(--sig)' : 'var(--warn)'));
+    const sc = (net, block, n) => ({ net, block, lag: n ? this.tr("отстаёт на ") + n + this.tr(" бл.") : this.tr("в синхроне"), lc: n ? 'var(--warn)' : 'var(--sigt)', bars: lag(n) });
+    const rc_ = (asset, chain, ledger, diff, ok) => ({ asset, chain, ledger, diff, dc: ok ? 'var(--t3)' : 'var(--warn)', res: ok ? this.tr("Сходится") : this.tr("Расхождение"), cls: ok ? 'c-ok' : 'c-warn' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      nodes: [nd('Ethereum Sepolia', '#8A9BFF', 'rpc-1.sepolia.aeon.test', 'down', '—', '1'), nd('Ethereum Sepolia', '#8A9BFF', 'rpc-2.sepolia.aeon.test', 'ok', this.tr("210 мс"), '2'), nd('Polygon Amoy', '#A77BFF', 'rpc-1.amoy.aeon.test', 'ok', this.tr("140 мс"), '1'), nd('BSC Testnet', '#F3C64B', 'rpc-1.bsc.aeon.test', 'slow', this.tr("780 мс"), '1'), nd('Bitcoin Testnet', '#F7931A', 'btc-1.testnet.aeon.test', 'ok', this.tr("320 мс"), '1'), nd('Solana Devnet', '#7DE0B5', 'sol-1.devnet.aeon.test', 'ok', this.tr("95 мс"), '1'), nd('Solana Devnet', '#7DE0B5', 'sol-2.devnet.aeon.test', 'idle', this.tr("110 мс"), '2')],
+      scan: [sc('Ethereum Sepolia', this.tr("блок 6 812 004 · 14:21:08"), 4), sc('Polygon Amoy', this.tr("блок 13 904 552 · 14:21:10"), 0), sc('BSC Testnet', this.tr("блок 44 117 390 · 14:21:06"), 1), sc('Bitcoin Testnet', this.tr("блок 3 461 228 · 14:18:40"), 0), sc('Solana Devnet', this.tr("слот 331 902 117 · 14:21:11"), 0)],
+      recon: [rc_('USDT · Sepolia', this.tr("412 380,00"), this.tr("412 380,00"), '0', true), rc_('USDT · Amoy', this.tr("96 210,50"), this.tr("96 210,50"), '0', true), rc_('ETH · Sepolia', this.tr("84,3172"), this.tr("84,3193"), this.tr("−0,0021"), false), rc_('BTC · Testnet', this.tr("3,90215"), this.tr("3,90215"), '0', true), rc_('SOL · Devnet', this.tr("2 140,6"), this.tr("2 140,6"), '0', true)],
+      queues: [{ name: 'deposits.detected', n: '0', age: '—', c: 'var(--t1)' }, { name: 'withdrawals.sign', n: '3', age: this.tr("старшее 40 с"), c: 'var(--t1)' }, { name: 'scoring.requests', n: '12', age: this.tr("старшее 8 с"), c: 'var(--t1)' }, { name: 'notifications.push', n: '0', age: '—', c: 'var(--t1)' }, { name: 'ledger.events', n: '148', age: this.tr("старшее 2 мин"), c: 'var(--warn)' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

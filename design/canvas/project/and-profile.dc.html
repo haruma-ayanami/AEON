@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Android — профиль</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob48 {{ themeClass }}" style="position: relative; width: 412px; height: 915px; overflow: hidden">
+  <header style="position: absolute; left: 0; right: 0; top: 40px; height: 64px; display: flex; align-items: center; padding: 0 16px"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 22px Inter, sans-serif">{{ L.k1 }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button aria-label="{{ L.kh }}" style="width: 48px; height: 48px; border-radius: 999px; border: 0; background: transparent; color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5"></path></svg></button><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 40px; padding: 3px; margin-right: 8px; flex: none; box-sizing: border-box; border-radius: 999px; border: 1px solid var(--bst); background: transparent; display: flex; gap: 2px; cursor: pointer; font: 500 12px Inter, sans-serif"><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 36px; height: 32px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></header>
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 12px">
+    <div style="border-radius: 24px; background: var(--surface); padding: 16px; display: flex; align-items: center; gap: 14px"><span style="width: 56px; height: 56px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 18px Inter, sans-serif">{{ L.k3 }}</span><span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="font: 500 18px Inter, sans-serif">alex_tk</span><span class="muted" style="font-size: 13px">alex.t@mail.test · KYC 1</span></span></div>
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
+      <span style="font: 500 13px Inter, sans-serif; color: var(--sigt); padding: 8px 4px 0">{{ g.t }}</span>
+      <div style="border-radius: 24px; background: var(--surface); overflow: hidden">
+        <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3"><button type="button" style="border: 0; background: transparent; font: inherit; color: inherit; text-align: inherit; cursor: pointer; padding: 0; width: 100%; box-sizing: border-box; min-height: 64px; padding: 0 16px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--t1); border-bottom: 1px solid var(--bs)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ i.d }}"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 16px">{{ i.t }}</span><span class="muted" style="font-size: 13px">{{ i.s }}</span></span><sc-if value="{{ i.isSw }}" hint-placeholder-val="{{ false }}"><span class="sw {{ i.sw }}" aria-hidden="true"></span></sc-if></button></sc-for>
+      </div>
+    </sc-for>
+  </div>
+  <div style="position: absolute; left: 0; right: 0; bottom: 0"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AndNav" active="profile" hint-size="412px,80px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 412, "height": 915}}'>
+class Component extends DCLogic {
+  static EN = {"Подсказка по разделу": "Section help", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Профиль": "Profile", "АТ": "AT", "Аккаунт": "Account", "Верификация": "Verification", "Уровень 1 · пройти уровень 2": "Level 1 · complete level 2", "Безопасность": "Security", "Отпечаток, 2FA, сессии": "Fingerprint, 2FA, sessions", "Лимиты": "Limits", "P2P: 4 100 из 5 000 USDT": "P2P: 4,100 of 5,000 USDT", "Приложение": "App", "Вход по отпечатку": "Fingerprint sign-in", "Для входа и переводов": "For sign-in and transfers", "Язык": "Language", "Русский": "English", "Тёмная тема": "Dark theme", "Как в системе": "System default"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Профиль"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("АТ"), k4: this.tr("Аккаунт"), k5: this.tr("Верификация"), k6: this.tr("Уровень 1 · пройти уровень 2"), k7: this.tr("Безопасность"), k8: this.tr("Отпечаток, 2FA, сессии"), k9: this.tr("Лимиты"), k10: this.tr("P2P: 4 100 из 5 000 USDT"), k11: this.tr("Приложение"), k12: this.tr("Вход по отпечатку"), k13: this.tr("Для входа и переводов"), k14: this.tr("Язык"), k15: this.tr("Русский"), k16: this.tr("Тёмная тема"), k17: this.tr("Как в системе"), kh: this.tr("Подсказка по разделу") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const i = (t, s, d, sw) => ({ t, s, d, isSw: sw !== undefined, sw: sw ? 'on' : '' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      groups: [
+        { t: this.tr('Аккаунт'), items: [i(this.tr('Верификация'), this.tr('Уровень 1 · пройти уровень 2'), 'M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4'), i(this.tr('Безопасность'), this.tr('Отпечаток, 2FA, сессии'), 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3'), i(this.tr('Лимиты'), this.tr('P2P: 4 100 из 5 000 USDT'), 'M4 19h16M6 15l4-5 3 3 5-7')] },
+        { t: this.tr('Приложение'), items: [i(this.tr('Вход по отпечатку'), this.tr('Для входа и переводов'), 'M12 11v3M8.5 8.5a5 5 0 0 1 7.5 1.5M6 12a6 6 0 0 1 .6-2.6M18 13c0 3-1 5-2 6.5', true), i(this.tr('Язык'), this.tr('Русский'), 'M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M3 12h18'), i(this.tr('Тёмная тема'), this.tr('Как в системе'), 'M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10z', true)] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

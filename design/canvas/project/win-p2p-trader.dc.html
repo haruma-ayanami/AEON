@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — профиль трейдера</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="p2p" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1"><span style="display: inline-flex; align-items: center; gap: 10px"><a href="win-p2p-market.dc.html" aria-label="{{ L.k2 }}" class="wbtn" style="width: 32px; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>crypto_mila</span></h1><button class="wbtn">{{ L.k3 }}</button><button class="wbtn">{{ L.k4 }}</button></div>
+      <div style="flex: 1; min-height: 0; display: flex; gap: 16px; padding: 4px 28px 20px">
+        <section class="wcard" style="width: 340px; flex: none; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: flex; align-items: center; gap: 14px"><span style="width: 64px; height: 64px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 20px Inter, sans-serif">CM</span><span style="display: flex; flex-direction: column; gap: 4px"><span style="display: flex; align-items: center; gap: 6px; font: 600 18px Inter, sans-serif">crypto_mila<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9c-4-1.5-7-4.5-7-9V6zM9 12l2 2 4-4"></path></svg></span><span class="muted">{{ L.k5 }}</span></span></div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bs); border-radius: 6px; overflow: hidden"><sc-for list="{{ stats }}" as="s" hint-placeholder-count="6"><span style="background: var(--card); padding: 12px; display: flex; flex-direction: column; gap: 3px"><span class="lbl" style="font-size: 10px">{{ s.l }}</span><span class="disp" style="font-size: 18px; color: {{ s.c }}">{{ s.v }}</span></span></sc-for></div>
+          <div style="display: flex; flex-direction: column; gap: 8px"><span class="lbl">{{ L.k6 }}</span><div role="img" aria-label="{{ L.k7 }}" style="display: grid; grid-template-columns: repeat(20, 10px); gap: 4px"><sc-for list="{{ dots }}" as="d" hint-placeholder-count="100"><span style="width: 10px; height: 10px; border-radius: 2px; background: {{ d }}"></span></sc-for></div></div>
+          <div style="display: flex; flex-direction: column"><div class="rowline"><span>{{ L.k8 }}</span><span>{{ L.k9 }}</span></div><div class="rowline"><span>{{ L.k10 }}</span><span>{{ L.k11 }}</span></div><div class="rowline"><span>{{ L.k12 }}</span><span>3</span></div></div>
+        </section>
+        <section class="wcard" style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+          <div style="padding: 14px 16px 6px; display: flex; align-items: center; gap: 10px"><span style="font: 600 15px Inter, sans-serif; flex: 1">{{ L.k13 }}</span></div>
+          <table class="tbl"><thead><tr><th>{{ L.k14 }}</th><th style="text-align: right">{{ L.k15 }}</th><th>{{ L.k16 }}</th><th>{{ L.k17 }}</th><th></th></tr></thead>
+            <tbody><sc-for list="{{ offers }}" as="o" hint-placeholder-count="3"><tr><td style="font-weight: 600">{{ o.t }}</td><td class="num" style="text-align: right; font-weight: 600">{{ o.p }}</td><td class="muted" style="font-size: 12px">{{ o.l }}</td><td class="muted" style="font-size: 12px">{{ o.m }}</td><td style="text-align: right"><a href="win-p2p-market.dc.html" class="wbtn wbtn-p">{{ o.b }}</a></td></tr></sc-for></tbody>
+          </table>
+          <div style="padding: 18px 16px 6px; display: flex; align-items: center; gap: 10px"><span style="font: 600 15px Inter, sans-serif; flex: 1">{{ L.k18 }}</span><div style="display: flex; gap: 2px; padding: 2px; border-radius: 6px; background: var(--ctrl); border: 1px solid var(--bs)"><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: var(--wsel)">{{ L.k19 }}</button><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: transparent">{{ L.k20 }}</button><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: transparent">{{ L.k21 }}</button></div></div>
+          <div style="padding: 0 16px 16px; display: flex; flex-direction: column"><sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4"><div style="display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--bs)"><span aria-hidden="true" style="width: 22px; height: 22px; flex: none; border-radius: 999px; background: {{ r.bg }}; color: {{ r.fg }}; display: flex; align-items: center; justify-content: center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{ r.d }}"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{ r.who }} <span class="faint" style="font-weight: 400; font-size: 12px">· {{ r.when }}</span></span><span class="muted">{{ r.text }}</span></span></div></sc-for></div>
+        </section>
+      </div>
+      <footer class="wstatus"><span>{{ L.k22 }}</span><span style="flex: 1"></span><span>{{ L.k23 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON · Профиль трейдера": "AEON · Trader profile", "Назад к маркетплейсу": "Back to marketplace", "Пожаловаться": "Report", "Скрыть объявления трейдера": "Hide trader's offers", "в сети · KYC 2 · с марта 2026": "online · KYC 2 · since March 2026", "ПОСЛЕДНИЕ 100 СДЕЛОК": "LAST 100 DEALS", "99 из 100 сделок завершены": "99 of 100 deals completed", "Способы оплаты": "Payment methods", "СБП, Банк. перевод": "SBP, Bank transfer", "Среднее время оплаты": "Average payment time", "~6 мин": "~6 min", "Сделок с вами": "Deals with you", "Активные объявления · 3": "Active offers · 3", "ТИП": "TYPE", "КУРС": "RATE", "ЛИМИТЫ": "LIMITS", "ОПЛАТА": "PAYMENT", "Отзывы · 612": "Reviews · 612", "Все": "All", "Положительные · 607": "Positive · 607", "Отрицательные · 5": "Negative · 5", "ПРОФИЛЬ ОБНОВЛЁН 23.10, 12:40": "PROFILE UPDATED 23.10, 12:40", "ESC — НАЗАД К МАРКЕТПЛЕЙСУ": "ESC — BACK TO MARKETPLACE", "СДЕЛОК ЗА 30 ДНЕЙ": "DEALS IN 30 DAYS", "ЗАВЕРШЕНО": "COMPLETED", "99,2%": "99.2%", "ВЫПУСК": "RELEASE", "~4 мин": "~4 min", "РЕЙТИНГ": "RATING", "★ 4,9": "★ 4.9", "ВСЕГО СДЕЛОК": "TOTAL DEALS", "1 284": "1,284", "НА ПЛАТФОРМЕ": "ON PLATFORM", "7 месяцев": "7 months", "Продажа USDT": "Selling USDT", "92,40 ₽": "92.40 ₽", "1 000 – 50 000 ₽": "1,000 – 50,000 ₽", "Купить": "Buy", "Продажа ETH": "Selling ETH", "314 800 ₽": "314,800 ₽", "20 000 – 150 000 ₽": "20,000 – 150,000 ₽", "СБП": "SBP", "Покупка USDT": "Buying USDT", "91,10 ₽": "91.10 ₽", "5 000 – 100 000 ₽": "5,000 – 100,000 ₽", "Продать": "Sell", "сегодня": "today", "Быстро выпустила, всё по инструкции.": "Released fast, everything as described.", "вчера": "yesterday", "Вежливо и быстро, второй раз уже.": "Polite and fast, second time already.", "20.10": "20.10", "Ждал выпуска 25 минут.": "Waited 25 minutes for the release.", "18.10": "18.10", "Отличный курс, рекомендую.": "Great rate, recommended."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · Профиль трейдера"), k2: this.tr("Назад к маркетплейсу"), k3: this.tr("Пожаловаться"), k4: this.tr("Скрыть объявления трейдера"), k5: this.tr("в сети · KYC 2 · с марта 2026"), k6: this.tr("ПОСЛЕДНИЕ 100 СДЕЛОК"), k7: this.tr("99 из 100 сделок завершены"), k8: this.tr("Способы оплаты"), k9: this.tr("СБП, Банк. перевод"), k10: this.tr("Среднее время оплаты"), k11: this.tr("~6 мин"), k12: this.tr("Сделок с вами"), k13: this.tr("Активные объявления · 3"), k14: this.tr("ТИП"), k15: this.tr("КУРС"), k16: this.tr("ЛИМИТЫ"), k17: this.tr("ОПЛАТА"), k18: this.tr("Отзывы · 612"), k19: this.tr("Все"), k20: this.tr("Положительные · 607"), k21: this.tr("Отрицательные · 5"), k22: this.tr("ПРОФИЛЬ ОБНОВЛЁН 23.10, 12:40"), k23: this.tr("ESC — НАЗАД К МАРКЕТПЛЕЙСУ"), k24: this.tr("СДЕЛОК ЗА 30 ДНЕЙ"), k25: this.tr("ЗАВЕРШЕНО"), k26: this.tr("99,2%"), k27: this.tr("ВЫПУСК"), k28: this.tr("~4 мин"), k29: this.tr("РЕЙТИНГ"), k30: this.tr("★ 4,9"), k31: this.tr("ВСЕГО СДЕЛОК"), k32: this.tr("1 284"), k33: this.tr("НА ПЛАТФОРМЕ"), k34: this.tr("7 месяцев"), k35: this.tr("Продажа USDT"), k36: this.tr("92,40 ₽"), k37: this.tr("1 000 – 50 000 ₽"), k38: this.tr("Купить"), k39: this.tr("Продажа ETH"), k40: this.tr("314 800 ₽"), k41: this.tr("20 000 – 150 000 ₽"), k42: this.tr("СБП"), k43: this.tr("Покупка USDT"), k44: this.tr("91,10 ₽"), k45: this.tr("5 000 – 100 000 ₽"), k46: this.tr("Продать"), k47: this.tr("сегодня"), k48: this.tr("Быстро выпустила, всё по инструкции."), k49: this.tr("вчера"), k50: this.tr("Вежливо и быстро, второй раз уже."), k51: this.tr("20.10"), k52: this.tr("Ждал выпуска 25 минут."), k53: this.tr("18.10"), k54: this.tr("Отличный курс, рекомендую.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const ok = 'M5 12l5 5 9-10', bad = 'M6 6l12 12M18 6L6 18';
+    const rv = (who, when, text, good) => ({ who, when, text, d: good ? ok : bad, bg: good ? 'var(--sigs)' : 'var(--negs)', fg: good ? 'var(--sigt)' : 'var(--neg)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      stats: [{ l: this.tr("СДЕЛОК ЗА 30 ДНЕЙ"), v: '214', c: 'var(--t1)' }, { l: this.tr("ЗАВЕРШЕНО"), v: this.tr("99,2%"), c: 'var(--sigt)' }, { l: this.tr("ВЫПУСК"), v: this.tr("~4 мин"), c: 'var(--t1)' }, { l: this.tr("РЕЙТИНГ"), v: this.tr("★ 4,9"), c: 'var(--t1)' }, { l: this.tr("ВСЕГО СДЕЛОК"), v: this.tr("1 284"), c: 'var(--t1)' }, { l: this.tr("НА ПЛАТФОРМЕ"), v: this.tr("7 месяцев"), c: 'var(--t1)' }],
+      dots: Array.from({ length: 100 }, (_, i) => (i === 63 ? 'var(--neg)' : 'var(--sig)')),
+      offers: [{ t: this.tr("Продажа USDT"), p: this.tr("92,40 ₽"), l: this.tr("1 000 – 50 000 ₽"), m: this.tr("СБП, Банк. перевод"), b: this.tr("Купить") }, { t: this.tr("Продажа ETH"), p: this.tr("314 800 ₽"), l: this.tr("20 000 – 150 000 ₽"), m: this.tr("СБП"), b: this.tr("Купить") }, { t: this.tr("Покупка USDT"), p: this.tr("91,10 ₽"), l: this.tr("5 000 – 100 000 ₽"), m: this.tr("СБП"), b: this.tr("Продать") }],
+      reviews: [rv('alex_tk', this.tr("сегодня"), this.tr("Быстро выпустила, всё по инструкции."), true), rv('p2p_ivan', this.tr("вчера"), this.tr("Вежливо и быстро, второй раз уже."), true), rv('n7', this.tr("20.10"), this.tr("Ждал выпуска 25 минут."), false), rv('olga_m', this.tr("18.10"), this.tr("Отличный курс, рекомендую."), true)]
+    };
+  }
+}
+</script>
+</body>
+</html>

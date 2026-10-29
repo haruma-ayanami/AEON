@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — верификация</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="min-height: 1000px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="profile" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <div class="split">
+        <section style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+          <span class="lbl">{{ L.k2 }}</span>
+          <sc-for list="{{ levels }}" as="l" hint-placeholder-count="3"><div class="card" style="padding: 18px; border-radius: 18px; display: flex; gap: 14px; align-items: flex-start; border-color: {{ l.bc }}"><span class="disp" style="font-size: 28px; color: {{ l.nc }}; width: 28px">{{ l.n }}</span><span style="flex: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 600">{{ l.t }}</span><span class="muted" style="font-size: 13px; line-height: 19px">{{ l.d }}</span><span class="faint" style="font-size: 12px">{{ l.need }}</span></span><span class="chip {{ l.cls }}">{{ l.s }}</span></div></sc-for>
+          <span class="hint">{{ L.k3 }}</span>
+        </section>
+        <section class="card" style="flex: 1 1 440px; min-width: 0; padding: 26px; display: flex; flex-direction: column; gap: 16px">
+          <sc-if value="{{ isStart }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 16px">
+            <span class="lbl">{{ L.k4 }}</span>
+            <h2 class="disp" style="margin: 0; font-size: 26px">{{ L.k5 }}</h2>
+            <span class="muted" style="line-height: 22px">{{ L.k6 }}</span>
+            <div class="tile" style="padding: 4px 16px"><div class="rowline"><span>{{ L.k7 }}</span><span>{{ L.k8 }}</span></div><div class="rowline"><span>{{ L.k9 }}</span><span>{{ L.k10 }}</span></div><div class="rowline"><span>{{ L.k11 }}</span><span>{{ L.k12 }}</span></div></div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap"><a href="st-web-kyc-pending.dc.html" class="btn btn-p btn-l">{{ L.k13 }}</a><button type="button" class="btn btn-o btn-l">{{ L.k14 }}</button></div>
+          </div></sc-if>
+          <sc-if value="{{ isPending }}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 16px">
+            <span class="chip c-warn" style="align-self: flex-start">{{ L.k15 }}</span>
+            <h2 class="disp" style="margin: 0; font-size: 26px">{{ L.k16 }}</h2>
+            <span class="muted" style="line-height: 22px">{{ L.k17 }}</span>
+            <div><sc-for list="{{ track }}" as="s" hint-placeholder-count="3"><div style="display: flex; gap: 12px; align-items: center; min-height: 44px; border-bottom: 1px solid var(--bs)"><span aria-hidden="true" style="width: 22px; height: 22px; flex: none; border-radius: 999px; background: {{ s.bg }}; border: 1.5px solid {{ s.bd }}; box-sizing: border-box"></span><span style="flex: 1">{{ s.t }}</span><span class="faint mono" style="font-size: 12px">{{ s.v }}</span></div></sc-for></div>
+            <span class="faint mono" style="font-size: 12px">{{ L.k18 }}</span>
+          </div></sc-if>
+          <sc-if value="{{ isRejected }}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 16px">
+            <span class="chip c-neg" style="align-self: flex-start">{{ L.k19 }}</span>
+            <h2 class="disp" style="margin: 0; font-size: 26px">{{ L.k20 }}</h2>
+            <div role="alert" style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--negs); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span>{{ L.k21 }}</span></span></div>
+            <div><sc-for list="{{ track }}" as="s" hint-placeholder-count="3"><div style="display: flex; gap: 12px; align-items: center; min-height: 44px; border-bottom: 1px solid var(--bs)"><span aria-hidden="true" style="width: 22px; height: 22px; flex: none; border-radius: 999px; background: {{ s.bg }}; border: 1.5px solid {{ s.bd }}; box-sizing: border-box"></span><span style="flex: 1">{{ s.t }}</span><span class="faint mono" style="font-size: 12px">{{ s.v }}</span></div></sc-for></div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap"><a href="st-web-kyc-pending.dc.html" class="btn btn-p btn-l">{{ L.k22 }}</a><button type="button" class="btn btn-o btn-l">{{ L.k23 }}</button></div>
+            <span class="faint" style="font-size: 12px">{{ L.k24 }}</span>
+          </div></sc-if>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["start", "pending", "rejected"], "default": "start"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1000}}'>
+class Component extends DCLogic {
+  static EN = {"Верификация": "Verification", "УРОВНИ И ЛИМИТЫ": "LEVELS AND LIMITS", "Лимиты применяются сразу после проверки. Данные документов хранит партнёр по проверке, AEON получает только результат.": "Limits apply right after the check. The verification partner stores the document data; AEON receives only the result.", "УРОВЕНЬ 2 · ДОКУМЕНТ И СЕЛФИ": "LEVEL 2 · ID AND SELFIE", "Поднимите лимиты до 50 000 USDT": "Raise your limits to 50,000 USDT", "Проверка идёт у партнёра: загрузите паспорт и сделайте селфи с камеры. Это займёт около 5 минут.": "The check runs at our partner: upload your passport and take a selfie. It takes about 5 minutes.", "Понадобится": "You'll need", "паспорт РФ или загранпаспорт": "national or international passport", "Камера": "Camera", "ноутбука или телефона по QR": "laptop, or phone via QR", "Срок проверки": "Review time", "обычно до 15 минут": "usually up to 15 minutes", "Перейти к проверке": "Start verification", "Продолжить на телефоне": "Continue on phone", "На проверке": "Under review", "Документы на проверке": "Documents under review", "Обычно проверка занимает до 15 минут. Пришлём уведомление, когда уровень 2 станет доступен — пользоваться кошельком и P2P можно и сейчас.": "The review usually takes up to 15 minutes. We'll notify you when level 2 is available — you can keep using the wallet and P2P now.", "Заявка KYC-20931 · отправлена 23.10.2026, 12:48": "Request KYC-20931 · sent 23.10.2026, 12:48", "Не пройдено": "Not passed", "Не удалось проверить фото": "Couldn't verify the photo", "Документ получился с бликом — номер не читается. Переснимите при рассеянном свете, без вспышки, чтобы все четыре угла были в кадре.": "The document has glare — the number is unreadable. Retake it in diffused light, without flash, with all four corners in frame.", "Переснять документ": "Retake document", "Написать в поддержку": "Contact support", "Попыток осталось: 2 из 3. После третьей заявку рассмотрит сотрудник вручную.": "Attempts left: 2 of 3. After the third, a staff member will review the request manually.", "Доступен": "Available", "На проверке ": "Under review", "Отклонён": "Rejected", "Уровень 0 · почта": "Level 0 · email", "Кошелёк, получение и вывод до 500 USDT в сутки": "Wallet, receiving and withdrawals up to 500 USDT a day", "Подтверждённая почта": "Confirmed email", "Пройден": "Done", "Уровень 1 · телефон и имя": "Level 1 · phone and name", "P2P и вывод до 5 000 USDT в сутки": "P2P and withdrawals up to 5,000 USDT a day", "Телефон по SMS и имя": "Phone via SMS and name", "Текущий": "Current", "Уровень 2 · документ и селфи": "Level 2 · ID and selfie", "До 50 000 USDT и свои объявления без ограничений": "Up to 50,000 USDT and unlimited own offers", "Паспорт и селфи у партнёра, ~5 минут": "Passport and selfie at our partner, ~5 minutes", "Документ": "Document", "не читается": "unreadable", "Селфи": "Selfie", "получено": "received", "Решение": "Decision", "отклонено": "rejected", "получен": "received", "ждём": "pending"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Верификация"), k2: this.tr("УРОВНИ И ЛИМИТЫ"), k3: this.tr("Лимиты применяются сразу после проверки. Данные документов хранит партнёр по проверке, AEON получает только результат."), k4: this.tr("УРОВЕНЬ 2 · ДОКУМЕНТ И СЕЛФИ"), k5: this.tr("Поднимите лимиты до 50 000 USDT"), k6: this.tr("Проверка идёт у партнёра: загрузите паспорт и сделайте селфи с камеры. Это займёт около 5 минут."), k7: this.tr("Понадобится"), k8: this.tr("паспорт РФ или загранпаспорт"), k9: this.tr("Камера"), k10: this.tr("ноутбука или телефона по QR"), k11: this.tr("Срок проверки"), k12: this.tr("обычно до 15 минут"), k13: this.tr("Перейти к проверке"), k14: this.tr("Продолжить на телефоне"), k15: this.tr("На проверке"), k16: this.tr("Документы на проверке"), k17: this.tr("Обычно проверка занимает до 15 минут. Пришлём уведомление, когда уровень 2 станет доступен — пользоваться кошельком и P2P можно и сейчас."), k18: this.tr("Заявка KYC-20931 · отправлена 23.10.2026, 12:48"), k19: this.tr("Не пройдено"), k20: this.tr("Не удалось проверить фото"), k21: this.tr("Документ получился с бликом — номер не читается. Переснимите при рассеянном свете, без вспышки, чтобы все четыре угла были в кадре."), k22: this.tr("Переснять документ"), k23: this.tr("Написать в поддержку"), k24: this.tr("Попыток осталось: 2 из 3. После третьей заявку рассмотрит сотрудник вручную."), k25: this.tr("Доступен"), k26: this.tr("На проверке "), k27: this.tr("Отклонён"), k28: this.tr("Уровень 0 · почта"), k29: this.tr("Кошелёк, получение и вывод до 500 USDT в сутки"), k30: this.tr("Подтверждённая почта"), k31: this.tr("Пройден"), k32: this.tr("Уровень 1 · телефон и имя"), k33: this.tr("P2P и вывод до 5 000 USDT в сутки"), k34: this.tr("Телефон по SMS и имя"), k35: this.tr("Текущий"), k36: this.tr("Уровень 2 · документ и селфи"), k37: this.tr("До 50 000 USDT и свои объявления без ограничений"), k38: this.tr("Паспорт и селфи у партнёра, ~5 минут"), k39: this.tr("Документ"), k40: this.tr("не читается"), k41: this.tr("Селфи"), k42: this.tr("получено"), k43: this.tr("Решение"), k44: this.tr("отклонено"), k45: this.tr("получен"), k46: this.tr("ждём") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'start';
+    const lv = (n, t, d, need, s, cls, cur) => ({ n, t, d, need, s, cls, bc: cur ? 'var(--bst)' : 'var(--bs)', nc: cur ? 'var(--t1)' : 'var(--t3)' });
+    const l2 = { start: [this.tr("Доступен"), 'c-info'], pending: [this.tr("На проверке "), 'c-warn'], rejected: [this.tr("Отклонён"), 'c-neg'] }[st];
+    const step = (t, v, s) => ({ t, v, bg: s === 'ok' ? 'var(--sig)' : 'transparent', bd: s === 'ok' ? 'var(--sig)' : s === 'bad' ? 'var(--neg)' : 'var(--bst)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isStart: st === 'start', isPending: st === 'pending', isRejected: st === 'rejected',
+      levels: [lv('0', this.tr("Уровень 0 · почта"), this.tr("Кошелёк, получение и вывод до 500 USDT в сутки"), this.tr("Подтверждённая почта"), this.tr("Пройден"), 'c-off'), lv('1', this.tr("Уровень 1 · телефон и имя"), this.tr("P2P и вывод до 5 000 USDT в сутки"), this.tr("Телефон по SMS и имя"), this.tr("Текущий"), 'c-ok', true), lv('2', this.tr("Уровень 2 · документ и селфи"), this.tr("До 50 000 USDT и свои объявления без ограничений"), this.tr("Паспорт и селфи у партнёра, ~5 минут"), l2[0], l2[1])],
+      track: st === 'rejected' ? [step(this.tr("Документ"), this.tr("не читается"), 'bad'), step(this.tr("Селфи"), this.tr("получено"), 'ok'), step(this.tr("Решение"), this.tr("отклонено"), 'bad')] : [step(this.tr("Документ"), this.tr("получен"), 'ok'), step(this.tr("Селфи"), this.tr("получено"), 'ok'), step(this.tr("Решение"), this.tr("ждём"), 'wait')]
+    };
+  }
+}
+</script>
+</body>
+</html>

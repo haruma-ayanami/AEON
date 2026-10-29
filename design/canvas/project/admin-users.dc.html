@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON Админ — пользователи</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+.th-dark{--canvas:#0A0C0B;--surface:#131614;--raised:#1B1F1C;--sunken:#070807;--bs:#232824;--bd:#2E342F;--bst:#48504A;--t1:#F2F5F1;--t2:#A3ACA5;--t3:#8A938C;--pbg:#F2F5F1;--pfg:#0A0C0B;--sig:#B6F36B;--sigt:#B6F36B;--sigs:rgba(182,243,107,.12);--neg:#FF7A6B;--negs:rgba(255,122,107,.12);--warn:#F5B941;--warns:rgba(245,185,65,.12);--info:#6EA2FF;--infos:rgba(110,162,255,.12);--tnf:#F5B941;--tnb:#2A230F;--sel:rgba(182,243,107,.06);--orange:#FF9A5B;--onacc:#0A0C0B}
+.th-light{--canvas:#EEF0EC;--surface:#FFFFFF;--raised:#F7F8F5;--sunken:#E4E7E1;--bs:#E2E5DF;--bd:#D3D7D0;--bst:#A9AFA6;--t1:#0E110F;--t2:#4D554F;--t3:#606862;--pbg:#0E110F;--pfg:#FFFFFF;--sig:#B6F36B;--sigt:#286913;--sigs:rgba(47,122,22,.12);--neg:#A62E23;--negs:rgba(200,55,42,.1);--warn:#7E5200;--warns:rgba(154,100,0,.12);--info:#2755BA;--infos:rgba(45,98,214,.1);--tnf:#7A4F00;--tnb:#FFF1CC;--sel:rgba(47,122,22,.06);--orange:#8F4416;--onacc:#FFFFFF}
+a{color:var(--t1)}
+input::placeholder,textarea::placeholder{color:var(--t3)}
+</style>
+</helmet>
+<div class="{{ themeClass }}" style="position: relative; min-height: 1100px; background: var(--canvas); color: var(--t1); font-family: Inter, system-ui, sans-serif; font-size: 14px; display: flex; flex-wrap: wrap; align-items: stretch">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminSidebar" active="users" hint-size="240px,1100px"></dc-import>
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="AdminTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div style="padding: 24px 28px 40px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; width: 100%">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px">
+        <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+          <div style="border-radius: 16px; background: var(--surface); border: 1px solid var(--bs); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px">
+            <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ k.label }}</span>
+            <span style="display: flex; align-items: baseline; gap: 8px"><span style="font: 600 28px 'Inter Tight', sans-serif; font-feature-settings: 'tnum'">{{ k.v }}</span><span style="font-size: 13px; color: {{ k.c }}">{{ k.note }}</span></span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+        <label style="flex: 1 1 280px; height: 40px; padding: 0 12px; box-sizing: border-box; border-radius: 10px; background: var(--surface); border: 1px solid var(--bd); display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg><input aria-label="{{ L.k2 }}" placeholder="{{ L.k3 }}" defaultValue="{{ q }}" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 14px Inter, sans-serif; outline: none"></label>
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4"><button style="height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid {{ f.border }}; background: {{ f.bg }}; color: var(--t1); font: 500 13px Inter, sans-serif; display: flex; align-items: center; gap: 6px">{{ f.label }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button></sc-for>
+        <button style="height: 40px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--bd); background: transparent; color: var(--t1); font: 500 13px Inter, sans-serif; display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>{{ L.k4 }}</button>
+      </div>
+
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 16px">
+      <div role="toolbar" aria-label="{{ L.k5 }}" style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; background: var(--raised); border: 1px solid var(--bd)">
+        <span style="font-weight: 600">{{ L.k6 }}</span><span style="flex: 1"></span>
+        <button style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--bd); background: var(--surface); color: var(--t1); font: 500 13px Inter, sans-serif">{{ L.k7 }}</button>
+        <button style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--bd); background: var(--surface); color: var(--t1); font: 500 13px Inter, sans-serif">{{ L.k8 }}</button>
+        <button style="height: 32px; padding: 0 12px; border-radius: 8px; border: 0; background: var(--negs); color: var(--neg); font: 600 13px Inter, sans-serif">{{ L.k9 }}</button>
+        <button aria-label="{{ L.k10 }}" style="width: 32px; height: 32px; border-radius: 8px; border: 0; background: transparent; color: var(--t2); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      </div>
+
+      <section aria-label="{{ L.k11 }}" style="border-radius: 16px; background: var(--surface); border: 1px solid var(--bs); overflow-x: auto">
+        <table style="width: 100%; min-width: 980px; border-collapse: collapse; font-feature-settings: 'tnum'">
+          <thead><tr style="height: 40px; font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3); text-align: left; border-bottom: 1px solid var(--bs)">
+            <th scope="col" style="padding: 0 0 0 16px; width: 32px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{ L.k12 }}</span></th><th scope="col" style="padding: 0 12px; font-weight: 500">{{ L.k13 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500">{{ L.k14 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500">KYC</th><th scope="col" style="padding: 0 12px; font-weight: 500">{{ L.k15 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500; text-align: right">{{ L.k16 }}</th><th scope="col" style="padding: 0 12px; font-weight: 500">{{ L.k17 }}</th><th scope="col" style="padding: 0 16px 0 12px; font-weight: 500">{{ L.k18 }}</th>
+          </tr></thead>
+          <tbody>
+            <sc-for list="{{ users }}" as="u" hint-placeholder-count="10">
+              <tr aria-selected="{{ u.selected }}" style="height: 56px; background: {{ u.bg }}; border-bottom: 1px solid var(--bs)">
+                <td style="padding: 0 0 0 16px"><label><span aria-hidden="true" style="width: 18px; height: 18px; box-sizing: border-box; border-radius: 5px; border: {{ u.cbBorder }}; background: {{ u.cbBg }}; color: var(--pfg); display: flex; align-items: center; justify-content: center"><sc-if value="{{ u.checked }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></sc-if></span><input type="checkbox" aria-label="{{ u.cbLabel }}" checked="{{ u.checked }}" style="position: absolute; opacity: 0; width: 1px; height: 1px"></label></td>
+                <td style="padding: 0 12px"><a href="admin-users.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--t1)"><span style="width: 32px; height: 32px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 11px Inter, sans-serif">{{ u.ini }}</span><span style="display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 600">{{ u.nick }}</span><span style="font-size: 12px; color: var(--t2)">{{ u.email }}</span></span></a></td>
+                <td style="padding: 0 12px"><span style="display: flex; gap: 4px; flex-wrap: wrap"><sc-for list="{{ u.roles }}" as="r" hint-placeholder-count="1"><span style="height: 22px; padding: 0 8px; border-radius: 6px; background: var(--raised); border: 1px solid var(--bd); font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.04em; display: inline-flex; align-items: center">{{ r }}</span></sc-for></span></td>
+                <td style="padding: 0 12px; font-size: 13px; color: {{ u.kycC }}">{{ u.kyc }}</td>
+                <td style="padding: 0 12px"><span style="height: 24px; padding: 0 9px; border-radius: 999px; background: {{ u.stBg }}; color: {{ u.stFg }}; font: 500 12px Inter, sans-serif; display: inline-flex; align-items: center">{{ u.status }}</span></td>
+                <td style="padding: 0 12px; text-align: right">{{ u.deals }}</td>
+                <td style="padding: 0 12px"><span style="display: flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 56px; height: 6px; border-radius: 3px; background: var(--bd); overflow: hidden"><span style="display: block; height: 100%; width: {{ u.riskW }}; background: {{ u.riskC }}"></span></span><span style="font: 500 12px 'JetBrains Mono', monospace; color: {{ u.riskC }}">{{ u.risk }}</span></span></td>
+                <td style="padding: 0 16px 0 12px; font: 400 12px 'JetBrains Mono', monospace; color: var(--t2)">{{ u.last }}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; font-size: 13px; color: var(--t2)"><span style="flex: 1">{{ L.k19 }}</span><button aria-label="{{ L.k20 }}" disabled style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bs); background: transparent; color: var(--t3)">‹</button><span style="padding: 0 8px">1 / 125</span><button aria-label="{{ L.k21 }}" style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--bd); background: transparent; color: var(--t1)">›</button></div>
+      </section>
+      </div></sc-if>
+      <sc-if value="{{ isNone }}" hint-placeholder-val="{{ false }}"><section style="border-radius: 16px; background: var(--surface); border: 1px solid var(--bs); padding: 64px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center"><span aria-hidden="true" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg></span><span style="font-weight: 600; font-size: 18px">{{ L.k81 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 520px">{{ L.k82 }}</span><span style="display: flex; gap: 8px; margin-top: 6px"><button style="height: 40px; padding: 0 16px; border-radius: 10px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 13px Inter, sans-serif">{{ L.k83 }}</button><button style="height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--bd); background: transparent; color: var(--t1); font: 500 13px Inter, sans-serif">{{ L.k84 }}</button></span></section></sc-if>
+    </div>
+  </main>
+
+  <sc-if value="{{ drawer }}" hint-placeholder-val="{{ true }}">
+    <aside role="dialog" aria-label="{{ L.k22 }}" style="position: absolute; top: 0; right: 0; bottom: 0; width: 460px; max-width: 100%; box-sizing: border-box; background: var(--surface); border-left: 1px solid var(--bd); box-shadow: -24px 0 48px rgba(0,0,0,0.35); padding: 24px; display: flex; flex-direction: column; gap: 16px; overflow: hidden">
+      <div style="display: flex; align-items: flex-start; gap: 12px">
+        <span style="width: 52px; height: 52px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 16px Inter, sans-serif">PI</span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 3px"><span style="font: 600 20px 'Inter Tight', sans-serif">p2p_ivan</span><span style="font-size: 13px; color: var(--t2)">ivan.p@mail.test · ID 0f3a…91c2</span><span style="font-size: 12px; color: var(--t3)">{{ L.k23 }}</span></span>
+        <button aria-label="{{ L.k24 }}" style="width: 32px; height: 32px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+      </div>
+      <div style="display: flex; gap: 8px; padding: 12px 14px; border-radius: 12px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ L.k25 }}</span></div>
+      <nav aria-label="{{ L.k26 }}" style="display: flex; gap: 18px; border-bottom: 1px solid var(--bs)"><a href="admin-users.dc.html" aria-current="page" style="height: 36px; display: flex; align-items: center; border-bottom: 2px solid var(--t1); text-decoration: none; font: 600 13px Inter, sans-serif">{{ L.k27 }}</a><a href="admin-deals.dc.html" style="height: 36px; display: flex; align-items: center; text-decoration: none; color: var(--t2); font: 500 13px Inter, sans-serif">{{ L.k28 }}</a><a href="admin-users.dc.html" style="height: 36px; display: flex; align-items: center; text-decoration: none; color: var(--t2); font: 500 13px Inter, sans-serif">{{ L.k29 }}</a><a href="admin-audit.dc.html" style="height: 36px; display: flex; align-items: center; text-decoration: none; color: var(--t2); font: 500 13px Inter, sans-serif">{{ L.k30 }}</a></nav>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ L.k14 }}</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="height: 30px; padding: 0 10px; border-radius: 8px; background: var(--raised); border: 1px solid var(--bd); font-size: 13px; display: inline-flex; align-items: center; gap: 6px">{{ L.k31 }}</span><span style="height: 30px; padding: 0 6px 0 10px; border-radius: 8px; background: var(--raised); border: 1px solid var(--bd); font-size: 13px; display: inline-flex; align-items: center; gap: 6px">{{ L.k32 }}<button aria-label="{{ L.k33 }}" style="width: 20px; height: 20px; border: 0; background: transparent; color: var(--t2); padding: 0">×</button></span><button style="height: 30px; padding: 0 10px; border-radius: 8px; border: 1px dashed var(--bst); background: transparent; color: var(--t1); font: 500 13px Inter, sans-serif">{{ L.k34 }}</button></div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bs); border: 1px solid var(--bs); border-radius: 12px; overflow: hidden; font-feature-settings: 'tnum'">
+        <span style="background: var(--surface); padding: 12px; display: flex; flex-direction: column; gap: 3px"><span style="font: 500 10px 'JetBrains Mono', monospace; color: var(--t3)">{{ L.k35 }}</span><span style="font-weight: 600">{{ L.k36 }}</span></span>
+        <span style="background: var(--surface); padding: 12px; display: flex; flex-direction: column; gap: 3px"><span style="font: 500 10px 'JetBrains Mono', monospace; color: var(--t3)">{{ L.k37 }}</span><span style="font-weight: 600">760 USDT</span></span>
+        <span style="background: var(--surface); padding: 12px; display: flex; flex-direction: column; gap: 3px"><span style="font: 500 10px 'JetBrains Mono', monospace; color: var(--t3)">{{ L.k38 }}</span><span style="font-weight: 600">{{ L.k39 }}</span></span>
+        <span style="background: var(--surface); padding: 12px; display: flex; flex-direction: column; gap: 3px"><span style="font: 500 10px 'JetBrains Mono', monospace; color: var(--t3)">{{ L.k40 }}</span><span style="font-weight: 600; color: var(--warn)">3</span></span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">{{ L.k41 }}</span>
+        <sc-for list="{{ trail }}" as="t" hint-placeholder-count="4"><div style="display: flex; gap: 10px; font-size: 13px"><span style="font: 400 11px 'JetBrains Mono', monospace; color: var(--t3); width: 80px; flex: none; padding-top: 2px">{{ t.time }}</span><span style="color: var(--t2)">{{ t.text }}</span></div></sc-for>
+      </div>
+      <div style="flex: 1"></div>
+      <div style="border-radius: 14px; border: 1px solid var(--bd); padding: 14px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-weight: 600">{{ L.k42 }}</span>
+        <button style="height: 38px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); font: 400 13px Inter, sans-serif; display: flex; align-items: center; justify-content: space-between">{{ L.k43 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+        <textarea aria-label="{{ L.k44 }}" rows="2" placeholder="{{ L.k45 }}" style="border-radius: 10px; border: 1px solid var(--bd); background: var(--raised); color: var(--t1); padding: 10px 12px; font: 400 13px Inter, sans-serif; resize: none; outline: none"></textarea>
+        <div style="display: flex; gap: 8px"><button style="flex: 1; height: 40px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); font: 600 14px Inter, sans-serif">{{ L.k46 }}</button><button style="flex: 1; height: 40px; border-radius: 999px; border: 0; background: var(--neg); color: var(--onacc, #0A0C0B); font: 600 14px Inter, sans-serif">{{ L.k9 }}</button></div>
+      </div>
+    </aside>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "drawer": {"editor": "boolean", "default": true}, "state": {"editor": "enum", "options": ["default", "noresults"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"ОА": "OA", "Обзор": "Overview", "Пользователи": "Users", "Экспорт CSV": "Export CSV", "Пользователь": "User", "СТАТУС": "STATUS", "ПРОДАВЕЦ": "SELLER", "На проверке": "Under review", "вчера": "yesterday", "1 248": "1,248", "+36 за неделю": "+36 this week", "Поиск пользователей": "User search", "Ник, email или ID": "Nickname, email or ID", "Действия с выбранными": "Bulk actions", "Выбрано: 2": "Selected: 2", "Назначить роль": "Assign role", "Запросить KYC": "Request KYC", "Заблокировать": "Block", "Снять выделение": "Clear selection", "Список пользователей": "User list", "Выбор": "Select", "ПОЛЬЗОВАТЕЛЬ": "USER", "РОЛИ": "ROLES", "СДЕЛОК": "DEALS", "РИСК": "RISK", "ПОСЛЕДНИЙ ВХОД": "LAST SIGN-IN", "1–10 из 1 248": "1–10 of 1,248", "Предыдущая страница": "Previous page", "Следующая страница": "Next page", "Карточка пользователя p2p_ivan": "User card p2p_ivan", "С 14.05.2026 · последний вход 12:02 · Москва": "Since 14.05.2026 · last sign-in 12:02 · Moscow", "Закрыть карточку": "Close card", "Риск 64: три спора за 30 дней, вход с нового устройства. Рекомендуется проверка KYC 2.": "Risk 64: three disputes in 30 days, sign-in from a new device. KYC level 2 check recommended.", "Разделы карточки": "Card sections", "Сделки 312": "Deals 312", "Устройства 3": "Devices 3", "Журнал": "Log", "Продавец P2P": "P2P seller", "Снять роль Продавец P2P": "Remove role P2P seller", "+ Назначить": "+ Assign", "БАЛАНС": "BALANCE", "$2 418,30": "$2,418.30", "В ЭСКРОУ": "IN ESCROW", "ЗАВЕРШЕНО": "COMPLETED", "97,1% · 312": "97.1% · 312", "СПОРЫ · 30 ДН": "DISPUTES · 30 D", "ПОСЛЕДНИЕ ДЕЙСТВИЯ": "RECENT ACTIVITY", "Заблокировать учётную запись": "Block account", "Причина: подозрение на мошенничество": "Reason: suspected fraud", "Комментарий для журнала": "Comment for the log", "Комментарий попадёт в журнал событий": "The comment will be added to the event log", "Сбросить сессии": "Reset sessions", "Активен": "Active", "Заблокирован": "Blocked", "АТ": "AT", "Уровень 1": "Level 1", "Уровень 2": "Level 2", "1 284": "1,284", "АДМИН": "ADMIN", "АРБИТР": "ARBITRATOR", "Отклонена": "Rejected", "2 041": "2,041", "Не пройдена": "Not passed", "ПОДДЕРЖКА": "SUPPORT", "ВСЕГО": "TOTAL", "АКТИВНЫ 24 Ч": "ACTIVE 24 H", "KYC НА ПРОВЕРКЕ": "KYC UNDER REVIEW", "старшей 2 ч": "oldest 2 h", "ЗАБЛОКИРОВАНЫ": "BLOCKED", "+1 сегодня": "+1 today", "Роль: все": "Role: all", "KYC: все": "KYC: all", "Статус: все": "Status: all", "Риск: ≥ 25": "Risk: ≥ 25", "Уровень": "Level", "Выбрать ": "Select ", "Вход с нового устройства · Windows 11 · 185.12.x.x": "Sign-in from a new device · Windows 11 · 185.12.x.x", "Открыт спор D-0198 покупателем eva_s": "Dispute D-0198 opened by buyer eva_s", "Объявление «USDT за ₽» изменено: курс 92,55": "Offer “USDT for ₽” changed: rate 92.55", "Вывод 400 USDT отправлен на ручную проверку": "Withdrawal of 400 USDT sent to manual review", "Никого не нашли по запросу «kirill_88»": "No one found for “kirill_88”", "Проверьте написание или ищите по email, ID пользователя или адресу кошелька. Заблокированные и удалённые аккаунты показываются при фильтре «Статус: все».": "Check the spelling or search by email, user ID or wallet address. Blocked and deleted accounts show up with the “Status: all” filter.", "Сбросить фильтры": "Reset filters", "Искать по адресу кошелька": "Search by wallet address"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Пользователи"), k2: this.tr("Поиск пользователей"), k3: this.tr("Ник, email или ID"), k4: this.tr("Экспорт CSV"), k5: this.tr("Действия с выбранными"), k6: this.tr("Выбрано: 2"), k7: this.tr("Назначить роль"), k8: this.tr("Запросить KYC"), k9: this.tr("Заблокировать"), k10: this.tr("Снять выделение"), k11: this.tr("Список пользователей"), k12: this.tr("Выбор"), k13: this.tr("ПОЛЬЗОВАТЕЛЬ"), k14: this.tr("РОЛИ"), k15: this.tr("СТАТУС"), k16: this.tr("СДЕЛОК"), k17: this.tr("РИСК"), k18: this.tr("ПОСЛЕДНИЙ ВХОД"), k19: this.tr("1–10 из 1 248"), k20: this.tr("Предыдущая страница"), k21: this.tr("Следующая страница"), k22: this.tr("Карточка пользователя p2p_ivan"), k23: this.tr("С 14.05.2026 · последний вход 12:02 · Москва"), k24: this.tr("Закрыть карточку"), k25: this.tr("Риск 64: три спора за 30 дней, вход с нового устройства. Рекомендуется проверка KYC 2."), k26: this.tr("Разделы карточки"), k27: this.tr("Обзор"), k28: this.tr("Сделки 312"), k29: this.tr("Устройства 3"), k30: this.tr("Журнал"), k31: this.tr("Пользователь"), k32: this.tr("Продавец P2P"), k33: this.tr("Снять роль Продавец P2P"), k34: this.tr("+ Назначить"), k35: this.tr("БАЛАНС"), k36: this.tr("$2 418,30"), k37: this.tr("В ЭСКРОУ"), k38: this.tr("ЗАВЕРШЕНО"), k39: this.tr("97,1% · 312"), k40: this.tr("СПОРЫ · 30 ДН"), k41: this.tr("ПОСЛЕДНИЕ ДЕЙСТВИЯ"), k42: this.tr("Заблокировать учётную запись"), k43: this.tr("Причина: подозрение на мошенничество"), k44: this.tr("Комментарий для журнала"), k45: this.tr("Комментарий попадёт в журнал событий"), k46: this.tr("Сбросить сессии"), k47: this.tr("Активен"), k48: this.tr("Заблокирован"), k49: this.tr("На проверке"), k50: this.tr("АТ"), k51: this.tr("Уровень 1"), k52: this.tr("ПРОДАВЕЦ"), k53: this.tr("Уровень 2"), k54: this.tr("1 284"), k55: this.tr("ОА"), k56: this.tr("АДМИН"), k57: this.tr("АРБИТР"), k58: this.tr("Отклонена"), k59: this.tr("2 041"), k60: this.tr("вчера"), k61: this.tr("Не пройдена"), k62: this.tr("ПОДДЕРЖКА"), k63: this.tr("ВСЕГО"), k64: this.tr("1 248"), k65: this.tr("+36 за неделю"), k66: this.tr("АКТИВНЫ 24 Ч"), k67: this.tr("KYC НА ПРОВЕРКЕ"), k68: this.tr("старшей 2 ч"), k69: this.tr("ЗАБЛОКИРОВАНЫ"), k70: this.tr("+1 сегодня"), k71: this.tr("Роль: все"), k72: this.tr("KYC: все"), k73: this.tr("Статус: все"), k74: this.tr("Риск: ≥ 25"), k75: this.tr("Уровень"), k76: this.tr("Выбрать "), k77: this.tr("Вход с нового устройства · Windows 11 · 185.12.x.x"), k78: this.tr("Открыт спор D-0198 покупателем eva_s"), k79: this.tr("Объявление «USDT за ₽» изменено: курс 92,55"), k80: this.tr("Вывод 400 USDT отправлен на ручную проверку"), k81: this.tr("Никого не нашли по запросу «kirill_88»"), k82: this.tr("Проверьте написание или ищите по email, ID пользователя или адресу кошелька. Заблокированные и удалённые аккаунты показываются при фильтре «Статус: все»."), k83: this.tr("Сбросить фильтры"), k84: this.tr("Искать по адресу кошелька") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = { active: [this.tr('Активен'), 'var(--sigs)', 'var(--sigt)'], blocked: [this.tr('Заблокирован'), 'var(--negs)', 'var(--neg)'], review: [this.tr('На проверке'), 'var(--warns)', 'var(--warn)'] };
+    const riskC = (r) => (r >= 85 ? 'var(--neg)' : r >= 60 ? 'var(--orange, #FF9A5B)' : r >= 25 ? 'var(--warn)' : 'var(--sigt)');
+    const rows = [
+      [this.tr('АТ'), 'alex_tk', 'alex.t@mail.test', [this.tr('ПОЛЬЗОВАТЕЛЬ')], this.tr('Уровень 1'), 'active', '14', 8, '12:44'],
+      ['PI', 'p2p_ivan', 'ivan.p@mail.test', [this.tr('ПРОДАВЕЦ')], this.tr('Уровень 1'), 'active', '312', 64, '12:02', true],
+      ['CM', 'crypto_mila', 'mila@mail.test', [this.tr('ПРОДАВЕЦ')], this.tr('Уровень 2'), 'active', this.tr('1 284'), 6, '11:58'],
+      ['N7', 'newtrader_07', 'n7@mail.test', [this.tr('ПОЛЬЗОВАТЕЛЬ')], this.tr('На проверке'), 'review', '2', 31, '11:40', true],
+      [this.tr('ОА'), 'arb_olga', 'olga.a@aeon.test', [this.tr('АДМИН'), this.tr('АРБИТР')], this.tr('Уровень 2'), 'active', '—', 0, '12:45'],
+      ['XX', 'fast_cash_99', 'fc99@mail.test', [this.tr('ПРОДАВЕЦ')], this.tr('Отклонена'), 'blocked', '41', 91, '21.10'],
+      ['TR', 'trade_room', 'room@mail.test', [this.tr('ПРОДАВЕЦ')], this.tr('Уровень 2'), 'active', this.tr('2 041'), 12, '10:17'],
+      ['MB', 'mbtc', 'mbtc@mail.test', [this.tr('ПРОДАВЕЦ')], this.tr('Уровень 2'), 'active', '640', 18, this.tr('вчера')],
+      ['ES', 'eva_s', 'eva@mail.test', [this.tr('ПОЛЬЗОВАТЕЛЬ')], this.tr('Не пройдена'), 'active', '45', 22, this.tr('вчера')],
+      ['SP', 'support_den', 'den@aeon.test', [this.tr('ПОДДЕРЖКА')], this.tr('Уровень 2'), 'active', '—', 0, '09:03']
+    ];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      drawer: (this.props.drawer ?? true) && (this.props.state ?? 'default') !== 'noresults', isDefault: (this.props.state ?? 'default') !== 'noresults', isNone: (this.props.state ?? 'default') === 'noresults', q: (this.props.state ?? 'default') === 'noresults' ? 'kirill_88' : '',
+      kpis: [
+        { label: this.tr('ВСЕГО'), v: this.tr('1 248'), note: this.tr('+36 за неделю'), c: 'var(--sigt)' },
+        { label: this.tr('АКТИВНЫ 24 Ч'), v: '412', note: '33%', c: 'var(--t2)' },
+        { label: this.tr('KYC НА ПРОВЕРКЕ'), v: '7', note: this.tr('старшей 2 ч'), c: 'var(--warn)' },
+        { label: this.tr('ЗАБЛОКИРОВАНЫ'), v: '12', note: this.tr('+1 сегодня'), c: 'var(--neg)' }
+      ],
+      filters: [
+        { label: this.tr('Роль: все'), border: 'var(--bd)', bg: 'transparent' },
+        { label: this.tr('KYC: все'), border: 'var(--bd)', bg: 'transparent' },
+        { label: this.tr('Статус: все'), border: 'var(--bd)', bg: 'transparent' },
+        { label: this.tr('Риск: ≥ 25'), border: 'var(--t1)', bg: 'var(--raised)' }
+      ],
+      users: rows.map((r) => {
+        const s = st[r[5]];
+        const on = !!r[9];
+        return { ini: r[0], nick: r[1], email: r[2], roles: r[3], kyc: r[4], kycC: r[4].startsWith(this.tr('Уровень')) ? 'var(--t1)' : r[4] === this.tr('Отклонена') ? 'var(--neg)' : 'var(--t2)', status: s[0], stBg: s[1], stFg: s[2], deals: r[6], risk: String(r[7]), riskW: r[7] + '%', riskC: riskC(r[7]), last: r[8], checked: on, selected: on ? 'true' : 'false', bg: on ? 'var(--sel)' : 'transparent', cbBorder: on ? '0' : '1.5px solid var(--bst)', cbBg: on ? 'var(--pbg)' : 'transparent', cbLabel: this.tr('Выбрать ') + r[1] };
+      }),
+      trail: [
+        { time: '12:02', text: this.tr('Вход с нового устройства · Windows 11 · 185.12.x.x') },
+        { time: '11:47', text: this.tr('Открыт спор D-0198 покупателем eva_s') },
+        { time: '10:30', text: this.tr('Объявление «USDT за ₽» изменено: курс 92,55') },
+        { time: '21.10', text: this.tr('Вывод 400 USDT отправлен на ручную проверку') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

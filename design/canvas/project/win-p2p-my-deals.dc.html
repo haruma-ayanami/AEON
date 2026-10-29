@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — мои сделки</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1440px; height: 900px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" hint-size="1440px,48px"></dc-import>
+  <div style="flex: 1; display: flex; min-height: 0">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinNav" active="p2p" hint-size="220px,852px"></dc-import>
+    <main class="wlayer">
+      <div style="padding: 22px 28px 12px; display: flex; align-items: center; gap: 8px"><h1 class="disp" style="margin: 0; font-size: 28px; flex: 1">{{ L.k2 }}</h1><button class="wbtn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"></path></svg>{{ L.k3 }}</button></div>
+      <div style="padding: 0 28px 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+        <div style="display: flex; gap: 2px; padding: 2px; border-radius: 6px; background: var(--ctrl); border: 1px solid var(--bs)"><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: var(--wsel)">{{ L.k4 }}</button><button style="height: 28px; padding: 0 12px; border: 0; border-radius: 4px; font: 500 13px Inter, sans-serif; cursor: pointer; color: var(--t1); background: transparent">{{ L.k5 }}</button></div>
+        <span style="width: 8px"></span>
+        <button class="wbtn">{{ L.k6 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button><button class="wbtn">{{ L.k7 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button><button class="wbtn">{{ L.k8 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button><button class="wbtn">{{ L.k9 }}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+        <span style="flex: 1"></span>
+        <label class="winp" style="width: 260px"><span class="sr">{{ L.k10 }}</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 17a6.5 6.5 0 1 0 0-13a6.5 6.5 0 1 0 0 13M15.5 15.5L20 20"></path></svg><input placeholder="{{ L.k11 }}"></label>
+      </div>
+      <div style="flex: 1; min-height: 0; display: flex; border-top: 1px solid var(--bs)">
+        <div style="flex: 1; min-width: 0">
+          <table class="tbl"><thead><tr><th>{{ L.k12 }}</th><th>{{ L.k13 }}</th><th style="text-align: right">{{ L.k14 }}</th><th>{{ L.k15 }}</th><th>{{ L.k16 }}</th><th style="text-align: right">{{ L.k17 }}</th></tr></thead>
+            <tbody><sc-for list="{{ rows }}" as="r" hint-placeholder-count="6"><tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}"><td style="height: 56px"><span style="display: flex; flex-direction: column"><span class="mono" style="font-weight: 500">{{ r.id }}</span><span class="faint" style="font-size: 11px">{{ r.when }}</span></span></td><td>{{ r.role }}</td><td class="num" style="text-align: right"><span style="display: flex; flex-direction: column"><span style="font-weight: 600">{{ r.a }}</span><span class="faint" style="font-size: 11px">{{ r.f }}</span></span></td><td>{{ r.who }}</td><td><span class="chip {{ r.cls }}" style="height: 24px">{{ r.st }}</span></td><td class="mono" style="text-align: right; color: {{ r.tc }}">{{ r.t }}</td></tr></sc-for></tbody>
+          </table>
+          <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding: 96px 20px; border-radius: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg></span><span style="font-weight: 600; font-size: 15px">{{ L.k54 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 420px">{{ L.k55 }}</span><span style="display: flex; gap: 6px; margin-top: 6px"><a href="win-p2p-market.dc.html" style="height: 32px; padding: 0 12px; box-sizing: border-box; border-radius: 4px; font: 500 13px Inter, sans-serif; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; border: 0; background: var(--pbg); color: var(--pfg); font-weight: 600">{{ L.k56 }}</a><a href="win-p2p-create-offer.dc.html" style="height: 32px; padding: 0 12px; box-sizing: border-box; border-radius: 4px; font: 500 13px Inter, sans-serif; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid var(--bs); background: var(--ctrl); color: var(--t1)">{{ L.k57 }}</a></span></div></sc-if>
+        </div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">        <aside aria-label="{{ L.k18 }}" style="width: 380px; flex: none; border-left: 1px solid var(--bs); background: var(--card); padding: 18px 20px; display: flex; flex-direction: column; gap: 14px">
+          <span style="display: flex; align-items: center; justify-content: space-between"><span class="lbl">P2P-48213 · {{ L.k19 }}</span><span class="chip c-warn" style="height: 24px">{{ L.k20 }}</span></span>
+          <span class="disp" style="font-size: 26px">250 USDT <span class="muted" style="font-size: 15px; font-weight: 500">{{ L.k21 }}</span></span>
+          <div class="wcard" style="padding: 12px 14px; display: flex; align-items: center; gap: 12px; background: var(--warns); border-color: transparent"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v5l3 2"></path></svg><span style="flex: 1">{{ L.k22 }} <b class="mono">11:42</b></span></div>
+          <div style="display: flex; flex-direction: column"><sc-for list="{{ steps }}" as="s" hint-placeholder-count="4"><div style="display: flex; gap: 10px; align-items: center; min-height: 30px"><span aria-hidden="true" style="width: 18px; height: 18px; border-radius: 999px; flex: none; background: {{ s.bg }}; border: 1.5px solid {{ s.bd }}; box-sizing: border-box"></span><span style="color: {{ s.c }}; font-weight: {{ s.w }}">{{ s.t }}</span></div></sc-for></div>
+          <div style="display: flex; flex-direction: column"><div class="rowline"><span>{{ L.k23 }}</span><span>crypto_mila ★ 4,9</span></div><div class="rowline"><span>{{ L.k24 }}</span><span>{{ L.k25 }}</span></div><div class="rowline"><span>{{ L.k26 }}</span><span>{{ L.k27 }}</span></div></div>
+          <div style="flex: 1"></div>
+          <div style="display: flex; gap: 6px"><button class="wbtn" style="flex: 1">{{ L.k28 }}</button><a href="win-p2p-deal.dc.html" class="wbtn wbtn-p" style="flex: 1">{{ L.k29 }}</a></div>
+        </aside></sc-if>
+      </div>
+      <footer class="wstatus"><span>{{ L.k30 }}</span><span style="flex: 1"></span><span>{{ L.k31 }}</span></footer>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["default", "empty"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 900}}'>
+class Component extends DCLogic {
+  static EN = {"AEON · Мои сделки": "AEON · My deals", "Мои сделки": "My deals", "Экспорт CSV": "Export CSV", "Активные · 2": "Active · 2", "История · 41": "History · 41", "Статус: все": "Status: all", "Роль: все": "Role: all", "Актив: все": "Asset: all", "Октябрь 2026": "October 2026", "Поиск по номеру или контрагенту": "Search by number or counterparty", "№ сделки или ник": "Deal № or nickname", "СДЕЛКА": "DEAL", "РОЛЬ": "ROLE", "СУММА": "AMOUNT", "КОНТРАГЕНТ": "COUNTERPARTY", "СТАТУС": "STATUS", "ТАЙМЕР": "TIMER", "Предпросмотр сделки": "Deal preview", "ПОКУПКА": "BUY", "Ждём оплату": "Awaiting payment", "за 23 100 ₽": "for 23,100 ₽", "Оплатите до 13:05 — осталось": "Pay by 13:05 — time left", "Продавец": "Seller", "Курс": "Rate", "92,40 ₽": "92.40 ₽", "Оплата": "Payment", "СБП": "SBP", "Чат · 2": "Chat · 2", "Открыть в окне · Enter": "Open in window · Enter", "2 АКТИВНЫЕ · 41 В ИСТОРИИ": "2 ACTIVE · 41 IN HISTORY", "ENTER — ОТКРЫТЬ В ОКНЕ · CTRL+F — ПОИСК": "ENTER — OPEN IN WINDOW · CTRL+F — SEARCH", "сегодня, 12:50": "today, 12:50", "Покупка": "Buy", "23 100 ₽": "23,100 ₽", "сегодня, 11:20": "today, 11:20", "Продажа": "Sale", "46 000 ₽": "46,000 ₽", "Покупатель оплатил": "Buyer paid", "22.10, 18:04": "22.10, 18:04", "15 610 ₽": "15,610 ₽", "Завершена": "Completed", "21.10, 09:15": "21.10, 09:15", "9 240 ₽": "9,240 ₽", "Отменена": "Cancelled", "истёк срок": "expired", "20.10, 20:31": "20.10, 20:31", "0,1 ETH": "0.1 ETH", "31 480 ₽": "31,480 ₽", "Спор решён": "Dispute resolved", "19.10, 14:02": "19.10, 14:02", "Создана": "Created", "Средства в эскроу": "Funds in escrow", "Оплата отправлена": "Payment sent", "Активных сделок нет": "No active deals", "Купите или продайте USDT на маркетплейсе — сделка появится здесь с таймером и статусом. История за октябрь — на вкладке «История».": "Buy or sell USDT on the marketplace — the deal will appear here with a timer and status. October history is on the History tab.", "Открыть маркетплейс": "Open marketplace", "Создать объявление": "Create offer"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    if (v.st !== 'default') { v.rows = []; }
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("AEON · Мои сделки"), k2: this.tr("Мои сделки"), k3: this.tr("Экспорт CSV"), k4: this.tr("Активные · 2"), k5: this.tr("История · 41"), k6: this.tr("Статус: все"), k7: this.tr("Роль: все"), k8: this.tr("Актив: все"), k9: this.tr("Октябрь 2026"), k10: this.tr("Поиск по номеру или контрагенту"), k11: this.tr("№ сделки или ник"), k12: this.tr("СДЕЛКА"), k13: this.tr("РОЛЬ"), k14: this.tr("СУММА"), k15: this.tr("КОНТРАГЕНТ"), k16: this.tr("СТАТУС"), k17: this.tr("ТАЙМЕР"), k18: this.tr("Предпросмотр сделки"), k19: this.tr("ПОКУПКА"), k20: this.tr("Ждём оплату"), k21: this.tr("за 23 100 ₽"), k22: this.tr("Оплатите до 13:05 — осталось"), k23: this.tr("Продавец"), k24: this.tr("Курс"), k25: this.tr("92,40 ₽"), k26: this.tr("Оплата"), k27: this.tr("СБП"), k28: this.tr("Чат · 2"), k29: this.tr("Открыть в окне · Enter"), k30: this.tr("2 АКТИВНЫЕ · 41 В ИСТОРИИ"), k31: this.tr("ENTER — ОТКРЫТЬ В ОКНЕ · CTRL+F — ПОИСК"), k32: this.tr("сегодня, 12:50"), k33: this.tr("Покупка"), k34: this.tr("23 100 ₽"), k35: this.tr("сегодня, 11:20"), k36: this.tr("Продажа"), k37: this.tr("46 000 ₽"), k38: this.tr("Покупатель оплатил"), k39: this.tr("22.10, 18:04"), k40: this.tr("15 610 ₽"), k41: this.tr("Завершена"), k42: this.tr("21.10, 09:15"), k43: this.tr("9 240 ₽"), k44: this.tr("Отменена"), k45: this.tr("истёк срок"), k46: this.tr("20.10, 20:31"), k47: this.tr("0,1 ETH"), k48: this.tr("31 480 ₽"), k49: this.tr("Спор решён"), k50: this.tr("19.10, 14:02"), k51: this.tr("Создана"), k52: this.tr("Средства в эскроу"), k53: this.tr("Оплата отправлена"), k54: this.tr("Активных сделок нет"), k55: this.tr("Купите или продайте USDT на маркетплейсе — сделка появится здесь с таймером и статусом. История за октябрь — на вкладке «История»."), k56: this.tr("Открыть маркетплейс"), k57: this.tr("Создать объявление") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    const r = (id, when, role, a, f, who, st, cls, t, tc, sel) => ({ id, when, role, a, f, who, st, cls, t, tc: tc || 'var(--t2)', sel: sel ? 'true' : 'false', bg: sel ? 'var(--wsel)' : 'transparent' });
+    const step = (t, state) => ({ t, bg: state === 'done' ? 'var(--sig)' : 'transparent', bd: state === 'todo' ? 'var(--bst)' : 'var(--sig)', c: state === 'todo' ? 'var(--t3)' : 'var(--t1)', w: state === 'now' ? 600 : 400 });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', st, isDefault: st === 'default', isEmpty: st === 'empty',
+      rows: [
+        r('P2P-48213', this.tr("сегодня, 12:50"), this.tr("Покупка"), '250 USDT', this.tr("23 100 ₽"), 'crypto_mila', this.tr("Ждём оплату"), 'c-warn', '11:42', 'var(--warn)', true),
+        r('P2P-48190', this.tr("сегодня, 11:20"), this.tr("Продажа"), '500 USDT', this.tr("46 000 ₽"), 'p2p_ivan', this.tr("Покупатель оплатил"), 'c-info', '04:10', 'var(--neg)'),
+        r('P2P-47702', this.tr("22.10, 18:04"), this.tr("Покупка"), '0,05 ETH', this.tr("15 610 ₽"), 'crypto_mila', this.tr("Завершена"), 'c-ok', '—'),
+        r('P2P-47511', this.tr("21.10, 09:15"), this.tr("Продажа"), '100 USDT', this.tr("9 240 ₽"), 'newtrader_07', this.tr("Отменена"), 'c-off', this.tr("истёк срок")),
+        r('P2P-47320', this.tr("20.10, 20:31"), this.tr("Покупка"), this.tr("0,1 ETH"), this.tr("31 480 ₽"), 'olga_m', this.tr("Спор решён"), 'c-info', '—'),
+        r('P2P-47118', this.tr("19.10, 14:02"), this.tr("Продажа"), '250 USDT', this.tr("23 100 ₽"), 'p2p_ivan', this.tr("Завершена"), 'c-ok', '—')
+      ],
+      steps: [step(this.tr("Создана"), 'done'), step(this.tr("Средства в эскроу"), 'done'), step(this.tr("Оплата отправлена"), 'now'), step(this.tr("Завершена"), 'todo')]
+    };
+  }
+}
+</script>
+</body>
+</html>

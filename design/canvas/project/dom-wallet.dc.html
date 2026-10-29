@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Доменные компоненты — кошелёк</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+.th-dark{--canvas:#0A0C0B;--surface:#131614;--raised:#1B1F1C;--sunken:#070807;--bs:#232824;--bd:#2E342F;--bst:#48504A;--t1:#F2F5F1;--t2:#A3ACA5;--t3:#8A938C;--pbg:#F2F5F1;--pfg:#0A0C0B;--sig:#B6F36B;--sigt:#B6F36B;--sigs:rgba(182,243,107,.12);--neg:#FF7A6B;--negs:rgba(255,122,107,.12);--warn:#F5B941;--warns:rgba(245,185,65,.12);--info:#6EA2FF;--infos:rgba(110,162,255,.12);--orange:#FF9A5B;--onacc:#0A0C0B}
+.th-light{--canvas:#EEF0EC;--surface:#FFFFFF;--raised:#F7F8F5;--sunken:#E4E7E1;--bs:#E2E5DF;--bd:#D3D7D0;--bst:#A9AFA6;--t1:#0E110F;--t2:#4D554F;--t3:#606862;--pbg:#0E110F;--pfg:#FFFFFF;--sig:#B6F36B;--sigt:#286913;--sigs:rgba(47,122,22,.12);--neg:#A62E23;--negs:rgba(200,55,42,.1);--warn:#7E5200;--warns:rgba(154,100,0,.12);--info:#2755BA;--infos:rgba(45,98,214,.1);--orange:#8F4416;--onacc:#FFFFFF}
+</style>
+</helmet>
+<div class="{{ themeClass }}" style="width: 1600px; min-height: 1700px; box-sizing: border-box; padding: 64px; background: var(--canvas); color: var(--t1); font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 40px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: var(--t3)">ДОМЕННЫЕ КОМПОНЕНТЫ · КОШЕЛЁК</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Баланс, активы, адрес, операции</h2>
+    </div>
+    <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 22px; color: var(--t2)">Баланс актива — за два действия от главной (U-02). Сеть указана у каждого актива и адреса. Экран подтверждения показывает адрес целиком, сумму, комиссии и итог (U-03).</p>
+  </div>
+
+  <section style="display: grid; grid-template-columns: 1fr 1.25fr; gap: 24px">
+    <div style="position: relative; border-radius: 32px; overflow: hidden; background: #0A0C0B; border: 1px solid #232824; color: #F2F5F1; padding: 28px; display: flex; flex-direction: column; gap: 22px; min-height: 400px; box-sizing: border-box">
+      <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(80, 6px); grid-auto-rows: 6px; gap: 2px; padding: 0 3px">
+        <sc-for list="{{ dither }}" as="c" hint-placeholder-count="1920"><span style="background: {{ c }}; border-radius: 1px"></span></sc-for>
+      </div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,12,11,1) 35%, rgba(10,12,11,0.6) 75%, rgba(10,12,11,0.2))"></div>
+      <div style="position: relative; display: flex; justify-content: space-between; align-items: flex-start">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font: 500 12px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #C9D1CB; display: flex; align-items: center; gap: 8px">ОБЩИЙ БАЛАНС<button aria-label="Скрыть суммы" style="width: 24px; height: 24px; border: 0; background: transparent; color: #C9D1CB; padding: 0; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12zM9 12a3 3 0 1 0 6 0a3 3 0 1 0-6 0"></path></svg></button></span>
+          <div style="font: 600 56px 'Inter Tight', sans-serif; letter-spacing: -0.035em; font-feature-settings: 'tnum'"><span style="color: #C9D1CB">$</span>3 412<span style="color: #C9D1CB">,18</span></div>
+          <div style="display: flex; align-items: center; gap: 10px"><span style="font: 600 15px Inter, sans-serif; color: #B6F36B; font-feature-settings: 'tnum'">+$126,40</span><span style="height: 26px; padding: 0 9px; border-radius: 999px; background: rgba(182,243,107,0.16); color: #B6F36B; font: 600 13px Inter, sans-serif; display: inline-flex; align-items: center; gap: 4px">↑ 3,8% за 7 дней</span></div>
+        </div>
+        <button style="height: 40px; padding: 0 12px 0 14px; border-radius: 999px; border: 0.5px solid rgba(255,255,255,0.18); background: rgba(28,32,29,0.42); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); color: #F2F5F1; font: 600 14px Inter, sans-serif; display: flex; align-items: center; gap: 6px">USD<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
+      </div>
+      <svg viewBox="0 0 520 110" style="position: relative; width: 100%; height: 110px" role="img" aria-label="График баланса за 7 дней, рост на 3,8%"><defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#B6F36B" stop-opacity="0.22"></stop><stop offset="1" stop-color="#B6F36B" stop-opacity="0"></stop></linearGradient></defs><path d="M0 84 C60 80 110 78 160 76 S230 80 260 64 S330 50 380 46 S440 40 470 30 S510 22 520 20 L520 110 L0 110 Z" fill="url(#g1)"></path><path d="M0 84 C60 80 110 78 160 76 S230 80 260 64 S330 50 380 46 S440 40 470 30 S510 22 520 20" fill="none" stroke="#B6F36B" stroke-width="2"></path><circle cx="520" cy="20" r="4" fill="#B6F36B"></circle></svg>
+      <div style="position: relative; display: flex; gap: 10px">
+        <button style="flex: 1; height: 52px; border-radius: 999px; border: 0.5px solid rgba(255,255,255,0.18); background: rgba(28,32,29,0.42); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.28); color: #F2F5F1; font: 600 15px Inter, sans-serif">Получить</button>
+        <button style="flex: 1; height: 52px; border-radius: 999px; border: 0; background: #F2F5F1; color: #0A0C0B; font: 600 15px Inter, sans-serif">Отправить</button>
+      </div>
+    </div>
+
+    <div style="background: var(--surface); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px">
+        <span style="font: 600 22px 'Inter Tight', sans-serif">Мои активы</span>
+        <div style="display: flex; gap: 6px"><span style="height: 32px; padding: 0 12px; border-radius: 999px; background: var(--pbg); color: var(--pfg); font: 500 13px Inter, sans-serif; display: inline-flex; align-items: center">Все сети</span><span style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--bd); color: var(--t1); font: 500 13px Inter, sans-serif; display: inline-flex; align-items: center">EVM</span><span style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--bd); color: var(--t1); font: 500 13px Inter, sans-serif; display: inline-flex; align-items: center">Bitcoin</span><span style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--bd); color: var(--t1); font: 500 13px Inter, sans-serif; display: inline-flex; align-items: center">Solana</span></div>
+      </div>
+      <sc-for list="{{ assets }}" as="a" hint-placeholder-count="5">
+        <a href="#" style="display: grid; grid-template-columns: 48px minmax(0, 1fr) 96px 150px; gap: 16px; align-items: center; padding: 12px; border-radius: 18px; text-decoration: none; color: var(--t1); background: {{ a.bg }}">
+          <span style="position: relative; width: 44px; height: 44px"><span style="width: 44px; height: 44px; border-radius: 999px; background: var(--raised); border: 1px solid var(--bd); display: flex; align-items: center; justify-content: center; font: 500 11px 'JetBrains Mono', monospace">{{ a.t }}</span><span aria-hidden="true" style="position: absolute; right: -2px; bottom: -2px; width: 13px; height: 13px; border-radius: 3px; background: {{ a.nc }}; border: 2px solid var(--surface)"></span></span>
+          <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 16px; font-weight: 500">{{ a.name }}</span><span style="font-size: 13px; color: var(--t2)">{{ a.net }}</span></span>
+          <svg viewBox="0 0 96 32" width="96" height="32" aria-hidden="true"><path d="{{ a.spark }}" fill="none" stroke="{{ a.sc }}" stroke-width="1.5"></path></svg>
+          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-feature-settings: 'tnum'"><span style="font: 600 16px 'Inter Tight', sans-serif">{{ a.amt }}</span><span style="font-size: 13px; color: {{ a.cc }}">{{ a.fiat }} · {{ a.ch }}</span></span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px">
+    <div style="background: var(--surface); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 18px; align-items: stretch">
+      <span style="font: 500 12px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">ПОЛУЧИТЬ · АДРЕС-БЛОК</span>
+      <div style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 999px; background: var(--raised); align-self: flex-start; font: 500 14px Inter, sans-serif"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 2px; background: #8A9BFF"></span>USDT · Ethereum Sepolia</div>
+      <div style="align-self: center; padding: 14px; border-radius: 20px; background: #FFFFFF">
+        <div role="img" aria-label="QR-код адреса" style="display: grid; grid-template-columns: repeat(25, 7px); gap: 0">
+          <sc-for list="{{ qr }}" as="q" hint-placeholder-count="625"><span style="width: 7px; height: 7px; background: {{ q }}"></span></sc-for>
+        </div>
+      </div>
+      <div style="font: 400 14px 'JetBrains Mono', monospace; line-height: 22px; text-align: center; word-break: break-all"><span style="font-weight: 500">0x7a3F5c</span><span style="color: var(--t3)">1E8b2D4a6F9e0C3b7A1d5E8f2C4b</span><span style="font-weight: 500">6A9c2E</span></div>
+      <div style="display: flex; gap: 8px"><button style="flex: 1; height: 44px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 14px Inter, sans-serif">Копировать</button><button style="flex: 1; height: 44px; border-radius: 999px; border: 0; background: var(--raised); color: var(--t1); font: 600 14px Inter, sans-serif">Поделиться</button></div>
+      <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--warns); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>Отправляйте только USDT в сети Sepolia. Минимум 1 USDT, зачисление после 12 подтверждений.</span></div>
+    </div>
+
+    <div style="background: var(--surface); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font: 500 12px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3)">ПОДТВЕРЖДЕНИЕ ОТПРАВКИ (U-03)</span>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0 4px">
+        <span style="font: 600 44px 'Inter Tight', sans-serif; letter-spacing: -0.03em; font-feature-settings: 'tnum'">250<span style="color: var(--t3)">,00</span> <span style="font-size: 24px; color: var(--t2)">USDT</span></span>
+        <span style="font-size: 14px; color: var(--t2)">≈ 23 100,00 ₽</span>
+      </div>
+      <div style="border-radius: 18px; background: var(--raised); padding: 4px 16px">
+        <sc-for list="{{ summary }}" as="s" hint-placeholder-count="5">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 12px 0; border-bottom: 1px solid {{ s.line }}">
+            <span style="font: 500 12px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3); padding-top: 2px">{{ s.k }}</span>
+            <span style="text-align: right; font-size: 14px; line-height: 20px; font-weight: {{ s.w }}; font-family: {{ s.f }}; word-break: break-all; max-width: 230px">{{ s.v }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <button style="height: 52px; border-radius: 999px; border: 0; background: var(--pbg); color: var(--pfg); font: 600 16px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M9 9v1.5M15 9v1.5M12 9v4h-1M9 15.5c1.8 1.4 4.2 1.4 6 0"></path></svg>Подтвердить через Face ID</button>
+    </div>
+
+    <div style="background: var(--surface); border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font: 500 12px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: var(--t3); padding-bottom: 10px">ОПЕРАЦИИ · СЕГОДНЯ</span>
+      <sc-for list="{{ txs }}" as="x" hint-placeholder-count="5">
+        <a href="#" style="display: flex; flex-direction: column; gap: 10px; padding: 12px; border-radius: 16px; text-decoration: none; color: var(--t1); background: var(--raised)">
+          <span style="display: flex; align-items: center; gap: 12px">
+            <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: var(--surface); display: flex; align-items: center; justify-content: center; color: var(--t1)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ x.d }}"></path></svg></span>
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 500">{{ x.title }}</span><span style="font: 400 12px 'JetBrains Mono', monospace; color: var(--t3)">{{ x.sub }}</span></span>
+            <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px"><span style="font: 600 15px 'Inter Tight', sans-serif; color: {{ x.ac }}; font-feature-settings: 'tnum'">{{ x.amt }}</span><span style="height: 22px; padding: 0 8px; border-radius: 999px; background: {{ x.sbg }}; color: {{ x.sfg }}; font: 500 11px Inter, sans-serif; display: inline-flex; align-items: center">{{ x.status }}</span></span>
+          </span>
+          <sc-if value="{{ x.confirming }}" hint-placeholder-val="{{ false }}">
+            <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; height: 6px"><sc-for list="{{ x.bars }}" as="b" hint-placeholder-count="12"><span style="border-radius: 2px; background: {{ b }}"></span></sc-for></span>
+          </sc-if>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark"},"$preview":{"width":1600,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const theme = this.props.theme ?? 'dark';
+    const up = 'M0 26 C12 24 20 22 30 20 S48 22 58 14 S78 8 96 4';
+    const down = 'M0 8 C14 10 22 9 32 14 S50 12 60 18 S80 24 96 26';
+    const flat = 'M0 16 C16 15 28 17 44 16 S70 15 96 16';
+    let s = 11;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    const qr = [];
+    const finder = (r, c) => {
+      const inBox = (r0, c0) => r >= r0 && r < r0 + 7 && c >= c0 && c < c0 + 7;
+      const boxes = [[0, 0], [0, 18], [18, 0]];
+      for (const [r0, c0] of boxes) if (inBox(r0, c0)) { const rr = r - r0, cc = c - c0; return (rr === 0 || rr === 6 || cc === 0 || cc === 6 || (rr >= 2 && rr <= 4 && cc >= 2 && cc <= 4)) ? 1 : 0; }
+      for (const [r0, c0] of boxes) if (r >= r0 - 1 && r <= r0 + 7 && c >= c0 - 1 && c <= c0 + 7) return 0;
+      return -1;
+    };
+    for (let r = 0; r < 25; r++) for (let c = 0; c < 25; c++) { const f = finder(r, c); qr.push((f === -1 ? rnd() > 0.52 : f === 1) ? '#0A0C0B' : '#FFFFFF'); }
+    const bayer = [[0, 8, 2, 10], [12, 4, 14, 6], [3, 11, 1, 9], [15, 7, 13, 5]];
+    const dither = [];
+    for (let y = 0; y < 24; y++) for (let x = 0; x < 80; x++) {
+      const wave = 0.45 + 0.2 * Math.sin((x / 80) * Math.PI * 1.4 + 1.1) + 0.07 * Math.sin((x / 80) * Math.PI * 6.1);
+      const v = Math.max(0, Math.min(1, (y / 24 - (1 - wave)) * 2.4 + 0.5));
+      dither.push(v > (bayer[y % 4][x % 4] + 0.5) / 16 ? 'rgba(182,243,107,0.55)' : 'transparent');
+    }
+    const bars = (n, color) => Array.from({ length: 12 }, (_, i) => (i < n ? color : 'var(--bd)'));
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      dither,
+      assets: [
+        { t: 'ETH', name: 'Ether', net: 'Ethereum · Sepolia', nc: '#8A9BFF', amt: '0,4821 ETH', fiat: '$1 645,03', ch: '+2,1%', cc: 'var(--sigt)', spark: up, sc: 'var(--sigt)', bg: 'var(--raised)' },
+        { t: 'USDT', name: 'Tether USD', net: 'Ethereum · Sepolia', nc: '#8A9BFF', amt: '1 250,00 USDT', fiat: '$1 250,00', ch: '0,00%', cc: 'var(--t2)', spark: flat, sc: 'var(--t3)', bg: 'transparent' },
+        { t: 'BTC', name: 'Bitcoin', net: 'Bitcoin · Testnet', nc: '#F7A23B', amt: '0,00184 BTC', fiat: '$124,94', ch: '−1,1%', cc: 'var(--neg)', spark: down, sc: 'var(--neg)', bg: 'transparent' },
+        { t: 'SOL', name: 'Solana', net: 'Solana · Devnet', nc: '#5EE3C1', amt: '14,2 SOL', fiat: '$232,88', ch: '+5,4%', cc: 'var(--sigt)', spark: up, sc: 'var(--sigt)', bg: 'transparent' },
+        { t: 'POL', name: 'Polygon', net: 'Polygon · Amoy', nc: '#A77BFF', amt: '312,5 POL', fiat: '$159,33', ch: '+0,8%', cc: 'var(--sigt)', spark: up, sc: 'var(--sigt)', bg: 'transparent' }
+      ],
+      qr,
+      summary: [
+        { k: 'КОМУ', v: '0x1b9C4e7A2f0D8c3B5a6E9f1D7c2A4b8E3f6D0a91', w: '400', f: "'JetBrains Mono', monospace", line: 'var(--bd)' },
+        { k: 'СЕТЬ', v: 'Ethereum Sepolia', w: '500', f: 'Inter, sans-serif', line: 'var(--bd)' },
+        { k: 'КОМИССИЯ СЕТИ', v: '0,00021 ETH · ≈ $0,72', w: '500', f: 'Inter, sans-serif', line: 'var(--bd)' },
+        { k: 'КОМИССИЯ AEON', v: '1,00 USDT', w: '500', f: 'Inter, sans-serif', line: 'var(--bd)' },
+        { k: 'СПИШЕТСЯ ВСЕГО', v: '251,00 USDT + 0,00021 ETH', w: '600', f: 'Inter, sans-serif', line: 'transparent' }
+      ],
+      txs: [
+        { title: 'Получено', sub: 'от 0x4c…a1F2 · 12:41', amt: '+0,05 ETH', ac: 'var(--sigt)', status: 'Подтверждается 3/12', sbg: 'var(--infos)', sfg: 'var(--info)', d: 'M17 7L7 17M7 9v8h8', confirming: true, bars: bars(3, 'var(--info)') },
+        { title: 'Отправлено', sub: 'на 0x1b…0a91 · 11:02', amt: '−250,00 USDT', ac: 'var(--t1)', status: 'Выполнен', sbg: 'var(--sigs)', sfg: 'var(--sigt)', d: 'M7 17L17 7M9 7h8v8', confirming: false, bars: [] },
+        { title: 'Эскроу · P2P-48213', sub: 'блокировка · 10:15', amt: '−250,00 USDT', ac: 'var(--t1)', status: 'В эскроу', sbg: 'var(--infos)', sfg: 'var(--info)', d: 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3', confirming: false, bars: [] },
+        { title: 'Вывод', sub: 'на tb1q…jzsx · 09:30', amt: '−0,0012 BTC', ac: 'var(--t1)', status: 'На ручной проверке', sbg: 'var(--warns)', sfg: 'var(--warn)', d: 'M7 17L17 7M9 7h8v8', confirming: false, bars: [] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

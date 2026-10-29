@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — регистрация</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-auth-welcome.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title"></span><span class="testnet">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 122px; gap: 14px">
+    <ol aria-label="{{ L.k3 }}" style="margin: 0 4px; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px"><sc-for list="{{ steps }}" as="s" hint-placeholder-count="3"><li aria-current="{{ s.cur }}" style="height: 4px; border-radius: 2px; background: {{ s.c }}"></li></sc-for></ol>
+    <span class="lbl" style="padding: 0 4px">{{ stepLabel }}</span>
+
+    <sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <h1 class="disp" style="margin: 0 4px; font-size: 32px">{{ L.k4 }}</h1>
+        <div class="icard">
+          <label class="irow" style="min-height: 56px"><span style="width: 96px; color: var(--t2); font-size: 15px">{{ L.k5 }}</span><input type="email" value="alex.t@mail.test" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"></label>
+          <label class="irow" style="min-height: 56px"><span style="width: 96px; color: var(--t2); font-size: 15px">{{ L.k6 }}</span><input type="password" value="aeon-test-2026-k" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"></label>
+          <label class="irow" style="min-height: 56px"><span style="width: 96px; color: var(--t2); font-size: 15px">{{ L.k7 }}</span><input type="password" value="aeon-test-2026-k" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1); font: 400 16px Inter, sans-serif; outline: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sigt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></label>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px">
+          <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; height: 4px"><span style="border-radius: 2px; background: var(--sig)"></span><span style="border-radius: 2px; background: var(--sig)"></span><span style="border-radius: 2px; background: var(--sig)"></span><span style="border-radius: 2px; background: var(--bd)"></span></span>
+          <span class="hint ok">{{ L.k8 }}</span>
+        </div>
+        <div class="icard">
+          <label class="irow" style="min-height: 52px; font-size: 14px"><span class="cb on" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr"><span>{{ L.k9 }} <a href="ios-documents.dc.html">{{ L.k10 }}</a></span></label>
+          <label class="irow" style="min-height: 52px; font-size: 14px"><span class="cb on" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr"><span>{{ L.k11 }} <a href="ios-documents.dc.html">{{ L.k12 }}</a></span></label>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCode }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <h1 class="disp" style="margin: 0 4px; font-size: 32px">{{ L.k13 }}</h1>
+        <span class="muted" style="padding: 0 4px; font-size: 15px; line-height: 22px">{{ L.k14 }}</span>
+        <div role="group" aria-label="{{ L.k15 }}" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px"><sc-for list="{{ code }}" as="d" hint-placeholder-count="6"><span class="inp {{ d.cls }}" style="justify-content: center; height: 60px; border-radius: 16px; font: 600 24px 'JetBrains Mono', monospace">{{ d.v }}</span></sc-for></div>
+        <span class="hint" style="padding: 0 4px">{{ L.k16 }}</span>
+        <a href="ios-auth-register.dc.html" style="padding: 0 4px; font-size: 15px">{{ L.k17 }}</a>
+      </div>
+    </sc-if>
+  </div>
+  <div class="ios-bar" style="flex-direction: column; gap: 12px; align-items: stretch">
+    <button class="btn btn-p" style="height: 56px; font-size: 17px">{{ cta }}</button>
+    <span style="text-align: center; font-size: 15px; color: var(--t2)">{{ L.k18 }} <a href="ios-auth-login.dc.html">{{ L.k19 }}</a></span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "step": {"editor": "enum", "options": ["form", "code"], "default": "form"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Шаги регистрации": "Sign-up steps", "Создать аккаунт": "Create account", "Почта": "Email", "Пароль": "Password", "Ещё раз": "Repeat", "Надёжный: 16 символов, есть буквы и цифры": "Strong: 16 characters, letters and digits", "Принимаю": "I accept the", "условия использования": "terms of use", "Согласен с": "I agree to the", "политикой конфиденциальности": "privacy policy", "Подтвердите почту": "Confirm your email", "Мы отправили 6-значный код на alex.t@mail.test. Код действует 10 минут.": "We sent a 6-digit code to alex.t@mail.test. The code is valid for 10 minutes.", "Код из письма": "Code from the email", "Не пришло? Проверьте «Спам» или отправьте снова через 0:42": "Didn't arrive? Check Spam or resend in 0:42", "Изменить адрес почты": "Change email address", "Уже есть аккаунт?": "Already have an account?", "Войти": "Sign in", "ШАГ 2 ИЗ 3 · ПОЧТА": "STEP 2 OF 3 · EMAIL", "ШАГ 1 ИЗ 3 · АККАУНТ": "STEP 1 OF 3 · ACCOUNT", "Подтвердить": "Confirm", "Продолжить": "Continue"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("Шаги регистрации"), k4: this.tr("Создать аккаунт"), k5: this.tr("Почта"), k6: this.tr("Пароль"), k7: this.tr("Ещё раз"), k8: this.tr("Надёжный: 16 символов, есть буквы и цифры"), k9: this.tr("Принимаю"), k10: this.tr("условия использования"), k11: this.tr("Согласен с"), k12: this.tr("политикой конфиденциальности"), k13: this.tr("Подтвердите почту"), k14: this.tr("Мы отправили 6-значный код на alex.t@mail.test. Код действует 10 минут."), k15: this.tr("Код из письма"), k16: this.tr("Не пришло? Проверьте «Спам» или отправьте снова через 0:42"), k17: this.tr("Изменить адрес почты"), k18: this.tr("Уже есть аккаунт?"), k19: this.tr("Войти") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const step = this.props.step ?? 'form';
+    const cur = step === 'code' ? 1 : 0;
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isForm: step !== 'code', isCode: step === 'code',
+      stepLabel: step === 'code' ? this.tr('ШАГ 2 ИЗ 3 · ПОЧТА') : this.tr('ШАГ 1 ИЗ 3 · АККАУНТ'),
+      cta: step === 'code' ? this.tr('Подтвердить') : this.tr('Продолжить'),
+      steps: [0, 1, 2].map((i) => ({ cur: i === cur ? 'step' : 'false', c: i < cur ? 'var(--sig)' : i === cur ? 'var(--t1)' : 'var(--bd)' })),
+      code: ['5', '1', '8', '', '', ''].map((v, i) => ({ v, cls: i === 3 ? 'focus' : '' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

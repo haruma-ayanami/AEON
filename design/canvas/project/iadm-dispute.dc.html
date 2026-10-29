@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS Admin — просмотр спора</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+<div class="ios-nav"><a href="iadm-disputes.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">D-0201</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px">
+    <div class="icard" style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k3 }}</span><span style="font: 600 17px Inter, sans-serif">{{ L.k4 }}</span><span class="muted" style="font-size: 13px">{{ L.k5 }}</span></div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px"><div class="icard" style="padding: 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl" style="font-size: 10px">{{ L.k6 }}</span><span style="font-weight: 600">lena_s</span><span class="faint" style="font-size: 11px">{{ L.k7 }}</span></div><div class="icard" style="padding: 12px; display: flex; flex-direction: column; gap: 2px"><span class="lbl" style="font-size: 10px">{{ L.k8 }}</span><span style="font-weight: 600">p2p_ivan</span><span class="faint" style="font-size: 11px">{{ L.k9 }}</span></div></div>
+    <div class="icard" style="padding: 4px 16px"><div class="rowline"><span>{{ L.k10 }}</span><span>{{ L.k11 }}</span></div><div class="rowline"><span>{{ L.k12 }}</span><span style="color: var(--sigt)">{{ L.k13 }}</span></div><div class="rowline"><span>{{ L.k14 }}</span><span style="color: var(--warn)">{{ L.k15 }}</span></div></div>
+    <div style="display: flex; flex-direction: column; gap: 8px; padding: 4px 0"><sc-for list="{{ chat }}" as="m" hint-placeholder-count="4"><div style="align-self: {{ m.al }}; max-width: 82%; display: flex; flex-direction: column; gap: 2px"><span class="faint" style="font-size: 10px; align-self: {{ m.al }}">{{ m.who }}</span><span style="padding: 9px 12px; border-radius: 16px; background: {{ m.bg }}; color: {{ m.fg }}; font-size: 13px; line-height: 18px">{{ m.t }}</span></div></sc-for></div>
+  </div>
+  <div class="ios-fade"></div>
+  <div class="ios-bar" style="flex-direction: column; gap: 8px"><span class="faint" style="font-size: 12px; text-align: center">{{ L.k16 }}</span><div style="display: flex; gap: 8px"><span class="inp glass" style="flex: 1; height: 52px; border-radius: 999px"><input placeholder="{{ L.k17 }}"></span><button class="btn btn-p" aria-label="{{ L.k18 }}" style="width: 52px; height: 52px; padding: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "СДЕЛКА P2P-48201 · СБП": "DEAL P2P-48201 · SBP", "Покупатель оплатил, продавец не выпускает": "Buyer paid, seller doesn't release", "760 USDT · 70 338 ₽ · открыт lena_s в 10:40": "760 USDT · 70,338 ₽ · opened by lena_s at 10:40", "ПОКУПАТЕЛЬ": "BUYER", "100% · споров 0": "100% · 0 disputes", "ПРОДАВЕЦ": "SELLER", "97,1% · споров 3": "97.1% · 3 disputes", "Доказательства": "Evidence", "3 файла": "3 files", "Поступление по выписке": "Receipt per statement", "найдено 10:31": "found 10:31", "Ответ продавца": "Seller's reply", "нет 2 ч 08 мин": "none for 2 h 08 min", "Решение по спору — на компьютере с 2FA": "Dispute decision — on desktop with 2FA", "Написать сторонам": "Message the parties", "Отправить": "Send", "lena_s · покупатель": "lena_s · buyer", "Перевела 70 338 ₽ в 10:31, продавец молчит.": "I sent 70,338 ₽ at 10:31, the seller is silent.", "arb_olga · вы": "arb_olga · you", "Пришлите, пожалуйста, выписку из банка.": "Please send your bank statement.", "Отправила выписку.": "Sent the statement.", "Продавец, подтвердите поступление в течение 2 часов.": "Seller, please confirm the receipt within 2 hours."};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("СДЕЛКА P2P-48201 · СБП"), k4: this.tr("Покупатель оплатил, продавец не выпускает"), k5: this.tr("760 USDT · 70 338 ₽ · открыт lena_s в 10:40"), k6: this.tr("ПОКУПАТЕЛЬ"), k7: this.tr("100% · споров 0"), k8: this.tr("ПРОДАВЕЦ"), k9: this.tr("97,1% · споров 3"), k10: this.tr("Доказательства"), k11: this.tr("3 файла"), k12: this.tr("Поступление по выписке"), k13: this.tr("найдено 10:31"), k14: this.tr("Ответ продавца"), k15: this.tr("нет 2 ч 08 мин"), k16: this.tr("Решение по спору — на компьютере с 2FA"), k17: this.tr("Написать сторонам"), k18: this.tr("Отправить"), k19: this.tr("lena_s · покупатель"), k20: this.tr("Перевела 70 338 ₽ в 10:31, продавец молчит."), k21: this.tr("arb_olga · вы"), k22: this.tr("Пришлите, пожалуйста, выписку из банка."), k23: this.tr("Отправила выписку."), k24: this.tr("Продавец, подтвердите поступление в течение 2 часов.") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const m = (who, t, me) => ({ who, t, al: me ? 'flex-end' : 'flex-start', bg: me ? 'var(--pbg)' : 'var(--surface)', fg: me ? 'var(--pfg)' : 'var(--t1)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      chat: [m(this.tr("lena_s · покупатель"), this.tr("Перевела 70 338 ₽ в 10:31, продавец молчит.")), m(this.tr("arb_olga · вы"), this.tr("Пришлите, пожалуйста, выписку из банка."), true), m(this.tr("lena_s · покупатель"), this.tr("Отправила выписку.")), m(this.tr("arb_olga · вы"), this.tr("Продавец, подтвердите поступление в течение 2 часов."), true)]
+    };
+  }
+}
+</script>
+</body>
+</html>

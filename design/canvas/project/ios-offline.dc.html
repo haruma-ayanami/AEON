@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — офлайн-режим кошелька</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <sc-if value="{{ isGate }}" hint-placeholder-val="{{ true }}">
+    <div class="ios-nav" style="justify-content: flex-end"><span class="testnet">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k1 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button><a href="ios-documents.dc.html" aria-label="{{ L.k2 }}" class="gbtn glass" style="font: 600 17px Inter, sans-serif">?</a></div>
+    <div style="position: absolute; left: 24px; right: 24px; top: 150px; display: flex; flex-direction: column; gap: 14px">
+      <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(9, 12px); grid-auto-rows: 12px; gap: 3px; padding-bottom: 14px">
+        <sc-for list="{{ g.cells }}" as="c" hint-placeholder-count="81"><span style="background: {{ c }}; border-radius: 2px"></span></sc-for>
+      </div>
+      <span class="lbl" style="color: {{ s.lc }}">{{ s.lbl }}</span>
+      <h1 class="disp" style="margin: 0; font-size: 32px; line-height: 1.08">{{ s.title }}</h1>
+      <p class="muted" style="margin: 0; font-size: 15px; line-height: 22px">{{ s.text }}</p>
+      <div class="icard">
+        <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="3"><div class="irow" style="min-height: 48px; font-size: 15px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; flex: none; background: {{ r.c }}"></span><span style="flex: 1">{{ r.k }}</span><span class="muted" style="font-size: 14px">{{ r.v }}</span></div></sc-for>
+      </div>
+    </div>
+    <div style="position: absolute; left: 16px; right: 16px; bottom: 34px; display: flex; flex-direction: column; gap: 10px"><button type="button" class="btn btn-p btn-l" style="width: 100%">{{ s.primary }}</button><a href="{{ s.href2 }}" class="btn btn-l glass" style="width: 100%">{{ s.secondary }}</a></div>
+  </sc-if>
+  <sc-if value="{{ isOffline }}" hint-placeholder-val="{{ false }}">
+    <div class="ios-nav"><span class="disp" style="flex: 1; font-size: 28px">{{ L.k3 }}</span><span class="testnet">TESTNET</span><button onClick="{{ toggleLang }}" aria-label="{{ L.k1 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button><a href="ios-documents.dc.html" aria-label="{{ L.k2 }}" class="gbtn glass" style="font: 600 17px Inter, sans-serif">?</a></div>
+    <div class="ios-body">
+      <div role="status" class="glass" style="border-radius: 18px; padding: 10px 10px 10px 14px; display: flex; align-items: center; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warn)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h.01M3 3l18 18"></path></svg><span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font-weight: 600; font-size: 14px">{{ L.k4 }}</span><span class="muted" style="font-size: 12px">{{ L.k5 }}</span></span><button class="btn btn-s" style="background: var(--raised)">{{ L.k6 }}</button></div>
+      <section class="icard" style="padding: 18px; display: flex; flex-direction: column; gap: 6px"><span class="lbl">{{ L.k7 }}</span><span class="disp" style="font-size: 40px; color: var(--t2)">{{ L.k8 }}</span><span class="faint" style="font-size: 13px">{{ L.k9 }}</span>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 10px"><button class="btn" disabled aria-disabled="true" style="opacity: 0.4; cursor: not-allowed">{{ L.k10 }}</button><button class="btn" style="background: var(--raised)">{{ L.k11 }}</button></div>
+        <span class="faint" style="font-size: 12px; line-height: 16px">{{ L.k12 }}</span>
+      </section>
+      <div class="icard">
+        <sc-for list="{{ assets }}" as="a" hint-placeholder-count="4"><div class="irow"><span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: var(--raised); display: flex; align-items: center; justify-content: center; font: 600 11px 'JetBrains Mono', monospace">{{ a.t }}</span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span>{{ a.n }}</span><span class="faint" style="font-size: 12px">{{ a.net }}</span></span><span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px"><span class="num">{{ a.v }}</span><span class="faint" style="font-size: 12px">{{ a.usd }}</span></span></div></sc-for>
+      </div>
+    </div>
+    <div class="ios-fade" aria-hidden="true"></div>
+    <div style="position: absolute; left: 0; right: 0; bottom: 0"><dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="IosTabBar" active="wallet" hint-size="390px,110px"></dc-import></div>
+  </sc-if>
+  <sc-if value="{{ isPrivacy }}" hint-placeholder-val="{{ false }}">
+    <div class="dots" style="position: absolute; inset: 0; background-color: var(--sunken); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px">
+      <span aria-hidden="true" style="width: 72px; height: 72px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px"><sc-for list="{{ logo }}" as="c" hint-placeholder-count="9"><span style="background: {{ c }}; border-radius: 3px"></span></sc-for></span>
+      <span style="font: 600 26px 'Inter Tight', sans-serif; letter-spacing: 0.04em">AEON</span>
+      <span class="faint" style="font-size: 13px; display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg>{{ L.k13 }}</span>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["update_required", "device_compromised", "offline", "privacy_cover"], "default": "offline"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Кошелёк": "Wallet", "Получить": "Receive", "Отправить": "Send", "Справка": "Help", "Нет сети": "No network", "Данные на 14:20 · повтор через 12 с": "Data as of 14:20 · retry in 12 s", "Повторить": "Retry", "ОБЩИЙ БАЛАНС · НА 14:20": "TOTAL BALANCE · AS OF 14:20", "$12 480,52": "$12,480.52", "Курсы не обновляются без сети": "Rates don't update without a network", "Отправка станет доступна, когда появится сеть. Адрес для получения работает и без неё.": "Sending will be available once you're back online. The receive address works without a network.", "Содержимое скрыто": "Content hidden", "Версия 1.3.2 больше не поддерживается": "Version 1.3.2 is no longer supported", "Обновите AEON": "Update AEON", "В этой версии нет последних исправлений безопасности, поэтому переводы и P2P в ней отключены. Обновление займёт около минуты, ключи и настройки сохранятся.": "This version lacks the latest security fixes, so transfers and P2P are disabled in it. The update takes about a minute; your keys and settings will be kept.", "Установлено": "Installed", "Нужна версия": "Required version", "1.4.0 или новее": "1.4.0 or later", "Размер": "Size", "38 МБ": "38 MB", "Открыть App Store": "Open App Store", "Только посмотреть балансы": "Just view balances", "Проверка устройства": "Device check", "Устройство изменено": "Device modified", "Мы нашли признаки джейлбрейка. На таком iPhone другие приложения могут читать память AEON, поэтому переводы, выпуск из эскроу и показ фразы восстановления отключены.": "We found signs of a jailbreak. On such an iPhone other apps can read AEON's memory, so transfers, escrow release and showing the recovery phrase are disabled.", "Переводы": "Transfers", "отключены": "disabled", "P2P-сделки": "P2P deals", "только просмотр": "view only", "Балансы и история": "Balances and history", "доступны": "available", "Продолжить в режиме просмотра": "Continue in view-only mode", "Как вернуть защиту": "How to restore protection", "8 240,00": "8,240.00", "$8 240,00": "$8,240.00", "1,1840": "1.1840", "$3 112,40": "$3,112.40", "0,0142": "0.0142", "$964,12": "$964.12", "1,0500": "1.0500", "$164,00": "$164.00"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Язык интерфейса: русский. Переключить на английский"), k2: this.tr("Справка"), k3: this.tr("Кошелёк"), k4: this.tr("Нет сети"), k5: this.tr("Данные на 14:20 · повтор через 12 с"), k6: this.tr("Повторить"), k7: this.tr("ОБЩИЙ БАЛАНС · НА 14:20"), k8: this.tr("$12 480,52"), k9: this.tr("Курсы не обновляются без сети"), k10: this.tr("Отправить"), k11: this.tr("Получить"), k12: this.tr("Отправка станет доступна, когда появится сеть. Адрес для получения работает и без неё."), k13: this.tr("Содержимое скрыто"), k14: this.tr("Версия 1.3.2 больше не поддерживается"), k15: this.tr("Обновите AEON"), k16: this.tr("В этой версии нет последних исправлений безопасности, поэтому переводы и P2P в ней отключены. Обновление займёт около минуты, ключи и настройки сохранятся."), k17: this.tr("Установлено"), k18: this.tr("Нужна версия"), k19: this.tr("1.4.0 или новее"), k20: this.tr("Размер"), k21: this.tr("38 МБ"), k22: this.tr("Открыть App Store"), k23: this.tr("Только посмотреть балансы"), k24: this.tr("Проверка устройства"), k25: this.tr("Устройство изменено"), k26: this.tr("Мы нашли признаки джейлбрейка. На таком iPhone другие приложения могут читать память AEON, поэтому переводы, выпуск из эскроу и показ фразы восстановления отключены."), k27: this.tr("Переводы"), k28: this.tr("отключены"), k29: this.tr("P2P-сделки"), k30: this.tr("только просмотр"), k31: this.tr("Балансы и история"), k32: this.tr("доступны"), k33: this.tr("Продолжить в режиме просмотра"), k34: this.tr("Как вернуть защиту"), k35: this.tr("8 240,00"), k36: this.tr("$8 240,00"), k37: this.tr("1,1840"), k38: this.tr("$3 112,40"), k39: this.tr("0,0142"), k40: this.tr("$964,12"), k41: this.tr("1,0500"), k42: this.tr("$164,00") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const state = this.props.state ?? 'offline';
+    const B = {
+      up: ['000010000', '000111000', '001111100', '011010110', '110010011', '000010000', '000010000', '000010000', '111111111'],
+      shield: ['011111110', '111111111', '111101111', '111101111', '111101111', '011111110', '011101110', '001111100', '000111000']
+    };
+    const glyph = (rows, accent) => {
+      const cells = [];
+      rows.forEach((row, y) => row.split('').forEach((v, x) => {
+        const n = (x * 7 + y * 13) % 11;
+        cells.push(v === '1' ? (n === 4 ? accent : 'var(--t1)') : n === 2 ? 'var(--bd)' : 'transparent');
+      }));
+      return { cells };
+    };
+    const r = (k, v, c) => ({ k, v, c });
+    const S = {
+      update_required: { b: 'up', accent: 'var(--sig)', lbl: this.tr('Версия 1.3.2 больше не поддерживается'), lc: 'var(--warn)', title: this.tr('Обновите AEON'), text: this.tr('В этой версии нет последних исправлений безопасности, поэтому переводы и P2P в ней отключены. Обновление займёт около минуты, ключи и настройки сохранятся.'), rows: [r(this.tr('Установлено'), '1.3.2', 'var(--warn)'), r(this.tr('Нужна версия'), this.tr('1.4.0 или новее'), 'var(--sig)'), r(this.tr('Размер'), this.tr('38 МБ'), 'var(--t3)')], primary: this.tr('Открыть App Store'), secondary: this.tr('Только посмотреть балансы'), href2: 'ios-wallet-home.dc.html' },
+      device_compromised: { b: 'shield', accent: 'var(--neg)', lbl: this.tr('Проверка устройства'), lc: 'var(--neg)', title: this.tr('Устройство изменено'), text: this.tr('Мы нашли признаки джейлбрейка. На таком iPhone другие приложения могут читать память AEON, поэтому переводы, выпуск из эскроу и показ фразы восстановления отключены.'), rows: [r(this.tr('Переводы'), this.tr('отключены'), 'var(--neg)'), r(this.tr('P2P-сделки'), this.tr('только просмотр'), 'var(--warn)'), r(this.tr('Балансы и история'), this.tr('доступны'), 'var(--sig)')], primary: this.tr('Продолжить в режиме просмотра'), secondary: this.tr('Как вернуть защиту'), href2: '#' }
+    };
+    const s = S[state] || S.update_required;
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isGate: state === 'update_required' || state === 'device_compromised',
+      isOffline: state === 'offline', isPrivacy: state === 'privacy_cover',
+      s, g: glyph(B[s.b], s.accent),
+      logo: ['var(--sig)', 'var(--t1)', 'var(--t1)', 'var(--t1)', 'transparent', 'var(--t1)', 'var(--t1)', 'var(--t1)', 'var(--t1)'],
+      assets: [
+        { t: 'USDT', n: 'Tether', net: 'Ethereum Sepolia', v: this.tr('8 240,00'), usd: this.tr('$8 240,00') },
+        { t: 'ETH', n: 'Ethereum', net: 'Sepolia', v: this.tr('1,1840'), usd: this.tr('$3 112,40') },
+        { t: 'BTC', n: 'Bitcoin', net: 'Testnet', v: this.tr('0,0142'), usd: this.tr('$964,12') },
+        { t: 'SOL', n: 'Solana', net: 'Devnet', v: this.tr('1,0500'), usd: this.tr('$164,00') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

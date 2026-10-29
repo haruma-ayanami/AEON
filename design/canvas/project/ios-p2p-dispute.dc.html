@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>iOS — спор по сделке P2P-48213</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="mob {{ themeClass }} phone">
+  <div class="ios-nav"><a href="ios-p2p-deal.dc.html" aria-label="{{ L.k1 }}" class="gbtn glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a><span class="ios-title" style="min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px"><span style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ title }}</span><span class="testnet" style="height: 18px; padding: 0 7px">TESTNET</span></span><button onClick="{{ toggleLang }}" aria-label="{{ L.k2 }}" style="height: 44px; padding: 4px; flex: none; box-sizing: border-box; border-radius: 999px; border: 0.5px solid var(--glb); background: var(--glass); backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); box-shadow: inset 0 1px 0 var(--glh); display: flex; gap: 2px; cursor: pointer; font: 600 11px 'JetBrains Mono', monospace"><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button></div>
+  <div class="ios-body" style="top: 118px; gap: 10px">
+    <div class="icard" style="padding: 12px 14px; display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 36px; height: 36px; flex: none; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 12px Inter, sans-serif">CM</span><span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span style="font: 600 15px Inter, sans-serif">{{ L.k3 }}</span><span class="faint" style="font-size: 12px">{{ L.k4 }}</span></span><span class="chip {{ chipCls }}" style="height: 24px">{{ chip }}</span></div>
+
+    <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span class="lbl" style="padding: 4px 4px 0">{{ L.k5 }}</span>
+        <div role="radiogroup" aria-label="{{ L.k6 }}" class="icard">
+          <sc-for list="{{ reasons }}" as="r" hint-placeholder-count="4"><button role="radio" aria-checked="{{ r.sel }}" class="irow" style="width: 100%; min-height: 50px; border-left: 0; border-right: 0; border-top: 0; background: transparent; font: 400 15px Inter, sans-serif; text-align: left; cursor: pointer"><span class="rb {{ r.cls }}" aria-hidden="true"></span>{{ r.t }}</button></sc-for>
+        </div>
+        <label class="icard" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px"><span class="faint" style="font-size: 12px">{{ L.k7 }}</span><textarea rows="3" defaultValue="{{ L.k8 }}" style="border: 0; padding: 0; background: transparent; color: var(--t1); font: 400 15px Inter, sans-serif; line-height: 21px; resize: none; outline: none"></textarea></label>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap"><span class="chip c-off" style="height: 34px; padding: 0 12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v4h4"></path></svg>{{ L.k9 }}</span><button class="chip" style="height: 34px; padding: 0 12px; border: 1px dashed var(--bst); background: transparent; color: var(--t1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>{{ L.k10 }}</button></div>
+        <div style="display: flex; gap: 10px; padding: 12px 14px; border-radius: 18px; background: var(--infos); font-size: 13px; line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3"></path></svg><span>{{ L.k11 }}</span></div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div class="icard" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 0">
+          <sc-for list="{{ timeline }}" as="t" hint-placeholder-count="4"><div style="display: flex; gap: 12px"><span style="display: flex; flex-direction: column; align-items: center"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 3px; background: {{ t.c }}; margin-top: 3px"></span><span style="flex: 1; width: 2px; background: {{ t.line }}; min-height: 16px"></span></span><span style="display: flex; flex-direction: column; gap: 1px; padding-bottom: 10px"><span style="font: 500 14px Inter, sans-serif; color: {{ t.fg }}">{{ t.t }}</span><span class="mono faint" style="font-size: 11px">{{ t.m }}</span></span></div></sc-for>
+        </div>
+        <div style="padding: 12px 14px; border-radius: 18px; border: 1px solid var(--warn); background: var(--warns); display: flex; flex-direction: column; gap: 4px"><span class="lbl" style="color: var(--warn)">{{ L.k12 }}</span><span style="font-size: 14px; line-height: 20px">{{ L.k13 }}</span></div>
+        <span class="lbl" style="padding: 4px 4px 0">{{ L.k14 }}</span>
+        <div class="icard"><sc-for list="{{ files }}" as="f" hint-placeholder-count="2"><div class="irow" style="min-height: 52px"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 8px; background: repeating-linear-gradient(135deg, var(--bd) 0 5px, var(--raised) 5px 10px)"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 1px"><span style="font: 500 14px Inter, sans-serif">{{ f.t }}</span><span class="faint" style="font-size: 12px">{{ f.s }}</span></span></div></sc-for></div>
+      </div>
+    </sc-if>
+  </div>
+  <div class="ios-fade" aria-hidden="true"></div>
+  <div class="ios-bar">
+    <sc-if value="{{ isOpen }}" hint-placeholder-val="{{ true }}"><button class="btn btn-n" style="flex: 1; height: 56px; font-size: 17px">{{ L.k15 }}</button></sc-if>
+    <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}"><a href="ios-p2p-deal.dc.html" class="btn glass" style="flex: 0 0 auto; height: 56px; padding: 0 20px; font-size: 16px">{{ L.k16 }}</a><button class="btn btn-p" style="flex: 1; height: 56px; font-size: 16px">{{ L.k17 }}</button></sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["open", "progress"], "default": "open"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  static EN = {"Назад к сделке": "Back to the deal", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "250 USDT · P2P-48213": "250 USDT · P2P-48213", "покупка у crypto_mila · 23 100 ₽": "buying from crypto_mila · 23,100 ₽", "ЧТО СЛУЧИЛОСЬ?": "WHAT HAPPENED?", "Причина спора": "Dispute reason", "Подробности · увидят арбитр и продавец": "Details · seen by the arbitrator and the seller", "Перевёл 23 100 ₽ в 10:31, чек приложил. Продавец не отвечает уже 40 минут.": "Sent 23,100 ₽ at 10:31, receipt attached. The seller hasn't replied for 40 minutes.", "Чек СБП.pdf": "SBP receipt.pdf", "Добавить файл": "Add a file", "250 USDT останутся в эскроу. Арбитр подключится в течение часа и изучит чат и доказательства.": "250 USDT stay in escrow. An arbitrator will join within an hour and review the chat and evidence.", "АРБИТР ARB_OLGA · 10:52": "ARBITRATOR ARB_OLGA · 10:52", "Приложите выписку из банка со временем перевода — чек без выписки не подтверждает поступление.": "Attach a bank statement showing the transfer time — a receipt alone doesn't confirm the payment.", "ВАШИ ДОКАЗАТЕЛЬСТВА · 2": "YOUR EVIDENCE · 2", "Открыть спор": "Open dispute", "Чат": "Chat", "Приложить выписку": "Attach statement", "Спор открыт": "Dispute opened", "10:40 · вы": "10:40 · you", "Назначен арбитр arb_olga": "Arbitrator arb_olga assigned", "Запрошены доказательства": "Evidence requested", "10:52 · ответьте до 12:52": "10:52 · reply by 12:52", "Решение арбитра": "Arbitrator decision", "ожидается до 16:40": "expected by 16:40", "Спор D-0203": "Dispute D-0203", "Оплата отправлена": "Payment sent", "Спор": "Dispute", "Оплатил, продавец не выпускает": "Paid, the seller doesn’t release", "Продавец просит доплату": "The seller asks for extra payment", "Продавец прислал другие реквизиты": "The seller sent different details", "Другое": "Other", "182 КБ · 10:40": "182 KB · 10:40", "Скриншот чата.png": "Chat screenshot.png", "640 КБ · 10:41": "640 KB · 10:41"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад к сделке"), k2: this.tr("Язык интерфейса: русский. Переключить на английский"), k3: this.tr("250 USDT · P2P-48213"), k4: this.tr("покупка у crypto_mila · 23 100 ₽"), k5: this.tr("ЧТО СЛУЧИЛОСЬ?"), k6: this.tr("Причина спора"), k7: this.tr("Подробности · увидят арбитр и продавец"), k8: this.tr("Перевёл 23 100 ₽ в 10:31, чек приложил. Продавец не отвечает уже 40 минут."), k9: this.tr("Чек СБП.pdf"), k10: this.tr("Добавить файл"), k11: this.tr("250 USDT останутся в эскроу. Арбитр подключится в течение часа и изучит чат и доказательства."), k12: this.tr("АРБИТР ARB_OLGA · 10:52"), k13: this.tr("Приложите выписку из банка со временем перевода — чек без выписки не подтверждает поступление."), k14: this.tr("ВАШИ ДОКАЗАТЕЛЬСТВА · 2"), k15: this.tr("Открыть спор"), k16: this.tr("Чат"), k17: this.tr("Приложить выписку") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const state = this.props.state ?? 'open';
+    const open = state !== 'progress';
+    const tl = [
+      [this.tr('Спор открыт'), this.tr('10:40 · вы'), 'done'],
+      [this.tr('Назначен арбитр arb_olga'), '10:42', 'done'],
+      [this.tr('Запрошены доказательства'), this.tr('10:52 · ответьте до 12:52'), 'now'],
+      [this.tr('Решение арбитра'), this.tr('ожидается до 16:40'), 'next']
+    ];
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isOpen: open, isProgress: !open,
+      title: open ? this.tr('Открыть спор') : this.tr('Спор D-0203'),
+      chip: open ? this.tr('Оплата отправлена') : this.tr('Спор'), chipCls: open ? 'c-warn' : 'c-neg',
+      reasons: [[this.tr('Оплатил, продавец не выпускает'), true], [this.tr('Продавец просит доплату')], [this.tr('Продавец прислал другие реквизиты')], [this.tr('Другое')]].map(([t, on]) => ({ t, sel: on ? 'true' : 'false', cls: on ? 'on' : '' })),
+      timeline: tl.map(([t, m, s], i) => ({ t, m, c: s === 'done' ? 'var(--sig)' : s === 'now' ? 'var(--warn)' : 'var(--bd)', fg: s === 'next' ? 'var(--t3)' : 'var(--t1)', line: i === tl.length - 1 ? 'transparent' : 'var(--bs)' })),
+      files: [
+        { t: this.tr('Чек СБП.pdf'), s: this.tr('182 КБ · 10:40') },
+        { t: this.tr('Скриншот чата.png'), s: this.tr('640 КБ · 10:41') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

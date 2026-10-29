@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Windows — строка заголовка</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<header style="width: 100%; min-width: 600px; height: 48px; box-sizing: border-box; display: flex; align-items: center; gap: 4px; padding-left: 8px; background: var(--mica, #151917); color: var(--t1, #F2F5F1); font-family: Inter, system-ui, sans-serif; font-size: 12px">
+  <button aria-label="{{ L.k1 }}" style="width: 40px; height: 32px; border-radius: 4px; border: 0; background: transparent; color: var(--t2, #A3ACA5); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+  <sc-if value="{{ withNav }}" hint-placeholder-val="{{ true }}"><button aria-label="{{ L.k2 }}" style="width: 40px; height: 32px; border-radius: 4px; border: 0; background: transparent; color: var(--t2, #A3ACA5); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></sc-if>
+  <span aria-hidden="true" style="width: 14px; height: 14px; margin: 0 6px 0 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px"><span style="background: var(--sig, #B6F36B)"></span><span style="background: var(--t1, #F2F5F1)"></span><span style="background: var(--t1, #F2F5F1)"></span><span style="background: var(--t1, #F2F5F1)"></span><span></span><span style="background: var(--t1, #F2F5F1)"></span><span style="background: var(--t1, #F2F5F1)"></span><span style="background: var(--t1, #F2F5F1)"></span><span style="background: var(--t1, #F2F5F1)"></span></span>
+  <span style="font-size: 12px">{{ heading }}</span>
+  <span style="margin-left: 10px; height: 20px; padding: 0 8px; border-radius: 4px; background: var(--tnb, #2A230F); color: var(--tnf, #F5B941); font: 500 10px 'JetBrains Mono', monospace; letter-spacing: 0.06em; display: inline-flex; align-items: center">{{ L.k3 }}</span>
+  <span style="flex: 1"></span>
+  <label style="width: 360px; height: 32px; padding: 0 10px; box-sizing: border-box; border-radius: 4px; background: var(--ctrl, #1E2320); border: 1px solid var(--bs, #232824); border-bottom-color: var(--bst, #48504A); display: flex; align-items: center; gap: 8px">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--t2, #A3ACA5)" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg>
+    <input aria-label="{{ L.k4 }}" placeholder="{{ L.k4 }}" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--t1, #F2F5F1); font: 400 13px Inter, sans-serif; outline: none">
+    <span style="font: 500 10px 'JetBrains Mono', monospace; color: var(--t3, #8A938C)">CTRL+K</span>
+  </label>
+  <span style="flex: 1"></span>
+  <button onClick="{{ toggleLang }}" aria-label="{{ L.k5 }}" style="height: 32px; padding: 3px; box-sizing: border-box; border-radius: 4px; border: 1px solid var(--bs, #232824); background: var(--ctrl, #1E2320); display: inline-flex; gap: 2px; cursor: pointer; font: 500 11px 'JetBrains Mono', monospace; margin-right: 4px"><span style="min-width: 30px; height: 24px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; background: {{ lruBg }}; color: {{ lruFg }}">RU</span><span style="min-width: 30px; height: 24px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; background: {{ lenBg }}; color: {{ lenFg }}">EN</span></button>
+  <button aria-label="{{ L.k6 }}" style="position: relative; width: 40px; height: 32px; border-radius: 4px; border: 0; background: transparent; color: var(--t1, #F2F5F1); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 1 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0"></path></svg><span aria-hidden="true" style="position: absolute; top: 6px; right: 10px; width: 6px; height: 6px; border-radius: 1px; background: var(--sig, #B6F36B)"></span></button>
+  <button aria-label="{{ uLabel }}" style="height: 32px; padding: 0 8px; border-radius: 4px; border: 0; background: transparent; color: var(--t1, #F2F5F1); display: flex; align-items: center; gap: 8px; font: 500 12px Inter, sans-serif"><span aria-hidden="true" style="width: 22px; height: 22px; border-radius: 999px; background: var(--bd, #2E342F); display: flex; align-items: center; justify-content: center; font: 600 9px Inter, sans-serif">{{ uIni }}</span>{{ uNick }}</button>
+  <div aria-hidden="true" style="display: flex; height: 48px; margin-left: 8px">
+    <span style="width: 46px; display: flex; align-items: center; justify-content: center; color: var(--t2, #A3ACA5)"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 5h10" stroke="currentColor"></path></svg></span>
+    <span style="width: 46px; display: flex; align-items: center; justify-content: center; color: var(--t2, #A3ACA5)"><svg width="10" height="10" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" rx="1.5" fill="none" stroke="currentColor"></rect></svg></span>
+    <span style="width: 46px; display: flex; align-items: center; justify-content: center; color: var(--t2, #A3ACA5)"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor"></path></svg></span>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"heading": {"editor": "text", "default": "AEON"}, "withNav": {"editor": "boolean", "default": true}, "account": {"editor": "enum", "options": ["user", "admin", "support"], "default": "user"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "onLang": {"editor": null}, "$preview": {"width": 1440, "height": 48}}'>
+class Component extends DCLogic {
+  static EN = {"Назад": "Back", "АТ": "AT", "ТЕСТОВАЯ СЕТЬ": "TESTNET", "Язык интерфейса: русский. Переключить на английский": "Interface language: English. Switch to Russian", "Поиск и команды": "Search and commands", "Уведомления, 3 новых": "Notifications, 3 new", "Свернуть панель навигации": "Collapse navigation pane", "Аккаунт alex_tk": "Account alex_tk", "Аккаунт arb_olga": "Account arb_olga", "Аккаунт sup_dmitry": "Account sup_dmitry", "ОА": "OA", "ДС": "DS"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Назад"), k2: this.tr("Свернуть панель навигации"), k3: this.tr("ТЕСТОВАЯ СЕТЬ"), k4: this.tr("Поиск и команды"), k5: this.tr("Язык интерфейса: русский. Переключить на английский"), k6: this.tr("Уведомления, 3 новых"), k7: this.tr("Аккаунт alex_tk"), k8: this.tr("АТ"), k9: this.tr("Аккаунт arb_olga"), k10: this.tr("Аккаунт sup_dmitry"), k11: this.tr("ОА"), k12: this.tr("ДС") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const acc = this.props.account ?? 'user';
+    const u = { user: ['АТ', 'alex_tk', 'Аккаунт alex_tk'], admin: ['ОА', 'arb_olga', 'Аккаунт arb_olga'], support: ['ДС', 'sup_dmitry', 'Аккаунт sup_dmitry'] }[acc] || ['АТ', 'alex_tk', 'Аккаунт alex_tk'];
+    return { heading: this.props.heading ?? 'AEON', withNav: this.props.withNav ?? true, uIni: this.tr(u[0]), uNick: u[1], uLabel: this.tr(u[2]) };
+  }
+}
+</script>
+</body>
+</html>

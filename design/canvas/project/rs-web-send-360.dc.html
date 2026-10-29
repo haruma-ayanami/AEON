@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Веб 360 · нижний таб-бар · Отправка</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="rsp" style="width: 360px; height: 800px; overflow: hidden">
+  <dc-import name="web-send" theme="{{ theme }}" lang="{{ lang }}" hint-size="360px,800px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 360, "height": 800}}'>
+// Адаптив: окно в web-send.dc.html шириной 360 px. Раскладку правьте в оригинале и в правилах .rsp/.ipc в aeon.css.
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    return { theme: p.theme ?? "dark", lang: p.lang ?? "ru" };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — доступно обновление</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1100px; height: 720px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="AEON" with-nav="{{ false }}" hint-size="1100px,48px"></dc-import>
+  <div class="dots" style="position: relative; flex: 1; border-top: 1px solid var(--bs)">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: var(--scrim)"></div>
+    <div role="alertdialog" aria-modal="true" aria-labelledby="dlg-t" class="wcard" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 480px; overflow: hidden; background: var(--flyout); box-shadow: 0 24px 64px rgba(0,0,0,0.45)">
+      <div style="padding: 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 6px; background: {{ s.ib }}; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ s.ic }}" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ s.icon }}"></path></svg></span><h2 id="dlg-t" style="margin: 0; font: 600 20px 'Inter Tight', sans-serif">{{ s.title }}</h2></div>
+        <p class="muted" style="margin: 0; font-size: 14px; line-height: 20px">{{ s.text }}</p>
+        <div style="border: 1px solid var(--bs); border-radius: 6px">
+          <sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 12px; border-bottom: 1px solid var(--bs)"><span class="muted" style="width: 150px">{{ r.k }}</span><span style="flex: 1; font-family: {{ r.f }}">{{ r.v }}</span></div></sc-for>
+        </div>
+        <sc-if value="{{ hasCheck }}" hint-placeholder-val="{{ false }}"><label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true"></span><input type="checkbox" checked class="sr">{{ L.k1 }}</label></sc-if>
+      </div>
+      <div style="padding: 20px 24px; background: var(--dfoot); border-top: 1px solid var(--bs); display: grid; grid-template-columns: 1fr 1fr; gap: 8px"><button class="wbtn wbtn-p">{{ s.primary }}</button><button class="wbtn">{{ s.secondary }}</button></div>
+    </div>
+  </div>
+  <div class="wstatus"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 2px; background: {{ s.dot }}"></span><span>{{ s.status }}</span><span style="flex: 1"></span><span class="testnet" style="height: 20px">{{ L.k2 }}</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "state": {"editor": "enum", "options": ["update", "connection_lost"], "default": "update"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1100, "height": 720}}'>
+class Component extends DCLogic {
+  static EN = {"ТЕСТОВАЯ СЕТЬ": "TESTNET", "Размер": "Size", "Балансы": "Balances", "Повторить сейчас": "Retry now", "Обновлять автоматически при запуске": "Update automatically on launch", "Доступно обновление 1.4.0": "Update 1.4.0 available", "Обновление закрывает уязвимость в проверке адресов получателя. AEON перезапустится, открытые сделки и черновики переводов сохранятся.": "The update fixes a vulnerability in recipient address checks. AEON will restart; open deals and transfer drafts will be kept.", "Текущая версия": "Current version", "48 МБ": "48 MB", "Подпись пакета": "Package signature", "AEON Labs · проверена": "AEON Labs · verified", "Перезапустить и обновить": "Restart and update", "Позже": "Later", "Подключено · Ethereum Sepolia": "Connected · Ethereum Sepolia", "Соединение потеряно": "Connection lost", "AEON не может связаться с сервером. Проверьте подключение к сети и настройки прокси в Windows. Повторим попытку сами через 12 секунд, черновик перевода сохранён.": "AEON can't reach the server. Check your network connection and proxy settings in Windows. We'll retry automatically in 12 seconds; the transfer draft is saved.", "данные на 14:20": "data as of 14:20", "Последняя попытка": "Last attempt", "Код": "Code", "Параметры сети Windows": "Windows network settings", "Нет соединения · повтор через 12 с": "No connection · retry in 12 s"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Обновлять автоматически при запуске"), k2: this.tr("ТЕСТОВАЯ СЕТЬ"), k3: this.tr("Доступно обновление 1.4.0"), k4: this.tr("Обновление закрывает уязвимость в проверке адресов получателя. AEON перезапустится, открытые сделки и черновики переводов сохранятся."), k5: this.tr("Текущая версия"), k6: this.tr("Размер"), k7: this.tr("48 МБ"), k8: this.tr("Подпись пакета"), k9: this.tr("AEON Labs · проверена"), k10: this.tr("Перезапустить и обновить"), k11: this.tr("Позже"), k12: this.tr("Подключено · Ethereum Sepolia"), k13: this.tr("Соединение потеряно"), k14: this.tr("AEON не может связаться с сервером. Проверьте подключение к сети и настройки прокси в Windows. Повторим попытку сами через 12 секунд, черновик перевода сохранён."), k15: this.tr("Балансы"), k16: this.tr("данные на 14:20"), k17: this.tr("Последняя попытка"), k18: this.tr("Код"), k19: this.tr("Повторить сейчас"), k20: this.tr("Параметры сети Windows"), k21: this.tr("Нет соединения · повтор через 12 с") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const state = this.props.state ?? 'update';
+    const ui = 'Inter, sans-serif', mono = "'JetBrains Mono', monospace";
+    const S = {
+      update: { title: this.tr('Доступно обновление 1.4.0'), text: this.tr('Обновление закрывает уязвимость в проверке адресов получателя. AEON перезапустится, открытые сделки и черновики переводов сохранятся.'), icon: 'M12 4v11M7 10l5 5 5-5M5 20h14', ic: 'var(--sigt)', ib: 'var(--sigs)', rows: [{ k: this.tr('Текущая версия'), v: '1.3.2', f: mono }, { k: this.tr('Размер'), v: this.tr('48 МБ'), f: ui }, { k: this.tr('Подпись пакета'), v: this.tr('AEON Labs · проверена'), f: ui }], primary: this.tr('Перезапустить и обновить'), secondary: this.tr('Позже'), dot: 'var(--sig)', status: this.tr('Подключено · Ethereum Sepolia') },
+      connection_lost: { title: this.tr('Соединение потеряно'), text: this.tr('AEON не может связаться с сервером. Проверьте подключение к сети и настройки прокси в Windows. Повторим попытку сами через 12 секунд, черновик перевода сохранён.'), icon: 'M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h.01M3 3l18 18', ic: 'var(--warn)', ib: 'var(--warns)', rows: [{ k: this.tr('Балансы'), v: this.tr('данные на 14:20'), f: ui }, { k: this.tr('Последняя попытка'), v: '14:32:08', f: mono }, { k: this.tr('Код'), v: 'WSAETIMEDOUT · 10060', f: mono }], primary: this.tr('Повторить сейчас'), secondary: this.tr('Параметры сети Windows'), dot: 'var(--warn)', status: this.tr('Нет соединения · повтор через 12 с') }
+    };
+    const s = S[state] || S.update;
+    return { themeClass: theme === 'light' ? 'th-light' : 'th-dark', s, hasCheck: state === 'update' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — таблица</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+@keyframes ct-sh{0%{opacity:.5}50%{opacity:1}100%{opacity:.5}}
+@media (prefers-reduced-motion: reduce){.ct-sk{animation:none!important}}
+</style>
+</helmet>
+<div style="width: 1600px; min-height: 1660px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #8A938C">КОМПОНЕНТЫ · ТАБЛИЦА</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Плотные данные без шума</h2>
+    </div>
+    <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 22px; color: #A3ACA5">Таблицы админ-панели, истории и маркетплейса. Строка 52 px в вебе и 40 px на Windows, суммы по правому краю моноширинными цифрами, действия над выбранными строками — в панели сверху.</p>
+  </div>
+
+  <section style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start">
+    <div style="background: #131614; border-radius: 24px; border: 1px solid #232824; overflow: hidden">
+      <div role="toolbar" aria-label="Действия с выбранными заявками" style="height: 56px; padding: 0 16px; display: flex; align-items: center; gap: 12px; background: #1B1F1C; border-bottom: 1px solid #232824">
+        <span style="font-size: 14px; font-weight: 600">Выбрано: 2</span>
+        <span style="font-size: 13px; color: #A3ACA5">на 1 980 USDT</span>
+        <span style="flex: 1"></span>
+        <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #F2F5F1; color: #0A0C0B; font: 600 13px Inter, sans-serif; cursor: pointer">Одобрить</button>
+        <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: rgba(255,122,107,.12); color: #FF7A6B; font: 600 13px Inter, sans-serif; cursor: pointer">Отклонить</button>
+        <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #2E342F; background: transparent; color: #F2F5F1; font: 600 13px Inter, sans-serif; cursor: pointer">Снять выделение</button>
+      </div>
+      <table style="width: 100%; border-collapse: collapse; font-feature-settings: 'tnum'">
+        <caption style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Выводы на проверке</caption>
+        <thead style="background: #131614; box-shadow: 0 1px 0 #232824">
+          <tr>
+            <th scope="col" style="width: 48px; height: 40px; padding: 0 0 0 16px; text-align: left"><input type="checkbox" aria-label="Выбрать все на странице" style="width: 18px; height: 18px; accent-color: #F2F5F1"></th>
+            <sc-for list="{{ cols }}" as="c" hint-placeholder-count="7"><th scope="col" aria-sort="{{ c.sort }}" style="height: 40px; padding: 0 12px; text-align: {{ c.align }}; font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: {{ c.fg }}; white-space: nowrap"><button style="height: 28px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; letter-spacing: inherit; display: inline-flex; align-items: center; gap: 6px; cursor: pointer">{{ c.t }}<span aria-hidden="true" style="font-size: 12px; color: {{ c.ic }}">{{ c.arrow }}</span></button></th></sc-for>
+            <th scope="col" style="width: 56px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Действия</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+            <tr aria-selected="{{ r.sel }}" style="background: {{ r.bg }}; box-shadow: inset 3px 0 0 {{ r.mark }}">
+              <td style="height: 52px; padding: 0 0 0 16px; border-bottom: 1px solid #232824"><input type="checkbox" checked="{{ r.checked }}" aria-label="Выбрать заявку {{ r.id }}" style="width: 18px; height: 18px; accent-color: #F2F5F1"></td>
+              <td style="padding: 0 12px; border-bottom: 1px solid #232824; font-family: 'JetBrains Mono', monospace; font-size: 13px">{{ r.id }}</td>
+              <td style="padding: 0 12px; border-bottom: 1px solid #232824; font-size: 14px">{{ r.user }}</td>
+              <td style="padding: 0 12px; border-bottom: 1px solid #232824; text-align: right; font-size: 14px; font-weight: 600; white-space: nowrap">{{ r.sum }} <span style="font-weight: 400; color: #8A938C">{{ r.asset }}</span></td>
+              <td style="padding: 0 12px; border-bottom: 1px solid #232824; font-size: 13px; color: #A3ACA5; white-space: nowrap"><span aria-hidden="true" style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 8px; background: {{ r.netc }}"></span>{{ r.net }}</td>
+              <td style="padding: 0 12px; border-bottom: 1px solid #232824"><span style="height: 24px; padding: 0 9px; border-radius: 999px; display: inline-flex; align-items: center; font: 600 12px Inter, sans-serif; background: {{ r.riskBg }}; color: {{ r.riskFg }}">{{ r.risk }}</span></td>
+              <td style="padding: 0 12px; border-bottom: 1px solid #232824; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A3ACA5; white-space: nowrap">{{ r.time }}</td>
+              <td style="padding: 0 12px; border-bottom: 1px solid #232824; font-size: 13px; color: {{ r.waitFg }}; white-space: nowrap">{{ r.wait }}</td>
+              <td style="padding: 0 12px 0 0; border-bottom: 1px solid #232824; text-align: right"><button aria-label="{{ r.toggle }}" aria-expanded="{{ r.exp }}" style="width: 32px; height: 32px; border-radius: 999px; border: 0; background: transparent; color: #A3ACA5; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: rotate({{ r.rot }})"><path d="M6 9l6 6 6-6"></path></svg></button></td>
+            </tr>
+            <sc-if value="{{ r.isExp }}" hint-placeholder-val="{{ false }}"><tr style="background: rgba(182,243,107,.04)"><td colspan="9" style="padding: 16px 24px 20px 64px; border-bottom: 1px solid #232824">
+              <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+                <span style="display: flex; flex-direction: column; gap: 6px"><span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #8A938C">АДРЕС ПОЛУЧАТЕЛЯ</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 13px"><b style="color: #B6F36B; font-weight: 500">0x9d1E4b</b>7c02A5f3e8D61b0F4a9C2e7B5d<b style="color: #B6F36B; font-weight: 500">33Af0e</b></span></span>
+                <span style="display: flex; flex-direction: column; gap: 6px"><span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #8A938C">ПРИЧИНЫ РИСКА</span><span style="font-size: 13px; line-height: 19px; color: #A3ACA5">Связь с миксером через 2 перехода · адресу 3 дня · сумма в 6 раз выше обычной</span></span>
+                <span style="display: flex; flex-direction: column; gap: 6px"><span style="font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #8A938C">ИСТОРИЯ ПОЛЬЗОВАТЕЛЯ</span><span style="font-size: 13px; line-height: 19px; color: #A3ACA5">С 14.08.2026 · 31 вывод · 0 отклонений · KYC уровень 2</span></span>
+              </div>
+            </td></tr></sc-if>
+          </sc-for>
+        </tbody>
+      </table>
+      <div style="height: 56px; padding: 0 16px; display: flex; align-items: center; gap: 16px; font-size: 13px; color: #A3ACA5">
+        <span>1–6 из 48</span>
+        <label style="display: flex; align-items: center; gap: 8px">Строк на странице <select style="height: 32px; padding: 0 8px; border-radius: 8px; border: 1px solid #2E342F; background: #1B1F1C; color: #F2F5F1; font: 500 13px Inter, sans-serif"><option>25</option><option>50</option><option>100</option></select></label>
+        <span style="flex: 1"></span>
+        <nav aria-label="Страницы" style="display: flex; gap: 4px">
+          <sc-for list="{{ pages }}" as="p" hint-placeholder-count="7"><button aria-label="{{ p.label }}" aria-current="{{ p.cur }}" disabled="{{ p.dis }}" style="min-width: 32px; height: 32px; padding: 0 8px; border-radius: 8px; border: 0; background: {{ p.bg }}; color: {{ p.fg }}; font: 500 13px Inter, sans-serif; cursor: pointer">{{ p.t }}</button></sc-for>
+        </nav>
+      </div>
+    </div>
+
+    <aside style="background: #131614; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">АНАТОМИЯ</span>
+      <sc-for list="{{ anatomy }}" as="a" hint-placeholder-count="8"><div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 12px; border-bottom: 1px solid #232824"><span style="font-size: 14px; font-weight: 600">{{ a.t }}</span><span style="font-size: 13px; line-height: 19px; color: #A3ACA5">{{ a.d }}</span></div></sc-for>
+    </aside>
+  </section>
+
+  <section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+    <div style="background: #131614; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ПУСТО ПО ФИЛЬТРАМ</span>
+      <div style="border-radius: 16px; border: 1px solid #232824; padding: 36px 24px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+        <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 16px; border: 1px dashed #48504A; display: flex; align-items: center; justify-content: center; color: #A3ACA5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg></span>
+        <span style="font-size: 16px; font-weight: 600">Нет заявок с риском выше 80 за 24 часа</span>
+        <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">Расширьте период или снимите фильтр по риску</span>
+        <button style="height: 40px; padding: 0 18px; margin-top: 6px; border-radius: 999px; border: 0; background: #1B1F1C; color: #F2F5F1; font: 600 14px Inter, sans-serif; cursor: pointer">Сбросить фильтры</button>
+      </div>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">ЗАГРУЗКА · СКЕЛЕТОН</span>
+      <div role="status" aria-label="Загружаем заявки" style="border-radius: 16px; border: 1px solid #232824; overflow: hidden">
+        <div style="height: 40px; padding: 0 16px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid #232824"><sc-for list="{{ skHead }}" as="h" hint-placeholder-count="4"><span class="ct-sk" style="height: 8px; border-radius: 4px; background: #1F2420; width: {{ h.w }}; animation: ct-sh 1.4s ease-in-out infinite"></span></sc-for></div>
+        <sc-for list="{{ skRows }}" as="s" hint-placeholder-count="5"><div style="height: 52px; padding: 0 16px; display: flex; align-items: center; gap: 24px; border-bottom: 1px solid #232824"><span class="ct-sk" style="width: 18px; height: 18px; border-radius: 4px; background: #1F2420; animation: ct-sh 1.4s ease-in-out infinite"></span><span class="ct-sk" style="height: 12px; border-radius: 4px; background: #1F2420; width: {{ s.a }}; animation: ct-sh 1.4s ease-in-out infinite"></span><span style="flex: 1"></span><span class="ct-sk" style="height: 12px; border-radius: 4px; background: #1F2420; width: {{ s.b }}; animation: ct-sh 1.4s ease-in-out infinite"></span></div></sc-for>
+      </div>
+      <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">Скелетон повторяет колонки и число строк на странице. Сортировка и фильтры остаются доступны.</span>
+    </div>
+    <div style="background: #131614; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #8A938C">WINDOWS · ПЛОТНАЯ, СТРОКА 40</span>
+      <div style="border-radius: 8px; border: 1px solid #232824; background: #111412; overflow: hidden; font-size: 13px">
+        <div style="height: 32px; padding: 0 12px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #232824; font: 500 11px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #8A938C"><span style="width: 92px">СДЕЛКА</span><span style="flex: 1">ПОКУПАТЕЛЬ</span><span style="width: 96px; text-align: right">СУММА ↓</span></div>
+        <sc-for list="{{ dense }}" as="d" hint-placeholder-count="6"><div style="height: 40px; padding: 0 12px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #232824; background: {{ d.bg }}; font-feature-settings: 'tnum'"><span style="width: 92px; font-family: 'JetBrains Mono', monospace; font-size: 12px">{{ d.id }}</span><span style="flex: 1">{{ d.user }}</span><span style="width: 96px; text-align: right; font-weight: 600">{{ d.sum }}</span></div></sc-for>
+      </div>
+      <span style="font-size: 13px; line-height: 19px; color: #A3ACA5">Правый клик по строке — контекстное меню, двойной клик открывает окно сделки, стрелки двигают выделение.</span>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1660}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const risk = (n) => n >= 85 ? ['#FF7A6B', 'rgba(255,122,107,.12)'] : n >= 60 ? ['#FF9A5B', 'rgba(255,154,91,.12)'] : n >= 30 ? ['#F5B941', 'rgba(245,185,65,.12)'] : ['#B6F36B', 'rgba(182,243,107,.12)'];
+    const raw = [
+      ['W-30418', 'gold_x', '1 450,00', 'USDT', 'Sepolia', '#B6F36B', 82, '29.10 09:14', '6 ч 12 мин', 'sel'],
+      ['W-30422', 'mbtc', '0,84000', 'BTC', 'Testnet', '#F5B941', 64, '29.10 10:02', '5 ч 24 мин', 'exp'],
+      ['W-30425', 'eva_s', '530,00', 'USDT', 'Amoy', '#6EA2FF', 41, '29.10 11:40', '3 ч 46 мин', 'sel'],
+      ['W-30427', 'kirill_dev', '150,0', 'SOL', 'Devnet', '#A3ACA5', 27, '29.10 12:18', '3 ч 08 мин', 'hover'],
+      ['W-30431', 'anna_p2p', '0,2100', 'ETH', 'Sepolia', '#B6F36B', 18, '29.10 13:55', '1 ч 31 мин', ''],
+      ['W-30433', 'trader_mx_2026_long_nickname_32c', '96,00', 'USDT', 'BSC Testnet', '#F5B941', 9, '29.10 14:47', '39 мин', '']
+    ];
+    const cols = [['ЗАЯВКА', 'left', 'none'], ['ПОЛЬЗОВАТЕЛЬ', 'left', 'none'], ['СУММА', 'right', 'descending'], ['СЕТЬ', 'left', 'none'], ['РИСК', 'left', 'none'], ['СОЗДАНА, UTC', 'left', 'none'], ['ЖДЁТ', 'left', 'none']];
+    return {
+      cols: cols.map(([t, align, sort]) => ({ t, align, sort, fg: sort === 'none' ? '#8A938C' : '#F2F5F1', arrow: sort === 'none' ? '↕' : '↓', ic: sort === 'none' ? '#48504A' : '#B6F36B' })),
+      rows: raw.map(([id, user, sum, asset, net, netc, r, time, wait, st]) => ({
+        id, user, sum, asset, net, netc, time, wait,
+        risk: r, riskFg: risk(r)[0], riskBg: risk(r)[1],
+        waitFg: parseInt(wait, 10) >= 5 && wait.indexOf('ч') > 0 ? '#F5B941' : '#A3ACA5',
+        sel: st === 'sel' ? 'true' : 'false', checked: st === 'sel',
+        bg: st === 'sel' ? 'rgba(182,243,107,.06)' : st === 'hover' ? 'rgba(255,255,255,.035)' : st === 'exp' ? 'rgba(182,243,107,.04)' : 'transparent',
+        mark: st === 'sel' ? '#B6F36B' : 'transparent',
+        isExp: st === 'exp', exp: st === 'exp' ? 'true' : 'false', rot: st === 'exp' ? '180deg' : '0deg',
+        toggle: (st === 'exp' ? 'Свернуть подробности ' : 'Подробности ') + id
+      })),
+      pages: [['‹', 'Предыдущая страница', true], ['1', 'Страница 1', false, true], ['2', 'Страница 2'], ['3', 'Страница 3'], ['…', 'Ещё страницы', true], ['8', 'Страница 8'], ['›', 'Следующая страница']].map(([t, label, dis, cur]) => ({ t, label, dis: !!dis, cur: cur ? 'page' : 'false', bg: cur ? '#F2F5F1' : 'transparent', fg: cur ? '#0A0C0B' : dis ? '#8A938C' : '#F2F5F1' })),
+      anatomy: [
+        { t: 'Заголовок · 40 px', d: 'JetBrains Mono 11 капсом. Липкий при прокрутке: при отрыве от верха появляется нижняя граница-тень.' },
+        { t: 'Сортировка', d: 'Кнопка в заголовке. Активная колонка светлее, стрелка signal; aria-sort на th.' },
+        { t: 'Строка · 52 px', d: 'Наведение — подсветка 3,5%. Выбранная — фон signal 6% и метка слева 3 px.' },
+        { t: 'Раскрытая строка', d: 'Шеврон справа, подробности на всю ширину без отдельной модалки. Одна раскрытая за раз.' },
+        { t: 'Числа', d: 'Табличные цифры, по правому краю, единица актива серым после числа.' },
+        { t: 'Длинные значения', d: 'Ник до 32 символов переносится, адреса сокращаются по центру с выделенными краями.' },
+        { t: 'Массовые действия', d: 'Панель заменяет фильтры, пока выбрана хотя бы одна строка. Счётчик и сумма выбранного.' },
+        { t: 'Пагинация', d: '25 / 50 / 100 строк, номер текущей — пилюлей. На телефоне — «Показать ещё».' }
+      ],
+      skHead: ['18px', '90px', '120px', '80px'].map((w) => ({ w })),
+      skRows: [['38%', '18%'], ['30%', '22%'], ['44%', '16%'], ['26%', '20%'], ['36%', '14%']].map(([a, b]) => ({ a, b })),
+      dense: [['P2P-48213', 'alex_tk', '250 USDT', 'rgba(255,255,255,.06)'], ['P2P-48211', 'p2p_ivan', '1 200 USDT'], ['P2P-48207', 'crypto_mila', '0,05 ETH'], ['P2P-48202', 'newtrader_07', '80 USDT'], ['P2P-48198', 'gold_x', '3 000 USDT'], ['P2P-48190', 'eva_s', '410 USDT']].map(([id, user, sum, bg]) => ({ id, user, sum, bg: bg || 'transparent' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

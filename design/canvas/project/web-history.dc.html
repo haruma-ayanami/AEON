@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON — история операций</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} page" style="position: relative; min-height: 1100px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebSidebar" active="wallet" hint-size="240px,960px"></dc-import>
+  <main class="pmain">
+    <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WebTopbar" heading="{{ L.k1 }}" hint-size="100%,88px"></dc-import>
+    <div class="pbody">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+        <sc-for list="{{ types }}" as="t" hint-placeholder-count="6"><button aria-pressed="{{ t.on }}" class="btn btn-s {{ t.cls }}">{{ t.label }}</button></sc-for>
+        <span style="flex: 1"></span>
+        <label class="inp" style="height: 40px; flex: 0 1 300px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4.5 11a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0-13 0M16 16l4 4"></path></svg><span class="sr">{{ L.k2 }}</span><input placeholder="{{ L.k3 }}"></label>
+        <button class="btn btn-s btn-o">{{ L.k4 }}</button><button class="btn btn-s btn-o">{{ L.k5 }}</button><button class="btn btn-s btn-o">{{ L.k6 }}</button>
+      </div>
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}"><div style="display: flex; flex-direction: column; gap: 16px">
+      <sc-for list="{{ days }}" as="d" hint-placeholder-count="3">
+        <section style="display: flex; flex-direction: column; gap: 6px">
+          <span class="lbl" style="padding: 6px 4px">{{ d.label }}</span>
+          <div class="card" style="border-radius: 18px; display: flex; flex-direction: column">
+            <sc-for list="{{ d.items }}" as="x" hint-placeholder-count="3">
+              <a href="web-history.dc.html" style="display: grid; grid-template-columns: 40px minmax(0, 1.4fr) minmax(0, 1fr) 160px 150px; gap: 14px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--bs); text-decoration: none; color: var(--t1); background: {{ x.bg }}">
+                <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 999px; background: var(--raised); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ x.d }}"></path></svg></span>
+                <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-weight: 500">{{ x.title }}</span><span class="mono faint" style="font-size: 12px">{{ x.sub }}</span></span>
+                <span class="muted" style="font-size: 13px">{{ x.net }}</span>
+                <span class="chip {{ x.cls }}" style="justify-self: start">{{ x.status }}</span>
+                <span class="num" style="text-align: right; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; color: {{ x.ac }}">{{ x.amt }}</span><span class="faint" style="font-size: 12px">{{ x.fiat }}</span></span>
+              </a>
+            </sc-for>
+          </div>
+        </section>
+      </sc-for>
+</div></sc-if>
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}"><div role="status" aria-label="{{ L.kl }}" style="display: flex; flex-direction: column; gap: 12px"><span class="sk" style="display: block; width: 120px; height: 10px; border-radius: 4px; flex: none; margin: 6px 4px 0"></span><div class="card" style="border-radius: 20px; overflow: hidden"><div style="min-height: 64px; padding: 0 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 36px; height: 36px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="display: block; width: 38%; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 24%; height: 10px; border-radius: 6px; flex: none"></span></span><span style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end"><span class="sk" style="display: block; width: 96px; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 64px; height: 10px; border-radius: 6px; flex: none"></span></span></div><div style="min-height: 64px; padding: 0 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 36px; height: 36px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="display: block; width: 38%; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 24%; height: 10px; border-radius: 6px; flex: none"></span></span><span style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end"><span class="sk" style="display: block; width: 96px; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 64px; height: 10px; border-radius: 6px; flex: none"></span></span></div><div style="min-height: 64px; padding: 0 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 36px; height: 36px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="display: block; width: 38%; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 24%; height: 10px; border-radius: 6px; flex: none"></span></span><span style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end"><span class="sk" style="display: block; width: 96px; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 64px; height: 10px; border-radius: 6px; flex: none"></span></span></div><div style="min-height: 64px; padding: 0 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 36px; height: 36px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="display: block; width: 38%; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 24%; height: 10px; border-radius: 6px; flex: none"></span></span><span style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end"><span class="sk" style="display: block; width: 96px; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 64px; height: 10px; border-radius: 6px; flex: none"></span></span></div><div style="min-height: 64px; padding: 0 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 36px; height: 36px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="display: block; width: 38%; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 24%; height: 10px; border-radius: 6px; flex: none"></span></span><span style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end"><span class="sk" style="display: block; width: 96px; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 64px; height: 10px; border-radius: 6px; flex: none"></span></span></div><div style="min-height: 64px; padding: 0 20px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--bs)"><span class="sk" style="display: block; width: 36px; height: 36px; border-radius: 999px; flex: none"></span><span style="flex: 1; display: flex; flex-direction: column; gap: 8px"><span class="sk" style="display: block; width: 38%; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 24%; height: 10px; border-radius: 6px; flex: none"></span></span><span style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end"><span class="sk" style="display: block; width: 96px; height: 12px; border-radius: 6px; flex: none"></span><span class="sk" style="display: block; width: 64px; height: 10px; border-radius: 6px; flex: none"></span></span></div></div></div></sc-if>
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div class="card" style="border-radius: 20px; padding: 64px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center"><span aria-hidden="true" class="dots" style="width: 72px; height: 72px; border-radius: 22px; border: 1px dashed var(--bst); display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"></path></svg></span><span style="font-weight: 600; font-size: 18px">{{ L.k73 }}</span><span style="font-size: 14px; line-height: 20px; color: var(--t2); max-width: 520px">{{ L.k74 }}</span><span style="display: flex; gap: 10px; margin-top: 6px"><a href="web-receive.dc.html" class="btn btn-p">{{ L.k75 }}</a></span></div></sc-if>
+
+    </div>
+  </main>
+
+  <sc-if value="{{ detail }}" hint-placeholder-val="{{ true }}">
+    <aside role="dialog" aria-label="{{ L.k7 }}" style="position: absolute; top: 0; right: 0; bottom: 0; width: 440px; max-width: 100%; box-sizing: border-box; background: var(--surface); border-left: 1px solid var(--bd); box-shadow: -24px 0 48px rgba(0,0,0,0.35); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">{{ L.k8 }}</span><button aria-label="{{ L.k9 }}" class="ibtn" style="width: 32px; height: 32px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+      <div style="display: flex; flex-direction: column; gap: 4px"><span class="disp" style="font-size: 34px; color: var(--sigt)">{{ L.k10 }}</span><span class="muted">{{ L.k11 }}</span></div>
+      <div class="tile" style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px"><span style="display: flex; justify-content: space-between"><span style="font-weight: 600">{{ L.k12 }}</span><span class="mono">3 / 12</span></span><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; height: 8px"><sc-for list="{{ conf }}" as="c" hint-placeholder-count="12"><span style="border-radius: 2px; background: {{ c }}"></span></sc-for></span><span class="hint">{{ L.k13 }}</span></div>
+      <div style="display: flex; flex-direction: column">
+        <div class="rowline"><span>{{ L.k14 }}</span><span class="mono" style="font-size: 13px">0x4c2E…a1F2</span></div>
+        <div class="rowline"><span>{{ L.k15 }}</span><span class="mono" style="font-size: 13px">{{ L.k16 }}</span></div>
+        <div class="rowline"><span>{{ L.k17 }}</span><span style="display: flex; align-items: center; gap: 6px"><span class="mono" style="font-size: 13px">0x9f2c…e41b</span><button aria-label="{{ L.k18 }}" class="ibtn" style="width: 28px; height: 28px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h10v11H9zM5 15V4h10"></path></svg></button></span></div>
+        <div class="rowline"><span>{{ L.k19 }}</span><span class="mono" style="font-size: 13px">{{ L.k20 }}</span></div>
+        <div class="rowline"><span>{{ L.k21 }}</span><span>23.10.2026, 12:41:08</span></div>
+        <div class="rowline"><span>{{ L.k22 }}</span><span>{{ L.k23 }}</span></div>
+        <div class="rowline"><span>{{ L.k24 }}</span><span class="chip c-ok">{{ L.k25 }}</span></div>
+      </div>
+      <div style="flex: 1"></div>
+      <a href="https://sepolia.etherscan.io/" target="_blank" rel="noopener" class="btn btn-o">{{ L.k26 }}</a>
+    </aside>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "detail": {"editor": "boolean", "default": true}, "state": {"editor": "enum", "options": ["default", "empty", "loading"], "default": "default"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1440, "height": 1100}}'>
+class Component extends DCLogic {
+  static EN = {"Загружаем данные": "Loading data", "Экспорт CSV": "Export CSV", "Все": "All", "Завершена": "Completed", "В эскроу": "In escrow", "На проверке": "Under review", "250,00 USDT": "250.00 USDT", "Комиссия сети": "Network fee", "Поиск": "Search", "Отклонён": "Rejected", "Входящие": "Incoming", "Исходящие": "Outgoing", "Подтверждается 3/12": "Confirming 3/12", "На ручной проверке": "Under manual review", "Выполнен": "Completed", "Зачислен": "Credited", "Получено": "Received", "Отправлено": "Sent", "Закрыть": "Close", "Кому": "To", "Хеш": "Hash", "Время": "Time", "Подтверждается": "Confirming", "−250,00 USDT": "−250.00 USDT", "Низкий · 4": "Low · 4", "История операций": "Transaction history", "Хеш, адрес или номер сделки": "Hash, address or deal number", "Все активы": "All assets", "Октябрь 2026": "October 2026", "Детали транзакции": "Transaction details", "ВХОДЯЩИЙ ПЕРЕВОД": "INCOMING TRANSFER", "+0,05 ETH": "+0.05 ETH", "≈ $170,61 · Ethereum Sepolia": "≈ $170.61 · Ethereum Sepolia", "Зачисление на баланс после 12 подтверждений, ≈ 2 минуты": "Credited to the balance after 12 confirmations, ≈ 2 minutes", "От": "From", "0x7a3F…9c2E · ваш": "0x7a3F…9c2E · yours", "Копировать хеш": "Copy hash", "Блок": "Block", "6 812 001": "6,812,001", "оплатил отправитель": "paid by sender", "Скоринг отправителя": "Sender scoring", "Открыть в обозревателе Sepolia": "Open in Sepolia explorer", "P2P и эскроу": "P2P and escrow", "Комиссии": "Fees", "СЕГОДНЯ · 23 ОКТЯБРЯ": "TODAY · OCTOBER 23", "от 0x4c2E…a1F2 · 12:41": "from 0x4c2E…a1F2 · 12:41", "$170,61": "$170.61", "Эскроу · P2P-48213": "Escrow · P2P-48213", "покупка у crypto_mila · 10:10": "bought from crypto_mila · 10:10", "Внутренний учёт": "Internal ledger", "$250,00": "$250.00", "Вывод": "Withdrawal", "на tb1q…jzsx · 09:30": "to tb1q…jzsx · 09:30", "−0,0012 BTC": "−0.0012 BTC", "$81,48": "$81.48", "ВЧЕРА · 22 ОКТЯБРЯ": "YESTERDAY · OCTOBER 22", "на 0x1b9C…0a91 · 18:02": "to 0x1b9C…0a91 · 18:02", "за перевод 0x9f2c…e41b": "for transfer 0x9f2c…e41b", "Списана": "Charged", "−0,00021 ETH": "−0.00021 ETH", "$0,72": "$0.72", "P2P-продажа завершена": "P2P sale completed", "P2P-47812 · покупатель eva_s": "P2P-47812 · buyer eva_s", "−100,00 USDT": "−100.00 USDT", "+9 240 ₽": "+9,240 ₽", "21 ОКТЯБРЯ": "OCTOBER 21", "от 0x9e41…44Bc · 14:20": "from 0x9e41…44Bc · 14:20", "+500,00 USDT": "+500.00 USDT", "$500,00": "$500.00", "Перевод отклонён": "Transfer rejected", "на 0x1f98…F984 · 11:02": "to 0x1f98…F984 · 11:02", "−60,00 USDT": "−60.00 USDT", "возвращено": "returned", "Операций пока нет": "No transactions yet", "Здесь появятся зачисления, переводы и сделки P2P — с фильтрами, поиском по хешу и выгрузкой в CSV.": "Deposits, transfers and P2P deals will appear here — with filters, hash search and CSV export.", "Получить первые монеты": "Receive your first coins"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("История операций"), k2: this.tr("Поиск"), k3: this.tr("Хеш, адрес или номер сделки"), k4: this.tr("Все активы"), k5: this.tr("Октябрь 2026"), k6: this.tr("Экспорт CSV"), k7: this.tr("Детали транзакции"), k8: this.tr("ВХОДЯЩИЙ ПЕРЕВОД"), k9: this.tr("Закрыть"), k10: this.tr("+0,05 ETH"), k11: this.tr("≈ $170,61 · Ethereum Sepolia"), k12: this.tr("Подтверждается"), k13: this.tr("Зачисление на баланс после 12 подтверждений, ≈ 2 минуты"), k14: this.tr("От"), k15: this.tr("Кому"), k16: this.tr("0x7a3F…9c2E · ваш"), k17: this.tr("Хеш"), k18: this.tr("Копировать хеш"), k19: this.tr("Блок"), k20: this.tr("6 812 001"), k21: this.tr("Время"), k22: this.tr("Комиссия сети"), k23: this.tr("оплатил отправитель"), k24: this.tr("Скоринг отправителя"), k25: this.tr("Низкий · 4"), k26: this.tr("Открыть в обозревателе Sepolia"), k27: this.tr("Все"), k28: this.tr("Входящие"), k29: this.tr("Исходящие"), k30: this.tr("P2P и эскроу"), k31: this.tr("Комиссии"), k32: this.tr("На проверке"), k33: this.tr("СЕГОДНЯ · 23 ОКТЯБРЯ"), k34: this.tr("Получено"), k35: this.tr("от 0x4c2E…a1F2 · 12:41"), k36: this.tr("Подтверждается 3/12"), k37: this.tr("$170,61"), k38: this.tr("Эскроу · P2P-48213"), k39: this.tr("покупка у crypto_mila · 10:10"), k40: this.tr("Внутренний учёт"), k41: this.tr("В эскроу"), k42: this.tr("250,00 USDT"), k43: this.tr("$250,00"), k44: this.tr("Вывод"), k45: this.tr("на tb1q…jzsx · 09:30"), k46: this.tr("На ручной проверке"), k47: this.tr("−0,0012 BTC"), k48: this.tr("$81,48"), k49: this.tr("ВЧЕРА · 22 ОКТЯБРЯ"), k50: this.tr("Отправлено"), k51: this.tr("на 0x1b9C…0a91 · 18:02"), k52: this.tr("Выполнен"), k53: this.tr("−250,00 USDT"), k54: this.tr("за перевод 0x9f2c…e41b"), k55: this.tr("Списана"), k56: this.tr("−0,00021 ETH"), k57: this.tr("$0,72"), k58: this.tr("P2P-продажа завершена"), k59: this.tr("P2P-47812 · покупатель eva_s"), k60: this.tr("Завершена"), k61: this.tr("−100,00 USDT"), k62: this.tr("+9 240 ₽"), k63: this.tr("21 ОКТЯБРЯ"), k64: this.tr("от 0x9e41…44Bc · 14:20"), k65: this.tr("Зачислен"), k66: this.tr("+500,00 USDT"), k67: this.tr("$500,00"), k68: this.tr("Перевод отклонён"), k69: this.tr("на 0x1f98…F984 · 11:02"), k70: this.tr("Отклонён"), k71: this.tr("−60,00 USDT"), k72: this.tr("возвращено"), k73: this.tr("Операций пока нет"), k74: this.tr("Здесь появятся зачисления, переводы и сделки P2P — с фильтрами, поиском по хешу и выгрузкой в CSV."), k75: this.tr("Получить первые монеты"), kl: this.tr("Загружаем данные") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const st = this.props.state ?? 'default';
+    const R = 'M17 7L7 17M7 9v8h8', S = 'M7 17L17 7M9 7h8v8', E = 'M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 0 1 7 0v3', F = 'M4 8h13l-3-3M20 16H7l3 3';
+    const it = (title, sub, net, status, cls, amt, ac, fiat, d, sel) => ({ title, sub, net, status, cls, amt, ac, fiat, d, bg: sel ? 'var(--sel)' : 'transparent' });
+    return { isLoading: st === 'loading',
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark', isDefault: st === 'default', isEmpty: st === 'empty',
+      detail: (this.props.detail ?? true) && (this.props.state ?? 'default') !== 'empty',
+      types: [this.tr('Все'), this.tr('Входящие'), this.tr('Исходящие'), this.tr('P2P и эскроу'), this.tr('Комиссии'), this.tr('На проверке')].map((label, i) => ({ label, on: i === 0 ? 'true' : 'false', cls: i === 0 ? 'btn-p' : 'btn-o' })),
+      days: [
+        { label: this.tr('СЕГОДНЯ · 23 ОКТЯБРЯ'), items: [
+          it(this.tr('Получено'), this.tr('от 0x4c2E…a1F2 · 12:41'), 'Ethereum Sepolia', this.tr('Подтверждается 3/12'), 'c-info', this.tr('+0,05 ETH'), 'var(--sigt)', this.tr('$170,61'), R, true),
+          it(this.tr('Эскроу · P2P-48213'), this.tr('покупка у crypto_mila · 10:10'), this.tr('Внутренний учёт'), this.tr('В эскроу'), 'c-info', this.tr('250,00 USDT'), 'var(--t1)', this.tr('$250,00'), E),
+          it(this.tr('Вывод'), this.tr('на tb1q…jzsx · 09:30'), 'Bitcoin Testnet', this.tr('На ручной проверке'), 'c-warn', this.tr('−0,0012 BTC'), 'var(--t1)', this.tr('$81,48'), S)
+        ] },
+        { label: this.tr('ВЧЕРА · 22 ОКТЯБРЯ'), items: [
+          it(this.tr('Отправлено'), this.tr('на 0x1b9C…0a91 · 18:02'), 'Ethereum Sepolia', this.tr('Выполнен'), 'c-ok', this.tr('−250,00 USDT'), 'var(--t1)', this.tr('$250,00'), S),
+          it(this.tr('Комиссия сети'), this.tr('за перевод 0x9f2c…e41b'), 'Ethereum Sepolia', this.tr('Списана'), 'c-off', this.tr('−0,00021 ETH'), 'var(--t1)', this.tr('$0,72'), S),
+          it(this.tr('P2P-продажа завершена'), this.tr('P2P-47812 · покупатель eva_s'), this.tr('Внутренний учёт'), this.tr('Завершена'), 'c-ok', this.tr('−100,00 USDT'), 'var(--t1)', this.tr('+9 240 ₽'), F)
+        ] },
+        { label: this.tr('21 ОКТЯБРЯ'), items: [
+          it(this.tr('Получено'), this.tr('от 0x9e41…44Bc · 14:20'), 'Ethereum Sepolia', this.tr('Зачислен'), 'c-ok', this.tr('+500,00 USDT'), 'var(--sigt)', this.tr('$500,00'), R),
+          it(this.tr('Перевод отклонён'), this.tr('на 0x1f98…F984 · 11:02'), 'Ethereum Sepolia', this.tr('Отклонён'), 'c-neg', this.tr('−60,00 USDT'), 'var(--t3)', this.tr('возвращено'), S)
+        ] }
+      ],
+      conf: Array.from({ length: 12 }, (_, i) => (i < 3 ? 'var(--info)' : 'var(--bd)'))
+    };
+  }
+}
+</script>
+</body>
+</html>

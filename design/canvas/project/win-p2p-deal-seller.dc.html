@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>AEON для Windows — сделка P2P-48216, продавец</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./aeon.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+</helmet>
+<div class="{{ themeClass }} wwin" style="width: 1120px; height: 760px">
+  <dc-import lang="{{ lang }}" on-lang="{{ toggleLang }}" name="WinTitleBar" heading="{{ L.k1 }}" with-nav="{{ false }}" hint-size="1120px,48px"></dc-import>
+  <div style="flex: 1; min-height: 0; display: flex; background: var(--layer); border-top: 1px solid var(--bs)">
+    <section style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+      <div style="flex: 1; min-height: 0; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+        <div style="display: flex; align-items: flex-start; gap: 16px">
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 4px"><span style="display: flex; align-items: center; gap: 8px"><span class="lbl" style="font-size: 10px">{{ L.k2 }}</span><span class="chip c-warn" style="height: 20px; border-radius: 4px; font-size: 11px">{{ L.k3 }}</span></span><span class="disp" style="font-size: 30px">{{ L.k4 }}</span><span class="muted">{{ L.k5 }}</span></span>
+          <div role="timer" aria-label="{{ L.k6 }}" style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px"><span class="lbl" style="font-size: 10px">{{ L.k7 }}</span><span class="mono" style="font-size: 30px; font-weight: 500">12:05</span></div>
+        </div>
+        <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(40, minmax(0, 1fr)); gap: 2px; height: 6px"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="40"><span style="border-radius: 1px; background: {{ b }}"></span></sc-for></div>
+        <ol aria-label="{{ L.k8 }}" style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4"><li aria-current="{{ s.current }}" style="display: flex; flex-direction: column; gap: 6px"><span style="height: 3px; border-radius: 2px; background: {{ s.bar }}"></span><span style="font-weight: {{ s.w }}; color: {{ s.fg }}">{{ s.label }}</span></li></sc-for>
+        </ol>
+        <div style="display: flex; gap: 12px; padding: 14px; border-radius: 8px; background: var(--card); border: 1px solid var(--warn)"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 4px; background: var(--warns); color: var(--warn); display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v12H4zM4 11h16M8 15h3"></path></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font: 600 15px Inter, sans-serif">{{ L.k9 }}</span><span class="muted" style="line-height: 18px">{{ L.k10 }}</span></span></div>
+        <div class="wcard">
+          <div style="padding: 10px 14px; border-bottom: 1px solid var(--bs)" class="lbl">{{ L.k11 }}</div>
+          <sc-for list="{{ checks }}" as="c" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-bottom: 1px solid {{ c.line }}"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><span style="flex: 1; font-weight: 500">{{ c.t }}</span><span class="faint" style="font-size: 12px">{{ c.s }}</span></div></sc-for>
+        </div>
+        <span class="faint" style="font-size: 12px">{{ L.k12 }}</span>
+      </div>
+      <div role="toolbar" aria-label="{{ L.k13 }}" style="padding: 12px 24px; border-top: 1px solid var(--bs); background: var(--raised); display: flex; gap: 8px; justify-content: flex-end">
+        <a href="win-p2p-dispute.dc.html" class="wbtn" style="color: var(--neg)">{{ L.k14 }}</a>
+        <button class="wbtn wbtn-p">{{ L.k15 }}</button>
+      </div>
+    </section>
+
+    <aside aria-label="{{ L.k16 }}" style="width: 340px; flex: none; border-left: 1px solid var(--bs); background: var(--card); display: flex; flex-direction: column">
+      <div style="padding: 14px 16px; border-bottom: 1px solid var(--bs); display: flex; align-items: center; gap: 10px"><span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 999px; background: var(--bd); display: flex; align-items: center; justify-content: center; font: 600 11px Inter, sans-serif">ES</span><span style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 600">eva_s</span><span class="faint" style="font-size: 11px">{{ L.k17 }}</span></span></div>
+      <div role="log" aria-label="{{ L.k18 }}" style="flex: 1; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; background: var(--sunken)">
+        <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="5"><div style="align-self: {{ m.align }}; max-width: 86%; display: flex; flex-direction: column; gap: 3px"><span style="padding: 8px 10px; border-radius: 6px; background: {{ m.bg }}; color: {{ m.fg }}; line-height: 18px; text-align: {{ m.ta }}">{{ m.t }}</span><span class="faint" style="font-size: 11px; align-self: {{ m.align }}">{{ m.time }}</span></div></sc-for>
+      </div>
+      <div style="padding: 10px 12px; border-top: 1px solid var(--bs); display: flex; gap: 6px"><span class="winp" style="flex: 1"><input aria-label="{{ L.k19 }}" placeholder="{{ L.k19 }}"></span><button class="wbtn wbtn-p">{{ L.k20 }}</button></div>
+    </aside>
+  </div>
+
+  <sc-if value="{{ isRelease }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: var(--scrim); display: flex; align-items: center; justify-content: center">
+      <div role="dialog" aria-modal="true" aria-labelledby="wrel" style="width: 460px; border-radius: 8px; border: 1px solid var(--bs); background: var(--flyout); box-shadow: 0 24px 64px rgba(0,0,0,0.45); overflow: hidden">
+        <div style="padding: 22px 24px; display: flex; flex-direction: column; gap: 14px">
+          <span id="wrel" class="disp" style="font-size: 20px">{{ L.k21 }}</span>
+          <div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 4px; background: var(--negs); border: 1px solid var(--neg); line-height: 18px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neg)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 3l10 17H2zM12 10v4M12 17v.5"></path></svg><span>{{ L.k22 }}</span></div>
+          <label style="display: flex; align-items: center; gap: 8px"><span class="cb on" aria-hidden="true" style="width: 18px; height: 18px; border-radius: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><input type="checkbox" checked class="sr">{{ L.k23 }}</label>
+          <div style="display: flex; flex-direction: column; gap: 6px"><span class="muted">{{ L.k24 }}</span><div role="group" aria-label="{{ L.k25 }}" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px"><sc-for list="{{ otp }}" as="d" hint-placeholder-count="6"><span class="winp" style="justify-content: center; height: 40px; font: 600 18px 'JetBrains Mono', monospace; border-bottom: {{ d.b }}">{{ d.v }}</span></sc-for></div></div>
+        </div>
+        <div style="padding: 16px 24px; background: var(--dfoot); border-top: 1px solid var(--bs); display: grid; grid-template-columns: 1fr 1fr; gap: 8px"><button class="wbtn wbtn-p">{{ L.k26 }}</button><button class="wbtn">{{ L.k27 }}</button></div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme": {"editor": "enum", "options": ["dark", "light"], "default": "dark"}, "status": {"editor": "enum", "options": ["paid", "release"], "default": "paid"}, "lang": {"editor": "enum", "options": ["ru", "en"], "default": "ru"}, "$preview": {"width": 1120, "height": 760}}'>
+class Component extends DCLogic {
+  static EN = {"Сделка P2P-48216 · продажа": "Deal P2P-48216 · sale", "ВЫ ПРОДАЁТЕ · EVA_S": "YOU ARE SELLING · EVA_S", "Оплата отправлена": "Payment sent", "100,00 USDT": "100.00 USDT", "за 9 240,00 ₽ · курс 92,40 ₽ · СБП": "for 9,240.00 ₽ · rate 92.40 ₽ · SBP", "На проверку оплаты осталось 12 минут 5 секунд": "12 minutes 5 seconds left to verify the payment", "НА ПРОВЕРКУ": "TO VERIFY", "Этапы сделки": "Deal stages", "Покупатель отметил оплату в 11:58 — проверьте поступление": "The buyer marked the payment at 11:58 — check that it arrived", "Откройте банк и найдите перевод 9 240,00 ₽ по СБП. Чек в чате можно подделать — ориентируйтесь только на выписку.": "Open your bank and find an SBP transfer of 9,240.00 ₽. A receipt in the chat can be forged — rely only on your statement.", "ЧТО ПРОВЕРИТЬ В БАНКЕ": "WHAT TO CHECK IN YOUR BANK", "Выпуск необратим: после подтверждения 100 USDT сразу уйдут покупателю. Нужен код 2FA.": "Release is irreversible: after confirmation 100 USDT go to the buyer right away. A 2FA code is required.", "Действия по сделке": "Deal actions", "Оплата не пришла — открыть спор": "Payment not received — open dispute", "Подтвердить получение и выпустить · Ctrl+Enter": "Confirm receipt and release · Ctrl+Enter", "Чат сделки с eva_s": "Deal chat with eva_s", "41 сделка · 100% · KYC 2": "41 deals · 100% · KYC 2", "Сообщения сделки": "Deal messages", "Сообщение покупателю": "Message to the buyer", "Отправить": "Send", "Выпустить 100,00 USDT покупателю eva_s?": "Release 100.00 USDT to buyer eva_s?", "Отменить выпуск нельзя — даже через спор.": "The release can't be undone — not even through a dispute.", "9 240,00 ₽ пришли на мой счёт": "9,240.00 ₽ arrived in my account", "Код из приложения-аутентификатора": "Code from the authenticator app", "Шесть цифр кода": "Six code digits", "Выпустить": "Release", "Отмена": "Cancel", "Создана": "Created", "Средства в эскроу": "Funds in escrow", "Завершена": "Completed", "Ровно 9 240,00 ₽": "Exactly 9,240.00 ₽", "другая сумма — повод для спора": "a different amount is grounds for a dispute", "Отправитель — Ева С.": "Sender — Eva S.", "совпадает с верифицированным именем": "matches the verified name", "Деньги уже на счёте": "Money is already in the account", "СБП · Т-Банк · +7 900 000-00-00": "SBP · T-Bank · +7 900 000-00-00", "100 USDT заблокированы в эскроу": "100 USDT locked in escrow", "Здравствуйте! Реквизиты в окне сделки, жду перевод по СБП.": "Hello! Payment details are in the deal window, waiting for the SBP transfer.", "Перевела 9 240 ₽, чек приложила.": "Sent 9,240 ₽, receipt attached.", "Чек СБП.pdf · 182 КБ": "SBP receipt.pdf · 182 KB", "Покупатель отметил оплату": "Buyer marked the payment"};
+  tr(s) { return this._lang === 'en' && Component.EN[s] != null ? Component.EN[s] : s; }
+  renderVals() {
+    const lang = (this.state && this.state.lang) || this.props.lang || 'ru';
+    this._lang = lang;
+    const v = this._vals();
+    const on = (x) => (lang === x ? 'var(--pbg, #F2F5F1)' : 'transparent');
+    const fg = (x) => (lang === x ? 'var(--pfg, #0A0C0B)' : 'var(--t2, #A3ACA5)');
+    v.L = { k1: this.tr("Сделка P2P-48216 · продажа"), k2: this.tr("ВЫ ПРОДАЁТЕ · EVA_S"), k3: this.tr("Оплата отправлена"), k4: this.tr("100,00 USDT"), k5: this.tr("за 9 240,00 ₽ · курс 92,40 ₽ · СБП"), k6: this.tr("На проверку оплаты осталось 12 минут 5 секунд"), k7: this.tr("НА ПРОВЕРКУ"), k8: this.tr("Этапы сделки"), k9: this.tr("Покупатель отметил оплату в 11:58 — проверьте поступление"), k10: this.tr("Откройте банк и найдите перевод 9 240,00 ₽ по СБП. Чек в чате можно подделать — ориентируйтесь только на выписку."), k11: this.tr("ЧТО ПРОВЕРИТЬ В БАНКЕ"), k12: this.tr("Выпуск необратим: после подтверждения 100 USDT сразу уйдут покупателю. Нужен код 2FA."), k13: this.tr("Действия по сделке"), k14: this.tr("Оплата не пришла — открыть спор"), k15: this.tr("Подтвердить получение и выпустить · Ctrl+Enter"), k16: this.tr("Чат сделки с eva_s"), k17: this.tr("41 сделка · 100% · KYC 2"), k18: this.tr("Сообщения сделки"), k19: this.tr("Сообщение покупателю"), k20: this.tr("Отправить"), k21: this.tr("Выпустить 100,00 USDT покупателю eva_s?"), k22: this.tr("Отменить выпуск нельзя — даже через спор."), k23: this.tr("9 240,00 ₽ пришли на мой счёт"), k24: this.tr("Код из приложения-аутентификатора"), k25: this.tr("Шесть цифр кода"), k26: this.tr("Выпустить"), k27: this.tr("Отмена") };
+    v.lang = lang;
+    v.lruBg = on('ru'); v.lruFg = fg('ru'); v.lenBg = on('en'); v.lenFg = fg('en');
+    v.toggleLang = this.props.onLang || (() => this.setState({ lang: lang === 'ru' ? 'en' : 'ru' }));
+    return v;
+  }
+
+  _vals() {
+    const theme = this.props.theme ?? 'dark';
+    const status = this.props.status ?? 'paid';
+    const labels = [this.tr('Создана'), this.tr('Средства в эскроу'), this.tr('Оплата отправлена'), this.tr('Завершена')];
+    const mm = (t, time, mine, sys) => ({ t, time, align: mine ? 'flex-end' : sys ? 'center' : 'flex-start', ta: sys ? 'center' : 'left', bg: mine ? 'var(--pbg)' : sys ? 'var(--warns)' : 'var(--raised)', fg: mine ? 'var(--pfg)' : sys ? 'var(--warn)' : 'var(--t1)' });
+    return {
+      themeClass: theme === 'light' ? 'th-light' : 'th-dark',
+      isRelease: status === 'release',
+      bars: Array.from({ length: 40 }, (_, i) => (i < 32 ? 'var(--warn)' : 'var(--bd)')),
+      steps: labels.map((label, i) => ({ label, current: i === 2 ? 'step' : 'false', bar: i < 2 ? 'var(--sig)' : i === 2 ? 'var(--t1)' : 'var(--bd)', w: i === 2 ? 600 : 400, fg: i <= 2 ? 'var(--t1)' : 'var(--t3)' })),
+      checks: [
+        { t: this.tr('Ровно 9 240,00 ₽'), s: this.tr('другая сумма — повод для спора'), line: 'var(--bs)' },
+        { t: this.tr('Отправитель — Ева С.'), s: this.tr('совпадает с верифицированным именем'), line: 'var(--bs)' },
+        { t: this.tr('Деньги уже на счёте'), s: this.tr('СБП · Т-Банк · +7 900 000-00-00'), line: 'transparent' }
+      ],
+      msgs: [
+        mm(this.tr('100 USDT заблокированы в эскроу'), '11:44', false, true),
+        mm(this.tr('Здравствуйте! Реквизиты в окне сделки, жду перевод по СБП.'), '11:45', true),
+        mm(this.tr('Перевела 9 240 ₽, чек приложила.'), '11:57'),
+        mm(this.tr('Чек СБП.pdf · 182 КБ'), '11:57'),
+        mm(this.tr('Покупатель отметил оплату'), '11:58', false, true)
+      ],
+      otp: ['4', '8', '1', '9', '', ''].map((v, i) => ({ v, b: i === 4 ? '2px solid var(--sigt)' : '1px solid var(--bst)' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Референсы — настроение</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width: 1600px; min-height: 1200px; box-sizing: border-box; padding: 64px; background: #0A0C0B; color: #F2F5F1; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; gap: 40px">
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.06em; color: #848D86">РЕФЕРЕНСЫ · НАСТРОЕНИЕ · 10</span>
+      <h2 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 48px; letter-spacing: -0.02em">Крипто-слой: точки, шум, свечение</h2>
+    </div>
+    <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 22px; color: #A3ACA5">Только для иллюстраций, пустых состояний, экранов входа и фона под стеклом. Яркость в интерфейсе — не выше 8–12%, никогда под таблицами и текстом.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px">
+    <sc-for list="{{ items }}" as="it" hint-placeholder-count="10">
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px">
+        <div style="height: 300px; background: #131614; border: 1px solid #232824; border-radius: 16px; overflow: hidden">
+          <img src="{{ it.src }}" alt="{{ it.alt }}" style="width: 100%; height: 100%; object-fit: cover">
+        </div>
+        <figcaption style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #B6F36B">{{ it.num }} · {{ it.kind }}</span>
+          <span style="font-size: 14px; line-height: 20px; color: #A3ACA5">{{ it.take }}</span>
+        </figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      items: [
+        { num: '03', kind: 'ДВОИЧНЫЙ КОД', src: '/_blob/0f593a592c84c9bdde42950bd08ffa1c', alt: 'Знак биткоина из нулей и единиц', take: 'Текстура из 0/1 моноширинным шрифтом для иллюстраций' },
+        { num: '05', kind: 'СХЕМА', src: '/_blob/83ea19e2209c3c6d28c740c917df47d7', alt: 'Электрическая схема на чёрном фоне', take: 'Фон экранов входа и обложки на низкой яркости' },
+        { num: '09', kind: 'ГЛОБУС ИЗ ТОЧЕК', src: '/_blob/09fbfce5d1b0550fb2bb4d61f0f8e611', alt: 'Глобус из квадратных точек', take: 'Иллюстрация P2P: сделки между людьми по всему миру' },
+        { num: '11', kind: 'ТОЧЕЧНАЯ СЕТКА', src: '/_blob/2ab6b5e9f638c55083217141dd36e79d', alt: 'Сетка из ста точек: двенадцать зелёных', take: 'Доли портфеля и процент завершённых сделок; тег-пилюля' },
+        { num: '14', kind: 'КИНЕТИКА', src: '/_blob/e72cd859e21e11b46f18f824260c33de', alt: 'Список монет по дуге с синей точкой', take: 'Барабан выбора актива в онбординге' },
+        { num: '15', kind: 'ПОЛЕ ЧАСТИЦ', src: '/_blob/54f565577537e4fd2da72ec65c323967', alt: 'Бирюзовое поле частиц', take: 'Фон раздела «Аналитика» — карта данных' },
+        { num: '16', kind: 'СВЕЧЕНИЕ', src: '/_blob/b951e00c54e6899065f6dbac21629166', alt: 'Зелёное свечение с зерном на чёрном', take: 'Живой фон под Liquid Glass в шапке баланса' },
+        { num: '17', kind: 'ДВИЖЕНИЕ', src: '/_blob/06fdc0e8dd35085708190b5b9691fb26', alt: 'Смазанная зелёная текстура', take: 'Поток транзакций; для промо и онбординга' },
+        { num: '18', kind: 'ФОРМА', src: '/_blob/bb84afceb2eecac12e0f2e95f2123472', alt: 'Зелёная размытая форма на белом', take: 'Фон для светлой темы и обложки' },
+        { num: '19', kind: 'ДИЗЕРИНГ', src: '/_blob/93a7a4a35653abcc8ed97e1a406c10d5', alt: 'Переход из точек розового цвета', take: 'Приём перехода из точек; цвет меняем на зелёный' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
