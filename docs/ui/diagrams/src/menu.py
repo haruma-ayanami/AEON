@@ -9,7 +9,7 @@ MENU = [
                  ("История транзакций", "Ctrl+2", "2")]),
     ("P2P", [("Маркетплейс", "Ctrl+3", "3"), ("Мои сделки", "Ctrl+4", "4"), ("Мои объявления", "Ctrl+5", "5"), SEP,
              ("Создать объявление…", "Ctrl+N", "5A")]),
-    ("Аналитика", [("Портфель", "", "-"), ("Проверка адреса…", "", "-")]),
+    ("Аналитика", [("Портфель", "", ""), ("Проверка адреса…", "", "")]),
     ("Уведомления", [("Центр уведомлений", "Ctrl+6", "6"), SEP, ("Прочитать все", "Ctrl+Shift+A", "6B")]),
     ("Профиль", [("Войти…", "", "0"), SEP, ("Личные данные", "Ctrl+7", "7"), SEP, ("Выход", "Ctrl+Q", "8")]),
     ("Действия", [("Открыть", "Enter", ""), ("Фильтры…", "Ctrl+F", ""), SEP, ("Сохранить", "Ctrl+S", ""),
@@ -63,7 +63,7 @@ for r in range(len(grid)):
         if adm:
             o.append(f'<text x="{px+6}" y="{yy0+h+32}" font-size="20" font-family="{F}" fill="#7A1F3A" font-style="italic">Отображается только для роли ADMIN</text>')
         if title == "Аналитика":
-            o.append(f'<text x="{px+6}" y="{yy0+h+32}" font-size="20" font-family="{F}" fill="#777" font-style="italic">Вне реестра US-0 – US-17, недоступен</text>')
+            o.append(f'<text x="{px+6}" y="{yy0+h+32}" font-size="20" font-family="{F}" fill="#777" font-style="italic">Вне реестра US-0 – US-17, без кодов операций</text>')
     y += TAB + rowh + GAPY
 H = int(y - GAPY + 50)
 o.insert(0, f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}"><rect width="100%" height="100%" fill="#fff"/>')
